@@ -1,0 +1,23 @@
+#--------------------------------------------------------------------
+# Original Author: KR84 / Paul Scherrer Institut
+# $Author: kalt_r $
+# $Date: 2012/05/03 09:41:53 $
+#
+# $Revision: 1.1 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.1 2012/05/03 09:41:53 kalt_r Exp $
+#
+#--------------------------------------------------------------------
+
+
+# Module Description:
+# Contains the records for P2020 ELB-bus towards PON FPGA on IFC1210 mainboard.
+# 
+# You find more infos on ELB bus structure here beginning section 4.2:
+# https://codebeamer.psi.ch/cb/displayDocument/IFC1210_UG_Vx.pdf?doc_id=139156
+# 
+#
+# This template requires following substitution parameters:
+# $(IOC)                                        The system name
+#
+#--------------------------------------------------------------------
+

@@ -1,0 +1,67 @@
+#--------------------------------------------------------------------
+# Original Author: KR84 / Paul Scherrer Institut
+# $Author: kalt_r $
+# $Date: 2012/05/03 09:41:53 $
+#
+# $Revision: 1.1 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1_SFP.template,v 1.1 2012/05/03 09:41:53 kalt_r Exp $
+#
+#--------------------------------------------------------------------
+
+
+# Module Description:
+# the SFP+ modules of IFC_TC1 are coverd in this template:
+#    -SFP+ modules I2C
+#    -CPLD IO extender to SFP+ modules
+#
+#
+# You may find more infos on I2C bus structure here:
+# https://codebeamer.psi.ch/cb/wiki/140335
+#
+#
+# This template requires following in a common part of the startup.script:
+#     e.g.  pevAsynI2cConfigure(0, "lm95235_1",  0x0400004c)
+# for each device
+#
+#
+#
+#
+# This template requires following substitution parameters:
+# $(IOC)                                        The system name / crate name
+# $(I2CBUSSFPA0)        e.g. ifctc1_sfp1_gtx_114_3_A0 .. ifctc1_sfp_pcie4_port15_A0
+# $(I2CBUSSFPA2)        e.g. ifctc1_sfp1_gtx_114_3_A2 .. ifctc1_sfp_pcie4_port15_A2
+# $(I2CBUSCPLD)         ifctc1_cpld
+# $(BUSMUX)             Nr. according https://codebeamer.psi.ch/cb/proj/sources/sccFileLog.do?proj_id=104&filename=IFC%2FIFC1210_generic%2FFirmware%2FPSI%2FIFC_TC1%2FDocumentation%2FIFC_TC1_firmware_specification.doc&isDir=false
+#                       to select the correct device, see section 2.3 table 8.
+# $(DESCR)              e.g. "SFP1 / GTX 114_3"
+#                       or   "SFP / PCIe port 12"
+#
+#--------------------------------------------------------------------
+
+
+
+#--------------------------------------------------------------------
+# one SFP+ module here:       either for CENTRAL FPGA GTX or PCIe
+#--------------------------------------------------------------------
+
+
+# I2C bus 0x3:      transition card over VME_P0 over PCI-express->CENTRAL
+# device:           SFP+ modules
+# datasheet:        ftp://ftp.seagate.com/sff/ for SFF specs and VENDOR datasheets, e.g. AVAGO Technologies
+#--------------------------------------------------------------------
+
+
+
+
+
+# I2C bus 0x3:      transition card over VME_P0 over PCI-express->CENTRAL
+# device:           I2C IO extender in CPLD (here are only the SFP+ auxiliary signals !)
+# datasheet:        https://codebeamer.psi.ch/cb/proj/sources/sccFileLog.do?proj_id=104&filename=IFC%2FIFC1210_generic%2FFirmware%2FPSI%2FIFC_TC1%2FDocumentation%2FIFC_TC1_firmware_specification.doc&isDir=false
+#--------------------------------------------------------------------
+
+
+
+
+
+
+

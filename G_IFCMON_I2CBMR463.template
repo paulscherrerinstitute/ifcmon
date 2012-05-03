@@ -1,0 +1,40 @@
+#--------------------------------------------------------------------
+# Original Author: KR84 / Paul Scherrer Institut
+# $Author: kalt_r $
+# $Date: 2012/05/03 09:41:53 $
+#
+# $Revision: 1.1 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CBMR463.template,v 1.1 2012/05/03 09:41:53 kalt_r Exp $
+#
+#--------------------------------------------------------------------
+
+
+# Module Description:
+# Contains the records for BMR463 DC/DC converters on I2C bus 0x02 / power
+# datasheet:        https://codebeamer.psi.ch/cb/displayDocument/28701-EN_LZT146434_EN_A_PDFV1R7.pdf?doc_id=128847
+#
+# You may find more infos on I2C bus structure here:
+# https://codebeamer.psi.ch/cb/wiki/140335
+#
+#
+#
+#
+# This template requires following substitution parameters:
+# $(IOC)                                        The system name
+# $(I2CBUS)             ifc1210_bmr463_1v0      for BMR463 U704 VCC_1V0 (primary)
+#                       ifc1210_bmr463_1v0_opt  for BMR463 U705 VCC_1V0 (optional for LX240T big CENTRAL FPGA)
+#                       ifc1210_bmr463_1v5      for BMR463 U706 VCC_1V5
+#                       ifc1210_bmr463_fmc_vadj for BMR463 U707 FMC_Vadj 1.5-2.5V
+# $(DESCR)              e.g. "BMR463 U707 FMC_Vadj 1.5-2.5V"
+#
+#
+#
+#--------------------------------------------------------------------
+
+
+
+
+
+
+
+

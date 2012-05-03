@@ -1,0 +1,30 @@
+#--------------------------------------------------------------------
+# Original Author: KR84 / Paul Scherrer Institut
+# $Author: kalt_r $
+# $Date: 2012/05/03 09:41:53 $
+#
+# $Revision: 1.1 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_TMEM.template,v 1.1 2012/05/03 09:41:53 kalt_r Exp $
+#
+#--------------------------------------------------------------------
+
+
+# Module Description:
+# Contains the records for __one__ IFC1210 TOSCA-II SUSER block.
+# Therefore this template must be substituded twice to cover SUSER1 and SUSER2.
+#   
+# You may find specification of SUSER1/2 generic Memory Map here:
+# https://codebeamer.psi.ch/cb/proj/sources/sccFileLog.do?proj_id=104&filename=IFC%2FIFC1210_generic%2FFirmware%2FDocumentation%2FIFC1210_TOSCA-II_USER_and_SUSER_Implementation_Rules.doc&isDir=false
+#
+# This template requires following in a common part of the startup.script:
+#       pevConfigure(0,"Usr1Pev","USR1", 0)
+#    or pevAsynConfigure(0,"asynUsr1Pev","USR1", 0)
+# for each device, USR1 and USR2
+#
+#
+# This template requires following substitution parameters:
+# $(IOC)                                        The system name
+#
+#--------------------------------------------------------------------
+
+

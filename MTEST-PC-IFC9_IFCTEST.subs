@@ -1,0 +1,22 @@
+# IFC1210 .subs file to be replaced / deleted after migration to IFCMON
+# Author: KR84
+# Date:   27.04.2012
+#
+# Purpose: Test the IFC1210 IFCMON generic infrastructure
+#
+#
+
+
+
+#file pevTests.template{
+#{IOC = MTEST-PC-IFC9}
+#}
+
+#file i2cTests.template{
+#{IOC = MTEST-PC-IFC9}
+#}
+
+
+file G_IFCMON_I2CIFC1210.template{
+{IOC = MTEST-PC-IFC9}
+}

@@ -1,0 +1,347 @@
+#--------------------------------------------------------------------
+# Original Author: KR84 / Paul Scherrer Institut
+# $Author: kalt_r $
+# $Date: 2012/05/03 09:41:53 $
+#
+# $Revision: 1.1 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.1 2012/05/03 09:41:53 kalt_r Exp $
+#
+#--------------------------------------------------------------------
+
+
+# Module Description:
+# Contains the records for IFC1210 mainboard based I2C busses/chips
+# based on access over PON FPGA but not:
+# -the components which are on XMC/FMC 1/2 cards. 
+# -the BMR463 DC/DC (own template)
+#
+# You may find more infos on I2C bus structure here:
+# https://codebeamer.psi.ch/cb/wiki/140335
+#
+#
+# This template requires following in a common part of the startup.script:
+#     e.g.  pevAsynI2cConfigure(0, "lm95235_1",  0x0400004c)
+# for each device
+#
+#
+#
+# This template requires following substitution parameters:
+# $(IOC)                                        The system name
+#
+#--------------------------------------------------------------------
+
+
+
+# I2C bus 0x0:      temperature
+# device:           LM95235 temperature sensor U700 with local sensor only
+# datasheet:        https://codebeamer.psi.ch/cb/displayDocument/MAX5970.pdf?doc_id=128850
+# startup.script:   ifc1210_lm95235_1
+#--------------------------------------------------------------------
+
+# configuration register 2
+record(ao,"$(IOC):TEMP1-CONF2")
+{
+        field(DESC, "LM95235 U700 conf 2")
+        field(DTYP, "regDevAsyn")
+        field(OUT,  "#C S @ifc1210_lm95235_1/0xBF T=UINT8")
+        field(PINI, "NO")  # YES does the IOC crash
+        field(VAL,  "6")
+        field(SCAN, "Passive")
+}
+
+# local sensor
+
+
+
+
+
+
+
+
+
+
+
+
+# I2C bus 0x0:      temperature
+# device:           LM95235 temperature sensor U701 with local + P2020 remote sensor
+# datasheet:        https://codebeamer.psi.ch/cb/displayDocument/MAX5970.pdf?doc_id=128850
+# startup.script:   ifc1210_lm95235_2
+#--------------------------------------------------------------------
+
+# configuration register 2
+record(ao,"$(IOC):TEMP2-CONF2")
+{
+        field(DESC, "LM95235 U701 conf 2")
+        field(DTYP, "regDevAsyn")
+        field(OUT,  "#C S @ifc1210_lm95235_2/0xBF T=UINT8")
+        field(PINI, "NO")
+        field(VAL,  "6") # see page 17 of datasheet: filter enabled
+        field(SCAN, "Passive")
+}
+
+
+
+
+
+
+
+# Remote sensor inside P2020 die
+# P2020 Datasheet:                      https://codebeamer.psi.ch/cb/displayDocument/P2020EC.pdf?doc_id=128840
+# P2020 Remote diode, compatible with:  http://www.onsemi.com/PowerSolutions/product.do?id=ADT7461A
+
+
+
+
+
+
+
+# I2C bus 0x2:      power
+# device:           MAX5970 power monitor
+# datasheet:        https://codebeamer.psi.ch/cb/displayDocument/MAX5970.pdf?doc_id=128850
+# startup.script:   ifc1210_max5970
+#--------------------------------------------------------------------
+
+
+
+
+
+
+
+
+# I2C bus 0x6:      PCI-express
+# device:           PES32NT24AG2 PCI-express switch
+# datasheet:        https://codebeamer.psi.ch/cb/displayDocument/PES32NT24xG2-Device-UserManual.pdf?doc_id=130003
+# startup.script:   ifc1210_pci_express_switch
+#--------------------------------------------------------------------
+
+
+record(ai,"$(IOC):PCIESW-TMPSTS")
+{
+    field(DESC, "PCIe-Switch TMPSTS")
+    field(DTYP, "regDevAsyn")
+    field(INP,  "#C S @ifc1210_pci_express_switch/0x11D8 T=UINT32")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+# I2C bus 0x7:      clock
+# device:           IDT 8N4Q001 programmable clock generator
+# datasheet:        https://codebeamer.psi.ch/cb/displayDocument/IDT8N4Q001+Rev+G+Advance+Data+Sheet.pdf?doc_id=128914
+# startup.script:   ifc1210_pgm_clock
+#--------------------------------------------------------------------
+record(ao,"$(IOC):PGMCLOCK-REG0")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 0")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x00 T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+record(ao,"$(IOC):PGMCLOCK-REG1")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 1")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x01 T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+record(ao,"$(IOC):PGMCLOCK-REG2")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 2")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x02 T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+record(ao,"$(IOC):PGMCLOCK-REG3")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 3")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x03 T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+record(ao,"$(IOC):PGMCLOCK-REG4")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 4")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x04 T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+record(ao,"$(IOC):PGMCLOCK-REG5")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 5")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x05 T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+record(ao,"$(IOC):PGMCLOCK-REG6")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 6")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x06 T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+record(ao,"$(IOC):PGMCLOCK-REG7")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 7")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x07 T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+record(ao,"$(IOC):PGMCLOCK-REG8")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 8")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x08 T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+record(ao,"$(IOC):PGMCLOCK-REG9")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 9")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x09 T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+record(ao,"$(IOC):PGMCLOCK-REG10")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 10")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x0A T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+record(ao,"$(IOC):PGMCLOCK-REG11")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 11")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x0B T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+record(ao,"$(IOC):PGMCLOCK-REG12")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 12")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x0C T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+record(ao,"$(IOC):PGMCLOCK-REG13")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 13")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x0D T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+record(ao,"$(IOC):PGMCLOCK-REG14")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 14")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x0E T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+record(ao,"$(IOC):PGMCLOCK-REG15")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 15")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x0F T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+# register 16d / 0x10 is reserved
+
+record(ao,"$(IOC):PGMCLOCK-REG17")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 17")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x11 T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+record(ao,"$(IOC):PGMCLOCK-REG18")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 18")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x12 T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+# register 19d / 0x13 is reserved
+
+record(ao,"$(IOC):PGMCLOCK-REG20")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 20")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x14 T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+record(ao,"$(IOC):PGMCLOCK-REG21")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 21")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x15 T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+record(ao,"$(IOC):PGMCLOCK-REG22")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 22")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x16 T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+record(ao,"$(IOC):PGMCLOCK-REG23")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 23")
+    field(DTYP, "regDevAsyn")
+    field(OUT,  "#C S @ifc1210_pgm_clock/0x17 T=UINT8")
+    field(PINI, "NO") #### change to YES and update val field with power-on value
+    field(VAL,  "0")
+}
+
+
+
+
+

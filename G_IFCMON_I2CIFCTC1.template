@@ -1,0 +1,89 @@
+#--------------------------------------------------------------------
+# Original Author: KR84 / Paul Scherrer Institut
+# $Author: kalt_r $
+# $Date: 2012/05/03 09:41:53 $
+#
+# $Revision: 1.1 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1.template,v 1.1 2012/05/03 09:41:53 kalt_r Exp $
+#
+#--------------------------------------------------------------------
+
+
+# Module Description:
+# Contains the records for universal highspeed transition card IFC_TC1.
+# Possible extenstions over J17 towards mezzanine I2C components are not
+# covered in this template.
+#
+# the SFP+ modules are not coverd in this template, find them in G_IFCMON_I2CIFCTC1_SFP:
+#    -SFP+ modules I2C + CPLD IO extender to SFP+ modules
+#
+#
+# You may find more infos on I2C bus structure here:
+# https://codebeamer.psi.ch/cb/wiki/140335
+#
+#
+# This template requires following in a common part of the startup.script:
+#     e.g.  pevAsynI2cConfigure(0, "lm95235_1",  0x0400004c)
+# for each device
+#
+# 
+#
+# This template requires following substitution parameters:
+# $(IOC)                                        The system name
+#
+#--------------------------------------------------------------------
+
+
+
+# I2C bus 0x3:      transition card over VME_P0 over PCI-express->CENTRAL
+# device:           I2C bus multiplexer in CPLD
+# datasheet:        https://codebeamer.psi.ch/cb/proj/sources/sccFileLog.do?proj_id=104&filename=IFC%2FIFC1210_generic%2FFirmware%2FPSI%2FIFC_TC1%2FDocumentation%2FIFC_TC1_firmware_specification.doc&isDir=false
+# startup.script:   ifctc1_cpld
+#--------------------------------------------------------------------
+
+
+
+
+
+
+
+# I2C bus 0x3:      transition card over VME_P0 over PCI-express->CENTRAL
+# device:           I2C IO extender in CPLD (not SFP+ auxiliary signals, not bus-multiplexer (see above) !)
+# datasheet:        https://codebeamer.psi.ch/cb/proj/sources/sccFileLog.do?proj_id=104&filename=IFC%2FIFC1210_generic%2FFirmware%2FPSI%2FIFC_TC1%2FDocumentation%2FIFC_TC1_firmware_specification.doc&isDir=false
+# startup.script:   ifctc1_cpld
+#--------------------------------------------------------------------
+
+
+
+
+
+
+
+# I2C bus 0x3:      transition card over VME_P0 over PCI-express->CENTRAL
+# device:           AT24C08 8k EEPROM
+# datasheet:        Internet
+# startup.script:   ifctc1_eeprom
+#--------------------------------------------------------------------
+
+
+
+
+
+# I2C bus 0x3:      transition card over VME_P0 over PCI-express->CENTRAL
+# device:           PI2EQX5864 - 5.0Gbps 4-Lane PCI Express GenII Re-Driver
+# datasheet:        http://www.alldatasheet.com/datasheet-pdf/pdf/231945/PERICOM/PI2EQX5864.html
+# startup.script:   ifctc1_pcie
+#--------------------------------------------------------------------
+
+
+
+
+
+# I2C bus 0x3:      transition card over VME_P0 over PCI-express->CENTRAL
+# device:           MAX5970 power monitor
+# datasheet:        https://codebeamer.psi.ch/cb/displayDocument/MAX5970.pdf?doc_id=128850
+# startup.script:   ifctc1_max5970
+#--------------------------------------------------------------------
+
+
+
