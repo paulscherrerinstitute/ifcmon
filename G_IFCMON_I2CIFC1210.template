@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/03 09:41:53 $
+# $Date: 2012/05/04 12:59:17 $
 #
-# $Revision: 1.1 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.1 2012/05/03 09:41:53 kalt_r Exp $
+# $Revision: 1.2 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.2 2012/05/04 12:59:17 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -34,63 +34,113 @@
 
 # I2C bus 0x0:      temperature
 # device:           LM95235 temperature sensor U700 with local sensor only
-# datasheet:        https://codebeamer.psi.ch/cb/displayDocument/MAX5970.pdf?doc_id=128850
+# datasheet:        https://codebeamer.psi.ch/cb/displayDocument/lm95235.pdf?doc_id=128846
 # startup.script:   ifc1210_lm95235_1
 #--------------------------------------------------------------------
 
 # configuration register 2
 record(ao,"$(IOC):TEMP1-CONF2")
 {
-        field(DESC, "LM95235 U700 conf 2")
-        field(DTYP, "regDevAsyn")
-        field(OUT,  "#C S @ifc1210_lm95235_1/0xBF T=UINT8")
-        field(PINI, "NO")  # YES does the IOC crash
-        field(VAL,  "6")
-        field(SCAN, "Passive")
+    field(DESC, "LM95235 U700 conf 2")
+    field(DTYP, "regDevAsyn")
+    field(OUT , "#C S @ifc1210_lm95235_1/0xBF T=UINT8")
+    field(PINI, "YES")
+    field(VAL , "6") # see page 17 of datasheet: filter enabled
+    field(SCAN, "Passive")
 }
 
 # local sensor
-
-
-
-
-
-
-
-
+record(ai,"$(IOC):TEMP1-MSB")
+{
+    field(DESC, "LM95235 U700 Local, MSB")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifc1210_lm95235_1/0x00 T=UINT8")
+}
+record(ai,"$(IOC):TEMP1-LSB")
+{
+    field(DESC, "LM95235 U700 Local, LSB")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifc1210_lm95235_1/0x30 T=UINT8")
+}
+record(calc,"$(IOC):TEMP1")
+{ 
+    field(DESC, "LM95235 U700 Local Temp.")
+    field(INPA, "$(IOC):TEMP1-LSB PP")
+    field(INPB, "$(IOC):TEMP1-MSB PP")
+    field(C   , "0.00390625") 		# scale 125/0x7D00, see LM95235 datasheet page 11
+    field(CALC, "(A|B-(B&128?256:0)<<8)*C")
+    field(PREC, "1") 
+    field(EGU , "deg C")			
+}
 
 
 
 
 # I2C bus 0x0:      temperature
 # device:           LM95235 temperature sensor U701 with local + P2020 remote sensor
-# datasheet:        https://codebeamer.psi.ch/cb/displayDocument/MAX5970.pdf?doc_id=128850
+# datasheet:        https://codebeamer.psi.ch/cb/displayDocument/lm95235.pdf?doc_id=128846
 # startup.script:   ifc1210_lm95235_2
 #--------------------------------------------------------------------
 
 # configuration register 2
 record(ao,"$(IOC):TEMP2-CONF2")
 {
-        field(DESC, "LM95235 U701 conf 2")
-        field(DTYP, "regDevAsyn")
-        field(OUT,  "#C S @ifc1210_lm95235_2/0xBF T=UINT8")
-        field(PINI, "NO")
-        field(VAL,  "6") # see page 17 of datasheet: filter enabled
-        field(SCAN, "Passive")
+    field(DESC, "LM95235 U701 conf 2")
+    field(DTYP, "regDevAsyn")
+    field(OUT , "#C S @ifc1210_lm95235_2/0xBF T=UINT8")
+    field(PINI, "YES")
+    field(VAL , "6") # see page 17 of datasheet: filter enabled
+    field(SCAN, "Passive")
 }
 
-
-
-
-
-
+# local sensor
+record(ai,"$(IOC):TEMP2-MSB")
+{
+    field(DESC, "LM95235 U701 Local, MSB")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifc1210_lm95235_2/0x00 T=UINT8")
+}
+record(ai,"$(IOC):TEMP2-LSB")
+{
+    field(DESC, "LM95235 U701 Local, LSB")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifc1210_lm95235_2/0x30 T=UINT8")
+}
+record(calc,"$(IOC):TEMP2")
+{ 
+    field(DESC, "LM95235 U701 Local Temp.")
+    field(INPA, "$(IOC):TEMP2-LSB PP")
+    field(INPB, "$(IOC):TEMP2-MSB PP")
+    field(C   , "0.00390625") 		# scale 125/0x7D00, see LM95235 datasheet page 11
+    field(CALC, "(A|B-(B&128?256:0)<<8)*C")
+    field(PREC, "1") 
+    field(EGU , "deg C")			
+}
 
 # Remote sensor inside P2020 die
 # P2020 Datasheet:                      https://codebeamer.psi.ch/cb/displayDocument/P2020EC.pdf?doc_id=128840
 # P2020 Remote diode, compatible with:  http://www.onsemi.com/PowerSolutions/product.do?id=ADT7461A
-
-
-
+record(ai,"$(IOC):P2020-CORETEMP-MSB")
+{
+    field(DESC, "LM95235 U701 P2020 Core, MSB")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifc1210_lm95235_2/0x01 T=UINT8")
+}
+record(ai,"$(IOC):P2020-CORETEMP-LSB")
+{
+    field(DESC, "LM95235 U701 P2020 Core, LSB")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifc1210_lm95235_2/0x10 T=UINT8")
+}
+record(calc,"$(IOC):P2020-CORETEMP")
+{ 
+    field(DESC, "LM95235 P2020 core temp")
+    field(INPA, "$(IOC):P2020-CORETEMP-LSB PP")
+    field(INPB, "$(IOC):P2020-CORETEMP-MSB PP")
+    field(C   , "0.00390625") 		# scale 125/0x7D00, see LM95235 datasheet page 11
+    field(CALC, "(A|B-(B&128?256:0)<<8)*C")
+    field(PREC, "1") 
+    field(EGU , "deg C")	
 
 
 
@@ -101,6 +151,7 @@ record(ao,"$(IOC):TEMP2-CONF2")
 # startup.script:   ifc1210_max5970
 #--------------------------------------------------------------------
 
+# Stefan, please add here the records for max5970.
 
 
 
@@ -113,22 +164,13 @@ record(ao,"$(IOC):TEMP2-CONF2")
 # datasheet:        https://codebeamer.psi.ch/cb/displayDocument/PES32NT24xG2-Device-UserManual.pdf?doc_id=130003
 # startup.script:   ifc1210_pci_express_switch
 #--------------------------------------------------------------------
-
-
-record(ai,"$(IOC):PCIESW-TMPSTS")
-{
-    field(DESC, "PCIe-Switch TMPSTS")
-    field(DTYP, "regDevAsyn")
-    field(INP,  "#C S @ifc1210_pci_express_switch/0x11D8 T=UINT32")
-}
-
-
-
-
-
-
-
-
+#
+# ===> KR84: Not sure if we go this direction using Slave-SMBus interface of IDT PES32NT24AG2 PCIe switch.
+#            The issue here is, that an additional layer to cover the SSMBUS requirement of each cycle is
+#            A 8-bytes transfer.
+#            Other option would be use the global address space registers available also in PCI configuraiton space
+#            of the switch (GASAADDR and GASADATA) / XprsMon command "px".
+#
 
 
 
