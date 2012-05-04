@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/03 09:41:53 $
+# $Date: 2012/05/04 13:27:52 $
 #
-# $Revision: 1.1 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1.template,v 1.1 2012/05/03 09:41:53 kalt_r Exp $
+# $Revision: 1.2 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1.template,v 1.2 2012/05/04 13:27:52 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -36,14 +36,18 @@
 
 
 # I2C bus 0x3:      transition card over VME_P0 over PCI-express->CENTRAL
-# device:           I2C bus multiplexer in CPLD
+# device:           I2C bus multiplexer in CPLD, codes see table 8 section 2.3
 # datasheet:        https://codebeamer.psi.ch/cb/proj/sources/sccFileLog.do?proj_id=104&filename=IFC%2FIFC1210_generic%2FFirmware%2FPSI%2FIFC_TC1%2FDocumentation%2FIFC_TC1_firmware_specification.doc&isDir=false
 # startup.script:   ifctc1_cpld
 #--------------------------------------------------------------------
-
-
-
-
+record(ao,"$(IOC):IFCTC1-MUX-SEL")
+{
+    field(DESC, "IFC_TC1 Fw day")
+    field(DTYP, "regDevAsyn")
+    field(OUT , "#C S @ifctc1_cpld/0x06 T=UINT8")
+    field(PINI, "YES")
+    field(VAL , "1") # defaults to 0x01 = MAX5970 power monitor
+}
 
 
 
@@ -52,9 +56,40 @@
 # datasheet:        https://codebeamer.psi.ch/cb/proj/sources/sccFileLog.do?proj_id=104&filename=IFC%2FIFC1210_generic%2FFirmware%2FPSI%2FIFC_TC1%2FDocumentation%2FIFC_TC1_firmware_specification.doc&isDir=false
 # startup.script:   ifctc1_cpld
 #--------------------------------------------------------------------
+record(ai,"$(IOC):IFCTC1-FW-MAJOR")
+{
+    field(DESC, "IFC_TC1 Fw Id major")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifctc1_cpld/0x01 T=UINT8")
+}
 
+record(ai,"$(IOC):IFCTC1-FW-MINOR")
+{
+    field(DESC, "IFC_TC1 Fw Id minor")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifctc1_cpld/0x02 T=UINT8")
+}
 
+record(ai,"$(IOC):IFCTC1-FW-YEAR")
+{
+    field(DESC, "IFC_TC1 Fw year")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifctc1_cpld/0x03 T=UINT8")
+}
 
+record(ai,"$(IOC):IFCTC1-FW-MONTH")
+{
+    field(DESC, "IFC_TC1 Fw month")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifctc1_cpld/0x04 T=UINT8")
+}
+
+record(ai,"$(IOC):IFCTC1-FW-DAY")
+{
+    field(DESC, "IFC_TC1 Fw day")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifctc1_cpld/0x05 T=UINT8")
+}
 
 
 
@@ -64,6 +99,10 @@
 # datasheet:        Internet
 # startup.script:   ifctc1_eeprom
 #--------------------------------------------------------------------
+
+# Stefan, please add records here.
+
+
 
 
 
@@ -75,6 +114,17 @@
 # startup.script:   ifctc1_pcie
 #--------------------------------------------------------------------
 
+# following records belong to IO-extender from/to HCI module for PCI-express ext. cabling x4 connector
+record(ai,"$(IOC):IFCTC1-HCI-STATUS")
+{
+    field(DESC, "IFC_TC1 HCI PCIe ext x4 status")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifctc1_cpld/0x0C T=UINT8")
+}
+
+
+
+
 
 
 
@@ -85,5 +135,5 @@
 # startup.script:   ifctc1_max5970
 #--------------------------------------------------------------------
 
-
+# Stefan, please add records here.
 
