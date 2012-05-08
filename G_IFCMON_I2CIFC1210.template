@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/08 05:56:33 $
+# $Date: 2012/05/08 08:46:03 $
 #
-# $Revision: 1.3 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.3 2012/05/08 05:56:33 kalt_r Exp $
+# $Revision: 1.4 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.4 2012/05/08 08:46:03 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -30,6 +30,13 @@
 #
 #--------------------------------------------------------------------
 
+
+record(fanout,"$(IOC):IFC1210-I2C-FAN1")
+{
+    field(DESC, "periodical proc.")
+    field(SCAN, "1 second")
+    field(LNK1 ,"$(IOC):TEMP1")
+}
 
 
 # I2C bus 0x0:      temperature
@@ -71,7 +78,8 @@ record(calc,"$(IOC):TEMP1")
     field(PREC, "1") 
     field(EGU , "deg C")
     field(HIHI, "50")
-    field(HHSV, "MAJOR")			
+    field(HHSV, "MAJOR")
+    field(FLNK, "$(IOC):TEMP2")
 }
 
 
@@ -116,7 +124,8 @@ record(calc,"$(IOC):TEMP2")
     field(PREC, "1") 
     field(EGU , "deg C")
     field(HIHI, "50")
-    field(HHSV, "MAJOR")			
+    field(HHSV, "MAJOR")
+    field(FLNK, "$(IOC):P2020-CORETEMP")
 }
 
 # Remote sensor inside P2020 die

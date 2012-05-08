@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/03 09:41:53 $
+# $Date: 2012/05/08 08:46:03 $
 #
-# $Revision: 1.1 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.1 2012/05/03 09:41:53 kalt_r Exp $
+# $Revision: 1.2 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.2 2012/05/08 08:46:03 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -20,4 +20,606 @@
 # $(IOC)                                        The system name
 #
 #--------------------------------------------------------------------
+
+
+record(fanout,"$(IOC):ELB-FAN1")
+{
+    field(DESC, "periodical proc.")
+    field(SCAN, "1 second")
+    field(LNK1 ,"$(IOC):ELB-STATIC-SW")
+}
+
+
+
+#--------------------------------------------------------------------
+# status / cyclic processing
+#--------------------------------------------------------------------
+
+# refer to chapters 2.3.1 - 2.3.4 in IFC1210 UG
+# bits 7:0      DIP SW101
+# bits 15:8     DIP SW100
+# bits 27:24    HexRot SW102
+# bits 31:28    HexRot SW103
+record(ai,"$(IOC):ELB-STATIC-SW")
+{
+    field(DESC, "status of switches")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifc1210_elb/0x04 T=UINT32")
+    field(FLNK, "$(IOC):SW101-VMEMODE")
+}
+# SW101
+record ( mbbi, "$(IOC):SW101-VMEMODE")
+{
+    field(DESC, "SW101 VME mode")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(SHFT, "0")
+    field(NOBT, "2")
+    field(ZRVL, "0")
+    field(ZRST, "VME64x + CR/CSR map")
+    field(ONVL, "1")
+    field(ONST, "CR/CSR to A24 with rot")
+    field(TWVL, "2")
+    field(TWST, "Cond 64k mpa to A24")
+    field(THVL, "3")
+    field(THST, "VME64x Auto_ID")
+    field(FLNK, "$(IOC):SW101-VMESLOT1")
+}
+record ( mbbi, "$(IOC):SW101-VMESLOT1")
+{
+    field(DESC, "SW101 VME slot1")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(SHFT, "3")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "manual / enabled")
+    field(ONVL, "1")
+    field(ONST, "disabled / auto-enable")
+    field(FLNK, "$(IOC):SW101-VMERXSYSRST")
+}
+record ( mbbi, "$(IOC):SW101-VMERXSYSRST")
+{
+    field(DESC, "SW101 VME RX sysrst")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(SHFT, "4")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "reset only VME64x")
+    field(ONVL, "1")
+    field(ONST, "force IFC1210 cold-reset")
+    field(FLNK, "$(IOC):SW101-P2020BOOT")
+}
+record ( mbbi, "$(IOC):SW101-P2020BOOT")
+{
+    field(DESC, "SW101 P2020 boot mode")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(SHFT, "5")
+    field(NOBT, "2")
+    field(ZRVL, "0")
+    field(ZRST, "uSD card")
+    field(ONVL, "1")
+    field(ONST, "NOR FLASH (default)")
+    field(TWVL, "2")
+    field(TWST, "SPI FLASH")
+    field(THVL, "3")
+    field(THST, "no boot - keep reset")
+    field(FLNK, "$(IOC):SW101-VMETXSYSRST")
+}
+record ( mbbi, "$(IOC):SW101-VMETXSYSRST")
+{
+    field(DESC, "SW101 VME TX sysrst")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(SHFT, "7")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "not asserted by IFC1210")
+    field(ONVL, "1")
+    field(ONST, "asserted while slot 1")
+    field(FLNK, "")
+}
+# SW100
+record ( mbbi, "$(IOC):SW100-FPGACONFIG")
+{
+    field(DESC, "SW100 FPGA config")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(SHFT, "8")
+    field(NOBT, "2")
+    field(ZRVL, "0")
+    field(ZRST, "backup bitstream")
+    field(ONVL, "1")
+    field(ONST, "1st bitstream")
+    field(TWVL, "2")
+    field(TWST, "2nd bitstream")
+    field(THVL, "3")
+    field(THST, "3rd bitstream")
+    field(FLNK, "$(IOC):SW100-JTAGCONFIG")
+}
+record ( mbbi, "$(IOC):SW100-JTAGCONFIG")
+{
+    field(DESC, "SW101 Xilinx JTAG")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(SHFT, "10")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "JTAG disabled")
+    field(ONVL, "1")
+    field(ONST, "JTAG enabled")
+    field(FLNK, "$(IOC):SW100-COLDRESET")
+}
+record ( mbbi, "$(IOC):SW100-COLDRESET")
+{
+    field(DESC, "SW101 cold reset")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(SHFT, "11")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "Autonomous")
+    field(ONVL, "1")
+    field(ONST, "P2020 control (def)")
+    field(FLNK, "$(IOC):SW100-PONFSM")
+}
+record ( mbbi, "$(IOC):SW100-PONFSM")
+{
+    field(DESC, "SW101 PON FSM")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(SHFT, "12")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "PONFSM disabled")
+    field(ONVL, "1")
+    field(ONST, "PONFSM enabled")
+    field(FLNK, "$(IOC):SW100-PONFSMMODE")
+}
+record ( mbbi, "$(IOC):SW100-PONFSMMODE")
+{
+    field(DESC, "SW101 PONFSM mode")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(SHFT, "13")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "unified PONFSM")
+    field(ONVL, "1")
+    field(ONST, "indep. PONFSM")
+    field(FLNK, "$(IOC):SW100-SWITCHMODE")
+}
+record ( mbbi, "$(IOC):SW100-SWITCHMODE")
+{
+    field(DESC, "SW101 PCIe switch")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(SHFT, "14")
+    field(NOBT, "2")
+    field(ZRVL, "0")
+    field(ZRST, "Single partition")
+    field(ONVL, "1")
+    field(ONST, "Single part + red. lat.")
+    field(TWVL, "2")
+    field(TWST, "Single part + EEPROM")
+    field(THVL, "3")
+    field(THST, "reserved")
+    field(FLNK, "$(IOC):SW102-HEXROT")
+}
+# SW102: VME64x base A23:20
+record ( mbbi, "$(IOC):SW102-HEXROT")
+{
+    field(DESC, "SW102 VME64x A23:20")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(SHFT, "24")
+    field(NOBT, "4")
+    field(FLNK, "$(IOC):SW103-HEXROT")
+}
+# SW103: VME64x base A19:16
+record ( mbbi, "$(IOC):SW103-HEXROT")
+{
+    field(DESC, "SW102 VME64x A19:16")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(SHFT, "28")
+    field(NOBT, "4")
+    field(FLNK, "$(IOC):ELB-PCIESW-CTL")
+}
+
+record(ai,"$(IOC):ELB-PCIESW-CTL")
+{
+    field(DESC, "PCIe switch ctrl")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifc1210_elb/0x14 T=UINT32")
+    field(FLNK, "$(IOC):PCIESTACK-XMC1")
+}
+record ( mbbi, "$(IOC):PCIESTACK-XMC1")
+{
+    field(DESC, "XMC1 PCIe lane cfg")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-PCIESW-CTL NPP")
+    field(SHFT, "0")
+    field(NOBT, "2")
+    field(ZRVL, "0")
+    field(ZRST, "x8")
+    field(ONVL, "1")
+    field(ONST, "x4 x4 (default)")
+    field(TWVL, "2")
+    field(TWST, "x2 x2 x4")
+    field(THVL, "3")
+    field(THST, "x2 x2 x2 x2")
+    field(FLNK, "$(IOC):PCIESTACK-XMC2")
+}
+record ( mbbi, "$(IOC):PCIESTACK-XMC2")
+{
+    field(DESC, "XMC2 PCIe lane cfg")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-PCIESW-CTL NPP")
+    field(SHFT, "16")
+    field(NOBT, "2")
+    field(ZRVL, "0")
+    field(ZRST, "x8")
+    field(ONVL, "1")
+    field(ONST, "x4 x4 (default)")
+    field(TWVL, "2")
+    field(TWST, "x2 x2 x4")
+    field(THVL, "3")
+    field(THST, "x2 x2 x2 x2")
+    field(FLNK, "$(IOC):PCIESTACK-IFCTC1")
+}
+# warning, mbbi takes only 4 LSB's of total 5-bits in register!
+record ( mbbi, "$(IOC):PCIESTACK-IFCTC1")
+{
+    field(DESC, "IFCTC1 PCIe stk")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-PCIESW-CTL NPP")
+    field(SHFT, "8")
+    field(NOBT, "4")
+    
+    field(ONVL, "1")
+    field(ONST, "SFP:x4 / HCI:x4")
+    
+    field(TWVL, "2")
+    field(TWST, "SFP:x2 x2 / HCI:x4")
+    
+    field(TTVL, "13")
+    field(TTST, "SFP:x1 / HCI:x4")
+    
+    field(FLNK, "$(IOC):PCIE-CONFMODE")
+}
+record ( mbbi, "$(IOC):PCIE-CONFMODE")
+{
+    field(DESC, "PCIe switch conf mod.")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-PCIESW-CTL NPP")
+    field(SHFT, "24")
+    field(NOBT, "4")
+    field(ZRVL, "0")
+    field(ZRST, "single partition")
+    field(ONVL, "1")
+    field(ONST, "single part./red. lat.")
+    field(TWVL, "2")
+    field(TWST, "single part./EEPROM")
+    field(THVL, "3")
+    field(THST, "s. part/red lat/EEPROM")
+    field(FLNK, "$(IOC):PCIESTACK-IFCTC1")
+}
+record ( mbbi, "$(IOC):PCIE-CLKMODE")
+{
+    field(DESC, "PCIe switch CLK mod.")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-PCIESW-CTL NPP")
+    field(SHFT, "28")
+    field(NOBT, "2")
+    field(ZRVL, "0")
+    field(ZRST, "global clock mode")
+    field(ONVL, "1")
+    field(ONST, "local clock mode")
+    field(FLNK, "$(IOC):ELB-PON-SIGN")
+}
+
+record(ai,"$(IOC):ELB-PON-SIGN")
+{
+    field(DESC, "PON FPGA signature")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifc1210_elb/0x1C T=UINT32")
+    field(FLNK, "$(IOC):ELB-FMCXMC-CTL")
+}
+
+record(ai,"$(IOC):ELB-FMCXMC-CTL")
+{
+    field(DESC, "status XMC/FMC")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifc1210_elb/0x0C T=UINT32")
+    field(FLNK, "$(IOC):XMC1-PRESENT")
+}
+record ( mbbi, "$(IOC):XMC1-PRESENT")
+{
+    field(DESC, "XMC1 present")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-FMCXMC-CTL NPP")
+    field(SHFT, "0")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "present")
+    field(ZRSV, "NO_ALARM")
+    field(ONVL, "1")
+    field(ONST, "not present")
+    field(ONSV, "MINOR")
+    field(FLNK, "$(IOC):XMC2-PRESENT")
+}
+record ( mbbi, "$(IOC):XMC2-PRESENT")
+{
+    field(DESC, "XMC2 present")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-FMCXMC-CTL NPP")
+    field(SHFT, "1")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "present")
+    field(ZRSV, "NO_ALARM")
+    field(ONVL, "1")
+    field(ONST, "not present")
+    field(ONSV, "MINOR")
+    field(FLNK, "$(IOC):FMC1-PGM2C")
+}
+record ( mbbi, "$(IOC):FMC1-PGM2C")
+{
+    field(DESC, "FMC1 M2C pwr st.")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-FMCXMC-CTL NPP")
+    field(SHFT, "17")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "unpowered")
+    field(ZRSV, "MINOR")
+    field(ONVL, "1")
+    field(ONST, "powered")
+    field(ONSV, "NO_ALARM")
+    field(FLNK, "$(IOC):FMC1-PRESENT")
+}
+record ( mbbi, "$(IOC):FMC1-PRESENT")
+{
+    field(DESC, "FMC1 present")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-FMCXMC-CTL NPP")
+    field(SHFT, "18")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "present")
+    field(ZRSV, "NO_ALARM")
+    field(ONVL, "1")
+    field(ONST, "not present")
+    field(ONSV, "MINOR")
+    field(FLNK, "$(IOC):FMC2-PGM2C")
+}
+record ( mbbi, "$(IOC):FMC2-PGM2C")
+{
+    field(DESC, "FMC2 M2C pwr st.")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-FMCXMC-CTL NPP")
+    field(SHFT, "21")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "unpowered")
+    field(ZRSV, "MINOR")
+    field(ONVL, "1")
+    field(ONST, "powered")
+    field(ONSV, "NO_ALARM")
+    field(FLNK, "$(IOC):FMC2-PRESENT")
+}
+record ( mbbi, "$(IOC):FMC2-PRESENT")
+{
+    field(DESC, "FMC2 present")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):ELB-FMCXMC-CTL NPP")
+    field(SHFT, "22")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "present")
+    field(ZRSV, "NO_ALARM")
+    field(ONVL, "1")
+    field(ONST, "not present")
+    field(ONSV, "MINOR")
+    field(FLNK, "$(IOC):FMC12-PG-C2M")
+}
+record ( mbbi, "$(IOC):FMC12-PG-C2M")
+{
+    field(DESC, "FMC1/2 pwr good")
+    field(DTYP, "Raw Soft Channel")
+    field(OUT , "$(IOC):ELB-FMCXMC-CTL NPP")
+    field(SHFT, "30")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "power disabled")
+    field(ZRSV, "MINOR")
+    field(ONVL, "1")
+    field(ONST, "power enabled")
+    field(ONSV, "NO_ALARM")
+    field(FLNK, "$(IOC):FMC12-VADJ-ENA")
+}
+record ( mbbi, "$(IOC):FMC12-VADJ-ENA")
+{
+    field(DESC, "FMC1/2 Vadj ena")
+    field(DTYP, "Raw Soft Channel")
+    field(OUT , "$(IOC):ELB-FMCXMC-CTL NPP")
+    field(SHFT, "31")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "Vadj disabled")
+    field(ZRSV, "MINOR")
+    field(ONVL, "1")
+    field(ONST, "Vadj enabled")
+    field(ONSV, "NO_ALARM")
+    field(FLNK, "$(IOC):ELB-BMRCTL")
+}
+
+record(ai,"$(IOC):ELB-BMRCTL")
+{
+    field(DESC, "BMR463 dc/dc st.")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifc1210_elb/0x40 T=UINT32")
+}
+record ( mbbi, "$(IOC):BMR-SYNC-RUN")
+{
+    field(DESC, "BMR sync run status")
+    field(DTYP, "Raw Soft Channel")
+    field(OUT , "$(IOC):ELB-BMRCTL NPP")
+    field(SHFT, "8")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "0")
+    field(ONVL, "1")
+    field(ONST, "1")
+    field(FLNK, "$(IOC):BMR-POWER-ALERT")
+}
+record ( mbbi, "$(IOC):BMR-POWER-ALERT")
+{
+    field(DESC, "BMR pwr alert status")
+    field(DTYP, "Raw Soft Channel")
+    field(OUT , "$(IOC):ELB-BMRCTL NPP")
+    field(SHFT, "9")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "no alert")
+    field(ZRSV, "NO_ALARM")
+    field(ONVL, "1")
+    field(ONST, "BMRxx alert")
+    field(ONSV, "MAJOR")
+}
+
+
+## here is the end if the read/status processing chain used FLNKs at above records
+
+
+#--------------------------------------------------------------------
+# control bits only / update only if user enters value with PP
+#--------------------------------------------------------------------
+
+record(ao,"$(IOC):ELB-VME-CTL-SET")
+{
+    field(DESC, "status of VME")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifc1210_elb/0x08! T=UINT32")
+}
+
+record(ao,"$(IOC):ELB-FMCXMC-CTL-SET")
+{
+    field(DESC, "commands XMC/FMC")
+    field(DTYP, "regDevAsyn")
+    field(OUT , "#C S @ifc1210_elb/0x0C T=UINT32")
+}
+record ( mbbo, "$(IOC):FMC12-PG-C2M-SET")
+{
+    field(DESC, "FMC1/2 pwr good set")
+    field(DTYP, "Raw Soft Channel")
+    field(OUT , "$(IOC):ELB-FMCXMC-CTL-SET PP")
+    field(SHFT, "30")
+    field(NOBT, "1")
+    field(VAL , "1")
+    field(PINI, "YES")
+    field(ZRVL, "0")
+    field(ZRST, "power disabled")
+    field(ZRSV, "MINOR")
+    field(ONVL, "1")
+    field(ONST, "power enabled")
+    field(ONSV, "NO_ALARM")
+}
+record ( mbbo, "$(IOC):FMC12-VADJ-ENA-SET")
+{
+    field(DESC, "FMC1/2 Vadj ena set")
+    field(DTYP, "Raw Soft Channel")
+    field(OUT , "$(IOC):ELB-FMCXMC-CTL-SET PP")
+    field(SHFT, "31")
+    field(NOBT, "1")
+    field(VAL , "1")
+    field(PINI, "YES")
+    field(ZRVL, "0")
+    field(ZRST, "Vadj disabled")
+    field(ZRSV, "MINOR")
+    field(ONVL, "1")
+    field(ONST, "Vadj enabled")
+    field(ONSV, "NO_ALARM")
+}
+
+record(ao,"$(IOC):ELB-GENERAL-CTL-SET")
+{
+    field(DESC, "IFC1210 gen. ctrl")
+    field(DTYP, "regDevAsyn")
+    field(OUT , "#C S @ifc1210_elb/0x10 T=UINT32")
+}
+record ( mbbo, "$(IOC):IDTCLK-SEL-SET")
+{
+    field(DESC, "IDT pgm clock set")
+    field(DTYP, "Raw Soft Channel")
+    field(OUT , "$(IOC):ELB-GENERAL-CTL-SET PP")
+    field(SHFT, "0")
+    field(NOBT, "2")
+    field(VAL , "0")
+    field(PINI, "YES")
+    field(ZRVL, "0")
+    field(ZRST, "00")
+    field(ONVL, "1")
+    field(ONST, "01")
+    field(TWVL, "2")
+    field(TWST, "10")
+    field(THVL, "3")
+    field(THST, "11")
+}
+record ( mbbo, "$(IOC):IDTCLK-ENA-SET")
+{
+    field(DESC, "IDT pgm clk ena set")
+    field(DTYP, "Raw Soft Channel")
+    field(OUT , "$(IOC):ELB-GENERAL-CTL-SET PP")
+    field(SHFT, "2")
+    field(NOBT, "1")
+    field(VAL , "0")
+    field(PINI, "YES")
+    field(ZRVL, "0")
+    field(ZRST, "disabled")
+    field(ONVL, "1")
+    field(ONST, "enabled")
+}
+record ( mbbo, "$(IOC):12VFUSE-ENA-SET")
+{
+    field(DESC, "12V fuse enable")
+    field(DTYP, "Raw Soft Channel")
+    field(OUT , "$(IOC):ELB-GENERAL-CTL-SET PP")
+    field(SHFT, "3")
+    field(NOBT, "1")
+    field(VAL , "0")
+    field(PINI, "YES")
+    field(ZRVL, "0")
+    field(ZRST, "disabled")
+    field(ONVL, "1")
+    field(ONST, "enabled")
+}
+record ( mbbo, "$(IOC):100MHZ-ENA-SET")
+{
+    field(DESC, "100MHz distr. enable")
+    field(DTYP, "Raw Soft Channel")
+    field(OUT , "$(IOC):ELB-GENERAL-CTL-SET PP")
+    field(SHFT, "4")
+    field(NOBT, "1")
+    field(VAL , "0")
+    field(PINI, "YES")
+    field(ZRVL, "0")
+    field(ZRST, "enabled")
+    field(ZRSV, "NO_ALARM")
+    field(ONVL, "1")
+    field(ONST, "disabled")
+    field(ZRSV, "MINOR")
+}
+
+record(ao,"$(IOC):ELB-BMRCTL-SET")
+{
+    field(DESC, "BMR463 dc/dc ctrl.")
+    field(DTYP, "regDevAsyn")
+    field(OUT , "#C S @ifc1210_elb/0x40 T=UINT32")
+}
+
+
 

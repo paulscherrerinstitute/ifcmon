@@ -1,6 +1,6 @@
 
 file {
-	name="G_IFCMON_ifc1210_ifctc1.adl"
+	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/./G_IFCMON_ifc1210_ifctc1.adl"
 	version=030104
 }
 display {
@@ -315,7 +315,7 @@ oval {
 		height=15
 	}
 	monitor {
-		chan="$(IOC):V6-CORETEMP"
+		chan="$(IOC):CENTRAL-CORETEMP"
 		clr=29
 		bclr=1
 	}
@@ -500,7 +500,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="PON FPGA Revision"
+	textix="PON FPGA Signature"
 }
 text {
 	object {
@@ -536,7 +536,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="         Loaded user firmware revision"
+	textix="         Loaded user firmware signature"
 }
 "text update" {
 	object {
@@ -546,7 +546,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(IOC):PON-REVISION"
+		chan="$(IOC):ELB-PON-SIGN"
 		clr=29
 		bclr=1
 	}
@@ -593,7 +593,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(IOC):CENTRAL-REVISION"
+		chan="$(IOC):CENTRAL-SIGNATURE"
 		clr=29
 		bclr=1
 	}
@@ -2264,7 +2264,7 @@ text {
 rectangle {
 	object {
 		x=7
-		y=337
+		y=335
 		width=280
 		height=195
 	}

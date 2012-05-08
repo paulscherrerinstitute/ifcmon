@@ -25,6 +25,10 @@ file G_IFCMON_TMEM.template{
 {IOC = MTEST-PC-IFC9}
 }
 
+#file G_IFCMON_ELB.template{    # first define ifc1210_elb in startup.script
+#{IOC = MTEST-PC-IFC9}
+#}
+
 file G_IFCMON_I2CIFCTC1.template{
 {IOC = MTEST-PC-IFC9}
 }
