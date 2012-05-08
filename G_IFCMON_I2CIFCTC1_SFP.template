@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/08 05:56:33 $
+# $Date: 2012/05/08 13:23:20 $
 #
-# $Revision: 1.2 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1_SFP.template,v 1.2 2012/05/08 05:56:33 kalt_r Exp $
+# $Revision: 1.3 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1_SFP.template,v 1.3 2012/05/08 13:23:20 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -47,6 +47,15 @@
 #--------------------------------------------------------------------
 
 
+record(fanout,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-FAN1")
+{
+    field(DESC, "periodical proc.")
+    field(SCAN, "10 second")
+    field(LNK1 ,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-SELECT")
+}
+
+
+
 # I2C bus 0x3:      transition card over VME_P0 over PCI-express->CENTRAL
 # device:           SFP+ modules
 # datasheet:        ftp://ftp.seagate.com/sff/ for SFF specs and VENDOR datasheets, e.g. AVAGO Technologies
@@ -58,12 +67,12 @@ record(dfanout,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-SELECT")
     field(DOL,  "$(BUSMUX)") # see table 8 in I2C bus mux select/address map
     field(OMSL, "closed_loop")
     field(OUTA, "$(IOC):IFCTC1-MUX-SEL")
-    field(PINI, "YES")      # to initialize registers to default values
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
-    field(SCAN, "10 second")
 }
 
+#--------------------------------------------------------------------
 # status
+#--------------------------------------------------------------------
 record(stringin,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
 {
     field(DESC, "vendor: $(DESCR)")
@@ -74,7 +83,9 @@ record(stringin,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
 
 
 
+#--------------------------------------------------------------------
 # control
+#--------------------------------------------------------------------
 
 
 
@@ -85,14 +96,65 @@ record(stringin,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
 # datasheet:        https://codebeamer.psi.ch/cb/proj/sources/sccFileLog.do?proj_id=104&filename=IFC%2FIFC1210_generic%2FFirmware%2FPSI%2FIFC_TC1%2FDocumentation%2FIFC_TC1_firmware_specification.doc&isDir=false
 #--------------------------------------------------------------------
 
+#--------------------------------------------------------------------
+# status / cyclic processing
+#--------------------------------------------------------------------
 record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STATUS")
 {
     field(DESC, "status: $(DESCR)")
     field(DTYP, "regDevAsyn")
     field(INP , "#C S @ifctc1_cpld/$(SFP_IOEXT_STATUS_REG) T=UINT8")
-    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RXLOS")
+}
+record ( mbbi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RXLOS")
+{
+    field(DESC, "rx loss detected")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STATUS NPP")
+    field(SHFT, "0")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "rx ok")
+    field(ZRSV, "NO_ALARM")
+    field(ONVL, "1")
+    field(ONST, "SFP rx loss")
+    field(ONSV, "MAJOR")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-MODABS")
+}
+record ( mbbi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-MODABS")
+{
+    field(DESC, "SFP module absent")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STATUS NPP")
+    field(SHFT, "0")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "SFP mod. prsnt")
+    field(ZRSV, "NO_ALARM")
+    field(ONVL, "1")
+    field(ONST, "no SFP module")
+    field(ONSV, "MINOR")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TXFAULT")
+}
+record ( mbbi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TXFAULT")
+{
+    field(DESC, "tx fault")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STATUS NPP")
+    field(SHFT, "2")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRSV, "NO_ALARM")
+    field(ZRST, "ok")
+    field(ONVL, "1")
+    field(ONST, "SFP tx fault")
+    field(ONSV, "MAJOR")
 }
 
+
+#--------------------------------------------------------------------
+# control
+#--------------------------------------------------------------------
 record(ao,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL")
 {
     field(DESC, "ctrl: $(DESCR)")

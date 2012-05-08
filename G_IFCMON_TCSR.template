@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/03 09:41:53 $
+# $Date: 2012/05/08 13:23:20 $
 #
-# $Revision: 1.1 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_TCSR.template,v 1.1 2012/05/03 09:41:53 kalt_r Exp $
+# $Revision: 1.2 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_TCSR.template,v 1.2 2012/05/08 13:23:20 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -24,7 +24,7 @@
 # 0x0800    0x0BFF  1k      SMEM_IDMA #1
 # 0x0C00    0x1000  1k      SMEM_IDMA #2 (not implemented in IFC1210)
 # 0x0800    0x0BFF  1k      SUSER #1
-# 0x0C00    0x0FFF  1k      SUSER #2
+# 0x0C00    0x0FFF  1k      SUSER #2     (not implemented in IFC1210)
 #
 #
 # The whole IO-Bus / TCSR registers are available trough PCI BAR3.
@@ -35,6 +35,82 @@
 # $(IOC)                                        The system name
 #
 #--------------------------------------------------------------------
+
+
+
+
+record(fanout,"$(IOC):TCSR-FAN1")
+{
+    field(DESC, "periodical proc.")
+    field(SCAN, "10 second")
+    field(LNK1 ,"$(IOC):ILOC-GENERAL")
+}
+
+
+#--------------------------------------------------------------------
+
+
+
+#--------------------------------------------------------------------
+# PCIe_AGSW
+#--------------------------------------------------------------------
+# Status
+
+record(ai,"$(IOC):ILOC-GENERAL")
+{
+    field(DESC, "ILOC general")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifc1210_tcsr/0x000 T=UINT32")
+    field(FLNK, "$(IOC):")
+}
+
+record(ai,"$(IOC):ILOC-PONFSM")
+{
+    field(DESC, "ILOC PONFSM stat")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifc1210_tcsr/0x00C T=UINT32")
+    field(FLNK, "$(IOC):")
+}
+
+record(ai,"$(IOC):ILOC-SIGN")
+{
+    field(DESC, "ILOC CENTRAL sign")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifc1210_tcsr/0x018 T=UINT32")
+    field(FLNK, "$(IOC):")
+}
+
+record(ai,"$(IOC):V6-PCIE-DSN-L")
+{
+    field(DESC, "CENTRAL serial l")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifc1210_tcsr/0x038 T=UINT32")
+    field(FLNK, "$(IOC):")
+}
+
+record(ai,"$(IOC):V6-PCIE-DSN-H")
+{
+    field(DESC, "CENTRAL serial h")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifc1210_tcsr/0x03C T=UINT32")
+    field(FLNK, "$(IOC):")
+}
+
+
+
+
+
+#--------------------------------------------------------------------
+# VME64x_AGSW
+#--------------------------------------------------------------------
+# Status
+
+
+
+
+
+
+
 
 
 

@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/08 05:56:33 $
+# $Date: 2012/05/08 13:23:20 $
 #
-# $Revision: 1.3 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1.template,v 1.3 2012/05/08 05:56:33 kalt_r Exp $
+# $Revision: 1.4 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1.template,v 1.4 2012/05/08 13:23:20 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -34,6 +34,14 @@
 #--------------------------------------------------------------------
 
 
+record(fanout,"$(IOC):IFCTC1-I2C-FAN1")
+{
+    field(DESC, "periodical proc.")
+    field(SCAN, "5 second")
+    field(LNK1 ,"$(IOC):IFCTC1-FW-MAJOR")
+}
+
+
 
 # I2C bus 0x3:      transition card over VME_P0 over PCI-express->CENTRAL
 # device:           I2C bus multiplexer in CPLD, codes see table 8 section 2.3
@@ -59,6 +67,7 @@ record(ai,"$(IOC):IFCTC1-FW-MAJOR")
     field(DESC, "IFC_TC1 Fw Id major")
     field(DTYP, "regDevAsyn")
     field(INP , "#C S @ifctc1_cpld/0x01 T=UINT8")
+    field(FLNK, "$(IOC):IFCTC1-FW-MINOR")
 }
 
 record(ai,"$(IOC):IFCTC1-FW-MINOR")
@@ -66,6 +75,7 @@ record(ai,"$(IOC):IFCTC1-FW-MINOR")
     field(DESC, "IFC_TC1 Fw Id minor")
     field(DTYP, "regDevAsyn")
     field(INP , "#C S @ifctc1_cpld/0x02 T=UINT8")
+    field(FLNK, "$(IOC):IFCTC1-FW-YEAR")
 }
 
 record(ai,"$(IOC):IFCTC1-FW-YEAR")
@@ -73,6 +83,7 @@ record(ai,"$(IOC):IFCTC1-FW-YEAR")
     field(DESC, "IFC_TC1 Fw year")
     field(DTYP, "regDevAsyn")
     field(INP , "#C S @ifctc1_cpld/0x03 T=UINT8")
+    field(FLNK, "$(IOC):IFCTC1-FW-MONTH")
 }
 
 record(ai,"$(IOC):IFCTC1-FW-MONTH")
@@ -80,6 +91,7 @@ record(ai,"$(IOC):IFCTC1-FW-MONTH")
     field(DESC, "IFC_TC1 Fw month")
     field(DTYP, "regDevAsyn")
     field(INP , "#C S @ifctc1_cpld/0x04 T=UINT8")
+    field(FLNK, "$(IOC):IFCTC1-FW-DAY")
 }
 
 record(ai,"$(IOC):IFCTC1-FW-DAY")
@@ -87,6 +99,7 @@ record(ai,"$(IOC):IFCTC1-FW-DAY")
     field(DESC, "IFC_TC1 Fw day")
     field(DTYP, "regDevAsyn")
     field(INP , "#C S @ifctc1_cpld/0x05 T=UINT8")
+    field(FLNK, "$(IOC):IFCTC1-HCI-STATUS")
 }
 
 # following record (HCI-STATUS) belong to IO-extender from/to HCI module for PCI-express ext. cabling x4 connector
@@ -97,7 +110,6 @@ record(ai,"$(IOC):IFCTC1-HCI-STATUS")
     field(INP , "#C S @ifctc1_cpld/0x0C T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-HCI-TYPE")
 }
-
 record ( mbbi, "$(IOC):IFCTC1-HCI-TYPE" )
 {
     field(DESC, "IFC_TC1 HCI type" )
@@ -115,7 +127,6 @@ record ( mbbi, "$(IOC):IFCTC1-HCI-TYPE" )
     field(THST, "unknown" )
     field(FLNK, "$(IOC):IFCTC1-PCIE-PRESENT")
 }
-
 record ( mbbi, "$(IOC):IFCTC1-PCIE-PRESENT" )
 {
     field(DESC, "IFC_TC1 PCIe prsnt" )
@@ -129,7 +140,6 @@ record ( mbbi, "$(IOC):IFCTC1-PCIE-PRESENT" )
     field(ONST, "present" )
     field(FLNK, "$(IOC):IFCTC1-PCIE-UPDN")
 }
-
 record ( mbbi, "$(IOC):IFCTC1-PCIE-UPDN" )
 {
     field(DESC, "IFC_TC1 PCIe prsnt" )
@@ -141,6 +151,7 @@ record ( mbbi, "$(IOC):IFCTC1-PCIE-UPDN" )
     field(ZRST, "upstream -->" )
     field(ONVL, "1" )
     field(ONST, "downstream <--" )
+    field(FLNK, "$(IOC):IFCTC1-PCIERD-SELECT")
 }
 
 
@@ -180,12 +191,12 @@ record(dfanout,"$(IOC):IFCTC1-PCIERD-SELECT")
     field(DOL,  "2") # see table 8 in I2C bus mux select/address map
     field(OMSL, "closed_loop")
     field(OUTA, "$(IOC):IFCTC1-MUX-SEL")
-    field(PINI, "YES")      # to initialize registers to default values
     field(FLNK, "$(IOC):IFCTC1-PCIERD-SIG")
-    field(SCAN, "1 second")
 }
 
-# status
+#--------------------------------------------------------------------
+# status / cyclic processing
+#--------------------------------------------------------------------
 record(ai,"$(IOC):IFCTC1-PCIERD-SIG")
 {
     field(DESC, "IFC_TC1 SIG")
@@ -218,7 +229,9 @@ record(ai,"$(IOC):IFCTC1-PCIERD-OUTDIS")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-RESET")
 }
 
+#--------------------------------------------------------------------
 # control
+#--------------------------------------------------------------------
 record(ao,"$(IOC):IFCTC1-PCIERD-RESET")
 {
     field(DESC, "IFC_TC1 PCIe RESET")
@@ -243,7 +256,7 @@ record(ao,"$(IOC):IFCTC1-PCIERD-RXD")
     field(DTYP, "regDevAsyn")
     field(OUT , "#C S @ifctc1_pcie/0x07 T=UINT8")
     field(VAL , "255") # enable (0=disabled)
-    field(FLNK, "$(IOC):IFCTC1-PCIERD-AEOC")
+    field(FLNK, "$(IOC):IFCTC1-PCIERD-AEOC-CALC")
 }
 
 record(mbbo,"$(IOC):IFCTC1-PCIERD-EQSELA" )
@@ -321,7 +334,7 @@ record(calcout,"$(IOC):IFCTC1-PCIERD-AEOC-CALC" )
     field(DESC, "calculates AEOC" )
     field(CALC, "A+B+C" )
     field(OUT , "$(IOC):IFCTC1-PCIERD-AEOC NPP" )
-    field(FLNK, "$(IOC):IFCTC1-PCIERD-SELECT")
+    field(FLNK, "$(IOC):IFCTC1-PCIERD-AEOC")
 }
 record(ao,"$(IOC):IFCTC1-PCIERD-AEOC")
 {
@@ -492,7 +505,6 @@ record(dfanout,"$(IOC):IFCTC1-PWRMON-SELECT")
     field(DOL,  "1") # see table 8 in I2C bus mux select/address map
     field(OMSL, "closed_loop")
     field(OUTA, "$(IOC):IFCTC1-MUX-SEL")
-#    field(FLNK, "$(IOC):IFCTC1-PWRMON-REGxyz")  # Stefan, please change this FLNK to your first record
 }
 
 # Stefan, please add records here.
