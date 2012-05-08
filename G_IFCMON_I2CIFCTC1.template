@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/04 13:27:52 $
+# $Date: 2012/05/08 05:56:33 $
 #
-# $Revision: 1.2 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1.template,v 1.2 2012/05/04 13:27:52 kalt_r Exp $
+# $Revision: 1.3 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1.template,v 1.3 2012/05/08 05:56:33 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -45,8 +45,6 @@ record(ao,"$(IOC):IFCTC1-MUX-SEL")
     field(DESC, "IFC_TC1 Fw day")
     field(DTYP, "regDevAsyn")
     field(OUT , "#C S @ifctc1_cpld/0x06 T=UINT8")
-    field(PINI, "YES")
-    field(VAL , "1") # defaults to 0x01 = MAX5970 power monitor
 }
 
 
@@ -91,6 +89,61 @@ record(ai,"$(IOC):IFCTC1-FW-DAY")
     field(INP , "#C S @ifctc1_cpld/0x05 T=UINT8")
 }
 
+# following record (HCI-STATUS) belong to IO-extender from/to HCI module for PCI-express ext. cabling x4 connector
+record(ai,"$(IOC):IFCTC1-HCI-STATUS")
+{
+    field(DESC, "IFC_TC1 HCI status")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifctc1_cpld/0x0C T=UINT8")
+    field(FLNK, "$(IOC):IFCTC1-HCI-TYPE")
+}
+
+record ( mbbi, "$(IOC):IFCTC1-HCI-TYPE" )
+{
+    field(DESC, "IFC_TC1 HCI type" )
+    field(DTYP, "Raw Soft Channel" )
+    field(INP, "$(IOC):IFCTC1-HCI-STATUS NPP" )
+    field(SHFT, "0" )
+    field(NOBT, "4" )
+    field(ZRVL, "0" )
+    field(ZRST, "ext x4 cable" )
+    field(ONVL, "1" )
+    field(ONST, "Infiband x4" )
+    field(TWVL, "2" )
+    field(TWST, "ext x1 cable" )
+    field(THVL, "3" )
+    field(THST, "unknown" )
+    field(FLNK, "$(IOC):IFCTC1-PCIE-PRESENT")
+}
+
+record ( mbbi, "$(IOC):IFCTC1-PCIE-PRESENT" )
+{
+    field(DESC, "IFC_TC1 PCIe prsnt" )
+    field(DTYP, "Raw Soft Channel" )
+    field(INP, "$(IOC):IFCTC1-HCI-STATUS NPP" )
+    field(SHFT, "4" )
+    field(NOBT, "1" )
+    field(ZRVL, "0" )
+    field(ZRST, "not present" )
+    field(ONVL, "1" )
+    field(ONST, "present" )
+    field(FLNK, "$(IOC):IFCTC1-PCIE-UPDN")
+}
+
+record ( mbbi, "$(IOC):IFCTC1-PCIE-UPDN" )
+{
+    field(DESC, "IFC_TC1 PCIe prsnt" )
+    field(DTYP, "Raw Soft Channel" )
+    field(INP, "$(IOC):IFCTC1-HCI-STATUS NPP" )
+    field(SHFT, "5" )
+    field(NOBT, "1" )
+    field(ZRVL, "0" )
+    field(ZRST, "upstream -->" )
+    field(ONVL, "1" )
+    field(ONST, "downstream <--" )
+}
+
+
 
 
 
@@ -108,22 +161,320 @@ record(ai,"$(IOC):IFCTC1-FW-DAY")
 
 
 
+
+
+
+
+
+
+
 # I2C bus 0x3:      transition card over VME_P0 over PCI-express->CENTRAL
 # device:           PI2EQX5864 - 5.0Gbps 4-Lane PCI Express GenII Re-Driver
 # datasheet:        http://www.alldatasheet.com/datasheet-pdf/pdf/231945/PERICOM/PI2EQX5864.html
 # startup.script:   ifctc1_pcie
 #--------------------------------------------------------------------
 
-# following records belong to IO-extender from/to HCI module for PCI-express ext. cabling x4 connector
-record(ai,"$(IOC):IFCTC1-HCI-STATUS")
+record(dfanout,"$(IOC):IFCTC1-PCIERD-SELECT")
 {
-    field(DESC, "IFC_TC1 HCI PCIe ext x4 status")
+    field(DESC, "IFC_TC1 PCIe select/kick")
+    field(DOL,  "2") # see table 8 in I2C bus mux select/address map
+    field(OMSL, "closed_loop")
+    field(OUTA, "$(IOC):IFCTC1-MUX-SEL")
+    field(PINI, "YES")      # to initialize registers to default values
+    field(FLNK, "$(IOC):IFCTC1-PCIERD-SIG")
+    field(SCAN, "1 second")
+}
+
+# status
+record(ai,"$(IOC):IFCTC1-PCIERD-SIG")
+{
+    field(DESC, "IFC_TC1 SIG")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_cpld/0x0C T=UINT8")
+    field(INP , "#C S @ifctc1_pcie/0x00 T=UINT8")
+    field(FLNK, "$(IOC):IFCTC1-PCIERD-RX50")
+}
+
+record(ai,"$(IOC):IFCTC1-PCIERD-RX50")
+{
+    field(DESC, "IFC_TC1 PCIe RX50")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifctc1_pcie/0x01 T=UINT8")
+    field(FLNK, "$(IOC):IFCTC1-PCIERD-INDIS")
+}
+
+record(ai,"$(IOC):IFCTC1-PCIERD-INDIS")
+{
+    field(DESC, "IFC_TC1 PCIe INDIS")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifctc1_pcie/0x03 T=UINT8")
+    field(FLNK, "$(IOC):IFCTC1-PCIERD-OUTDIS")
+}
+
+record(ai,"$(IOC):IFCTC1-PCIERD-OUTDIS")
+{
+    field(DESC, "IFC_TC1 PCIe OUTDIS")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifctc1_pcie/0x04 T=UINT8")
+    field(FLNK, "$(IOC):IFCTC1-PCIERD-RESET")
+}
+
+# control
+record(ao,"$(IOC):IFCTC1-PCIERD-RESET")
+{
+    field(DESC, "IFC_TC1 PCIe RESET")
+    field(DTYP, "regDevAsyn")
+    field(OUT , "#C S @ifctc1_pcie/0x05 T=UINT8")
+    field(VAL , "255") # no reset (0=reset)
+    field(FLNK, "$(IOC):IFCTC1-PCIERD-PWR")
+}
+
+record(ao,"$(IOC):IFCTC1-PCIERD-PWR")
+{
+    field(DESC, "IFC_TC1 PCIe PWR")
+    field(DTYP, "regDevAsyn")
+    field(OUT , "#C S @ifctc1_pcie/0x06 T=UINT8")
+    field(VAL , "255") # no power down (0=power down)
+    field(FLNK, "$(IOC):IFCTC1-PCIERD-RXD")
+}
+
+record(ao,"$(IOC):IFCTC1-PCIERD-RXD")
+{
+    field(DESC, "IFC_TC1 PCIe RXD")
+    field(DTYP, "regDevAsyn")
+    field(OUT , "#C S @ifctc1_pcie/0x07 T=UINT8")
+    field(VAL , "255") # enable (0=disabled)
+    field(FLNK, "$(IOC):IFCTC1-PCIERD-AEOC")
+}
+
+record(mbbo,"$(IOC):IFCTC1-PCIERD-EQSELA" )
+{
+    field(DESC, "A equalizer sel 2.5GHz" )
+    field(DTYP, "Raw Soft Channel" )
+    field(NOBT, "3" )
+    field(SHFT, "5" )
+    field(ZRVL, "0" )
+    field(ZRST, "1.2 dB" )
+    field(ONVL, "4" )
+    field(ONST, "1.5 dB" )
+    field(TWVL, "2" )
+    field(TWST, "2.6 dB" )
+    field(THVL, "6" )
+    field(THST, "4.3 dB" )
+    field(FRVL, "1" )
+    field(FRST, "5.8 dB" )
+    field(FVVL, "5" )
+    field(FVST, "7.1 dB" )
+    field(SXVL, "3" )
+    field(SXST, "9.0 dB" )
+    field(SVVL, "7" )
+    field(SVST, "12.3 dB" )
+    
+    field(VAL, "0" )
+    field(OUT, "$(IOC):IFCTC1-PCIERD-AEOC-CALC.C NPP" )
+}
+record(mbbo,"$(IOC):IFCTC1-PCIERD-DEEMPHA" )
+{
+    field(DESC, "A outp. deemphasis" )
+    field(DTYP, "Raw Soft Channel" )
+    field(NOBT, "3" )
+    field(SHFT, "2" )
+    field(ZRVL, "0" )
+    field(ZRST, "0 dB" )
+    field(ONVL, "4" )
+    field(ONST, "-2.5 dB" )
+    field(TWVL, "2" )
+    field(TWST, "-3.5 dB" )
+    field(THVL, "6" )
+    field(THST, "-4.5 dB" )
+    field(FRVL, "1" )
+    field(FRST, "-5.5 dB" )
+    field(FVVL, "5" )
+    field(FVST, "-6.5 dB" )
+    field(SXVL, "3" )
+    field(SXST, "-7.5 dB" )
+    field(SVVL, "7" )
+    field(SVST, "-8.5 dB" )
+    
+    field(VAL, "0" )
+    field(OUT, "$(IOC):IFCTC1-PCIERD-AEOC-CALC.B NPP" )
+}
+record(mbbo,"$(IOC):IFCTC1-PCIERD-SWINGA" )
+{
+    field(DESC, "A swing control" )
+    field(DTYP, "Raw Soft Channel" )
+    field(NOBT, "2" )
+    field(SHFT, "0" )
+    field(ZRVL, "0" )
+    field(ZRST, "1 V" )
+    field(ONVL, "2" )
+    field(ONST, "0.5 V" )
+    field(TWVL, "1" )
+    field(TWST, "0.7 V" )
+    field(THVL, "3" )
+    field(THST, "0.9 V" )
+    
+    field(VAL, "0" )
+    field(OUT, "$(IOC):IFCTC1-PCIERD-AEOC-CALC.A NPP" )
+}
+record(calcout,"$(IOC):IFCTC1-PCIERD-AEOC-CALC" )
+{
+    field(DESC, "calculates AEOC" )
+    field(CALC, "A+B+C" )
+    field(OUT , "$(IOC):IFCTC1-PCIERD-AEOC NPP" )
+    field(FLNK, "$(IOC):IFCTC1-PCIERD-SELECT")
+}
+record(ao,"$(IOC):IFCTC1-PCIERD-AEOC")
+{
+    field(DESC, "IFC_TC1 PCIe AEOC")
+    field(DTYP, "regDevAsyn")
+    field(OUT , "#C S @ifctc1_pcie/0x08 T=UINT8")
+    field(VAL , "255")
+    field(FLNK, "$(IOC):IFCTC1-PCIERD-BEOC-CALC")
+}
+
+record(mbbo,"$(IOC):IFCTC1-PCIERD-EQSELB" )
+{
+    field(DESC, "A equalizer sel 2.5GHz" )
+    field(DTYP, "Raw Soft Channel" )
+    field(NOBT, "3" )
+    field(SHFT, "5" )
+    field(ZRVL, "0" )
+    field(ZRST, "1.2 dB" )
+    field(ONVL, "4" )
+    field(ONST, "1.5 dB" )
+    field(TWVL, "2" )
+    field(TWST, "2.6 dB" )
+    field(THVL, "6" )
+    field(THST, "4.3 dB" )
+    field(FRVL, "1" )
+    field(FRST, "5.8 dB" )
+    field(FVVL, "5" )
+    field(FVST, "7.1 dB" )
+    field(SXVL, "3" )
+    field(SXST, "9.0 dB" )
+    field(SVVL, "7" )
+    field(SVST, "12.3 dB" )
+    
+    field(VAL, "0" )
+    field(OUT, "$(IOC):IFCTC1-PCIERD-BEOC-CALC.C NPP" )
+}
+record(mbbo,"$(IOC):IFCTC1-PCIERD-DEEMPHB" )
+{
+    field(DESC, "B outp. deemphasis" )
+    field(DTYP, "Raw Soft Channel" )
+    field(NOBT, "3" )
+    field(SHFT, "2" )
+    field(ZRVL, "0" )
+    field(ZRST, "0 dB" )
+    field(ONVL, "4" )
+    field(ONST, "-2.5 dB" )
+    field(TWVL, "2" )
+    field(TWST, "-3.5 dB" )
+    field(THVL, "6" )
+    field(THST, "-4.5 dB" )
+    field(FRVL, "1" )
+    field(FRST, "-5.5 dB" )
+    field(FVVL, "5" )
+    field(FVST, "-6.5 dB" )
+    field(SXVL, "3" )
+    field(SXST, "-7.5 dB" )
+    field(SVVL, "7" )
+    field(SVST, "-8.5 dB" )
+    
+    field(VAL, "0" )
+    field(OUT, "$(IOC):IFCTC1-PCIERD-BEOC-CALC.B NPP" )
+}
+record(mbbo,"$(IOC):IFCTC1-PCIERD-SWINGB" )
+{
+    field(DESC, "B swing control" )
+    field(DTYP, "Raw Soft Channel" )
+    field(NOBT, "2" )
+    field(SHFT, "0" )
+    field(ZRVL, "0" )
+    field(ZRST, "1 V" )
+    field(ONVL, "2" )
+    field(ONST, "0.5 V" )
+    field(TWVL, "1" )
+    field(TWST, "0.7 V" )
+    field(THVL, "3" )
+    field(THST, "0.9 V" )
+    
+    field(VAL, "0" )
+    field(OUT, "$(IOC):IFCTC1-PCIERD-BEOC-CALC.A NPP" )
+}
+record(calcout,"$(IOC):IFCTC1-PCIERD-BEOC-CALC" )
+{
+    field(DESC, "calculates BEOC" )
+    field(CALC, "A+B+C" )
+    field(OUT , "$(IOC):IFCTC1-PCIERD-BEOC NPP" )
+    field(FLNK, "$(IOC):IFCTC1-PCIERD-BEOC")
+}
+record(ao,"$(IOC):IFCTC1-PCIERD-BEOC")
+{
+    field(DESC, "IFC_TC1 PCIe BEOC")
+    field(DTYP, "regDevAsyn")
+    field(OUT , "#C S @ifctc1_pcie/0x09 T=UINT8")
+    field(VAL , "255")
+    field(FLNK, "$(IOC):IFCTC1-PCIERD-LBEC-CALC")
 }
 
 
-
+record(mbbo,"$(IOC):IFCTC1-PCIERD-DEEMPHA-ENA" )
+{
+    field(DESC, "deemph. A enable" )
+    field(DTYP, "Raw Soft Channel" )
+    field(NOBT, "1" )
+    field(SHFT, "3" )
+    field(ZRVL, "0" )
+    field(ZRST, "pre-emphasis" )
+    field(ONVL, "1" )
+    field(ONST, "de-emphasis" )
+    
+    field(VAL, "0" )
+    field(OUT, "$(IOC):IFCTC1-PCIERD-LBEC-CALC.B NPP" )
+}
+record(mbbo,"$(IOC):IFCTC1-PCIERD-DEEMPHB-ENA" )
+{
+    field(DESC, "deemph. B enable" )
+    field(DTYP, "Raw Soft Channel" )
+    field(NOBT, "1" )
+    field(SHFT, "2" )
+    field(ZRVL, "0" )
+    field(ZRST, "pre-emphasis" )
+    field(ONVL, "1" )
+    field(ONST, "de-emphasis" )
+    
+    field(VAL, "0" )
+    field(OUT, "$(IOC):IFCTC1-PCIERD-LBEC-CALC.A NPP" )
+}
+record(mbbo,"$(IOC):IFCTC1-PCIERD-LOOPBACK" )
+{
+    field(DESC, "loopback control" )
+    field(DTYP, "Raw Soft Channel" )
+    field(NOBT, "1" )
+    field(SHFT, "4" )
+    field(ZRVL, "15" )
+    field(ZRST, "normal" )
+    field(ONVL, "0" )
+    field(ONST, "loopback" )
+    
+    field(VAL, "0" )
+    field(OUT, "$(IOC):IFCTC1-PCIERD-LBEC-CALC.C NPP" )
+}
+record(calcout,"$(IOC):IFCTC1-PCIERD-LBEC-CALC" )
+{
+    field(DESC, "calculates LBEC" )
+    field(CALC, "A+B+C" )
+    field(OUT , "$(IOC):IFCTC1-PCIERD-LBEC NPP" )
+    field(FLNK, "$(IOC):IFCTC1-PCIERD-LBEC")
+}
+record(ao,"$(IOC):IFCTC1-PCIERD-LBEC")
+{
+    field(DESC, "IFC_TC1 PCIe LBEC")
+    field(DTYP, "regDevAsyn")
+    field(OUT , "#C S @ifctc1_pcie/0x02 T=UINT8")
+    field(VAL , "255")
+}
 
 
 
@@ -135,5 +486,18 @@ record(ai,"$(IOC):IFCTC1-HCI-STATUS")
 # startup.script:   ifctc1_max5970
 #--------------------------------------------------------------------
 
+record(dfanout,"$(IOC):IFCTC1-PWRMON-SELECT")
+{
+    field(DESC, "IFC_TC1 pwr-mon select/kick")
+    field(DOL,  "1") # see table 8 in I2C bus mux select/address map
+    field(OMSL, "closed_loop")
+    field(OUTA, "$(IOC):IFCTC1-MUX-SEL")
+#    field(FLNK, "$(IOC):IFCTC1-PWRMON-REGxyz")  # Stefan, please change this FLNK to your first record
+}
+
 # Stefan, please add records here.
+
+
+
+
 

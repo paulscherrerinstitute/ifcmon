@@ -4,7 +4,7 @@
 
 
 require "regDev","test"
-require "pev","test"
+require "pev"
 
 #######################################################################
 # This section may not be required as below for IFCMON.
@@ -42,23 +42,45 @@ pevConfigure(0,"yourPev","VME_A16", 0x2300)
 
 ## on IFC1210 mainboard
 ## All these accesses go over ELB-bus directly to PON FPGA, therefore bit 7 of following code is set.
-pevAsynI2cConfigure(0, "ifc1210_lm95235_1",             0x040000cc)   # 7-bit slave addr: 4c
-pevAsynI2cConfigure(0, "ifc1210_lm95235_2",             0x04000098)   # 7-bit slave addr: 18
-pevAsynI2cConfigure(0, "ifc1210_max5970",               0x450000b0)   # 7-bit slave addr: 30
-pevAsynI2cConfigure(0, "ifc1210_bmr463_1v0",            0x450000d3)   # 7-bit slave addr: 53
-pevAsynI2cConfigure(0, "ifc1210_bmr463_1v0_cmd",        0x450000d3,1) # 7-bit slave addr: 53
-pevAsynI2cConfigure(0, "ifc1210_bmr463_1v0_opt",        0x450000db)   # 7-bit slave addr: 5b
-pevAsynI2cConfigure(0, "ifc1210_bmr463_1v0_opt_cmd",    0x450000db,1) # 7-bit slave addr: 5b
-pevAsynI2cConfigure(0, "ifc1210_bmr463_1v5",            0x450000e3)   # 7-bit slave addr: 63
-pevAsynI2cConfigure(0, "ifc1210_bmr463_1v5_cmd",        0x450000e3,1) # 7-bit slave addr: 63
-pevAsynI2cConfigure(0, "ifc1210_bmr463_fmc_vadj",       0x450000a4)   # 7-bit slave addr: 24
-pevAsynI2cConfigure(0, "ifc1210_bmr463_fmc_vadj_cmd",   0x450000a4,1) # 7-bit slave addr: 24
-pevAsynI2cConfigure(0, "ifc1210_pci_express_switch",    0xc50000f5)   # 7-bit slave addr: 75
-pevAsynI2cConfigure(0, "ifc1210_pgm_clock",             0xe50000ee)   # 7-bit slave addr: 6e
+pevAsynI2cConfigure(0, "ifc1210_lm95235_1",             0x040000cc)
+pevAsynI2cConfigure(0, "ifc1210_lm95235_2",             0x04000098)
+pevAsynI2cConfigure(0, "ifc1210_max5970",               0x450000b0)
+pevAsynI2cConfigure(0, "ifc1210_bmr463_1v0",            0x450000d3)
+pevAsynI2cConfigure(0, "ifc1210_bmr463_1v0_cmd",        0x450000d3,1)
+pevAsynI2cConfigure(0, "ifc1210_bmr463_1v0_opt",        0x450000db)
+pevAsynI2cConfigure(0, "ifc1210_bmr463_1v0_opt_cmd",    0x450000db,1)
+pevAsynI2cConfigure(0, "ifc1210_bmr463_1v5",            0x450000e3)
+pevAsynI2cConfigure(0, "ifc1210_bmr463_1v5_cmd",        0x450000e3,1)
+pevAsynI2cConfigure(0, "ifc1210_bmr463_fmc_vadj",       0x450000a4)
+pevAsynI2cConfigure(0, "ifc1210_bmr463_fmc_vadj_cmd",   0x450000a4,1)
+pevAsynI2cConfigure(0, "ifc1210_pci_express_switch",    0xc50000f5)
+pevAsynI2cConfigure(0, "ifc1210_pgm_clock",             0xe50000ee)
 
 # for FMC/XMC cards: One line for each I2C device on each bus
 #pevAsynI2cConfigure(0, "ifc1210_fmcxmc1",               0x840000xx) # replace xx bit 6:0 with I2C device address
 #pevAsynI2cConfigure(0, "ifc1210_fmcxmc2",               0xa40000xx) # replace xx bit 6:0 with I2C device address
+
+# FMC 1/2 SFP+
+pevAsynI2cConfigure(0, "ifc1210_sfp10_gtx_116_0_A0",    0x64000050)
+pevAsynI2cConfigure(0, "ifc1210_sfp11_gtx_116_1_A0",    0x64000050)
+pevAsynI2cConfigure(0, "ifc1210_sfp12_gtx_116_2_A0",    0x64000050)
+pevAsynI2cConfigure(0, "ifc1210_sfp13_gtx_116_3_A0",    0x64000050)
+
+pevAsynI2cConfigure(0, "ifc1210_sfp10_gtx_116_0_A2",    0x64000050)
+pevAsynI2cConfigure(0, "ifc1210_sfp11_gtx_116_1_A2",    0x64000050)
+pevAsynI2cConfigure(0, "ifc1210_sfp12_gtx_116_2_A2",    0x64000050)
+pevAsynI2cConfigure(0, "ifc1210_sfp13_gtx_116_3_A2",    0x64000050)
+
+pevAsynI2cConfigure(0, "ifc1210_sfp20_gtx_112_0_A0",    0x64000050)
+pevAsynI2cConfigure(0, "ifc1210_sfp21_gtx_112_1_A0",    0x64000050)
+pevAsynI2cConfigure(0, "ifc1210_sfp22_gtx_112_2_A0",    0x64000050)
+pevAsynI2cConfigure(0, "ifc1210_sfp23_gtx_112_3_A0",    0x64000050)
+
+pevAsynI2cConfigure(0, "ifc1210_sfp20_gtx_112_0_A2",    0x64000050)
+pevAsynI2cConfigure(0, "ifc1210_sfp21_gtx_112_1_A2",    0x64000050)
+pevAsynI2cConfigure(0, "ifc1210_sfp22_gtx_112_2_A2",    0x64000050)
+pevAsynI2cConfigure(0, "ifc1210_sfp23_gtx_112_3_A2",    0x64000050)
+
 
 ## IFC_TC1 transition card
 ## All these accesses go over PCIe_AGSW I2C master and NOT over ELB bus, therefore bit 7 is cleared.

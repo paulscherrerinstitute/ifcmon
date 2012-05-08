@@ -1,17 +1,16 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/03 09:41:53 $
+# $Date: 2012/05/08 05:56:33 $
 #
-# $Revision: 1.1 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_TMEM.template,v 1.1 2012/05/03 09:41:53 kalt_r Exp $
+# $Revision: 1.2 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_TMEM.template,v 1.2 2012/05/08 05:56:33 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
 
 # Module Description:
-# Contains the records for __one__ IFC1210 TOSCA-II SUSER block.
-# Therefore this template must be substituded twice to cover SUSER1 and SUSER2.
+# Contains the records for __one__ IFC1210 TOSCA-II SUSER block: USR1
 #   
 # You may find specification of SUSER1/2 generic Memory Map here:
 # https://codebeamer.psi.ch/cb/proj/sources/sccFileLog.do?proj_id=104&filename=IFC%2FIFC1210_generic%2FFirmware%2FDocumentation%2FIFC1210_TOSCA-II_USER_and_SUSER_Implementation_Rules.doc&isDir=false
@@ -19,7 +18,6 @@
 # This template requires following in a common part of the startup.script:
 #       pevConfigure(0,"Usr1Pev","USR1", 0)
 #    or pevAsynConfigure(0,"asynUsr1Pev","USR1", 0)
-# for each device, USR1 and USR2
 #
 #
 # This template requires following substitution parameters:
@@ -27,4 +25,197 @@
 #
 #--------------------------------------------------------------------
 
+record(ai,"$(IOC):CENTRAL-REVISION")
+{
+    field(DESC, "CENTRAL USR1 rev.")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @asynUsr1Pev/0x000000 T=UINT32")
+}
 
+record(ai,"$(IOC):CENTRAL-DATE")
+{
+    field(DESC, "CENTRAL USR1 date")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @asynUsr1Pev/0x000004 T=UINT32")
+}
+
+
+
+record(stringin,"$(IOC):CENTRAL-NAME")
+{
+    field(DESC, "CENTRAL Fw name")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @asynUsr1Pev/0x000008 T=STRING L=64")
+}
+
+record(stringin,"$(IOC):FMC1-TYPE")
+{
+    field(DESC, "expected FMC1 type")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @asynUsr1Pev/0x000048 T=STRING L=16")
+}
+
+record(stringin,"$(IOC):FMC2-TYPE")
+{
+    field(DESC, "expected FMC2 type")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @asynUsr1Pev/0x000058 T=STRING L=16")
+}
+
+record(ai,"$(IOC):FMC-STATUS")
+{
+    field(DESC, "CENTRAL FMC status")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @asynUsr1Pev/0x000050 T=UINT32")
+    field(FLNK, "$(IOC):FMC1-POWER")
+}
+record ( mbbi, "$(IOC):FMC1-POWER" )
+{
+    field(DESC, "FMC1 power/conn status" )
+    field(DTYP, "Raw Soft Channel" )
+    field(INP, "$(IOC):FMC-STATUS NPP" )
+    field(SHFT, "0" )
+    field(NOBT, "2" )
+    field(ZRVL, "0" )
+    field(ZRST, "not connected" )
+    field(ZRSV, "MINOR" )
+    field(ONVL, "1" )
+    field(ONST, "conn / unpower" )
+    field(ONSV, "MINOR" )
+    field(TWVL, "2" )
+    field(TWST, "reserved" )
+    field(TWSV, "MAJOR" )
+    field(THVL, "3" )
+    field(THST, "conn / powered" )
+    field(THSV, "NO_ALARM" )
+    field(FLNK, "$(IOC):FMC1-INIT")
+}
+record ( mbbi, "$(IOC):FMC1-INIT" )
+{
+    field(DESC, "FMC1 init status" )
+    field(DTYP, "Raw Soft Channel" )
+    field(INP, "$(IOC):FMC-STATUS NPP" )
+    field(SHFT, "2" )
+    field(NOBT, "2" )
+    field(ZRVL, "0" )
+    field(ZRST, "not implemented" )
+    field(ZRSV, "NO_ALARM" )
+    field(ONVL, "1" )
+    field(ONST, "reset state" )
+    field(ONSV, "MAJOR" )
+    field(TWVL, "2" )
+    field(TWST, "init" )
+    field(TWSV, "MAJOR" )
+    field(THVL, "3" )
+    field(THST, "ready" )
+    field(THSV, "NO_ALARM" )
+    field(FLNK, "$(IOC):FMC1-CLOCK")
+}
+record ( mbbi, "$(IOC):FMC1-CLOCK" )
+{
+    field(DESC, "FMC1 ext clock status" )
+    field(DTYP, "Raw Soft Channel" )
+    field(INP, "$(IOC):FMC-STATUS NPP" )
+    field(SHFT, "4" )
+    field(NOBT, "2" )
+    field(ZRVL, "0" )
+    field(ZRST, "not implemented" )
+    field(ZRSV, "NO_ALARM" )
+    field(ONVL, "1" )
+    field(ONST, "unlocked" )
+    field(ONSV, "MAJOR" )
+    field(TWVL, "2" )
+    field(TWST, "reserved" )
+    field(TWSV, "MAJOR" )
+    field(THVL, "3" )
+    field(THST, "locked" )
+    field(THSV, "NO_ALARM" )
+    field(FLNK, "$(IOC):FMC1-POWER")
+}
+record ( mbbi, "$(IOC):FMC2-POWER" )
+{
+    field(DESC, "FMC2 power/conn status" )
+    field(DTYP, "Raw Soft Channel" )
+    field(INP, "$(IOC):FMC-STATUS NPP" )
+    field(SHFT, "16" )
+    field(NOBT, "2" )
+    field(ZRVL, "0" )
+    field(ZRST, "not connected" )
+    field(ZRSV, "MINOR" )
+    field(ONVL, "1" )
+    field(ONST, "conn / unpower" )
+    field(ONSV, "MINOR" )
+    field(TWVL, "2" )
+    field(TWST, "reserved" )
+    field(TWSV, "MAJOR" )
+    field(THVL, "3" )
+    field(THST, "conn / powered" )
+    field(THSV, "NO_ALARM" )
+    field(FLNK, "$(IOC):FMC2-INIT")
+}
+record ( mbbi, "$(IOC):FMC2-INIT" )
+{
+    field(DESC, "FMC2 init status" )
+    field(DTYP, "Raw Soft Channel" )
+    field(INP, "$(IOC):FMC-STATUS NPP" )
+    field(SHFT, "18" )
+    field(NOBT, "2" )
+    field(ZRVL, "0" )
+    field(ZRST, "not implemented" )
+    field(ZRSV, "NO_ALARM" )
+    field(ONVL, "1" )
+    field(ONST, "reset state" )
+    field(ONSV, "MAJOR" )
+    field(TWVL, "2" )
+    field(TWST, "init" )
+    field(TWSV, "MAJOR" )
+    field(THVL, "3" )
+    field(THST, "ready" )
+    field(THSV, "NO_ALARM" )
+    field(FLNK, "$(IOC):FMC2-CLOCK")
+}
+record ( mbbi, "$(IOC):FMC2-CLOCK" )
+{
+    field(DESC, "FMC2 ext clock status" )
+    field(DTYP, "Raw Soft Channel" )
+    field(INP, "$(IOC):FMC-STATUS NPP" )
+    field(SHFT, "20" )
+    field(NOBT, "2" )
+    field(ZRVL, "0" )
+    field(ZRST, "not implemented" )
+    field(ZRSV, "NO_ALARM" )
+    field(ONVL, "1" )
+    field(ONST, "unlocked" )
+    field(ONSV, "MAJOR" )
+    field(TWVL, "2" )
+    field(TWST, "reserved" )
+    field(TWSV, "MAJOR" )
+    field(THVL, "3" )
+    field(THST, "locked" )
+    field(THSV, "NO_ALARM" )
+}
+
+
+record(ai,"$(IOC):USR-STATUS")
+{
+    field(DESC, "CENTRAL USR status")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @asynUsr1Pev/0x000050 T=UINT32")
+    field(FLNK, "$(IOC):USRCLK")
+}
+record ( mbbi, "$(IOC):USRCLK" )
+{
+    field(DESC, "CENTRAL/USR clock" )
+    field(DTYP, "Raw Soft Channel" )
+    field(INP, "$(IOC):USR-STATUS NPP" )
+    field(SHFT, "0" )
+    field(NOBT, "2" )
+    field(ZRVL, "0" )
+    field(ZRST, "100 MHz" )
+    field(ONVL, "1" )
+    field(ONST, "125 MHz" )
+    field(TWVL, "2" )
+    field(TWST, "166 MHz" )
+    field(THVL, "3" )
+    field(THST, "200 MHz" )
+}
