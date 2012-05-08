@@ -1,13 +1,13 @@
 
 file {
-	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_gtx.adl"
+	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_tosca2.adl"
 	version=030104
 }
 display {
 	object {
 		x=
 		y=
-		width=400
+		width=659
 		height=400
 	}
 	clr=14
@@ -89,8 +89,8 @@ display {
 }
 text {
 	object {
-		x=71
-		y=114
+		x=74
+		y=110
 		width=50
 		height=40
 	}
@@ -101,37 +101,13 @@ text {
 }
 text {
 	object {
-		x=77
-		y=160
-		width=50
+		x=80
+		y=40
+		width=51
 		height=40
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="$(SUBDEV)"
-}
-text {
-	object {
-		x=72
-		y=207
-		width=50
-		height=40
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="$(SFPFCT)"
-}
-text {
-	object {
-		x=85
-		y=63
-		width=168
-		height=40
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="GTX:"
+	textix="TOSCA-II:"
 }
