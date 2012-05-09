@@ -66,20 +66,20 @@ pevAsynI2cConfigure(0, "ifc1210_sfp11_gtx_116_1_A0",    0x64000050)
 pevAsynI2cConfigure(0, "ifc1210_sfp12_gtx_116_2_A0",    0x64000050)
 pevAsynI2cConfigure(0, "ifc1210_sfp13_gtx_116_3_A0",    0x64000050)
 
-pevAsynI2cConfigure(0, "ifc1210_sfp10_gtx_116_0_A2",    0x64000050)
-pevAsynI2cConfigure(0, "ifc1210_sfp11_gtx_116_1_A2",    0x64000050)
-pevAsynI2cConfigure(0, "ifc1210_sfp12_gtx_116_2_A2",    0x64000050)
-pevAsynI2cConfigure(0, "ifc1210_sfp13_gtx_116_3_A2",    0x64000050)
+pevAsynI2cConfigure(0, "ifc1210_sfp10_gtx_116_0_A2",    0x64000051)
+pevAsynI2cConfigure(0, "ifc1210_sfp11_gtx_116_1_A2",    0x64000051)
+pevAsynI2cConfigure(0, "ifc1210_sfp12_gtx_116_2_A2",    0x64000051)
+pevAsynI2cConfigure(0, "ifc1210_sfp13_gtx_116_3_A2",    0x64000051)
 
 pevAsynI2cConfigure(0, "ifc1210_sfp20_gtx_112_0_A0",    0x64000050)
 pevAsynI2cConfigure(0, "ifc1210_sfp21_gtx_112_1_A0",    0x64000050)
 pevAsynI2cConfigure(0, "ifc1210_sfp22_gtx_112_2_A0",    0x64000050)
 pevAsynI2cConfigure(0, "ifc1210_sfp23_gtx_112_3_A0",    0x64000050)
 
-pevAsynI2cConfigure(0, "ifc1210_sfp20_gtx_112_0_A2",    0x64000050)
-pevAsynI2cConfigure(0, "ifc1210_sfp21_gtx_112_1_A2",    0x64000050)
-pevAsynI2cConfigure(0, "ifc1210_sfp22_gtx_112_2_A2",    0x64000050)
-pevAsynI2cConfigure(0, "ifc1210_sfp23_gtx_112_3_A2",    0x64000050)
+pevAsynI2cConfigure(0, "ifc1210_sfp20_gtx_112_0_A2",    0x64000051)
+pevAsynI2cConfigure(0, "ifc1210_sfp21_gtx_112_1_A2",    0x64000051)
+pevAsynI2cConfigure(0, "ifc1210_sfp22_gtx_112_2_A2",    0x64000051)
+pevAsynI2cConfigure(0, "ifc1210_sfp23_gtx_112_3_A2",    0x64000051)
 
 
 ## IFC_TC1 transition card
@@ -114,37 +114,6 @@ pevAsynI2cConfigure(0, "ifctc1_sfp_pcie1_port12_A2",    0x64000051)
 pevAsynI2cConfigure(0, "ifctc1_sfp_pcie2_port13_A2",    0x64000051)
 pevAsynI2cConfigure(0, "ifctc1_sfp_pcie3_port14_A2",    0x64000051)
 pevAsynI2cConfigure(0, "ifctc1_sfp_pcie4_port15_A2",    0x64000051)
-
-
-
-# Template load for I2C
-#dbLoadDatabase("G_IFCMON_I2CIFC1210.template", TEMPLATES, bootInfo("IOC=%T,CRATE=%T"))
-#dbLoadDatabase("G_IFCMON_I2CBMR463.template" , TEMPLATES, bootInfo("IOC=%T,CRATE=%T",I2CBUS=ifc1210_bmr463_1v0,     DESCR="BMR463 U704 VCC_1V0 (primary)"))
-#dbLoadDatabase("G_IFCMON_I2CBMR463.template" , TEMPLATES, bootInfo("IOC=%T,CRATE=%T",I2CBUS=ifc1210_bmr463_1v0_opt, DESCR="BMR463 U705 VCC_1V0 (optional for LX240T)"))
-#dbLoadDatabase("G_IFCMON_I2CBMR463.template" , TEMPLATES, bootInfo("IOC=%T,CRATE=%T",I2CBUS=ifc1210_bmr463_1v5,     DESCR="BMR463 U706 VCC_1V5"))
-#dbLoadDatabase("G_IFCMON_I2CBMR463.template" , TEMPLATES, bootInfo("IOC=%T,CRATE=%T",I2CBUS=ifc1210_bmr463_fmc_vadj,DESCR="BMR463 U707 FMC Vadj 1.5-2.5V"))
-#
-#dbLoadDatabase("G_IFCMON_I2CIFCTC1.template"    , TEMPLATES, bootInfo("IOC=%T,CRATE=%T"))
-#dbLoadDatabase("G_IFCMON_I2CIFCTC1_SFP.template", TEMPLATES, bootInfo("IOC=%T,CRATE=%T",BUSMUX=7,  I2CBUSCPLD=ifctc1_cpld),I2CBUSSFPA0=ifctc1_sfp1_gtx_114_3_A0  ,I2CBUSSFPA2=ifctc1_sfp1_gtx_114_3_A2  ,DESCR="SFP+ 1 / GTX_114_3")
-#dbLoadDatabase("G_IFCMON_I2CIFCTC1_SFP.template", TEMPLATES, bootInfo("IOC=%T,CRATE=%T",BUSMUX=8,  I2CBUSCPLD=ifctc1_cpld),I2CBUSSFPA0=ifctc1_sfp2_gtx_114_2_A0  ,I2CBUSSFPA2=ifctc1_sfp2_gtx_114_2_A2  ,DESCR="SFP+ 2 / GTX_114_2")
-#dbLoadDatabase("G_IFCMON_I2CIFCTC1_SFP.template", TEMPLATES, bootInfo("IOC=%T,CRATE=%T",BUSMUX=9,  I2CBUSCPLD=ifctc1_cpld),I2CBUSSFPA0=ifctc1_sfp3_gtx_114_1_A0  ,I2CBUSSFPA2=ifctc1_sfp3_gtx_114_1_A2  ,DESCR="SFP+ 3 / GTX_114_1")
-#dbLoadDatabase("G_IFCMON_I2CIFCTC1_SFP.template", TEMPLATES, bootInfo("IOC=%T,CRATE=%T",BUSMUX=10, I2CBUSCPLD=ifctc1_cpld),I2CBUSSFPA0=ifctc1_sfp4_gtx_114_0_A0  ,I2CBUSSFPA2=ifctc1_sfp4_gtx_114_0_A2  ,DESCR="SFP+ 4 / GTX_114_0")
-#dbLoadDatabase("G_IFCMON_I2CIFCTC1_SFP.template", TEMPLATES, bootInfo("IOC=%T,CRATE=%T",BUSMUX=11, I2CBUSCPLD=ifctc1_cpld),I2CBUSSFPA0=ifctc1_sfp5_gtx_113_3_A0  ,I2CBUSSFPA2=ifctc1_sfp5_gtx_113_3_A2  ,DESCR="SFP+ 5 / GTX_113_3")
-#dbLoadDatabase("G_IFCMON_I2CIFCTC1_SFP.template", TEMPLATES, bootInfo("IOC=%T,CRATE=%T",BUSMUX=12, I2CBUSCPLD=ifctc1_cpld),I2CBUSSFPA0=ifctc1_sfp6_gtx_113_2_A0  ,I2CBUSSFPA2=ifctc1_sfp6_gtx_113_2_A2  ,DESCR="SFP+ 6 / GTX_113_2")
-#
-#dbLoadDatabase("G_IFCMON_I2CIFCTC1_SFP.template", TEMPLATES, bootInfo("IOC=%T,CRATE=%T",BUSMUX=3,  I2CBUSCPLD=ifctc1_cpld),I2CBUSSFPA0=ifctc1_sfp_pcie1_port12_A0,I2CBUSSFPA2=ifctc1_sfp_pcie1_port12_A2,DESCR="SFP+   / PCIe port 12")
-#dbLoadDatabase("G_IFCMON_I2CIFCTC1_SFP.template", TEMPLATES, bootInfo("IOC=%T,CRATE=%T",BUSMUX=4,  I2CBUSCPLD=ifctc1_cpld),I2CBUSSFPA0=ifctc1_sfp_pcie2_port13_A0,I2CBUSSFPA2=ifctc1_sfp_pcie2_port13_A2,DESCR="SFP+   / PCIe port 13")
-#dbLoadDatabase("G_IFCMON_I2CIFCTC1_SFP.template", TEMPLATES, bootInfo("IOC=%T,CRATE=%T",BUSMUX=5,  I2CBUSCPLD=ifctc1_cpld),I2CBUSSFPA0=ifctc1_sfp_pcie3_port14_A0,I2CBUSSFPA2=ifctc1_sfp_pcie3_port14_A2,DESCR="SFP+   / PCIe port 14")
-#dbLoadDatabase("G_IFCMON_I2CIFCTC1_SFP.template", TEMPLATES, bootInfo("IOC=%T,CRATE=%T",BUSMUX=6,  I2CBUSCPLD=ifctc1_cpld),I2CBUSSFPA0=ifctc1_sfp_pcie4_port15_A0,I2CBUSSFPA2=ifctc1_sfp_pcie4_port15_A2,DESCR="SFP+   / PCIe port 15")
-
-
-
-
-
-
-
-
-
 
 
 
