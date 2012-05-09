@@ -582,6 +582,7 @@ text {
 		clr=29
 		bclr=1
 	}
+	format="string"
 	limits {
 	}
 }
@@ -704,7 +705,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-FW-YEAR"
+		chan="$(IOC):IFCTC1-FW-MONTH"
 		clr=29
 		bclr=1
 	}
@@ -720,7 +721,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-FW-YEAR"
+		chan="$(IOC):IFCTC1-FW-DAY"
 		clr=29
 		bclr=1
 	}
