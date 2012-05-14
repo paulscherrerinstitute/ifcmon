@@ -123,5 +123,5 @@ pevAsynI2cConfigure(0, "ifctc1_sfp_pcie4_port15_A2",    0x64000051)
 # This may be removed for generic startup.script later
 
 cd "/ioc/MTEST-PC-IFC9"
-dbLoadTemplate("MTEST-PC-IFC9.subs")
+dbLoadTemplate("MTEST-PC-IFC9_IFCTEST.subs")
 

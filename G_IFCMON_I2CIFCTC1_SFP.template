@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
-# $Author: kalt_r $
-# $Date: 2012/05/08 13:23:20 $
+# $Author: scherrer $
+# $Date: 2012/05/14 15:59:33 $
 #
-# $Revision: 1.3 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1_SFP.template,v 1.3 2012/05/08 13:23:20 kalt_r Exp $
+# $Revision: 1.4 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1_SFP.template,v 1.4 2012/05/14 15:59:33 scherrer Exp $
 #
 #--------------------------------------------------------------------
 
@@ -73,13 +73,51 @@ record(dfanout,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-SELECT")
 #--------------------------------------------------------------------
 # status
 #--------------------------------------------------------------------
-record(stringin,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
+#record(stringin,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
+#{
+#    field(DESC, "vendor: $(DESCR)")
+#    field(DTYP, "regDevAsyn")
+#    field(INP , "#C S @$(I2CBUSSFP)A0/0x40 T=STRING L=20")
+#    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STATUS")
+#}
+
+# Vendor Name
+record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
 {
     field(DESC, "vendor: $(DESCR)")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUSSFP)A0/0x40 T=STRING L=20")
+    field(INP , "#C S @$(I2CBUSSFP)A0/0x42 T=UINT32")
+    #field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STATUS")
 }
+
+# Temperature measurement
+#record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-MSB")
+#{
+#    field(DESC, "TEMP-MSB: $(DESCR)")
+#    field(DTYP, "regDevAsyn")
+#    field(INP , "#C S @$(I2CBUSSFP)A2/0x96 T=UINT8")
+#}
+#record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-LSB")
+#{
+#    field(DESC, "TEMP-LSB: $(DESCR)")
+#    field(DTYP, "regDevAsyn")
+#    field(INP , "#C S @$(I2CBUSSFP)A2/0x97 T=UINT8")
+#}
+#record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP")
+#{ 
+#    field(DESC, "TEMP: $(DESCR)")
+#    field(INPA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-LSB PP")
+ #   field(INPB, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-MSB PP")
+ #   field(C   , "0.00390625") # LSB =1/256 degree celsius see datasheet
+ #   field(CALC, "(A|B-(B&128?256:0)<<8)*C")
+ #   field(PREC, "1") 
+ #   field(EGU , "C")
+ #   field(HIHI, "60")
+ #   field(HHSV, "MAJOR")
+ #   field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STATUS")
+#}
+
 
 
 

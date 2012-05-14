@@ -1,14 +1,14 @@
 
 file {
-	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_pwrmon.adl"
+	name="/afs/psi.ch/user/s/scherrer/G/IFCMON/App/config/medm/G_IFCMON_pwrmon.adl"
 	version=030104
 }
 display {
 	object {
-		x=
-		y=
-		width=500
-		height=200
+		x=12
+		y=639
+		width=623
+		height=422
 	}
 	clr=14
 	bclr=25
@@ -87,10 +87,1024 @@ display {
 		1a7309,
 	}
 }
+rectangle {
+	object {
+		x=10
+		y=140
+		width=600
+		height=110
+	}
+	"basic attribute" {
+		clr=7
+	}
+}
+rectangle {
+	object {
+		x=14
+		y=167
+		width=290
+		height=80
+	}
+	"basic attribute" {
+		clr=4
+	}
+}
+"text update" {
+	object {
+		x=145
+		y=175
+		width=70
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
 text {
 	object {
-		x=74
-		y=110
+		x=19
+		y=217
+		width=116
+		height=29
+	}
+	"basic attribute" {
+		clr=14
+	}
+	"dynamic attribute" {
+		chan="CH1 Voltage"
+	}
+}
+text {
+	object {
+		x=16
+		y=175
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Voltage (5V):"
+}
+text {
+	object {
+		x=16
+		y=200
+		width=107
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current:"
+}
+text {
+	object {
+		x=16
+		y=225
+		width=95
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Power:"
+}
+"text update" {
+	object {
+		x=145
+		y=200
+		width=70
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=145
+		y=225
+		width=70
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-W"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=314
+		y=169
+		width=290
+		height=81
+	}
+	"basic attribute" {
+		clr=4
+	}
+}
+text {
+	object {
+		x=316
+		y=175
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Voltage (3.3V):"
+}
+text {
+	object {
+		x=316
+		y=200
+		width=107
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Current:"
+}
+text {
+	object {
+		x=316
+		y=225
+		width=95
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Power:"
+}
+"text update" {
+	object {
+		x=450
+		y=175
+		width=70
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=450
+		y=200
+		width=70
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=450
+		y=225
+		width=70
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-W"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=15
+		y=146
+		width=107
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Actual Values CH1 (5V)"
+}
+rectangle {
+	object {
+		x=9
+		y=256
+		width=600
+		height=160
+	}
+	"basic attribute" {
+		clr=7
+	}
+}
+rectangle {
+	object {
+		x=14
+		y=278
+		width=290
+		height=105
+	}
+	"basic attribute" {
+		clr=4
+	}
+}
+"text update" {
+	object {
+		x=220
+		y=175
+		width=52
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V.EGU"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+oval {
+	object {
+		x=280
+		y=173
+		width=18
+		height=18
+	}
+	"basic attribute" {
+		clr=12
+	}
+}
+oval {
+	object {
+		x=282
+		y=175
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V"
+	}
+}
+"text update" {
+	object {
+		x=220
+		y=200
+		width=52
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I.EGU"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=220
+		y=225
+		width=52
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-W.EGU"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+oval {
+	object {
+		x=280
+		y=197
+		width=18
+		height=18
+	}
+	"basic attribute" {
+		clr=12
+	}
+}
+oval {
+	object {
+		x=282
+		y=199
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I"
+	}
+}
+oval {
+	object {
+		x=581
+		y=172
+		width=18
+		height=18
+	}
+	"basic attribute" {
+		clr=12
+	}
+}
+oval {
+	object {
+		x=581
+		y=198
+		width=18
+		height=18
+	}
+	"basic attribute" {
+		clr=12
+	}
+}
+oval {
+	object {
+		x=583
+		y=174
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V"
+	}
+}
+oval {
+	object {
+		x=583
+		y=200
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I"
+	}
+}
+"text update" {
+	object {
+		x=525
+		y=175
+		width=52
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V.EGU"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=525
+		y=200
+		width=52
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I.EGU"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=525
+		y=225
+		width=52
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-W.EGU"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=15
+		y=260
+		width=107
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="min/max Values CH1 (5V)"
+}
+rectangle {
+	object {
+		x=314
+		y=278
+		width=290
+		height=105
+	}
+	"basic attribute" {
+		clr=4
+	}
+}
+text {
+	object {
+		x=17
+		y=285
+		width=95
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="min. Voltage:"
+}
+text {
+	object {
+		x=16
+		y=310
+		width=107
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="min. Current:"
+}
+text {
+	object {
+		x=316
+		y=285
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="min. Voltage:"
+}
+text {
+	object {
+		x=316
+		y=310
+		width=107
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="min. Current:"
+}
+"text update" {
+	object {
+		x=145
+		y=285
+		width=70
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH1-MIN-V"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=220
+		y=285
+		width=52
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH1-MIN-V.EGU"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=145
+		y=310
+		width=70
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH1-MIN-I"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=220
+		y=310
+		width=52
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH1-MIN-I.EGU"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+oval {
+	object {
+		x=280
+		y=283
+		width=18
+		height=18
+	}
+	"basic attribute" {
+		clr=12
+	}
+}
+oval {
+	object {
+		x=282
+		y=285
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):IFCTC1-PWRMON-CH1-MIN-V"
+	}
+}
+"text update" {
+	object {
+		x=450
+		y=284
+		width=70
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH2-MIN-V"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=525
+		y=285
+		width=52
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH2-MIN-V.EGU"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=450
+		y=310
+		width=70
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH2-MIN-I"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=525
+		y=310
+		width=52
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH2-MIN-I.EGU"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+oval {
+	object {
+		x=581
+		y=282
+		width=18
+		height=18
+	}
+	"basic attribute" {
+		clr=12
+	}
+}
+oval {
+	object {
+		x=583
+		y=284
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):IFCTC1-PWRMON-CH2-MIN-V"
+	}
+}
+"message button" {
+	object {
+		x=249
+		y=388
+		width=120
+		height=18
+	}
+	control {
+		chan="$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-ACTIVE.PROG"
+		clr=14
+		bclr=6
+	}
+	label="reset Peak Values"
+	press_msg="1"
+}
+text {
+	object {
+		x=16
+		y=335
+		width=95
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="max. Voltage:"
+}
+text {
+	object {
+		x=16
+		y=360
+		width=107
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="max. Current:"
+}
+"text update" {
+	object {
+		x=145
+		y=335
+		width=70
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH1-MAX-V"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=145
+		y=360
+		width=70
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH1-MAX-I"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=220
+		y=335
+		width=52
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH1-MAX-V.EGU"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=220
+		y=360
+		width=52
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH1-MAX-I.EGU"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=316
+		y=335
+		width=95
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="max. Voltage:"
+}
+text {
+	object {
+		x=316
+		y=360
+		width=107
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="max. Current:"
+}
+text {
+	object {
+		x=315
+		y=146
+		width=107
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Actual Values CH2 (3.3V)"
+}
+text {
+	object {
+		x=315
+		y=260
+		width=107
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="min/max Values CH1 (3.3V)"
+}
+oval {
+	object {
+		x=280
+		y=335
+		width=18
+		height=18
+	}
+	"basic attribute" {
+		clr=12
+	}
+}
+oval {
+	object {
+		x=280
+		y=360
+		width=18
+		height=18
+	}
+	"basic attribute" {
+		clr=12
+	}
+}
+oval {
+	object {
+		x=581
+		y=332
+		width=18
+		height=18
+	}
+	"basic attribute" {
+		clr=12
+	}
+}
+oval {
+	object {
+		x=581
+		y=359
+		width=18
+		height=18
+	}
+	"basic attribute" {
+		clr=12
+	}
+}
+"text update" {
+	object {
+		x=450
+		y=335
+		width=70
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH2-MAX-V"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=450
+		y=360
+		width=70
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH2-MAX-I"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=525
+		y=360
+		width=52
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH2-MAX-I.EGU"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=525
+		y=335
+		width=52
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-CH2-MAX-V.EGU"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+oval {
+	object {
+		x=282
+		y=337
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):IFCTC1-PWRMON-CH1-MAX-V"
+	}
+}
+oval {
+	object {
+		x=282
+		y=362
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):IFCTC1-PWRMON-CH1-MAX-I"
+	}
+}
+oval {
+	object {
+		x=583
+		y=334
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):IFCTC1-PWRMON-CH2-MAX-V"
+	}
+}
+oval {
+	object {
+		x=583
+		y=361
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):IFCTC1-PWRMON-CH2-MAX-I"
+	}
+}
+rectangle {
+	object {
+		x=10
+		y=13
+		width=600
+		height=120
+	}
+	"basic attribute" {
+		clr=7
+	}
+}
+text {
+	object {
+		x=14
+		y=18
+		width=51
+		height=40
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Power Monitor MAX5970:"
+}
+text {
+	object {
+		x=32
+		y=59
 		width=50
 		height=40
 	}
@@ -101,20 +1115,8 @@ text {
 }
 text {
 	object {
-		x=43
-		y=40
-		width=51
-		height=40
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="power monitor MAX5970:"
-}
-text {
-	object {
-		x=79
-		y=158
+		x=31
+		y=96
 		width=50
 		height=40
 	}
