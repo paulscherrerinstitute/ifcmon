@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/08 08:46:03 $
+# $Date: 2012/05/15 15:13:30 $
 #
-# $Revision: 1.2 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.2 2012/05/08 08:46:03 kalt_r Exp $
+# $Revision: 1.3 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.3 2012/05/15 15:13:30 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -43,8 +43,8 @@ record(fanout,"$(IOC):ELB-FAN1")
 record(ai,"$(IOC):ELB-STATIC-SW")
 {
     field(DESC, "status of switches")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_elb/0x04 T=UINT32")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x04 @ELB T=UINT32")
     field(FLNK, "$(IOC):SW101-VMEMODE")
 }
 # SW101
@@ -232,8 +232,8 @@ record ( mbbi, "$(IOC):SW103-HEXROT")
 record(ai,"$(IOC):ELB-PCIESW-CTL")
 {
     field(DESC, "PCIe switch ctrl")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_elb/0x14 T=UINT32")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x14 @ELB T=UINT32")
     field(FLNK, "$(IOC):PCIESTACK-XMC1")
 }
 record ( mbbi, "$(IOC):PCIESTACK-XMC1")
@@ -324,16 +324,16 @@ record ( mbbi, "$(IOC):PCIE-CLKMODE")
 record(ai,"$(IOC):ELB-PON-SIGN")
 {
     field(DESC, "PON FPGA signature")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_elb/0x1C T=UINT32")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x1C @ELB T=UINT32")
     field(FLNK, "$(IOC):ELB-FMCXMC-CTL")
 }
 
 record(ai,"$(IOC):ELB-FMCXMC-CTL")
 {
     field(DESC, "status XMC/FMC")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_elb/0x0C T=UINT32")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x0C @ELB T=UINT32")
     field(FLNK, "$(IOC):XMC1-PRESENT")
 }
 record ( mbbi, "$(IOC):XMC1-PRESENT")
@@ -460,8 +460,8 @@ record ( mbbi, "$(IOC):FMC12-VADJ-ENA")
 record(ai,"$(IOC):ELB-BMRCTL")
 {
     field(DESC, "BMR463 dc/dc st.")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_elb/0x40 T=UINT32")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x40 @ELB T=UINT32")
 }
 record ( mbbi, "$(IOC):BMR-SYNC-RUN")
 {
@@ -502,15 +502,15 @@ record ( mbbi, "$(IOC):BMR-POWER-ALERT")
 record(ao,"$(IOC):ELB-VME-CTL-SET")
 {
     field(DESC, "status of VME")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_elb/0x08! T=UINT32")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x08! @ELB T=UINT32")
 }
 
 record(ao,"$(IOC):ELB-FMCXMC-CTL-SET")
 {
     field(DESC, "commands XMC/FMC")
-    field(DTYP, "regDevAsyn")
-    field(OUT , "#C S @ifc1210_elb/0x0C T=UINT32")
+    field(DTYP, "ifc1210")
+    field(OUT , "#C S0x0C @ELB T=UINT32")
 }
 record ( mbbo, "$(IOC):FMC12-PG-C2M-SET")
 {
@@ -548,8 +548,8 @@ record ( mbbo, "$(IOC):FMC12-VADJ-ENA-SET")
 record(ao,"$(IOC):ELB-GENERAL-CTL-SET")
 {
     field(DESC, "IFC1210 gen. ctrl")
-    field(DTYP, "regDevAsyn")
-    field(OUT , "#C S @ifc1210_elb/0x10 T=UINT32")
+    field(DTYP, "ifc1210")
+    field(OUT , "#C S0x10 @ELB T=UINT32")
 }
 record ( mbbo, "$(IOC):IDTCLK-SEL-SET")
 {
@@ -617,8 +617,8 @@ record ( mbbo, "$(IOC):100MHZ-ENA-SET")
 record(ao,"$(IOC):ELB-BMRCTL-SET")
 {
     field(DESC, "BMR463 dc/dc ctrl.")
-    field(DTYP, "regDevAsyn")
-    field(OUT , "#C S @ifc1210_elb/0x40 T=UINT32")
+    field(DTYP, "ifc1210")
+    field(OUT , "#C S0x40 @ELB T=UINT32")
 }
 
 

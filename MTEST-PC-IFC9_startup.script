@@ -4,7 +4,7 @@
 
 
 require "regDev","test"
-require "pev"
+require "pev","test"
 
 #######################################################################
 # This section may not be required as below for IFCMON.
@@ -42,44 +42,44 @@ pevConfigure(0,"yourPev","VME_A16", 0x2300)
 
 ## on IFC1210 mainboard
 ## All these accesses go over ELB-bus directly to PON FPGA, therefore bit 7 of following code is set.
-pevAsynI2cConfigure(0, "ifc1210_lm95235_1",             0x040000cc)
-pevAsynI2cConfigure(0, "ifc1210_lm95235_2",             0x04000098)
-pevAsynI2cConfigure(0, "ifc1210_max5970",               0x450000b0)
-pevAsynI2cConfigure(0, "ifc1210_bmr463_1v0",            0x450000d3)
-pevAsynI2cConfigure(0, "ifc1210_bmr463_1v0_cmd",        0x450000d3,1)
-pevAsynI2cConfigure(0, "ifc1210_bmr463_1v0_opt",        0x450000db)
-pevAsynI2cConfigure(0, "ifc1210_bmr463_1v0_opt_cmd",    0x450000db,1)
-pevAsynI2cConfigure(0, "ifc1210_bmr463_1v5",            0x450000e3)
-pevAsynI2cConfigure(0, "ifc1210_bmr463_1v5_cmd",        0x450000e3,1)
-pevAsynI2cConfigure(0, "ifc1210_bmr463_fmc_vadj",       0x450000a4)
-pevAsynI2cConfigure(0, "ifc1210_bmr463_fmc_vadj_cmd",   0x450000a4,1)
-pevAsynI2cConfigure(0, "ifc1210_pci_express_switch",    0xc50000f5)
-pevAsynI2cConfigure(0, "ifc1210_pgm_clock",             0xe50000ee)
+pevAsynI2cConfigure(0, "lm95235_1",             0x040000cc)
+pevAsynI2cConfigure(0, "lm95235_2",             0x04000098)
+pevAsynI2cConfigure(0, "max5970",               0x450000b0)
+pevAsynI2cConfigure(0, "bmr463_1v0",            0x450000d3)
+pevAsynI2cConfigure(0, "bmr463_1v0c",           0x450000d3,1)
+pevAsynI2cConfigure(0, "bmr463_1v0_opt",        0x450000db)
+pevAsynI2cConfigure(0, "bmr463_1v0_optc",       0x450000db,1)
+pevAsynI2cConfigure(0, "bmr463_1v5",            0x450000e3)
+pevAsynI2cConfigure(0, "bmr463_1v5c",           0x450000e3,1)
+pevAsynI2cConfigure(0, "bmr463_fmc_vadj",       0x450000a4)
+pevAsynI2cConfigure(0, "bmr463_fmc_vadjc",      0x450000a4,1)
+pevAsynI2cConfigure(0, "pci_express_switch",    0xc50000f5)
+pevAsynI2cConfigure(0, "pgm_clock",             0xe50000ee)
 
 # for FMC/XMC cards: One line for each I2C device on each bus
 #pevAsynI2cConfigure(0, "ifc1210_fmcxmc1",               0x840000xx) # replace xx bit 6:0 with I2C device address
 #pevAsynI2cConfigure(0, "ifc1210_fmcxmc2",               0xa40000xx) # replace xx bit 6:0 with I2C device address
 
 # FMC 1/2 SFP+
-pevAsynI2cConfigure(0, "ifc1210_sfp10_gtx_116_0_A0",    0x64000050)
-pevAsynI2cConfigure(0, "ifc1210_sfp11_gtx_116_1_A0",    0x64000050)
-pevAsynI2cConfigure(0, "ifc1210_sfp12_gtx_116_2_A0",    0x64000050)
-pevAsynI2cConfigure(0, "ifc1210_sfp13_gtx_116_3_A0",    0x64000050)
+pevAsynI2cConfigure(0, "gtx1160_A0",    0x64000050)
+pevAsynI2cConfigure(0, "gtx1161_A0",    0x64000050)
+pevAsynI2cConfigure(0, "gtx1162_A0",    0x64000050)
+pevAsynI2cConfigure(0, "gtx1163_A0",    0x64000050)
 
-pevAsynI2cConfigure(0, "ifc1210_sfp10_gtx_116_0_A2",    0x64000051)
-pevAsynI2cConfigure(0, "ifc1210_sfp11_gtx_116_1_A2",    0x64000051)
-pevAsynI2cConfigure(0, "ifc1210_sfp12_gtx_116_2_A2",    0x64000051)
-pevAsynI2cConfigure(0, "ifc1210_sfp13_gtx_116_3_A2",    0x64000051)
+pevAsynI2cConfigure(0, "gtx1160_A2",    0x64000051)
+pevAsynI2cConfigure(0, "gtx1161_A2",    0x64000051)
+pevAsynI2cConfigure(0, "gtx1162_A2",    0x64000051)
+pevAsynI2cConfigure(0, "gtx1163_A2",    0x64000051)
 
-pevAsynI2cConfigure(0, "ifc1210_sfp20_gtx_112_0_A0",    0x64000050)
-pevAsynI2cConfigure(0, "ifc1210_sfp21_gtx_112_1_A0",    0x64000050)
-pevAsynI2cConfigure(0, "ifc1210_sfp22_gtx_112_2_A0",    0x64000050)
-pevAsynI2cConfigure(0, "ifc1210_sfp23_gtx_112_3_A0",    0x64000050)
+pevAsynI2cConfigure(0, "gtx1120_A0",    0x64000050)
+pevAsynI2cConfigure(0, "gtx1121_A0",    0x64000050)
+pevAsynI2cConfigure(0, "gtx1122_A0",    0x64000050)
+pevAsynI2cConfigure(0, "gtx1123_A0",    0x64000050)
 
-pevAsynI2cConfigure(0, "ifc1210_sfp20_gtx_112_0_A2",    0x64000051)
-pevAsynI2cConfigure(0, "ifc1210_sfp21_gtx_112_1_A2",    0x64000051)
-pevAsynI2cConfigure(0, "ifc1210_sfp22_gtx_112_2_A2",    0x64000051)
-pevAsynI2cConfigure(0, "ifc1210_sfp23_gtx_112_3_A2",    0x64000051)
+pevAsynI2cConfigure(0, "gtx1120_A2",    0x64000051)
+pevAsynI2cConfigure(0, "gtx1121_A2",    0x64000051)
+pevAsynI2cConfigure(0, "gtx1122_A2",    0x64000051)
+pevAsynI2cConfigure(0, "gtx1123_A2",    0x64000051)
 
 
 ## IFC_TC1 transition card
@@ -90,38 +90,31 @@ pevAsynI2cConfigure(0, "ifctc1_max5970",                0x6400003A)
 pevAsynI2cConfigure(0, "ifctc1_eeprom",                 0x64000054)
 
 #SFP+ GTX
-pevAsynI2cConfigure(0, "ifctc1_sfp1_gtx_114_3_A0",      0x64000050)
-pevAsynI2cConfigure(0, "ifctc1_sfp2_gtx_114_2_A0",      0x64000050)
-pevAsynI2cConfigure(0, "ifctc1_sfp3_gtx_114_1_A0",      0x64000050)
-pevAsynI2cConfigure(0, "ifctc1_sfp4_gtx_114_0_A0",      0x64000050)
-pevAsynI2cConfigure(0, "ifctc1_sfp5_gtx_113_3_A0",      0x64000050)
-pevAsynI2cConfigure(0, "ifctc1_sfp6_gtx_113_2_A0",      0x64000050)
+pevAsynI2cConfigure(0, "gtx1143_A0",      0x64000050)
+pevAsynI2cConfigure(0, "gtx1142_A0",      0x64000050)
+pevAsynI2cConfigure(0, "gtx1141_A0",      0x64000050)
+pevAsynI2cConfigure(0, "gtx1140_A0",      0x64000050)
+pevAsynI2cConfigure(0, "gtx1133_A0",      0x64000050)
+pevAsynI2cConfigure(0, "gtx1132_A0",      0x64000050)
 
-pevAsynI2cConfigure(0, "ifctc1_sfp1_gtx_114_3_A2",      0x64000051)
-pevAsynI2cConfigure(0, "ifctc1_sfp2_gtx_114_2_A2",      0x64000051)
-pevAsynI2cConfigure(0, "ifctc1_sfp3_gtx_114_1_A2",      0x64000051)
-pevAsynI2cConfigure(0, "ifctc1_sfp4_gtx_114_0_A2",      0x64000051)
-pevAsynI2cConfigure(0, "ifctc1_sfp5_gtx_113_3_A2",      0x64000051)
-pevAsynI2cConfigure(0, "ifctc1_sfp6_gtx_113_2_A2",      0x64000051)
+pevAsynI2cConfigure(0, "gtx1143_A2",      0x64000051)
+pevAsynI2cConfigure(0, "gtx1142_A2",      0x64000051)
+pevAsynI2cConfigure(0, "gtx1141_A2",      0x64000051)
+pevAsynI2cConfigure(0, "gtx1140_A2",      0x64000051)
+pevAsynI2cConfigure(0, "gtx1133_A2",      0x64000051)
+pevAsynI2cConfigure(0, "gtx1132_A2",      0x64000051)
 
 #SFP+ PCIe
-pevAsynI2cConfigure(0, "ifctc1_sfp_pcie1_port12_A0",    0x64000050)
-pevAsynI2cConfigure(0, "ifctc1_sfp_pcie2_port13_A0",    0x64000050)
-pevAsynI2cConfigure(0, "ifctc1_sfp_pcie3_port14_A0",    0x64000050)
-pevAsynI2cConfigure(0, "ifctc1_sfp_pcie4_port15_A0",    0x64000050)
+pevAsynI2cConfigure(0, "pci_p12_A0",      0x64000050)
+pevAsynI2cConfigure(0, "pci_p13_A0",      0x64000050)
+pevAsynI2cConfigure(0, "pci_p14_A0",      0x64000050)
+pevAsynI2cConfigure(0, "pci_p15_A0",      0x64000050)
 
-pevAsynI2cConfigure(0, "ifctc1_sfp_pcie1_port12_A2",    0x64000051)
-pevAsynI2cConfigure(0, "ifctc1_sfp_pcie2_port13_A2",    0x64000051)
-pevAsynI2cConfigure(0, "ifctc1_sfp_pcie3_port14_A2",    0x64000051)
-pevAsynI2cConfigure(0, "ifctc1_sfp_pcie4_port15_A2",    0x64000051)
-
-
+pevAsynI2cConfigure(0, "pci_p12_A2",      0x64000051)
+pevAsynI2cConfigure(0, "pci_p13_A2",      0x64000051)
+pevAsynI2cConfigure(0, "pci_p14_A2",      0x64000051)
+pevAsynI2cConfigure(0, "pci_p15_A2",      0x64000051)
 
 
 
-
-# This may be removed for generic startup.script later
-
-cd "/ioc/MTEST-PC-IFC9"
-dbLoadTemplate("MTEST-PC-IFC9_IFCTEST.subs")
 

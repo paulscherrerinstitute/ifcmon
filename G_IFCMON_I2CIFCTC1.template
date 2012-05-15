@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
-# $Author: scherrer $
-# $Date: 2012/05/14 15:59:33 $
+# $Author: kalt_r $
+# $Date: 2012/05/15 15:13:30 $
 #
-# $Revision: 1.6 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1.template,v 1.6 2012/05/14 15:59:33 scherrer Exp $
+# $Revision: 1.7 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1.template,v 1.7 2012/05/15 15:13:30 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -885,7 +885,7 @@ record(calc,"$(IOC):IFCTC1-PWRMON-DISS")
 #--------------------------------------------------------------------
 # control
 #--------------------------------------------------------------------
-record(ao,"$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-ACTIVE PP")
+record(ao,"$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-ACTIVE")
 {
     field(DESC, "IFC_TC1 pwr-mon peak detection RESET")
     field(DTYP, "regDevAsyn")
@@ -906,19 +906,19 @@ record(ao,"$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-DEACTIVE")
 #--------------------------------------------------------------------
 # test for SFP modules
 #--------------------------------------------------------------------
-record(dfanout,"$(IOC):IFCTC1-SFP-GTX1143-SELECT")
-{
-    field(DESC, "IFC_TC1 SFP I2C select/kick")
-    field(DOL,  "8") # see table 8 in I2C bus mux select/address map
-    field(OMSL, "closed_loop")
-    field(OUTA, "$(IOC):IFCTC1-MUX-SEL")
-    field(FLNK, "$(IOC):IFCTC1-SFP-GTX1143-TYPE")
-}
-
-# Vendor Name
-record(ai,"$(IOC):IFCTC1-SFP-GTX1143-TYPE")
-{
-    field(DESC, "vendor: ")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_sfp1_gtx_114_3_A0/0x20 T=UINT8")
-}
+#record(dfanout,"$(IOC):IFCTC1-SFP-GTX1143-SELECT")
+#{
+#    field(DESC, "IFC_TC1 SFP I2C select/kick")
+#    field(DOL,  "8") # see table 8 in I2C bus mux select/address map
+#    field(OMSL, "closed_loop")
+#    field(OUTA, "$(IOC):IFCTC1-MUX-SEL")
+#    field(FLNK, "$(IOC):IFCTC1-SFP-GTX1143-TYPE")
+#}
+#
+## Vendor Name
+#record(ai,"$(IOC):IFCTC1-SFP-GTX1143-TYPE")
+#{
+#    field(DESC, "vendor: ")
+#    field(DTYP, "regDevAsyn")
+#    field(INP , "#C S @ifctc1_sfp1_gtx_114_3_A0/0x20 T=UINT8")
+#}

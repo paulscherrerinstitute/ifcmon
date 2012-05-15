@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/09 08:17:49 $
+# $Date: 2012/05/15 15:13:30 $
 #
-# $Revision: 1.3 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_TCSR.template,v 1.3 2012/05/09 08:17:49 kalt_r Exp $
+# $Revision: 1.4 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_TCSR.template,v 1.4 2012/05/15 15:13:30 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -39,13 +39,13 @@
 
 
 
-record(fanout,"$(IOC):TCSR-FAN1")
-{
-    field(DESC, "periodical proc.")
-    field(SCAN, "PASSIVE")
-    field(PINI, "YES")
-    field(LNK1 ,"$(IOC):ILOC-GENERAL")
-}
+#record(fanout,"$(IOC):TCSR-FAN1")
+#{
+#    field(DESC, "periodical proc.")
+#    field(SCAN, "PASSIVE")
+#    field(PINI, "YES")
+#    field(LNK1 ,"$(IOC):ILOC-GENERAL")
+#}
 
 record(fanout,"$(IOC):TCSR-SYSMON-FAN1")
 {
@@ -64,45 +64,45 @@ record(fanout,"$(IOC):TCSR-SYSMON-FAN1")
 #--------------------------------------------------------------------
 # Status
 
-record(ai,"$(IOC):ILOC-GENERAL")
-{
-    field(DESC, "ILOC general")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_tcsr/0x000 T=UINT32")
-    field(FLNK, "$(IOC):ILOC-PONFSM")
-}
-
-record(ai,"$(IOC):ILOC-PONFSM")
-{
-    field(DESC, "ILOC PONFSM stat")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_tcsr/0x00C T=UINT32")
-    field(FLNK, "$(IOC):ILOC-SIGN")
-}
-
-record(ai,"$(IOC):ILOC-SIGN")
-{
-    field(DESC, "ILOC CENTRAL sign")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_tcsr/0x018 T=UINT32")
-    field(FLNK, "$(IOC):V6-PCIE-DSN-L")
-}
-
-record(ai,"$(IOC):V6-PCIE-DSN-L")
-{
-    field(DESC, "CENTRAL serial l")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_tcsr/0x038 T=UINT32")
-    field(FLNK, "$(IOC):V6-PCIE-DSN-H")
-}
-
-record(ai,"$(IOC):V6-PCIE-DSN-H")
-{
-    field(DESC, "CENTRAL serial h")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_tcsr/0x03C T=UINT32")
+#record(ai,"$(IOC):ILOC-GENERAL")
+#{
+#    field(DESC, "ILOC general")
+#    field(DTYP, "regDevAsyn")
+#    field(INP , "#C S @ifc1210_tcsr/0x000 T=UINT32")
+#    field(FLNK, "$(IOC):ILOC-PONFSM")
+#}
+#
+#record(ai,"$(IOC):ILOC-PONFSM")
+#{
+#    field(DESC, "ILOC PONFSM stat")
+#    field(DTYP, "regDevAsyn")
+#    field(INP , "#C S @ifc1210_tcsr/0x00C T=UINT32")
+#    field(FLNK, "$(IOC):ILOC-SIGN")
+#}
+#
+#record(ai,"$(IOC):ILOC-SIGN")
+#{
+#    field(DESC, "ILOC CENTRAL sign")
+#    field(DTYP, "regDevAsyn")
+#    field(INP , "#C S @ifc1210_tcsr/0x018 T=UINT32")
+#    field(FLNK, "$(IOC):V6-PCIE-DSN-L")
+#}
+#
+#record(ai,"$(IOC):V6-PCIE-DSN-L")
+#{
+#    field(DESC, "CENTRAL serial l")
+#    field(DTYP, "regDevAsyn")
+#    field(INP , "#C S @ifc1210_tcsr/0x038 T=UINT32")
+#    field(FLNK, "$(IOC):V6-PCIE-DSN-H")
+#}
+#
+#record(ai,"$(IOC):V6-PCIE-DSN-H")
+#{
+#    field(DESC, "CENTRAL serial h")
+#    field(DTYP, "regDevAsyn")
+#    field(INP , "#C S @ifc1210_tcsr/0x03C T=UINT32")
 #    field(FLNK, "$(IOC):")
-}
+#}
 
 
 
@@ -118,7 +118,7 @@ record(a0,"$(IOC):CENTRAL-SMONCONF1")
 {
     field(DESC, "sys_mon config")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_central_smon/0x41 T=UINT32")
+    field(INP , "#C S0x41 @SMON T=UINT32")
     field(VAL , "12288") # = 0x3000
     field(FLNK, "$(IOC):CENTRAL-CORETEMP")
 }
@@ -127,7 +127,7 @@ record(ai,"$(IOC):CENTRAL-CORETEMP-RAW")
 {
     field(DESC, "raw input sys_mon")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_central_smon/0x00 T=UINT32")
+    field(INP , "#C S0x00 @SMON T=UINT32")
 }
 record(calc,"$(IOC):CENTRAL-CORETEMP")
 { 
@@ -147,7 +147,7 @@ record(ai,"$(IOC):CENTRAL-CORETEMPH-RAW")
 {
     field(DESC, "raw input sys_mon")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_central_smon/0x20 T=UINT32")
+    field(INP , "#C S0x20 @SMON T=UINT32")
 }
 record(calc,"$(IOC):CENTRAL-CORETEMPH")
 { 
@@ -165,7 +165,7 @@ record(ai,"$(IOC):CENTRAL-CORETEMPL-RAW")
 {
     field(DESC, "raw input sys_mon")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_central_smon/0x24 T=UINT32")
+    field(INP , "#C S0x24 @SMON T=UINT32")
 }
 record(calc,"$(IOC):CENTRAL-CORETEMPL")
 { 
@@ -183,7 +183,7 @@ record(ai,"$(IOC):CENTRAL-VCCINT-RAW")
 {
     field(DESC, "raw input sys_mon")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_central_smon/0x01 T=UINT32")
+    field(INP , "#C S0x01 @SMON T=UINT32")
 }
 record(calc,"$(IOC):CENTRAL-VCCINT")
 { 
@@ -204,7 +204,7 @@ record(ai,"$(IOC):CENTRAL-VCCINTH-RAW")
 {
     field(DESC, "raw input sys_mon")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_central_smon/0x21 T=UINT32")
+    field(INP , "#C S0x21 @SMON T=UINT32")
 }
 record(calc,"$(IOC):CENTRAL-VCCINTH")
 { 
@@ -221,7 +221,7 @@ record(ai,"$(IOC):CENTRAL-VCCINTH-RAW")
 {
     field(DESC, "raw input sys_mon")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_central_smon/0x25 T=UINT32")
+    field(INP , "#C S0x25 @SMON T=UINT32")
 }
 record(calc,"$(IOC):CENTRAL-VCCINTL")
 { 
@@ -238,7 +238,7 @@ record(ai,"$(IOC):CENTRAL-VCCAUX-RAW")
 {
     field(DESC, "raw input sys_mon")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_central_smon/0x02 T=UINT32")
+    field(INP , "#C S0x02 @SMON T=UINT32")
 }
 record(calc,"$(IOC):CENTRAL-VCCAUX")
 { 
@@ -259,7 +259,7 @@ record(ai,"$(IOC):CENTRAL-VCCAUXH-RAW")
 {
     field(DESC, "raw input sys_mon")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_central_smon/0x22 T=UINT32")
+    field(INP , "#C S0x22 @SMON T=UINT32")
 }
 record(calc,"$(IOC):CENTRAL-VCCAUXH")
 { 
@@ -276,7 +276,7 @@ record(ai,"$(IOC):CENTRAL-VCCAUXH-RAW")
 {
     field(DESC, "raw input sys_mon")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_central_smon/0x26 T=UINT32")
+    field(INP , "#C S0x26 @SMON T=UINT32")
 }
 record(calc,"$(IOC):CENTRAL-VCCAUXL")
 { 
@@ -294,7 +294,7 @@ record(a0,"$(IOC):CENTRAL-SMONCONF2")
 {
     field(DESC, "sys_mon config")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_central_smon/0x40 T=UINT32")
+    field(INP , "#C S0x40 @SMON T=UINT32")
     field(VAL , "3") # = 0x3
     field(FLNK, "$(IOC):CENTRAL-FMCVADJ")
 }
@@ -303,7 +303,7 @@ record(ai,"$(IOC):CENTRAL-FMCVADJ-RAW")
 {
     field(DESC, "raw input sys_mon")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifc1210_central_smon/0x03 T=UINT32")
+    field(INP , "#C S0x03 @SMON T=UINT32")
 }
 record(calc,"$(IOC):CENTRAL-FMCVADJ")
 { 

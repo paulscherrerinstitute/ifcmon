@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
-# $Author: scherrer $
-# $Date: 2012/05/14 15:59:33 $
+# $Author: kalt_r $
+# $Date: 2012/05/15 15:13:30 $
 #
-# $Revision: 1.4 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1_SFP.template,v 1.4 2012/05/14 15:59:33 scherrer Exp $
+# $Revision: 1.5 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1_SFP.template,v 1.5 2012/05/15 15:13:30 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -67,26 +67,35 @@ record(dfanout,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-SELECT")
     field(DOL,  "$(BUSMUX)") # see table 8 in I2C bus mux select/address map
     field(OMSL, "closed_loop")
     field(OUTA, "$(IOC):IFCTC1-MUX-SEL")
-    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VENDOR")
 }
 
 #--------------------------------------------------------------------
 # status
 #--------------------------------------------------------------------
-#record(stringin,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
-#{
-#    field(DESC, "vendor: $(DESCR)")
-#    field(DTYP, "regDevAsyn")
-#    field(INP , "#C S @$(I2CBUSSFP)A0/0x40 T=STRING L=20")
-#    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STATUS")
-#}
 
-# Vendor Name
-record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
+record(stringin,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VENDOR")
 {
     field(DESC, "vendor: $(DESCR)")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUSSFP)A0/0x42 T=UINT32")
+    field(INP , "#C S @$(I2CBUSSFP)A0/20 T=STRING L=15")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
+}
+
+record(stringin,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
+{
+    field(DESC, "vendor: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A0/40 T=STRING L=20")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE1")
+}
+
+# type
+record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE1")
+{
+    field(DESC, "vendor: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A0/25 T=UINT8")
     #field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STATUS")
 }
