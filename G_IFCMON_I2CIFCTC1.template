@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/15 15:13:30 $
+# $Date: 2012/05/16 11:17:10 $
 #
-# $Revision: 1.7 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1.template,v 1.7 2012/05/15 15:13:30 kalt_r Exp $
+# $Revision: 1.8 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1.template,v 1.8 2012/05/16 11:17:10 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -23,7 +23,7 @@
 #
 #
 # This template requires following in a common part of the startup.script:
-#     e.g.  pevAsynI2cConfigure(0, "lm95235_1",  0x0400004c)
+#     e.g.  pevAsynI2cConfigure(0, "lm95235_1",  0x400004c)
 # for each device
 #
 # 
@@ -33,14 +33,13 @@
 #
 #--------------------------------------------------------------------
 
-
+# kick the overall I2C readout chain of IFC_TC1 with devices before and after the I2C bus-mux
 record(fanout,"$(IOC):IFCTC1-I2C-FAN1")
 {
     field(DESC, "periodical proc.")
     field(SCAN, "5 second")
     field(LNK1 ,"$(IOC):IFCTC1-FW-MAJOR")
 }
-
 
 
 # I2C bus 0x3:      transition card over VME_P0 over PCI-express->CENTRAL
@@ -52,7 +51,7 @@ record(ao,"$(IOC):IFCTC1-MUX-SEL")
 {
     field(DESC, "IFC_TC1 Fw day")
     field(DTYP, "regDevAsyn")
-    field(OUT , "#C S @ifctc1_cpld/0x06 T=UINT8")
+    field(OUT , "#C S @ifctc1_cpld/0x6 T=UINT8")
 }
 
 
@@ -66,7 +65,7 @@ record(ai,"$(IOC):IFCTC1-FW-MAJOR")
 {
     field(DESC, "IFC_TC1 Fw Id major")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_cpld/0x01 T=UINT8") 
+    field(INP , "#C S @ifctc1_cpld/0x1 T=UINT8") 
     field(FLNK, "$(IOC):IFCTC1-FW-MINOR")
 }
 
@@ -74,7 +73,7 @@ record(ai,"$(IOC):IFCTC1-FW-MINOR")
 {
     field(DESC, "IFC_TC1 Fw Id minor")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_cpld/0x02 T=UINT8")
+    field(INP , "#C S @ifctc1_cpld/0x2 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-FW-YEAR")
 }
 
@@ -82,7 +81,7 @@ record(ai,"$(IOC):IFCTC1-FW-YEAR")
 {
     field(DESC, "IFC_TC1 Fw year")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_cpld/0x03 T=UINT32")
+    field(INP , "#C S @ifctc1_cpld/0x3 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-FW-MONTH")
 }
 
@@ -90,7 +89,7 @@ record(ai,"$(IOC):IFCTC1-FW-MONTH")
 {
     field(DESC, "IFC_TC1 Fw month")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_cpld/0x04 T=UINT32")
+    field(INP , "#C S @ifctc1_cpld/0x4 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-FW-DAY")
 }
 
@@ -98,7 +97,7 @@ record(ai,"$(IOC):IFCTC1-FW-DAY")
 {
     field(DESC, "IFC_TC1 Fw day")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_cpld/0x05 T=UINT32")
+    field(INP , "#C S @ifctc1_cpld/0x5 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-HCI-STATUS")
 }
 
@@ -107,7 +106,7 @@ record(ai,"$(IOC):IFCTC1-HCI-STATUS")
 {
     field(DESC, "IFC_TC1 HCI status")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_cpld/0x0C T=UINT8")
+    field(INP , "#C S @ifctc1_cpld/0xC T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-HCI-TYPE")
 }
 record ( mbbi, "$(IOC):IFCTC1-HCI-TYPE" )
@@ -186,7 +185,7 @@ record(dfanout,"$(IOC):IFCTC1-PCIERD-SELECT")
     field(DESC, "IFC_TC1 PCIe select/kick")
     field(DOL,  "2") # see table 8 in I2C bus mux select/address map
     field(OMSL, "closed_loop")
-    field(OUTA, "$(IOC):IFCTC1-MUX-SEL")
+    field(OUTA, "$(IOC):IFCTC1-MUX-SEL PP")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-SIG")
 }
 
@@ -197,7 +196,7 @@ record(ai,"$(IOC):IFCTC1-PCIERD-SIG")
 {
     field(DESC, "IFC_TC1 SIG")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_pcie/0x00 T=UINT8")
+    field(INP , "#C S @ifctc1_pcie/0x0 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-RX50")
 }
 
@@ -205,7 +204,7 @@ record(ai,"$(IOC):IFCTC1-PCIERD-RX50")
 {
     field(DESC, "IFC_TC1 PCIe RX50")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_pcie/0x01 T=UINT8")
+    field(INP , "#C S @ifctc1_pcie/0x1 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-INDIS")
 }
 
@@ -213,7 +212,7 @@ record(ai,"$(IOC):IFCTC1-PCIERD-INDIS")
 {
     field(DESC, "IFC_TC1 PCIe INDIS")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_pcie/0x03 T=UINT8")
+    field(INP , "#C S @ifctc1_pcie/0x3 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-OUTDIS")
 }
 
@@ -221,7 +220,7 @@ record(ai,"$(IOC):IFCTC1-PCIERD-OUTDIS")
 {
     field(DESC, "IFC_TC1 PCIe OUTDIS")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_pcie/0x04 T=UINT8")
+    field(INP , "#C S @ifctc1_pcie/0x4 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-RESET")
 }
 
@@ -232,7 +231,7 @@ record(ao,"$(IOC):IFCTC1-PCIERD-RESET")
 {
     field(DESC, "IFC_TC1 PCIe RESET")
     field(DTYP, "regDevAsyn")
-    field(OUT , "#C S @ifctc1_pcie/0x05 T=UINT8")
+    field(OUT , "#C S @ifctc1_pcie/0x5 T=UINT8")
     field(VAL , "255") # no reset (0=reset)
     field(FLNK, "$(IOC):IFCTC1-PCIERD-PWR")
 }
@@ -241,7 +240,7 @@ record(ao,"$(IOC):IFCTC1-PCIERD-PWR")
 {
     field(DESC, "IFC_TC1 PCIe PWR")
     field(DTYP, "regDevAsyn")
-    field(OUT , "#C S @ifctc1_pcie/0x06 T=UINT8")
+    field(OUT , "#C S @ifctc1_pcie/0x6 T=UINT8")
     field(VAL , "255") # no power down (0=power down)
     field(FLNK, "$(IOC):IFCTC1-PCIERD-RXD")
 }
@@ -250,7 +249,7 @@ record(ao,"$(IOC):IFCTC1-PCIERD-RXD")
 {
     field(DESC, "IFC_TC1 PCIe RXD")
     field(DTYP, "regDevAsyn")
-    field(OUT , "#C S @ifctc1_pcie/0x07 T=UINT8")
+    field(OUT , "#C S @ifctc1_pcie/0x7 T=UINT8")
     field(VAL , "255") # enable (0=disabled)
     field(FLNK, "$(IOC):IFCTC1-PCIERD-AEOC-CALC")
 }
@@ -336,7 +335,7 @@ record(ao,"$(IOC):IFCTC1-PCIERD-AEOC")
 {
     field(DESC, "IFC_TC1 PCIe AEOC")
     field(DTYP, "regDevAsyn")
-    field(OUT , "#C S @ifctc1_pcie/0x08 T=UINT8")
+    field(OUT , "#C S @ifctc1_pcie/0x8 T=UINT8")
     field(VAL , "255")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-BEOC-CALC")
 }
@@ -422,7 +421,7 @@ record(ao,"$(IOC):IFCTC1-PCIERD-BEOC")
 {
     field(DESC, "IFC_TC1 PCIe BEOC")
     field(DTYP, "regDevAsyn")
-    field(OUT , "#C S @ifctc1_pcie/0x09 T=UINT8")
+    field(OUT , "#C S @ifctc1_pcie/0x9 T=UINT8")
     field(VAL , "255")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-LBEC-CALC")
 }
@@ -481,7 +480,7 @@ record(ao,"$(IOC):IFCTC1-PCIERD-LBEC")
 {
     field(DESC, "IFC_TC1 PCIe LBEC")
     field(DTYP, "regDevAsyn")
-    field(OUT , "#C S @ifctc1_pcie/0x02 T=UINT8")
+    field(OUT , "#C S @ifctc1_pcie/0x2 T=UINT8")
     field(VAL , "255")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-SELECT")
     
@@ -502,7 +501,7 @@ record(dfanout,"$(IOC):IFCTC1-PWRMON-SELECT")
     field(DESC, "IFC_TC1 pwr-mon select/kick")
     field(DOL,  "1") # see table 8 in I2C bus mux select/address map
     field(OMSL, "closed_loop")
-    field(OUTA, "$(IOC):IFCTC1-MUX-SEL")
+    field(OUTA, "$(IOC):IFCTC1-MUX-SEL PP")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V")
 }
 
@@ -514,19 +513,19 @@ record(dfanout,"$(IOC):IFCTC1-PWRMON-SELECT")
 # Channel 1, Voltage measurement (actual)
 record(ai,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V-MSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH1_V_actual_higher8bit")
+    field(DESC, "CH1_V_actual_higher8bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x02 T=UINT8")
+    field(INP , "#C S @ifctc1_max5970/0x2 T=UINT8")
 }
 record(ai,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V-LSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH1_V_actual_lowest2bit")
+    field(DESC, "CH1_V_actual_lowest2bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x03 T=UINT8")
+    field(INP , "#C S @ifctc1_max5970/0x3 T=UINT8")
 }
 record(calc,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V")
 { 
-    field(DESC, "IFC_TC1 pwr-mon CH1 actual Voltage")
+    field(DESC, "CH1 actual Voltage")
     field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V-LSB PP")
     field(INPB, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V-MSB PP")
     field(C   , "0.015") 		# 4V/255 see datasheet
@@ -543,19 +542,19 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V")
 # Channel 1, Voltage measurement (min)
 record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MIN-V-MSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH1_V_MIN_higher8bit")
+    field(DESC, "CH1_V_MIN_higher8bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x0C T=UINT8")
+    field(INP , "#C S @ifctc1_max5970/0xC T=UINT8")
 }
 record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MIN-V-LSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH1_V_MIN_lowest2bit")
+    field(DESC, "CH1_V_MIN_lowest2bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x0D T=UINT8")
+    field(INP , "#C S @ifctc1_max5970/0xD T=UINT8")
 }
 record(calc,"$(IOC):IFCTC1-PWRMON-CH1-MIN-V")
 { 
-    field(DESC, "IFC_TC1 pwr-mon CH1 minimal Voltage")
+    field(DESC, "CH1 minimal Voltage")
     field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-MIN-V-LSB PP")
     field(INPB, "$(IOC):IFCTC1-PWRMON-CH1-MIN-V-MSB PP")
     field(C   , "0.015") 		# 4V/255 see datasheet
@@ -572,19 +571,19 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH1-MIN-V")
 # Channel 1, Voltage measurement (max)
 record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MAX-V-MSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH1_V_MAX_higher8bit")
+    field(DESC, "CH1_V_MAX_higher8bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x0E T=UINT8")
+    field(INP , "#C S @ifctc1_max5970/0xE T=UINT8")
 }
 record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MAX-V-LSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH1_V_MAX_lowest2bit")
+    field(DESC, "CH1_V_MAX_lowest2bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x0F T=UINT8")
+    field(INP , "#C S @ifctc1_max5970/0xF T=UINT8")
 }
 record(calc,"$(IOC):IFCTC1-PWRMON-CH1-MAX-V")
 { 
-    field(DESC, "IFC_TC1 pwr-mon CH1 maximal Voltage")
+    field(DESC, "maximal Voltage")
     field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-MAX-V-LSB PP")
     field(INPB, "$(IOC):IFCTC1-PWRMON-CH1-MAX-V-MSB PP")
     field(C   , "0.015") 		# 4V/255 see datasheet
@@ -601,19 +600,19 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH1-MAX-V")
 # Channel 1, Current measurement
 record(ai,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I-MSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH1_I_actual_higher8bit")
+    field(DESC, "CH1_I_actual_higher8bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x00 T=UINT8")
+    field(INP , "#C S @ifctc1_max5970/0x0 T=UINT8")
 }
 record(ai,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I-LSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH1_I_actual_lowest2bit")
+    field(DESC, "CH1_I_actual_lowest2bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x01 T=UINT8")
+    field(INP , "#C S @ifctc1_max5970/0x1 T=UINT8")
 }
 record(calc,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I")
 { 
-    field(DESC, "IFC_TC1 pwr-mon CH1 actual Current")
+    field(DESC, "CH1 actual Current")
     field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I-LSB PP")
     field(INPB, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I-MSB PP")
     field(C   , "10") 		# LSB=10mA see datasheet
@@ -628,19 +627,19 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I")
 # Channel 1, Current measurement (min)
 record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MIN-I-MSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH1_I_MIN_higher8bit")
+    field(DESC, "CH1_I_MIN_higher8bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x08 T=UINT8")
+    field(INP , "#C S @ifctc1_max5970/0x8 T=UINT8")
 }
 record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MIN-I-LSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH1_I_MIN_lowest2bit")
+    field(DESC, "CH1_I_MIN_lowest2bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x09 T=UINT8")
+    field(INP , "#C S @ifctc1_max5970/0x9 T=UINT8")
 }
 record(calc,"$(IOC):IFCTC1-PWRMON-CH1-MIN-I")
 { 
-    field(DESC, "IFC_TC1 pwr-mon CH1 minimal Current")
+    field(DESC, "CH1 minimal Current")
     field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-MIN-I-LSB PP")
     field(INPB, "$(IOC):IFCTC1-PWRMON-CH1-MIN-I-MSB PP")
     field(C   , "10") 		# LSB=10mA see datasheet
@@ -653,19 +652,19 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH1-MIN-I")
 # Channel 1, Current measurement (max)
 record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MAX-I-MSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH1_I_MAX_higher8bit")
+    field(DESC, "CH1_I_MAX_higher8bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x0A T=UINT8")
+    field(INP , "#C S @ifctc1_max5970/0xA T=UINT8")
 }
 record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MAX-I-LSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH1_I_MAX_lowest2bit")
+    field(DESC, "CH1_I_MAX_lowest2bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x0B T=UINT8")
+    field(INP , "#C S @ifctc1_max5970/0xB T=UINT8")
 }
 record(calc,"$(IOC):IFCTC1-PWRMON-CH1-MAX-I")
 { 
-    field(DESC, "IFC_TC1 pwr-mon CH1 maximal Current")
+    field(DESC, "CH1 maximal Current")
     field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-MAX-I-LSB PP")
     field(INPB, "$(IOC):IFCTC1-PWRMON-CH1-MAX-I-MSB PP")
     field(C   , "10") 		# LSB=10mA see datasheet
@@ -680,7 +679,7 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH1-MAX-I")
 # Channel 1, Power calulation
 record(calc,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-W")
 { 
-    field(DESC, "IFC_TC1 pwr-mon CH1 actual W")
+    field(DESC, "CH1 actual W")
     field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V PP")
     field(INPB, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I PP") 		
     field(CALC, "A*B") 
@@ -692,19 +691,19 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-W")
 # Channel 2, Voltage measurement
 record(ai,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V-MSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH2_V_actual_higher8bit")
+    field(DESC, "CH2_V_actual_higher8bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x06 T=UINT8")
+    field(INP , "#C S @ifctc1_max5970/0x6 T=UINT8")
 }
 record(ai,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V-LSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH2_V_actual_lowest2bit")
+    field(DESC, "CH2_V_actual_lowest2bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x07 T=UINT8")
+    field(INP , "#C S @ifctc1_max5970/0x7 T=UINT8")
 }
 record(calc,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V")
 { 
-    field(DESC, "IFC_TC1 pwr-mon CH2 actual Voltage")
+    field(DESC, "CH2 actual Voltage")
     field(INPA, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V-LSB PP")
     field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V-MSB PP")
     field(C   , "0.015") 		# 4V/255 see datasheet
@@ -721,19 +720,19 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V")
 # Channel 2, Voltage measurement (min)
 record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MIN-V-MSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH2_V_MIN_higher8bit")
+    field(DESC, "CH2_V_MIN_higher8bit")
     field(DTYP, "regDevAsyn")
     field(INP , "#C S @ifctc1_max5970/0x14 T=UINT8")
 }
 record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MIN-V-LSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH2_V_MIN_lowest2bit")
+    field(DESC, "CH2_V_MIN_lowest2bit")
     field(DTYP, "regDevAsyn")
     field(INP , "#C S @ifctc1_max5970/0x15 T=UINT8")
 }
 record(calc,"$(IOC):IFCTC1-PWRMON-CH2-MIN-V")
 { 
-    field(DESC, "IFC_TC1 pwr-mon CH2 minimal Voltage")
+    field(DESC, "CH2 minimal Voltage")
     field(INPA, "$(IOC):IFCTC1-PWRMON-CH2-MIN-V-LSB PP")
     field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-MIN-V-MSB PP")
     field(C   , "0.015") 		# 4V/255 see datasheet
@@ -750,19 +749,19 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH2-MIN-V")
 # Channel 2, Voltage measurement (max)
 record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MAX-V-MSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH2_V_MAX_higher8bit")
+    field(DESC, "CH2_V_MAX_higher8bit")
     field(DTYP, "regDevAsyn")
     field(INP , "#C S @ifctc1_max5970/0x16 T=UINT8")
 }
 record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MAX-V-LSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH2_V_MAX_lowest2bit")
+    field(DESC, "CH2_V_MAX_lowest2bit")
     field(DTYP, "regDevAsyn")
     field(INP , "#C S @ifctc1_max5970/0x17 T=UINT8")
 }
 record(calc,"$(IOC):IFCTC1-PWRMON-CH2-MAX-V")
 { 
-    field(DESC, "IFC_TC1 pwr-mon CH2 maximal Voltage")
+    field(DESC, "CH2 maximal Voltage")
     field(INPA, "$(IOC):IFCTC1-PWRMON-CH2-MAX-V-LSB PP")
     field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-MAX-V-MSB PP")
     field(C   , "0.015") 		# 4V/255 see datasheet
@@ -779,19 +778,19 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH2-MAX-V")
 # Channel 2, Current measurement
 record(ai,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I-MSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH2_I_actual_higher8bit")
+    field(DESC, "CH2_I_actual_higher8bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x04 T=UINT8")
+    field(INP , "#C S @ifctc1_max5970/0x4 T=UINT8")
 }
 record(ai,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I-LSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH2_I_actual_lowest2bit")
+    field(DESC, "CH2_I_actual_lowest2bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x05 T=UINT8")
+    field(INP , "#C S @ifctc1_max5970/0x5 T=UINT8")
 }
 record(calc,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I")
 { 
-    field(DESC, "IFC_TC1 pwr-mon CH2 actual Current")
+    field(DESC, "CH2 actual Current")
     field(INPA, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I-LSB PP")
     field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I-MSB PP")
     field(C   , "10") 		# LSB=10mA see datasheet
@@ -806,19 +805,19 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I")
 # Channel 2, Current measurement (min)
 record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MIN-I-MSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH2_I_MIN_higher8bit")
+    field(DESC, "CH2_I_MIN_higher8bit")
     field(DTYP, "regDevAsyn")
     field(INP , "#C S @ifctc1_max5970/0x10 T=UINT8")
 }
 record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MIN-I-LSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH2_I_MIN_lowest2bit")
+    field(DESC, "CH2_I_MIN_lowest2bit")
     field(DTYP, "regDevAsyn")
     field(INP , "#C S @ifctc1_max5970/0x11 T=UINT8")
 }
 record(calc,"$(IOC):IFCTC1-PWRMON-CH2-MIN-I")
 { 
-    field(DESC, "IFC_TC1 pwr-mon CH2 minimal Current")
+    field(DESC, "CH2 minimal Current")
     field(INPA, "$(IOC):IFCTC1-PWRMON-CH2-MIN-I-LSB PP")
     field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-MIN-I-MSB PP")
     field(C   , "10") 		# LSB=10mA see datasheet
@@ -831,19 +830,19 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH2-MIN-I")
 # Channel 2, Current measurement (max)
 record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MAX-I-MSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH2_I_MAX_higher8bit")
+    field(DESC, "CH2_I_MAX_higher8bit")
     field(DTYP, "regDevAsyn")
     field(INP , "#C S @ifctc1_max5970/0x12 T=UINT8")
 }
 record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MAX-I-LSB")
 {
-    field(DESC, "IFC_TC1 pwr-mon CH2_I_MAX_lowest2bit")
+    field(DESC, "CH2_I_MAX_lowest2bit")
     field(DTYP, "regDevAsyn")
     field(INP , "#C S @ifctc1_max5970/0x13 T=UINT8")
 }
 record(calc,"$(IOC):IFCTC1-PWRMON-CH2-MAX-I")
 { 
-    field(DESC, "IFC_TC1 pwr-mon CH2 maximal Current")
+    field(DESC, "CH2 maximal Current")
     field(INPA, "$(IOC):IFCTC1-PWRMON-CH2-MAX-I-LSB PP")
     field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-MAX-I-MSB PP")
     field(C   , "10") 		# LSB=10mA see datasheet
@@ -858,7 +857,7 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH2-MAX-I")
 # Channel 2, Power calulation
 record(calc,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-W")
 { 
-    field(DESC, "IFC_TC1 pwr-mon CH2 actual W")
+    field(DESC, "CH2 actual W")
     field(INPA, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V PP")
     field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I PP") 		
     field(CALC, "A*B") 
@@ -870,7 +869,7 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-W")
 # Channel 1 and Channel 2 total Power calculation
 record(calc,"$(IOC):IFCTC1-PWRMON-DISS")
 { 
-    field(DESC, "IFC_TC1 pwr-mon actual total W")
+    field(DESC, "actual total W")
     field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-W PP")
     field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-W PP") 		
     field(C   , "0.001")
@@ -879,7 +878,7 @@ record(calc,"$(IOC):IFCTC1-PWRMON-DISS")
     field(EGU , "W")
     field(HIHI, "10")
     field(HHSV, "MAJOR")
-    field(FLNK, "$(IOC):IFCTC1-SFP-GTX1143-SELECT")
+    field(FLNK, "$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-ACTIVE")
 }
 
 #--------------------------------------------------------------------
@@ -887,7 +886,7 @@ record(calc,"$(IOC):IFCTC1-PWRMON-DISS")
 #--------------------------------------------------------------------
 record(ao,"$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-ACTIVE")
 {
-    field(DESC, "IFC_TC1 pwr-mon peak detection RESET")
+    field(DESC, "peak detection RESET")
     field(DTYP, "regDevAsyn")
     field(OUT , "#C S @ifctc1_max5970/0x41 T=UINT8")
     field(VAL , "15") # no reset (15=reset)
@@ -896,10 +895,11 @@ record(ao,"$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-ACTIVE")
 
 record(ao,"$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-DEACTIVE")
 {
-    field(DESC, "IFC_TC1 pwr-mon peak detection RESET")
+    field(DESC, "peak detection RESET")
     field(DTYP, "regDevAsyn")
     field(OUT , "#C S @ifctc1_max5970/0x41 T=UINT8")
     field(VAL , "0") # no reset (15=reset)
+    field(FLNK, "$(IOC):IFCTC1-SFP-PCIEP12-KICK") # kick the SFP modules readout chain (in other template)
 }
 
 
@@ -911,7 +911,7 @@ record(ao,"$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-DEACTIVE")
 #    field(DESC, "IFC_TC1 SFP I2C select/kick")
 #    field(DOL,  "8") # see table 8 in I2C bus mux select/address map
 #    field(OMSL, "closed_loop")
-#    field(OUTA, "$(IOC):IFCTC1-MUX-SEL")
+#    field(OUTA, "$(IOC):IFCTC1-MUX-SEL PP")
 #    field(FLNK, "$(IOC):IFCTC1-SFP-GTX1143-TYPE")
 #}
 #
