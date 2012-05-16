@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/15 15:13:30 $
+# $Date: 2012/05/16 11:16:03 $
 #
-# $Revision: 1.4 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_TCSR.template,v 1.4 2012/05/15 15:13:30 kalt_r Exp $
+# $Revision: 1.5 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_TCSR.template,v 1.5 2012/05/16 11:16:03 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -19,12 +19,12 @@
 #
 # Overview of IO-bus slave 1k address space mapping:
 # Start     End     Size    Target
-# 0x0000    0x03FF  1k      PCIe_AGSW
-# 0x0400    0x07FF  1k      VME64x_AGSW
-# 0x0800    0x0BFF  1k      SMEM_IDMA #1
-# 0x0C00    0x0FFF  1k      SMEM_IDMA #2 (not implemented in IFC1210)
+# 0x000    0x3FF  1k      PCIe_AGSW
+# 0x400    0x7FF  1k      VME64x_AGSW
+# 0x800    0xBFF  1k      SMEM_IDMA #1
+# 0xC00    0xFFF  1k      SMEM_IDMA #2 (not implemented in IFC1210)
 # 0x1000    0x13FF  1k      SUSER #1
-# 0x0400    0x17FF  1k      SUSER #2     (not implemented in IFC1210)
+# 0x400    0x17FF  1k      SUSER #2     (not implemented in IFC1210)
 #
 #
 # The whole IO-Bus / TCSR registers are available trough PCI BAR3.
@@ -51,7 +51,7 @@ record(fanout,"$(IOC):TCSR-SYSMON-FAN1")
 {
     field(DESC, "periodical proc.")
     field(SCAN, "1 second")
-    field(LNK1 ,"$(IOC):CENTRAL-SMONCONF1")
+    field(LNK1 ,"$(IOC):CENTRAL-SMONCONF48")
 }
 
 
@@ -60,7 +60,7 @@ record(fanout,"$(IOC):TCSR-SYSMON-FAN1")
 
 
 #--------------------------------------------------------------------
-# PCIe_AGSW                              IO-Bus: 0x0000 - 0x03FF
+# PCIe_AGSW                              IO-Bus: 0x000 - 0x3FF
 #--------------------------------------------------------------------
 # Status
 
@@ -68,7 +68,7 @@ record(fanout,"$(IOC):TCSR-SYSMON-FAN1")
 #{
 #    field(DESC, "ILOC general")
 #    field(DTYP, "regDevAsyn")
-#    field(INP , "#C S @ifc1210_tcsr/0x000 T=UINT32")
+#    field(INP , "#C S @ifc1210_tcsr/0x00 T=UINT32")
 #    field(FLNK, "$(IOC):ILOC-PONFSM")
 #}
 #
@@ -76,7 +76,7 @@ record(fanout,"$(IOC):TCSR-SYSMON-FAN1")
 #{
 #    field(DESC, "ILOC PONFSM stat")
 #    field(DTYP, "regDevAsyn")
-#    field(INP , "#C S @ifc1210_tcsr/0x00C T=UINT32")
+#    field(INP , "#C S @ifc1210_tcsr/0x0C T=UINT32")
 #    field(FLNK, "$(IOC):ILOC-SIGN")
 #}
 #
@@ -84,7 +84,7 @@ record(fanout,"$(IOC):TCSR-SYSMON-FAN1")
 #{
 #    field(DESC, "ILOC CENTRAL sign")
 #    field(DTYP, "regDevAsyn")
-#    field(INP , "#C S @ifc1210_tcsr/0x018 T=UINT32")
+#    field(INP , "#C S @ifc1210_tcsr/0x18 T=UINT32")
 #    field(FLNK, "$(IOC):V6-PCIE-DSN-L")
 #}
 #
@@ -92,7 +92,7 @@ record(fanout,"$(IOC):TCSR-SYSMON-FAN1")
 #{
 #    field(DESC, "CENTRAL serial l")
 #    field(DTYP, "regDevAsyn")
-#    field(INP , "#C S @ifc1210_tcsr/0x038 T=UINT32")
+#    field(INP , "#C S @ifc1210_tcsr/0x38 T=UINT32")
 #    field(FLNK, "$(IOC):V6-PCIE-DSN-H")
 #}
 #
@@ -100,7 +100,7 @@ record(fanout,"$(IOC):TCSR-SYSMON-FAN1")
 #{
 #    field(DESC, "CENTRAL serial h")
 #    field(DTYP, "regDevAsyn")
-#    field(INP , "#C S @ifc1210_tcsr/0x03C T=UINT32")
+#    field(INP , "#C S @ifc1210_tcsr/0x3C T=UINT32")
 #    field(FLNK, "$(IOC):")
 #}
 
@@ -111,23 +111,36 @@ record(fanout,"$(IOC):TCSR-SYSMON-FAN1")
 # CENTRAL FPGA Virtex-6 System Monitor Registers
 # Access to V6 Sys-Mon is given over IO-Bus TCSR registers but
 # using dedicated API function pev_smon_rd in pevulib.c
-# Following records need "ifc1210_central_smon" defined in startup_script
+# 
+# Virtex-6 System Monitor Documentation here:
+# https://codebeamer.psi.ch/cb/displayDocument/ug370.pdf?doc_id=128862
 
 # same as XprsMon conf.c line 484
-record(a0,"$(IOC):CENTRAL-SMONCONF1")
+record(ao,"$(IOC):CENTRAL-SMONCONF48")
 {
     field(DESC, "sys_mon config")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S0x41 @SMON T=UINT32")
-    field(VAL , "12288") # = 0x3000
+    field(DTYP, "ifc1210")
+    field(OUT , "#C S0x48 @SMON")
+    field(VAL , "240") # = 0xF0 = 240d
+    field(PINI, "YES")
+    field(FLNK, "$(IOC):CENTRAL-SMONCONF40")
+}
+
+record(ao,"$(IOC):CENTRAL-SMONCONF40")
+{
+    field(DESC, "sys_mon config")
+    field(DTYP, "ifc1210")
+    field(OUT , "#C S0x40 @SMON")
+    field(VAL , "0") # = 0x3000 = 12288 d
+    field(PINI, "YES")
     field(FLNK, "$(IOC):CENTRAL-CORETEMP")
 }
 
 record(ai,"$(IOC):CENTRAL-CORETEMP-RAW")
 {
     field(DESC, "raw input sys_mon")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S0x00 @SMON T=UINT32")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x0 @SMON")
 }
 record(calc,"$(IOC):CENTRAL-CORETEMP")
 { 
@@ -135,7 +148,7 @@ record(calc,"$(IOC):CENTRAL-CORETEMP")
     field(INPA, "$(IOC):CENTRAL-CORETEMP-RAW PP")
     field(B   , "0.4921630859375") # = 503.975 / 1024
     field(C   , "273.15")
-    field(CALC, "(((A>>6)*B)-C") # the same as G/DRV/pev/src/XprsMon/conf.c line 487
+    field(CALC, "((A>>6)*B)-C") # the same as G/DRV/pev/src/XprsMon/conf.c line 487
     field(PREC, "1") 
     field(EGU , "deg C")
     field(HIHI, "90")
@@ -146,8 +159,8 @@ record(calc,"$(IOC):CENTRAL-CORETEMP")
 record(ai,"$(IOC):CENTRAL-CORETEMPH-RAW")
 {
     field(DESC, "raw input sys_mon")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S0x20 @SMON T=UINT32")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x20 @SMON")
 }
 record(calc,"$(IOC):CENTRAL-CORETEMPH")
 { 
@@ -155,7 +168,7 @@ record(calc,"$(IOC):CENTRAL-CORETEMPH")
     field(INPA, "$(IOC):CENTRAL-CORETEMPH-RAW PP")
     field(B   , "0.4921630859375") # = 503.975 / 1024
     field(C   , "273.15")
-    field(CALC, "(((A>>6)*B)-C") # the same as G/DRV/pev/src/XprsMon/conf.c line 487
+    field(CALC, "((A>>6)*B)-C") # the same as G/DRV/pev/src/XprsMon/conf.c line 487
     field(PREC, "1") 
     field(EGU , "deg C")
     field(FLNK, "$(IOC):CENTRAL-CORETEMPL")
@@ -164,8 +177,8 @@ record(calc,"$(IOC):CENTRAL-CORETEMPH")
 record(ai,"$(IOC):CENTRAL-CORETEMPL-RAW")
 {
     field(DESC, "raw input sys_mon")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S0x24 @SMON T=UINT32")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x24 @SMON")
 }
 record(calc,"$(IOC):CENTRAL-CORETEMPL")
 { 
@@ -173,7 +186,7 @@ record(calc,"$(IOC):CENTRAL-CORETEMPL")
     field(INPA, "$(IOC):CENTRAL-CORETEMPL-RAW PP")
     field(B   , "0.4921630859375") # = 503.975 / 1024
     field(C   , "273.15")
-    field(CALC, "(((A>>6)*B)-C") # the same as G/DRV/pev/src/XprsMon/conf.c line 487
+    field(CALC, "((A>>6)*B)-C") # the same as G/DRV/pev/src/XprsMon/conf.c line 487
     field(PREC, "1") 
     field(EGU , "deg C")
     field(FLNK, "$(IOC):CENTRAL-VCCINT")
@@ -182,15 +195,15 @@ record(calc,"$(IOC):CENTRAL-CORETEMPL")
 record(ai,"$(IOC):CENTRAL-VCCINT-RAW")
 {
     field(DESC, "raw input sys_mon")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S0x01 @SMON T=UINT32")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x1 @SMON")
 }
 record(calc,"$(IOC):CENTRAL-VCCINT")
 { 
     field(DESC, "CENTRAL VCCint")
     field(INPA, "$(IOC):CENTRAL-VCCINT-RAW PP")
     field(B   , "0.0029296875") # = 3 / 1024
-    field(CALC, "(((A>>6)*B)") # the same as G/DRV/pev/src/XprsMon/conf.c line 500
+    field(CALC, "((A>>6)*B)") # the same as G/DRV/pev/src/XprsMon/conf.c line 500
     field(PREC, "2") 
     field(EGU , "V")
     field(LOLO, "0.95")
@@ -203,32 +216,32 @@ record(calc,"$(IOC):CENTRAL-VCCINT")
 record(ai,"$(IOC):CENTRAL-VCCINTH-RAW")
 {
     field(DESC, "raw input sys_mon")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S0x21 @SMON T=UINT32")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x21 @SMON")
 }
 record(calc,"$(IOC):CENTRAL-VCCINTH")
 { 
     field(DESC, "CENTRAL VCCint h")
     field(INPA, "$(IOC):CENTRAL-VCCINTH-RAW PP")
     field(B   , "0.0029296875") # = 3 / 1024
-    field(CALC, "(((A>>6)*B)") # the same as G/DRV/pev/src/XprsMon/conf.c line 500
+    field(CALC, "((A>>6)*B)") # the same as G/DRV/pev/src/XprsMon/conf.c line 500
     field(PREC, "2") 
     field(EGU , "V")
     field(FLNK, "$(IOC):CENTRAL-VCCINTL")
 }
 
-record(ai,"$(IOC):CENTRAL-VCCINTH-RAW")
+record(ai,"$(IOC):CENTRAL-VCCINTL-RAW")
 {
     field(DESC, "raw input sys_mon")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S0x25 @SMON T=UINT32")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x25 @SMON")
 }
 record(calc,"$(IOC):CENTRAL-VCCINTL")
 { 
     field(DESC, "CENTRAL VCCint l")
     field(INPA, "$(IOC):CENTRAL-VCCINTL-RAW PP")
     field(B   , "0.0029296875") # = 3 / 1024
-    field(CALC, "(((A>>6)*B)") # the same as G/DRV/pev/src/XprsMon/conf.c line 500
+    field(CALC, "((A>>6)*B)") # the same as G/DRV/pev/src/XprsMon/conf.c line 500
     field(PREC, "2") 
     field(EGU , "V")
     field(FLNK, "$(IOC):CENTRAL-VCCAUX")
@@ -237,15 +250,15 @@ record(calc,"$(IOC):CENTRAL-VCCINTL")
 record(ai,"$(IOC):CENTRAL-VCCAUX-RAW")
 {
     field(DESC, "raw input sys_mon")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S0x02 @SMON T=UINT32")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x2 @SMON")
 }
 record(calc,"$(IOC):CENTRAL-VCCAUX")
 { 
     field(DESC, "CENTRAL VCCaux")
     field(INPA, "$(IOC):CENTRAL-VCCAUX-RAW PP")
     field(B   , "0.0029296875") # = 3 / 1024
-    field(CALC, "(((A>>6)*B)") # the same as G/DRV/pev/src/XprsMon/conf.c line 500
+    field(CALC, "((A>>6)*B)") # the same as G/DRV/pev/src/XprsMon/conf.c line 500
     field(PREC, "2") 
     field(EGU , "V")
     field(LOLO, "2.55")
@@ -258,59 +271,68 @@ record(calc,"$(IOC):CENTRAL-VCCAUX")
 record(ai,"$(IOC):CENTRAL-VCCAUXH-RAW")
 {
     field(DESC, "raw input sys_mon")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S0x22 @SMON T=UINT32")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x22 @SMON")
 }
 record(calc,"$(IOC):CENTRAL-VCCAUXH")
 { 
     field(DESC, "CENTRAL VCCaux h")
     field(INPA, "$(IOC):CENTRAL-VCCAUXH-RAW PP")
     field(B   , "0.0029296875") # = 3 / 1024
-    field(CALC, "(((A>>6)*B)") # the same as G/DRV/pev/src/XprsMon/conf.c line 500
+    field(CALC, "((A>>6)*B)") # the same as G/DRV/pev/src/XprsMon/conf.c line 500
     field(PREC, "2") 
     field(EGU , "V")
     field(FLNK, "$(IOC):CENTRAL-VCCAUXL")
 }
 
-record(ai,"$(IOC):CENTRAL-VCCAUXH-RAW")
+record(ai,"$(IOC):CENTRAL-VCCAUXL-RAW")
 {
     field(DESC, "raw input sys_mon")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S0x26 @SMON T=UINT32")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x26 @SMON")
 }
 record(calc,"$(IOC):CENTRAL-VCCAUXL")
 { 
     field(DESC, "CENTRAL VCCaux l")
     field(INPA, "$(IOC):CENTRAL-VCCAUXL-RAW PP")
     field(B   , "0.0029296875") # = 3 / 1024
-    field(CALC, "(((A>>6)*B)") # the same as G/DRV/pev/src/XprsMon/conf.c line 500
+    field(CALC, "((A>>6)*B)") # the same as G/DRV/pev/src/XprsMon/conf.c line 500
     field(PREC, "2") 
     field(EGU , "V")
     field(FLNK, "$(IOC):CENTRAL-SMONCONF2")
 }
 
 # same as XprsMon conf.c line 484
-record(a0,"$(IOC):CENTRAL-SMONCONF2")
+record(ao,"$(IOC):CENTRAL-SMONCONF2")
 {
     field(DESC, "sys_mon config")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S0x40 @SMON T=UINT32")
+    field(DTYP, "ifc1210")
+    field(OUT , "#C S0x40 @SMON")
     field(VAL , "3") # = 0x3
-    field(FLNK, "$(IOC):CENTRAL-FMCVADJ")
+    field(PINI, "YES")
+    field(FLNK, "$(IOC):CENTRAL-SMONCONF2-DLY")
+}
+
+record(seq,"$(IOC):CENTRAL-SMONCONF2-DLY")
+{
+        field(DESC,"100ms delay")   # as in line 508 of G/DRV/pev/src/XprsMon/conf.c    
+        field(DLY1,"0.1")
+        field(DO1,"1")
+        field(LNK1,"$(IOC):CENTRAL-FMCVADJ.PROC PP")
 }
 
 record(ai,"$(IOC):CENTRAL-FMCVADJ-RAW")
 {
     field(DESC, "raw input sys_mon")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S0x03 @SMON T=UINT32")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x3 @SMON")
 }
 record(calc,"$(IOC):CENTRAL-FMCVADJ")
 { 
     field(DESC, "CENTRAL FMC Vadj")
     field(INPA, "$(IOC):CENTRAL-FMCVADJ-RAW PP")
     field(B   , "0.0025")
-    field(CALC, "(((A>>6)*B)") # the same as G/DRV/pev/src/XprsMon/conf.c line 535
+    field(CALC, "((A>>6)*B)") # the same as G/DRV/pev/src/XprsMon/conf.c line 535
     field(PREC, "2") 
     field(EGU , "V")
     field(LOLO, "1.45")         # the whole range 1.5-2.5V for Vadj
@@ -321,7 +343,7 @@ record(calc,"$(IOC):CENTRAL-FMCVADJ")
 
 
 #--------------------------------------------------------------------
-# VME64x_AGSW                              IO-Bus: 0x0400 - 0x07FF
+# VME64x_AGSW                              IO-Bus: 0x400 - 0x7FF
 #--------------------------------------------------------------------
 # Status
 
@@ -333,7 +355,7 @@ record(calc,"$(IOC):CENTRAL-FMCVADJ")
 
 
 #--------------------------------------------------------------------
-# SMEM_IDMA #1                             IO-Bus: 0x0800 - 0x0BFF
+# SMEM_IDMA #1                             IO-Bus: 0x800 - 0xBFF
 #--------------------------------------------------------------------
 # Status
 
