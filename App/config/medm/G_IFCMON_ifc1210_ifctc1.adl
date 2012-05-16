@@ -1,6 +1,6 @@
 
 file {
-	name="/afs/psi.ch/user/s/scherrer/G/IFCMON/App/config/medm/G_IFCMON_ifc1210_ifctc1.adl"
+	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/./G_IFCMON_ifc1210_ifctc1.adl"
 	version=030104
 }
 display {
@@ -363,7 +363,7 @@ oval {
 		height=15
 	}
 	monitor {
-		chan="$(IOC):V6-CORETEMP.EGU"
+		chan="$(IOC):CENTRAL-CORETEMP.EGU"
 		clr=14
 		bclr=2
 	}
@@ -423,7 +423,7 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(IOC):V6-CORETEMP"
+		chan="$(IOC):CENTRAL-CORETEMP"
 	}
 }
 oval {
@@ -635,13 +635,13 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="CPLD Revision      ."
+	textix="CPLD Revision       ."
 }
 "text update" {
 	object {
 		x=788
 		y=749
-		width=40
+		width=50
 		height=15
 	}
 	monitor {
@@ -650,6 +650,7 @@ text {
 		bclr=1
 	}
 	align="horiz. right"
+	format="hexadecimal"
 	limits {
 	}
 }
@@ -663,13 +664,13 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="CPLD date YMD    -   -"
+	textix="CPLD date YMD"
 }
 "text update" {
 	object {
 		x=788
 		y=768
-		width=25
+		width=35
 		height=15
 	}
 	monitor {
@@ -678,14 +679,15 @@ text {
 		bclr=1
 	}
 	align="horiz. centered"
+	format="hexadecimal"
 	limits {
 	}
 }
 "text update" {
 	object {
-		x=847
+		x=850
 		y=749
-		width=40
+		width=50
 		height=15
 	}
 	monitor {
@@ -694,14 +696,15 @@ text {
 		bclr=1
 	}
 	align="horiz. right"
+	format="hexadecimal"
 	limits {
 	}
 }
 "text update" {
 	object {
-		x=823
+		x=827
 		y=768
-		width=25
+		width=35
 		height=15
 	}
 	monitor {
@@ -710,14 +713,15 @@ text {
 		bclr=1
 	}
 	align="horiz. centered"
+	format="hexadecimal"
 	limits {
 	}
 }
 "text update" {
 	object {
-		x=862
+		x=866
 		y=768
-		width=25
+		width=35
 		height=15
 	}
 	monitor {
@@ -726,6 +730,7 @@ text {
 		bclr=1
 	}
 	align="horiz. centered"
+	format="hexadecimal"
 	limits {
 	}
 }
