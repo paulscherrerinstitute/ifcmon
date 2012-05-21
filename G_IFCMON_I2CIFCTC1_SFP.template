@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/16 11:17:10 $
+# $Date: 2012/05/21 08:05:57 $
 #
-# $Revision: 1.6 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1_SFP.template,v 1.6 2012/05/16 11:17:10 kalt_r Exp $
+# $Revision: 1.7 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1_SFP.template,v 1.7 2012/05/21 08:05:57 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -42,34 +42,32 @@
 
 
 
+
+
+# I2C bus 0x3:      transition card over VME_P0 over PCI-express->CENTRAL
+# device:           I2C bus multiplexer in CPLD, codes see table 8 section 2.3
+# datasheet:        https://codebeamer.psi.ch/cb/proj/sources/sccFileLog.do?proj_id=104&filename=IFC%2FIFC1210_generic%2FFirmware%2FPSI%2FIFC_TC1%2FDocumentation%2FIFC_TC1_firmware_specification.doc&isDir=false
+# startup.script:   ifctc1_cpld
+#--------------------------------------------------------------------
+record(ao,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-SELECT")
+{
+    field(DESC, "IFC_TC1 I2C mux")
+    field(DTYP, "regDevAsyn")
+    field(SCAN, "1 second")      ## REMOVE
+    field(OUT , "#C S @ifctc1_cpld/0x6 T=UINT8")
+    field(VAL , "$(BUSMUX)")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VENDOR")
+}
+
 #--------------------------------------------------------------------
 # one SFP+ module here:       either for CENTRAL FPGA GTX or PCIe
 #--------------------------------------------------------------------
-
-
-record(fanout,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-KICK")
-{
-    field(DESC, "kick")
-#    field(SCAN, "10 second")
-    field(SCAN, "Passive")
-    field(LNK1 ,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-SELECT")
-}
-
 
 
 # I2C bus 0x3:      transition card over VME_P0 over PCI-express->CENTRAL
 # device:           SFP+ modules
 # datasheet:        ftp://ftp.seagate.com/sff/ for SFF specs and VENDOR datasheets, e.g. AVAGO Technologies
 #--------------------------------------------------------------------
-
-record(dfanout,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-SELECT")
-{
-    field(DESC, "IFC_TC1 SFP I2C select/kick")
-    field(DOL,  "$(BUSMUX)") # see table 8 in I2C bus mux select/address map
-    field(OMSL, "closed_loop")
-    field(OUTA, "$(IOC):IFCTC1-MUX-SEL PP")
-    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VENDOR")
-}
 
 #--------------------------------------------------------------------
 # status
