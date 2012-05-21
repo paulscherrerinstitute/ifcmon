@@ -6,9 +6,9 @@ file {
 display {
 	object {
 		x=10
-		y=10
-		width=856
-		height=1047
+		y=25
+		width=631
+		height=776
 	}
 	clr=14
 	bclr=2
@@ -113,10 +113,10 @@ text {
 }
 text {
 	object {
-		x=320
-		y=42
+		x=523
+		y=8
 		width=50
-		height=40
+		height=20
 	}
 	"basic attribute" {
 		clr=14
@@ -126,19 +126,19 @@ text {
 composite {
 	object {
 		x=17
-		y=102
-		width=86
-		height=158
+		y=61
+		width=601
+		height=302
 	}
 	"composite name"="MAX5970"
 	"composite file"="G_IFCMON_pwrmon.adl;IOC=$(IOC),SUBDEV=$(SUBDEV)"
 }
 composite {
 	object {
-		x=501
-		y=105
-		width=278
-		height=829
+		x=22
+		y=374
+		width=325
+		height=361
 	}
 	"composite name"="dcdc"
 	"composite file"="G_IFCMON_pwrdcdc.adl;IOC=$(IOC),SUBDEV=$(SUBDEV)"

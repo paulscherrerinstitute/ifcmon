@@ -1,14 +1,14 @@
 
 file {
-	name="/afs/psi.ch/user/s/scherrer/G/IFCMON/App/config/medm/G_IFCMON_pwrmon.adl"
+	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_pwrmon.adl"
 	version=030104
 }
 display {
 	object {
-		x=12
-		y=639
+		x=1174
+		y=147
 		width=623
-		height=422
+		height=328
 	}
 	clr=14
 	bclr=25
@@ -90,9 +90,9 @@ display {
 rectangle {
 	object {
 		x=10
-		y=140
+		y=42
 		width=600
-		height=110
+		height=108
 	}
 	"basic attribute" {
 		clr=7
@@ -101,9 +101,9 @@ rectangle {
 rectangle {
 	object {
 		x=14
-		y=167
+		y=69
 		width=290
-		height=80
+		height=79
 	}
 	"basic attribute" {
 		clr=4
@@ -112,12 +112,12 @@ rectangle {
 "text update" {
 	object {
 		x=145
-		y=175
+		y=77
 		width=70
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH1-ACTUAL-V"
 		clr=14
 		bclr=2
 	}
@@ -127,7 +127,7 @@ rectangle {
 text {
 	object {
 		x=19
-		y=217
+		y=118
 		width=116
 		height=29
 	}
@@ -141,7 +141,7 @@ text {
 text {
 	object {
 		x=16
-		y=175
+		y=77
 		width=90
 		height=15
 	}
@@ -153,7 +153,7 @@ text {
 text {
 	object {
 		x=16
-		y=200
+		y=102
 		width=107
 		height=15
 	}
@@ -165,7 +165,7 @@ text {
 text {
 	object {
 		x=16
-		y=225
+		y=126
 		width=95
 		height=15
 	}
@@ -177,12 +177,12 @@ text {
 "text update" {
 	object {
 		x=145
-		y=200
+		y=102
 		width=70
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH1-ACTUAL-I"
 		clr=14
 		bclr=2
 	}
@@ -192,12 +192,12 @@ text {
 "text update" {
 	object {
 		x=145
-		y=225
+		y=126
 		width=70
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-W"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH1-ACTUAL-W"
 		clr=14
 		bclr=2
 	}
@@ -207,9 +207,9 @@ text {
 rectangle {
 	object {
 		x=314
-		y=169
+		y=71
 		width=290
-		height=81
+		height=80
 	}
 	"basic attribute" {
 		clr=4
@@ -218,7 +218,7 @@ rectangle {
 text {
 	object {
 		x=316
-		y=175
+		y=77
 		width=90
 		height=15
 	}
@@ -230,7 +230,7 @@ text {
 text {
 	object {
 		x=316
-		y=200
+		y=102
 		width=107
 		height=15
 	}
@@ -242,7 +242,7 @@ text {
 text {
 	object {
 		x=316
-		y=225
+		y=126
 		width=95
 		height=15
 	}
@@ -254,12 +254,12 @@ text {
 "text update" {
 	object {
 		x=450
-		y=175
+		y=77
 		width=70
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH2-ACTUAL-V"
 		clr=14
 		bclr=2
 	}
@@ -269,12 +269,12 @@ text {
 "text update" {
 	object {
 		x=450
-		y=200
+		y=102
 		width=70
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH2-ACTUAL-I"
 		clr=14
 		bclr=2
 	}
@@ -284,12 +284,12 @@ text {
 "text update" {
 	object {
 		x=450
-		y=225
+		y=126
 		width=70
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-W"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH2-ACTUAL-W"
 		clr=14
 		bclr=2
 	}
@@ -299,7 +299,7 @@ text {
 text {
 	object {
 		x=15
-		y=146
+		y=48
 		width=107
 		height=15
 	}
@@ -311,9 +311,9 @@ text {
 rectangle {
 	object {
 		x=9
-		y=256
+		y=157
 		width=600
-		height=160
+		height=158
 	}
 	"basic attribute" {
 		clr=7
@@ -322,9 +322,9 @@ rectangle {
 rectangle {
 	object {
 		x=14
-		y=278
+		y=178
 		width=290
-		height=105
+		height=104
 	}
 	"basic attribute" {
 		clr=4
@@ -333,12 +333,12 @@ rectangle {
 "text update" {
 	object {
 		x=220
-		y=175
+		y=77
 		width=52
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V.EGU"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH1-ACTUAL-V.EGU"
 		clr=14
 		bclr=2
 	}
@@ -348,7 +348,7 @@ rectangle {
 oval {
 	object {
 		x=280
-		y=173
+		y=75
 		width=18
 		height=18
 	}
@@ -359,7 +359,7 @@ oval {
 oval {
 	object {
 		x=282
-		y=175
+		y=77
 		width=14
 		height=14
 	}
@@ -368,18 +368,18 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH1-ACTUAL-V"
 	}
 }
 "text update" {
 	object {
 		x=220
-		y=200
+		y=102
 		width=52
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I.EGU"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH1-ACTUAL-I.EGU"
 		clr=14
 		bclr=2
 	}
@@ -389,12 +389,12 @@ oval {
 "text update" {
 	object {
 		x=220
-		y=225
+		y=126
 		width=52
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-W.EGU"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH1-ACTUAL-W.EGU"
 		clr=14
 		bclr=2
 	}
@@ -404,7 +404,7 @@ oval {
 oval {
 	object {
 		x=280
-		y=197
+		y=99
 		width=18
 		height=18
 	}
@@ -415,7 +415,7 @@ oval {
 oval {
 	object {
 		x=282
-		y=199
+		y=101
 		width=14
 		height=14
 	}
@@ -424,13 +424,13 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH1-ACTUAL-I"
 	}
 }
 oval {
 	object {
 		x=581
-		y=172
+		y=74
 		width=18
 		height=18
 	}
@@ -441,7 +441,7 @@ oval {
 oval {
 	object {
 		x=581
-		y=198
+		y=100
 		width=18
 		height=18
 	}
@@ -452,7 +452,7 @@ oval {
 oval {
 	object {
 		x=583
-		y=174
+		y=76
 		width=14
 		height=14
 	}
@@ -461,13 +461,13 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH2-ACTUAL-V"
 	}
 }
 oval {
 	object {
 		x=583
-		y=200
+		y=102
 		width=14
 		height=14
 	}
@@ -476,18 +476,18 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH2-ACTUAL-I"
 	}
 }
 "text update" {
 	object {
 		x=525
-		y=175
+		y=77
 		width=52
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V.EGU"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH2-ACTUAL-V.EGU"
 		clr=14
 		bclr=2
 	}
@@ -497,12 +497,12 @@ oval {
 "text update" {
 	object {
 		x=525
-		y=200
+		y=102
 		width=52
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I.EGU"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH2-ACTUAL-I.EGU"
 		clr=14
 		bclr=2
 	}
@@ -512,12 +512,12 @@ oval {
 "text update" {
 	object {
 		x=525
-		y=225
+		y=126
 		width=52
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-W.EGU"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH2-ACTUAL-W.EGU"
 		clr=14
 		bclr=2
 	}
@@ -527,7 +527,7 @@ oval {
 text {
 	object {
 		x=15
-		y=260
+		y=161
 		width=107
 		height=15
 	}
@@ -539,9 +539,9 @@ text {
 rectangle {
 	object {
 		x=314
-		y=278
+		y=178
 		width=290
-		height=105
+		height=104
 	}
 	"basic attribute" {
 		clr=4
@@ -550,7 +550,7 @@ rectangle {
 text {
 	object {
 		x=17
-		y=285
+		y=185
 		width=95
 		height=15
 	}
@@ -562,7 +562,7 @@ text {
 text {
 	object {
 		x=16
-		y=310
+		y=210
 		width=107
 		height=15
 	}
@@ -574,7 +574,7 @@ text {
 text {
 	object {
 		x=316
-		y=285
+		y=185
 		width=90
 		height=15
 	}
@@ -586,7 +586,7 @@ text {
 text {
 	object {
 		x=316
-		y=310
+		y=210
 		width=107
 		height=15
 	}
@@ -598,12 +598,12 @@ text {
 "text update" {
 	object {
 		x=145
-		y=285
+		y=185
 		width=70
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH1-MIN-V"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH1-MIN-V"
 		clr=14
 		bclr=2
 	}
@@ -613,12 +613,12 @@ text {
 "text update" {
 	object {
 		x=220
-		y=285
+		y=185
 		width=52
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH1-MIN-V.EGU"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH1-MIN-V.EGU"
 		clr=14
 		bclr=2
 	}
@@ -628,12 +628,12 @@ text {
 "text update" {
 	object {
 		x=145
-		y=310
+		y=210
 		width=70
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH1-MIN-I"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH1-MIN-I"
 		clr=14
 		bclr=2
 	}
@@ -643,12 +643,12 @@ text {
 "text update" {
 	object {
 		x=220
-		y=310
+		y=210
 		width=52
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH1-MIN-I.EGU"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH1-MIN-I.EGU"
 		clr=14
 		bclr=2
 	}
@@ -658,7 +658,7 @@ text {
 oval {
 	object {
 		x=280
-		y=283
+		y=183
 		width=18
 		height=18
 	}
@@ -669,7 +669,7 @@ oval {
 oval {
 	object {
 		x=282
-		y=285
+		y=185
 		width=14
 		height=14
 	}
@@ -678,18 +678,18 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(IOC):IFCTC1-PWRMON-CH1-MIN-V"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH1-MIN-V"
 	}
 }
 "text update" {
 	object {
 		x=450
-		y=284
+		y=184
 		width=70
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH2-MIN-V"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH2-MIN-V"
 		clr=14
 		bclr=2
 	}
@@ -699,12 +699,12 @@ oval {
 "text update" {
 	object {
 		x=525
-		y=285
+		y=185
 		width=52
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH2-MIN-V.EGU"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH2-MIN-V.EGU"
 		clr=14
 		bclr=2
 	}
@@ -714,12 +714,12 @@ oval {
 "text update" {
 	object {
 		x=450
-		y=310
+		y=210
 		width=70
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH2-MIN-I"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH2-MIN-I"
 		clr=14
 		bclr=2
 	}
@@ -729,12 +729,12 @@ oval {
 "text update" {
 	object {
 		x=525
-		y=310
+		y=210
 		width=52
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH2-MIN-I.EGU"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH2-MIN-I.EGU"
 		clr=14
 		bclr=2
 	}
@@ -744,7 +744,7 @@ oval {
 oval {
 	object {
 		x=581
-		y=282
+		y=182
 		width=18
 		height=18
 	}
@@ -755,7 +755,7 @@ oval {
 oval {
 	object {
 		x=583
-		y=284
+		y=184
 		width=14
 		height=14
 	}
@@ -764,18 +764,18 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(IOC):IFCTC1-PWRMON-CH2-MIN-V"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH2-MIN-V"
 	}
 }
 "message button" {
 	object {
 		x=249
-		y=388
+		y=287
 		width=120
 		height=18
 	}
 	control {
-		chan="$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-ACTIVE.PROG"
+		chan="$(IOC):$(SUBDEV)-PWRMON-PEAK-DET-RESET-ACTIVE.PROG"
 		clr=14
 		bclr=6
 	}
@@ -785,7 +785,7 @@ oval {
 text {
 	object {
 		x=16
-		y=335
+		y=235
 		width=95
 		height=15
 	}
@@ -797,7 +797,7 @@ text {
 text {
 	object {
 		x=16
-		y=360
+		y=259
 		width=107
 		height=15
 	}
@@ -809,12 +809,12 @@ text {
 "text update" {
 	object {
 		x=145
-		y=335
+		y=235
 		width=70
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH1-MAX-V"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH1-MAX-V"
 		clr=14
 		bclr=2
 	}
@@ -824,12 +824,12 @@ text {
 "text update" {
 	object {
 		x=145
-		y=360
+		y=259
 		width=70
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH1-MAX-I"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH1-MAX-I"
 		clr=14
 		bclr=2
 	}
@@ -839,12 +839,12 @@ text {
 "text update" {
 	object {
 		x=220
-		y=335
+		y=235
 		width=52
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH1-MAX-V.EGU"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH1-MAX-V.EGU"
 		clr=14
 		bclr=2
 	}
@@ -854,12 +854,12 @@ text {
 "text update" {
 	object {
 		x=220
-		y=360
+		y=259
 		width=52
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH1-MAX-I.EGU"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH1-MAX-I.EGU"
 		clr=14
 		bclr=2
 	}
@@ -869,7 +869,7 @@ text {
 text {
 	object {
 		x=316
-		y=335
+		y=235
 		width=95
 		height=15
 	}
@@ -881,7 +881,7 @@ text {
 text {
 	object {
 		x=316
-		y=360
+		y=259
 		width=107
 		height=15
 	}
@@ -893,7 +893,7 @@ text {
 text {
 	object {
 		x=315
-		y=146
+		y=48
 		width=107
 		height=15
 	}
@@ -905,7 +905,7 @@ text {
 text {
 	object {
 		x=315
-		y=260
+		y=161
 		width=107
 		height=15
 	}
@@ -917,7 +917,7 @@ text {
 oval {
 	object {
 		x=280
-		y=335
+		y=235
 		width=18
 		height=18
 	}
@@ -928,7 +928,7 @@ oval {
 oval {
 	object {
 		x=280
-		y=360
+		y=259
 		width=18
 		height=18
 	}
@@ -939,7 +939,7 @@ oval {
 oval {
 	object {
 		x=581
-		y=332
+		y=232
 		width=18
 		height=18
 	}
@@ -950,7 +950,7 @@ oval {
 oval {
 	object {
 		x=581
-		y=359
+		y=258
 		width=18
 		height=18
 	}
@@ -961,12 +961,12 @@ oval {
 "text update" {
 	object {
 		x=450
-		y=335
+		y=235
 		width=70
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH2-MAX-V"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH2-MAX-V"
 		clr=14
 		bclr=2
 	}
@@ -976,12 +976,12 @@ oval {
 "text update" {
 	object {
 		x=450
-		y=360
+		y=259
 		width=70
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH2-MAX-I"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH2-MAX-I"
 		clr=14
 		bclr=2
 	}
@@ -991,12 +991,12 @@ oval {
 "text update" {
 	object {
 		x=525
-		y=360
+		y=259
 		width=52
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH2-MAX-I.EGU"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH2-MAX-I.EGU"
 		clr=14
 		bclr=2
 	}
@@ -1006,12 +1006,12 @@ oval {
 "text update" {
 	object {
 		x=525
-		y=335
+		y=235
 		width=52
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-CH2-MAX-V.EGU"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH2-MAX-V.EGU"
 		clr=14
 		bclr=2
 	}
@@ -1021,7 +1021,7 @@ oval {
 oval {
 	object {
 		x=282
-		y=337
+		y=237
 		width=14
 		height=14
 	}
@@ -1030,13 +1030,13 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(IOC):IFCTC1-PWRMON-CH1-MAX-V"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH1-MAX-V"
 	}
 }
 oval {
 	object {
 		x=282
-		y=362
+		y=261
 		width=14
 		height=14
 	}
@@ -1045,13 +1045,13 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(IOC):IFCTC1-PWRMON-CH1-MAX-I"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH1-MAX-I"
 	}
 }
 oval {
 	object {
 		x=583
-		y=334
+		y=234
 		width=14
 		height=14
 	}
@@ -1060,13 +1060,13 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(IOC):IFCTC1-PWRMON-CH2-MAX-V"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH2-MAX-V"
 	}
 }
 oval {
 	object {
 		x=583
-		y=361
+		y=260
 		width=14
 		height=14
 	}
@@ -1075,7 +1075,7 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(IOC):IFCTC1-PWRMON-CH2-MAX-I"
+		chan="$(IOC):$(SUBDEV)-PWRMON-CH2-MAX-I"
 	}
 }
 rectangle {
@@ -1083,7 +1083,7 @@ rectangle {
 		x=10
 		y=13
 		width=600
-		height=120
+		height=25
 	}
 	"basic attribute" {
 		clr=7
@@ -1091,10 +1091,10 @@ rectangle {
 }
 text {
 	object {
-		x=14
-		y=18
+		x=13
+		y=15
 		width=51
-		height=40
+		height=20
 	}
 	"basic attribute" {
 		clr=14
@@ -1103,10 +1103,10 @@ text {
 }
 text {
 	object {
-		x=32
-		y=59
+		x=250
+		y=15
 		width=50
-		height=40
+		height=20
 	}
 	"basic attribute" {
 		clr=14
@@ -1115,13 +1115,14 @@ text {
 }
 text {
 	object {
-		x=31
-		y=96
+		x=559
+		y=15
 		width=50
-		height=40
+		height=20
 	}
 	"basic attribute" {
 		clr=14
 	}
 	textix="$(SUBDEV)"
+	align="horiz. right"
 }

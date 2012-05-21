@@ -5,9 +5,9 @@ file {
 }
 display {
 	object {
-		x=
-		y=
-		width=500
+		x=10
+		y=25
+		width=282
 		height=200
 	}
 	clr=14

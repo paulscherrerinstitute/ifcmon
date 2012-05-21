@@ -1,6 +1,6 @@
 
 file {
-	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/./G_IFCMON_ifc1210_ifctc1.adl"
+	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_ifc1210_ifctc1.adl"
 	version=030104
 }
 display {
@@ -1664,7 +1664,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(IOC):PWRMON-DISS"
+		chan="$(IOC):IFC1210-PWRMON-DISS"
 		clr=29
 		bclr=1
 	}
@@ -1680,7 +1680,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(IOC):PWRMON-DISS.EGU"
+		chan="$(IOC):IFC1210-PWRMON-DISS.EGU"
 		clr=14
 		bclr=2
 	}
