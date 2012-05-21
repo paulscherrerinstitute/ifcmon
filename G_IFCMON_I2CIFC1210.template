@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/15 15:13:30 $
+# $Date: 2012/05/21 08:06:28 $
 #
-# $Revision: 1.5 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.5 2012/05/15 15:13:30 kalt_r Exp $
+# $Revision: 1.6 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.6 2012/05/21 08:06:28 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -154,6 +154,7 @@ record(calc,"$(IOC):P2020-CORETEMP")
     field(EGU , "deg C")
     field(HIHI, "90")
     field(HHSV, "MAJOR")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V-MSB")
 }
 
 
@@ -164,8 +165,425 @@ record(calc,"$(IOC):P2020-CORETEMP")
 # startup.script:   ifc1210_max5970
 #--------------------------------------------------------------------
 
-# Stefan, please add here the records for max5970.
 
+#--------------------------------------------------------------------
+# status
+#--------------------------------------------------------------------
+# Channel 1, Voltage measurement (actual)
+record(ai,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V-MSB")
+{
+    field(DESC, "CH1_V_actual_higher8bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0x2 T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V-LSB")
+}
+record(ai,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V-LSB")
+{
+    field(DESC, "CH1_V_actual_lowest2bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0x3 T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V")
+}
+record(calc,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V")
+{ 
+    field(DESC, "CH1 actual Voltage")
+    field(INPA, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V-LSB NPP")
+    field(INPB, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V-MSB NPP")
+    field(C   , "0.0157") 		# 4V/255 see datasheet
+    field(CALC, "(A|(B<<2))*C") 
+    field(PREC, "1") 
+    field(EGU , "V")
+    field(HIHI, "5.5")
+    field(HHSV, "MAJOR")
+    field(LOLO, "4.5")
+    field(LLSV, "MAJOR")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MIN-V-MSB")
+}
+
+# Channel 1, Voltage measurement (min)
+record(ai,"$(IOC):IFC1210-PWRMON-CH1-MIN-V-MSB")
+{
+    field(DESC, "CH1_V_MIN_higher8bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0xC T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MIN-V-LSB")
+}
+record(ai,"$(IOC):IFC1210-PWRMON-CH1-MIN-V-LSB")
+{
+    field(DESC, "CH1_V_MIN_lowest2bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0xD T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MIN-V")
+}
+record(calc,"$(IOC):IFC1210-PWRMON-CH1-MIN-V")
+{ 
+    field(DESC, "CH1 minimal Voltage")
+    field(INPA, "$(IOC):IFC1210-PWRMON-CH1-MIN-V-LSB NPP")
+    field(INPB, "$(IOC):IFC1210-PWRMON-CH1-MIN-V-MSB NPP")
+    field(C   , "0.0157") 		# 4V/255 see datasheet
+    field(CALC, "(A|(B<<2))*C")
+    field(PREC, "1") 
+    field(EGU , "V")
+    field(HIHI, "5.5")
+    field(HHSV, "MAJOR")
+    field(LOLO, "4.5")
+    field(LLSV, "MAJOR")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MAX-V-MSB")
+}
+
+# Channel 1, Voltage measurement (max)
+record(ai,"$(IOC):IFC1210-PWRMON-CH1-MAX-V-MSB")
+{
+    field(DESC, "CH1_V_MAX_higher8bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0xE T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MAX-V-LSB")
+}
+record(ai,"$(IOC):IFC1210-PWRMON-CH1-MAX-V-LSB")
+{
+    field(DESC, "CH1_V_MAX_lowest2bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0xF T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MAX-V")
+}
+record(calc,"$(IOC):IFC1210-PWRMON-CH1-MAX-V")
+{ 
+    field(DESC, "maximal Voltage")
+    field(INPA, "$(IOC):IFC1210-PWRMON-CH1-MAX-V-LSB NPP")
+    field(INPB, "$(IOC):IFC1210-PWRMON-CH1-MAX-V-MSB NPP")
+    field(C   , "0.0157") 		# 4V/255 see datasheet
+    field(CALC, "(A|(B<<2))*C")
+    field(PREC, "1") 
+    field(EGU , "V")
+    field(HIHI, "5.5")
+    field(HHSV, "MAJOR")
+    field(LOLO, "4.5")
+    field(LLSV, "MAJOR")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I-MSB")
+}
+
+# Channel 1, Current measurement
+record(ai,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I-MSB")
+{
+    field(DESC, "CH1_I_actual_higher8bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0x0 T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I-LSB")
+}
+record(ai,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I-LSB")
+{
+    field(DESC, "CH1_I_actual_lowest2bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0x1 T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I")
+}
+record(calc,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I")
+{ 
+    field(DESC, "CH1 actual Current")
+    field(INPA, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I-LSB NPP")
+    field(INPB, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I-MSB NPP")
+    field(C   , "16.276") 		# 100mV ADC range/0.006R = 16.67A / 1024 = 16.276mA per LSB
+    field(CALC, "(A|(B<<2))*C") 
+    field(PREC, "0") 
+    field(EGU , "mA")
+    field(HIHI, "1000")
+    field(HHSV, "MAJOR")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MIN-I-MSB")
+}
+
+# Channel 1, Current measurement (min)
+record(ai,"$(IOC):IFC1210-PWRMON-CH1-MIN-I-MSB")
+{
+    field(DESC, "CH1_I_MIN_higher8bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0x8 T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MIN-I-LSB")
+}
+record(ai,"$(IOC):IFC1210-PWRMON-CH1-MIN-I-LSB")
+{
+    field(DESC, "CH1_I_MIN_lowest2bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0x9 T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MIN-I")
+}
+record(calc,"$(IOC):IFC1210-PWRMON-CH1-MIN-I")
+{ 
+    field(DESC, "CH1 minimal Current")
+    field(INPA, "$(IOC):IFC1210-PWRMON-CH1-MIN-I-LSB NPP")
+    field(INPB, "$(IOC):IFC1210-PWRMON-CH1-MIN-I-MSB NPP")
+    field(C   , "16.276") 		# 100mV ADC range/0.006R = 16.67A / 1024 = 16.276mA per LSB
+    field(CALC, "(A|(B<<2))*C") 
+    field(PREC, "0") 
+    field(EGU , "mA")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MAX-I-MSB")
+}
+
+# Channel 1, Current measurement (max)
+record(ai,"$(IOC):IFC1210-PWRMON-CH1-MAX-I-MSB")
+{
+    field(DESC, "CH1_I_MAX_higher8bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0xA T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MAX-I-LSB")
+}
+record(ai,"$(IOC):IFC1210-PWRMON-CH1-MAX-I-LSB")
+{
+    field(DESC, "CH1_I_MAX_lowest2bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0xB T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MAX-I")
+}
+record(calc,"$(IOC):IFC1210-PWRMON-CH1-MAX-I")
+{ 
+    field(DESC, "CH1 maximal Current")
+    field(INPA, "$(IOC):IFC1210-PWRMON-CH1-MAX-I-LSB NPP")
+    field(INPB, "$(IOC):IFC1210-PWRMON-CH1-MAX-I-MSB NPP")
+    field(C   , "16.276") 		# 100mV ADC range/0.006R = 16.67A / 1024 = 16.276mA per LSB
+    field(CALC, "(A|(B<<2))*C") 
+    field(PREC, "0") 
+    field(EGU , "mA")
+    field(HIHI, "1000")
+    field(HHSV, "MAJOR")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-W")
+}
+
+# Channel 1, Power calulation
+record(calc,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-W")
+{ 
+    field(DESC, "CH1 actual W")
+    field(INPA, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V NPP")
+    field(INPB, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I NPP") 		
+    field(CALC, "A*B") 
+    field(PREC, "0") 
+    field(EGU , "mW")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V-MSB")
+}
+
+# Channel 2, Voltage measurement
+record(ai,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V-MSB")
+{
+    field(DESC, "CH2_V_actual_higher8bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0x6 T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V-LSB")
+}
+record(ai,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V-LSB")
+{
+    field(DESC, "CH2_V_actual_lowest2bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0x7 T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V")
+}
+record(calc,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V")
+{ 
+    field(DESC, "CH2 actual Voltage")
+    field(INPA, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V-LSB NPP")
+    field(INPB, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V-MSB NPP")
+    field(C   , "0.0157") 		# 4V/255 see datasheet
+    field(CALC, "(A|(B<<2))*C") 
+    field(PREC, "1") 
+    field(EGU , "V")
+    field(HIHI, "3.6")
+    field(HHSV, "MAJOR")
+    field(LOLO, "3")
+    field(LLSV, "MAJOR")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MIN-V-MSB")
+}
+
+# Channel 2, Voltage measurement (min)
+record(ai,"$(IOC):IFC1210-PWRMON-CH2-MIN-V-MSB")
+{
+    field(DESC, "CH2_V_MIN_higher8bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0x14 T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MIN-V-LSB")
+}
+record(ai,"$(IOC):IFC1210-PWRMON-CH2-MIN-V-LSB")
+{
+    field(DESC, "CH2_V_MIN_lowest2bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0x15 T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MIN-V")
+}
+record(calc,"$(IOC):IFC1210-PWRMON-CH2-MIN-V")
+{ 
+    field(DESC, "CH2 minimal Voltage")
+    field(INPA, "$(IOC):IFC1210-PWRMON-CH2-MIN-V-LSB NPP")
+    field(INPB, "$(IOC):IFC1210-PWRMON-CH2-MIN-V-MSB NPP")
+    field(C   , "0.0157") 		# 4V/255 see datasheet
+    field(CALC, "(A|(B<<2))*C")
+    field(PREC, "1") 
+    field(EGU , "V")
+    field(HIHI, "3.6")
+    field(HHSV, "MAJOR")
+    field(LOLO, "3")
+    field(LLSV, "MAJOR")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MAX-V-MSB")
+}
+
+# Channel 2, Voltage measurement (max)
+record(ai,"$(IOC):IFC1210-PWRMON-CH2-MAX-V-MSB")
+{
+    field(DESC, "CH2_V_MAX_higher8bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0x16 T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MAX-V-LSB")
+}
+record(ai,"$(IOC):IFC1210-PWRMON-CH2-MAX-V-LSB")
+{
+    field(DESC, "CH2_V_MAX_lowest2bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0x17 T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MAX-V")
+}
+record(calc,"$(IOC):IFC1210-PWRMON-CH2-MAX-V")
+{ 
+    field(DESC, "CH2 maximal Voltage")
+    field(INPA, "$(IOC):IFC1210-PWRMON-CH2-MAX-V-LSB NPP")
+    field(INPB, "$(IOC):IFC1210-PWRMON-CH2-MAX-V-MSB NPP")
+    field(C   , "0.0157") 		# 4V/255 see datasheet
+    field(CALC, "(A|(B<<2))*C")
+    field(PREC, "1") 
+    field(EGU , "V")
+    field(HIHI, "3.6")
+    field(HHSV, "MAJOR")
+    field(LOLO, "3")
+    field(LLSV, "MAJOR")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I-MSB")
+}
+
+# Channel 2, Current measurement
+record(ai,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I-MSB")
+{
+    field(DESC, "CH2_I_actual_higher8bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0x4 T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I-LSB")
+}
+record(ai,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I-LSB")
+{
+    field(DESC, "CH2_I_actual_lowest2bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0x5 T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I")
+}
+record(calc,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I")
+{ 
+    field(DESC, "CH2 actual Current")
+    field(INPA, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I-LSB NPP")
+    field(INPB, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I-MSB NPP")
+    field(C   , "16.276") 		# 100mV ADC range/0.006R = 16.67A / 1024 = 16.276mA per LSB
+    field(CALC, "(A|(B<<2))*C")
+    field(PREC, "0") 
+    field(EGU , "mA")
+    field(HIHI, "5000")
+    field(HHSV, "MAJOR")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MIN-I-MSB")
+}
+
+# Channel 2, Current measurement (min)
+record(ai,"$(IOC):IFC1210-PWRMON-CH2-MIN-I-MSB")
+{
+    field(DESC, "CH2_I_MIN_higher8bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0x10 T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MIN-I-LSB")
+}
+record(ai,"$(IOC):IFC1210-PWRMON-CH2-MIN-I-LSB")
+{
+    field(DESC, "CH2_I_MIN_lowest2bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0x11 T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MIN-I")
+}
+record(calc,"$(IOC):IFC1210-PWRMON-CH2-MIN-I")
+{ 
+    field(DESC, "CH2 minimal Current")
+    field(INPA, "$(IOC):IFC1210-PWRMON-CH2-MIN-I-LSB NPP")
+    field(INPB, "$(IOC):IFC1210-PWRMON-CH2-MIN-I-MSB NPP")
+    field(C   , "16.276") 		# 100mV ADC range/0.006R = 16.67A / 1024 = 16.276mA per LSB
+    field(CALC, "(A|(B<<2))*C")
+    field(PREC, "0") 
+    field(EGU , "mA")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MAX-I-MSB")
+}
+
+# Channel 2, Current measurement (max)
+record(ai,"$(IOC):IFC1210-PWRMON-CH2-MAX-I-MSB")
+{
+    field(DESC, "CH2_I_MAX_higher8bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0x12 T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MAX-I-LSB")
+}
+record(ai,"$(IOC):IFC1210-PWRMON-CH2-MAX-I-LSB")
+{
+    field(DESC, "CH2_I_MAX_lowest2bit")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @max5970/0x13 T=UINT8")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MAX-I")
+}
+record(calc,"$(IOC):IFC1210-PWRMON-CH2-MAX-I")
+{ 
+    field(DESC, "CH2 maximal Current")
+    field(INPA, "$(IOC):IFC1210-PWRMON-CH2-MAX-I-LSB NPP")
+    field(INPB, "$(IOC):IFC1210-PWRMON-CH2-MAX-I-MSB NPP")
+    field(C   , "16.276") 		# 100mV ADC range/0.006R = 16.67A / 1024 = 16.276mA per LSB
+    field(CALC, "(A|(B<<2))*C") 
+    field(PREC, "0") 
+    field(EGU , "mA")
+    field(HIHI, "5000")
+    field(HHSV, "MAJOR")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-W")
+}
+
+# Channel 2, Power calulation
+record(calc,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-W")
+{ 
+    field(DESC, "CH2 actual W")
+    field(INPA, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V NPP")
+    field(INPB, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I NPP") 		
+    field(CALC, "A*B") 
+    field(PREC, "0") 
+    field(EGU , "mW")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-DISS")
+}
+
+# Channel 1 and Channel 2 total Power calculation
+record(calc,"$(IOC):IFC1210-PWRMON-DISS")
+{ 
+    field(DESC, "actual total W")
+    field(INPA, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-W NPP")
+    field(INPB, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-W NPP") 		
+    field(C   , "0.001")
+    field(CALC, "(A+B)*C") 
+    field(PREC, "0") 
+    field(EGU , "W")
+    field(HIHI, "10")
+    field(HHSV, "MAJOR")
+#    field(FLNK, "$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-ACTIVE")
+}
+
+#--------------------------------------------------------------------
+# control
+#--------------------------------------------------------------------
+record(ao,"$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-ACTIVE")
+{
+    field(DESC, "peak detection RESET")
+    field(DTYP, "regDevAsyn")
+    field(OUT , "#C S @max5970/0x41 T=UINT8")
+    field(VAL , "15") # no reset (15=reset)
+    field(FLNK, "$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-DEACTIVE")
+}
+
+record(ao,"$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-DEACTIVE")
+{
+    field(DESC, "peak detection RESET")
+    field(DTYP, "regDevAsyn")
+    field(OUT , "#C S @max5970/0x41 T=UINT8")
+    field(VAL , "0") # no reset (15=reset)
+#    field(FLNK, "")
+}
 
 
 
