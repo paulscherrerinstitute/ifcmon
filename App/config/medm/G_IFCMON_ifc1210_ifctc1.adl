@@ -1,6 +1,6 @@
 
 file {
-	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_ifc1210_ifctc1.adl"
+	name="/afs/psi.ch/user/s/scherrer/G/IFCMON/App/config/medm/G_IFCMON_ifc1210_ifctc1.adl"
 	version=030104
 }
 display {
@@ -650,7 +650,6 @@ text {
 		bclr=1
 	}
 	align="horiz. right"
-	format="hexadecimal"
 	limits {
 	}
 }
@@ -695,8 +694,6 @@ text {
 		clr=29
 		bclr=1
 	}
-	align="horiz. right"
-	format="hexadecimal"
 	limits {
 	}
 }

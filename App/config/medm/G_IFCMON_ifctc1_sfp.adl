@@ -5,10 +5,10 @@ file {
 }
 display {
 	object {
-		x=514
+		x=10
 		y=25
-		width=614
-		height=606
+		width=615
+		height=498
 	}
 	clr=14
 	bclr=2
@@ -87,6 +87,17 @@ display {
 		1a7309,
 	}
 }
+rectangle {
+	object {
+		x=7
+		y=185
+		width=600
+		height=180
+	}
+	"basic attribute" {
+		clr=7
+	}
+}
 text {
 	object {
 		x=44
@@ -105,9 +116,9 @@ text {
 rectangle {
 	object {
 		x=7
-		y=7
+		y=10
 		width=600
-		height=110
+		height=25
 	}
 	"basic attribute" {
 		clr=7
@@ -115,10 +126,10 @@ rectangle {
 }
 text {
 	object {
-		x=102
-		y=12
+		x=136
+		y=15
 		width=50
-		height=40
+		height=20
 	}
 	"basic attribute" {
 		clr=14
@@ -127,22 +138,23 @@ text {
 }
 text {
 	object {
-		x=21
-		y=79
+		x=553
+		y=15
 		width=50
-		height=40
+		height=20
 	}
 	"basic attribute" {
 		clr=14
 	}
 	textix="$(SUBDEV)"
+	align="horiz. right"
 }
 text {
 	object {
-		x=21
-		y=44
+		x=320
+		y=15
 		width=50
-		height=40
+		height=20
 	}
 	"basic attribute" {
 		clr=14
@@ -151,22 +163,22 @@ text {
 }
 text {
 	object {
-		x=11
-		y=12
+		x=13
+		y=15
 		width=50
-		height=40
+		height=20
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="SFP:"
+	textix="SFP Module:"
 }
 rectangle {
 	object {
 		x=7
-		y=123
+		y=40
 		width=600
-		height=160
+		height=140
 	}
 	"basic attribute" {
 		clr=7
@@ -175,9 +187,9 @@ rectangle {
 rectangle {
 	object {
 		x=12
-		y=151
+		y=70
 		width=590
-		height=125
+		height=105
 	}
 	"basic attribute" {
 		clr=4
@@ -186,19 +198,7 @@ rectangle {
 text {
 	object {
 		x=15
-		y=155
-		width=90
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Device Typ:"
-}
-text {
-	object {
-		x=15
-		y=180
+		y=78
 		width=90
 		height=15
 	}
@@ -209,20 +209,8 @@ text {
 }
 text {
 	object {
-		x=15
-		y=205
-		width=90
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Vendor ID:"
-}
-text {
-	object {
 		x=16
-		y=230
+		y=103
 		width=90
 		height=15
 	}
@@ -234,19 +222,19 @@ text {
 text {
 	object {
 		x=15
-		y=255
+		y=128
 		width=90
 		height=15
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="Revision Number:"
+	textix="Serial Number:"
 }
 text {
 	object {
 		x=15
-		y=130
+		y=50
 		width=90
 		height=15
 	}
@@ -254,17 +242,6 @@ text {
 		clr=14
 	}
 	textix="Part Information"
-}
-rectangle {
-	object {
-		x=7
-		y=290
-		width=600
-		height=180
-	}
-	"basic attribute" {
-		clr=7
-	}
 }
 text {
 	object {
@@ -281,7 +258,7 @@ text {
 rectangle {
 	object {
 		x=12
-		y=320
+		y=215
 		width=590
 		height=145
 	}
@@ -291,8 +268,8 @@ rectangle {
 }
 "text update" {
 	object {
-		x=189
-		y=330
+		x=152
+		y=235
 		width=70
 		height=15
 	}
@@ -308,7 +285,7 @@ rectangle {
 text {
 	object {
 		x=15
-		y=330
+		y=235
 		width=90
 		height=15
 	}
@@ -319,8 +296,8 @@ text {
 }
 "text update" {
 	object {
-		x=265
-		y=330
+		x=228
+		y=235
 		width=52
 		height=15
 	}
@@ -335,7 +312,7 @@ text {
 text {
 	object {
 		x=16
-		y=355
+		y=260
 		width=90
 		height=15
 	}
@@ -347,7 +324,7 @@ text {
 text {
 	object {
 		x=16
-		y=383
+		y=285
 		width=90
 		height=15
 	}
@@ -359,7 +336,7 @@ text {
 text {
 	object {
 		x=16
-		y=410
+		y=310
 		width=90
 		height=15
 	}
@@ -368,22 +345,10 @@ text {
 	}
 	textix="RX Power:"
 }
-text {
-	object {
-		x=16
-		y=436
-		width=90
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="RX optical Power:"
-}
 rectangle {
 	object {
 		x=7
-		y=476
+		y=370
 		width=600
 		height=120
 	}
@@ -394,7 +359,7 @@ rectangle {
 rectangle {
 	object {
 		x=12
-		y=505
+		y=399
 		width=590
 		height=85
 	}
@@ -405,7 +370,7 @@ rectangle {
 text {
 	object {
 		x=15
-		y=485
+		y=379
 		width=90
 		height=15
 	}
@@ -413,4 +378,420 @@ text {
 		clr=14
 	}
 	textix="Configuration"
+}
+"text update" {
+	object {
+		x=152
+		y=260
+		width=70
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=152
+		y=285
+		width=70
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=152
+		y=310
+		width=70
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR"
+		clr=14
+		bclr=2
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=228
+		y=260
+		width=52
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC.EGU"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=228
+		y=285
+		width=52
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR.EGU"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=228
+		y=310
+		width=52
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR.EGU"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=173
+		y=78
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VENDOR"
+		clr=14
+		bclr=2
+	}
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=173
+		y=103
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=173
+		y=128
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-SR-NR"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=323
+		y=235
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="TX_FAULT:"
+}
+text {
+	object {
+		x=323
+		y=260
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="MOD_ABS:"
+}
+text {
+	object {
+		x=323
+		y=285
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="RX_LOS:"
+}
+text {
+	object {
+		x=21
+		y=406
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Device Status:"
+}
+text {
+	object {
+		x=296
+		y=407
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Rate Select:"
+}
+"text update" {
+	object {
+		x=406
+		y=235
+		width=190
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-FAULT"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"choice button" {
+	object {
+		x=150
+		y=405
+		width=102
+		height=34
+	}
+	control {
+		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-DISABLE"
+		clr=14
+		bclr=5
+	}
+}
+menu {
+	object {
+		x=417
+		y=404
+		width=108
+		height=20
+	}
+	control {
+		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RATESELECT"
+		clr=14
+		bclr=5
+	}
+}
+"text update" {
+	object {
+		x=406
+		y=260
+		width=190
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-MOD-ABS"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=406
+		y=285
+		width=190
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-LOS"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+text {
+	object {
+		x=15
+		y=153
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Date Code:"
+}
+"text update" {
+	object {
+		x=173
+		y=153
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-DATE-CODE"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+oval {
+	object {
+		x=286
+		y=233
+		width=18
+		height=18
+	}
+	"basic attribute" {
+		clr=12
+	}
+}
+text {
+	object {
+		x=18
+		y=197
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Health / Status Information"
+}
+oval {
+	object {
+		x=286
+		y=258
+		width=18
+		height=18
+	}
+	"basic attribute" {
+		clr=12
+	}
+}
+oval {
+	object {
+		x=286
+		y=283
+		width=18
+		height=18
+	}
+	"basic attribute" {
+		clr=12
+	}
+}
+oval {
+	object {
+		x=286
+		y=308
+		width=18
+		height=18
+	}
+	"basic attribute" {
+		clr=12
+	}
+}
+oval {
+	object {
+		x=288
+		y=260
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC"
+	}
+}
+oval {
+	object {
+		x=288
+		y=235
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP"
+	}
+}
+oval {
+	object {
+		x=288
+		y=285
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR"
+	}
+}
+oval {
+	object {
+		x=288
+		y=310
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR"
+	}
 }

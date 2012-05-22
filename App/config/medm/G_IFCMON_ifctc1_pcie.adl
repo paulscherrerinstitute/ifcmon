@@ -1,11 +1,12 @@
+
 file {
-	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_ifctc1_pcie.adl"
+	name="/afs/psi.ch/user/s/scherrer/G/IFCMON/App/config/medm/G_IFCMON_ifctc1_pcie.adl"
 	version=030104
 }
 display {
 	object {
-		x=
-		y=
+		x=10
+		y=25
 		width=400
 		height=663
 	}
