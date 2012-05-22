@@ -775,7 +775,7 @@ oval {
 		height=18
 	}
 	control {
-		chan="$(IOC):$(SUBDEV)-PWRMON-PEAK-DET-RESET-ACTIVE.PROG"
+		chan="$(IOC):$(SUBDEV)-PWRMON-PEAK-DET-RESET-ACTIVE.PROC"
 		clr=14
 		bclr=6
 	}
