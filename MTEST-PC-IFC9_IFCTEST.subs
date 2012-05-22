@@ -43,17 +43,17 @@ file G_IFCMON_I2CIFCTC1.template{
 file G_IFCMON_I2CIFCTC1_SFP.template
 {    
     pattern
-    {IOC                ,SUBDEV ,SFPFCT     ,I2CBUSSFP  ,SFP_IOEXT_STATUS_REG   ,SFP_IOEXT_CTRL_REG ,BUSMUX ,DESCR                , FLNK-ENA, FLNK-TARGET                            }
-    {MTEST-PC-IFC9      ,IFCTC1 ,PCIEP12    ,pci_p12_   ,0x10                   ,0x11               ,3      ,"SFP - PCIe port 12" , 0       , MTEST-PC-IFC9:IFCTC1-SFP-PCIEP13-SELECT}
-    {MTEST-PC-IFC9      ,IFCTC1 ,PCIEP13    ,pci_p13_   ,0x12                   ,0x13               ,4      ,"SFP - PCIe port 13" , 0       , MTEST-PC-IFC9:IFCTC1-SFP-PCIEP14-SELECT}
-    {MTEST-PC-IFC9      ,IFCTC1 ,PCIEP14    ,pci_p14_   ,0x14                   ,0x15               ,5      ,"SFP - PCIe port 14" , 0       , MTEST-PC-IFC9:IFCTC1-SFP-PCIEP15-SELECT}
-    {MTEST-PC-IFC9      ,IFCTC1 ,PCIEP15    ,pci_p15_   ,0x16                   ,0x17               ,6      ,"SFP - PCIe port 15" , 0       , MTEST-PC-IFC9:IFCTC1-SFP-GTX1143-SELECT}
-    {MTEST-PC-IFC9      ,IFCTC1 ,GTX1143    ,gtx1143_   ,0x20                   ,0x21               ,7      ,"SFP1 - GTX 114_3"   , 0       , MTEST-PC-IFC9:IFCTC1-SFP-GTX1142-SELECT}
-    {MTEST-PC-IFC9      ,IFCTC1 ,GTX1142    ,gtx1142_   ,0x22                   ,0x23               ,8      ,"SFP2 - GTX 114_2"   , 0       , MTEST-PC-IFC9:IFCTC1-SFP-GTX1141-SELECT}
-    {MTEST-PC-IFC9      ,IFCTC1 ,GTX1141    ,gtx1141_   ,0x24                   ,0x25               ,9      ,"SFP3 - GTX 114_1"   , 0       , MTEST-PC-IFC9:IFCTC1-SFP-GTX1140-SELECT}
-    {MTEST-PC-IFC9      ,IFCTC1 ,GTX1140    ,gtx1140_   ,0x26                   ,0x27               ,10     ,"SFP4 - GTX 114_0"   , 0       , MTEST-PC-IFC9:IFCTC1-SFP-GTX1133-SELECT}
-    {MTEST-PC-IFC9      ,IFCTC1 ,GTX1133    ,gtx1133_   ,0x28                   ,0x29               ,11     ,"SFP5 - GTX 113_3"   , 0       , MTEST-PC-IFC9:IFCTC1-SFP-GTX1132-SELECT}
-    {MTEST-PC-IFC9      ,IFCTC1 ,GTX1132    ,gtx1132_   ,0x2A                   ,0x2B               ,12     ,"SFP6 - GTX 113_2"   , 0       , MTEST-PC-IFC9:IFCTC1-SFP-GTX1132-SELECT}
+    {IOC                ,SUBDEV ,SFPFCT     ,I2CBUSSFP  ,SFP_IOEXT_STATUS_REG   ,SFP_IOEXT_CTRL_REG ,BUSMUX ,DESCR                }
+    {MTEST-PC-IFC9      ,IFCTC1 ,PCIEP12    ,pci_p12_   ,0x10                   ,0x11               ,3      ,"SFP - PCIe port 12" }
+    {MTEST-PC-IFC9      ,IFCTC1 ,PCIEP13    ,pci_p13_   ,0x12                   ,0x13               ,4      ,"SFP - PCIe port 13" }
+    {MTEST-PC-IFC9      ,IFCTC1 ,PCIEP14    ,pci_p14_   ,0x14                   ,0x15               ,5      ,"SFP - PCIe port 14" }
+    {MTEST-PC-IFC9      ,IFCTC1 ,PCIEP15    ,pci_p15_   ,0x16                   ,0x17               ,6      ,"SFP - PCIe port 15" }
+    {MTEST-PC-IFC9      ,IFCTC1 ,GTX1143    ,gtx1143_   ,0x20                   ,0x21               ,7      ,"SFP1 - GTX 114_3"   }
+    {MTEST-PC-IFC9      ,IFCTC1 ,GTX1142    ,gtx1142_   ,0x22                   ,0x23               ,8      ,"SFP2 - GTX 114_2"   }
+    {MTEST-PC-IFC9      ,IFCTC1 ,GTX1141    ,gtx1141_   ,0x24                   ,0x25               ,9      ,"SFP3 - GTX 114_1"   }
+    {MTEST-PC-IFC9      ,IFCTC1 ,GTX1140    ,gtx1140_   ,0x26                   ,0x27               ,10     ,"SFP4 - GTX 114_0"   }
+    {MTEST-PC-IFC9      ,IFCTC1 ,GTX1133    ,gtx1133_   ,0x28                   ,0x29               ,11     ,"SFP5 - GTX 113_3"   }
+    {MTEST-PC-IFC9      ,IFCTC1 ,GTX1132    ,gtx1132_   ,0x2A                   ,0x2B               ,12     ,"SFP6 - GTX 113_2"   }
 
 #    {MTEST-PC-IFC9      ,FMC1   ,GTX1160    ,gtx1160_   ,0x00                   ,0x00               ,12     ,"SFP10- GTX 116_0"   }
 #    {MTEST-PC-IFC9      ,FMC1   ,GTX1161    ,gtx1161_   ,0x00                   ,0x00               ,12     ,"SFP11- GTX 116_1"   }
