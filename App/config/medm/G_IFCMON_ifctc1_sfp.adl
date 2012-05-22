@@ -1,6 +1,6 @@
 
 file {
-	name="/afs/psi.ch/user/s/scherrer/G/IFCMON/App/config/medm/G_IFCMON_ifctc1_sfp.adl"
+	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_ifctc1_sfp.adl"
 	version=030104
 }
 display {
@@ -794,4 +794,58 @@ oval {
 		clr="alarm"
 		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR"
 	}
+}
+"text update" {
+	object {
+		x=546
+		y=128
+		width=40
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-SELECT"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=420
+		y=128
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="SELECT:"
+}
+"text update" {
+	object {
+		x=546
+		y=153
+		width=40
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-SELECT-READ"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=420
+		y=153
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="SELECT-READ:"
 }
