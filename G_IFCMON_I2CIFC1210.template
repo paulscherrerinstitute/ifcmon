@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/21 08:06:28 $
+# $Date: 2012/05/23 13:04:24 $
 #
-# $Revision: 1.6 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.6 2012/05/21 08:06:28 kalt_r Exp $
+# $Revision: 1.7 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.7 2012/05/23 13:04:24 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -286,7 +286,7 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I")
     field(CALC, "(A|(B<<2))*C") 
     field(PREC, "0") 
     field(EGU , "mA")
-    field(HIHI, "1000")
+    field(HIHI, "5000")
     field(HHSV, "MAJOR")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MIN-I-MSB")
 }
@@ -342,7 +342,7 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH1-MAX-I")
     field(CALC, "(A|(B<<2))*C") 
     field(PREC, "0") 
     field(EGU , "mA")
-    field(HIHI, "1000")
+    field(HIHI, "6000")
     field(HHSV, "MAJOR")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-W")
 }
@@ -476,7 +476,7 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I")
     field(CALC, "(A|(B<<2))*C")
     field(PREC, "0") 
     field(EGU , "mA")
-    field(HIHI, "5000")
+    field(HIHI, "8000")
     field(HHSV, "MAJOR")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MIN-I-MSB")
 }
@@ -532,7 +532,7 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH2-MAX-I")
     field(CALC, "(A|(B<<2))*C") 
     field(PREC, "0") 
     field(EGU , "mA")
-    field(HIHI, "5000")
+    field(HIHI, "10000")
     field(HHSV, "MAJOR")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-W")
 }
@@ -559,20 +559,29 @@ record(calc,"$(IOC):IFC1210-PWRMON-DISS")
     field(CALC, "(A+B)*C") 
     field(PREC, "0") 
     field(EGU , "W")
-    field(HIHI, "10")
+    field(HIHI, "40")
     field(HHSV, "MAJOR")
-#    field(FLNK, "$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-ACTIVE")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-ACTIVE")
 }
 
 #--------------------------------------------------------------------
 # control
 #--------------------------------------------------------------------
+
+# processed passive from medm panel button
+record(dfanout,"$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-SET")
+{
+    field(DOL , "15") # 15 = reset
+    field(OMSL, "closed_loop")
+    field(OUTA, "$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-ACTIVE NPP")
+}
+
 record(ao,"$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-ACTIVE")
 {
     field(DESC, "peak detection RESET")
     field(DTYP, "regDevAsyn")
     field(OUT , "#C S @max5970/0x41 T=UINT8")
-    field(VAL , "15") # no reset (15=reset)
+    field(VAL , "0") # 0= no reset / 15=reset 
     field(FLNK, "$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-DEACTIVE")
 }
 
@@ -581,10 +590,17 @@ record(ao,"$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-DEACTIVE")
     field(DESC, "peak detection RESET")
     field(DTYP, "regDevAsyn")
     field(OUT , "#C S @max5970/0x41 T=UINT8")
-    field(VAL , "0") # no reset (15=reset)
-#    field(FLNK, "")
+    field(VAL , "0") # always 0= no reset
+    field(FLNK, "$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-DEACTIVE-SET")
 }
 
+record(dfanout,"$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-DEACTIVE-SET")
+{
+    field(DOL , "0") # 0= no reset
+    field(OMSL, "closed_loop")
+    field(OUTA, "$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-ACTIVE NPP")
+#    field(FLNK, "") # end of IFC1210 processing chain
+}
 
 
 
@@ -815,6 +831,12 @@ record(ao,"$(IOC):PGMCLOCK-REG23")
 }
 
 
-
+record(ai,"$(IOC):PGMCLOCK-FREQ")
+{
+    field(DESC, "IDT8N4Q001 freq")
+    field(EGU , "MHz")
+    field(PREC, "6")
+    field(VAL , "0")
+}
 
 

@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/22 13:43:43 $
+# $Date: 2012/05/23 13:04:24 $
 #
-# $Revision: 1.10 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1.template,v 1.10 2012/05/22 13:43:43 kalt_r Exp $
+# $Revision: 1.11 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1.template,v 1.11 2012/05/23 13:04:24 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -40,13 +40,15 @@
 # startup.script:   ifctc1_cpld
 #--------------------------------------------------------------------
 # generic select record, normally never processed
-record(ao,"$(IOC):IFCTC1-MUX-SEL")
-{
-    field(DESC, "IFC_TC1 I2C mux")
-    field(DTYP, "regDevAsyn")
-    field(OUT , "#C S @ifctc1_cpld/0x6 T=UINT8")
-    field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V")
-}
+#record(ao,"$(IOC):IFCTC1-MUX-SEL")
+#{
+#    field(DESC, "IFC_TC1 I2C mux")
+#    field(DTYP, "regDevAsyn")
+#    field(OUT , "#C S @ifctc1_cpld/0x6 T=UINT8")
+#    field(PINI,"YES")
+#    field(VAL,"1")
+#}
+
 
 
 
@@ -93,6 +95,17 @@ record(ai,"$(IOC):IFCTC1-FW-DAY")
     field(DESC, "IFC_TC1 Fw day")
     field(DTYP, "regDevAsyn")
     field(INP , "#C S @ifctc1_cpld/0x5 T=UINT8")
+    field(FLNK, "$(IOC):IFCTC1-FW-SIGN")
+}
+
+record(calc,"$(IOC):IFCTC1-FW-SIGN")
+{
+    field(DESC, "calc fw sign.")
+    field(INPA, "$(IOC):IFCTC1-FW-DAY NPP")
+    field(INPB, "$(IOC):IFCTC1-FW-MONTH NPP")
+    field(INPC, "$(IOC):IFCTC1-FW-YEAR NPP")
+    field(D   , "32") # 0x20
+    field(CALC, "(D<<24)|(C<<16)|(B<<8)|A")
     field(FLNK, "$(IOC):IFCTC1-HCI-STATUS")
 }
 
@@ -500,11 +513,8 @@ record(ao,"$(IOC):IFCTC1-PCIERD-LBEC")
     field(DESC, "IFC_TC1 PCIe LBEC")
     field(DTYP, "regDevAsyn")
     field(OUT , "#C S @ifctc1_pcie/0x2 T=UINT8")
-    field(FLNK, "$(IOC):IFCTC1-MUX-SEL-PWRMON")
-    
+    field(FLNK, "$(IOC):IFCTC1-MUX-SEL-PWRMON")   
 }
-
-
 
 
 
@@ -527,6 +537,7 @@ record(ao,"$(IOC):IFCTC1-MUX-SEL-PWRMON")
     field(VAL , "1")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V-MSB")
 }
+
 
 #--------------------------------------------------------------------
 # status
@@ -923,18 +934,27 @@ record(calc,"$(IOC):IFCTC1-PWRMON-DISS")
     field(EGU , "W")
     field(HIHI, "10")
     field(HHSV, "MAJOR")
-#    field(FLNK, "$(IOC):IFCTC1-SFP-PCIEP12-SELECT") # kick the SFP modules readout chain (in other template)
+    field(FLNK, "$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-ACTIVE")
 }
 
 #--------------------------------------------------------------------
 # control
 #--------------------------------------------------------------------
+
+# processed passive from medm panel button
+record(dfanout,"$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-SET")
+{
+    field(DOL , "15") # 15 = reset
+    field(OMSL, "closed_loop")
+    field(OUTA, "$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-ACTIVE NPP")
+}
+
 record(ao,"$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-ACTIVE")
 {
     field(DESC, "peak detection RESET")
     field(DTYP, "regDevAsyn")
     field(OUT , "#C S @ifctc1_max5970/0x41 T=UINT8")
-    field(VAL , "15") # no reset (15=reset)
+#    field(VAL , "0") # 0= no reset / 15=reset 
     field(FLNK, "$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-DEACTIVE")
 }
 
@@ -943,7 +963,15 @@ record(ao,"$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-DEACTIVE")
     field(DESC, "peak detection RESET")
     field(DTYP, "regDevAsyn")
     field(OUT , "#C S @ifctc1_max5970/0x41 T=UINT8")
-    field(VAL , "0") # no reset (15=reset)
+    field(VAL , "0") # always 0= no reset
+    field(FLNK, "$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-DEACTIVE-SET")
 }
 
+record(dfanout,"$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-DEACTIVE-SET")
+{
+    field(DOL , "0") # 0= no reset
+    field(OMSL, "closed_loop")
+    field(OUTA, "$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-ACTIVE NPP")
+    field(FLNK, "$(IOC):IFCTC1-SFP-PCIEP12-STAT-REG") # kick the SFP modules readout chain (in other template G_IFCMON_I2CIFCTC1_SFP.template)
+}
 

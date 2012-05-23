@@ -8,7 +8,7 @@ display {
 		x=10
 		y=25
 		width=631
-		height=776
+		height=805
 	}
 	clr=14
 	bclr=2
@@ -87,10 +87,21 @@ display {
 		1a7309,
 	}
 }
+rectangle {
+	object {
+		x=21
+		y=56
+		width=599
+		height=44
+	}
+	"basic attribute" {
+		clr=7
+	}
+}
 text {
 	object {
-		x=318
-		y=10
+		x=285
+		y=14
 		width=50
 		height=40
 	}
@@ -101,7 +112,7 @@ text {
 }
 text {
 	object {
-		x=46
+		x=22
 		y=14
 		width=50
 		height=40
@@ -109,24 +120,12 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="power IFC1210:"
-}
-text {
-	object {
-		x=523
-		y=8
-		width=50
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="$(SUBDEV)"
+	textix="Power overview:"
 }
 composite {
 	object {
-		x=17
-		y=61
+		x=19
+		y=105
 		width=601
 		height=302
 	}
@@ -135,11 +134,149 @@ composite {
 }
 composite {
 	object {
-		x=22
-		y=374
-		width=325
-		height=361
+		x=51
+		y=411
+		width=530
+		height=385
 	}
 	"composite name"="dcdc"
 	"composite file"="G_IFCMON_pwrdcdc.adl;IOC=$(IOC),SUBDEV=$(SUBDEV)"
+}
+"text update" {
+	object {
+		x=306
+		y=58
+		width=100
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFC1210-PWRMON-DISS"
+		clr=29
+		bclr=1
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=410
+		y=58
+		width=52
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFC1210-PWRMON-DISS.EGU"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+oval {
+	object {
+		x=465
+		y=57
+		width=18
+		height=18
+	}
+	"basic attribute" {
+		clr=12
+	}
+}
+oval {
+	object {
+		x=467
+		y=59
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):IFCTC1-PWRMON-DISS"
+	}
+}
+"text update" {
+	object {
+		x=306
+		y=83
+		width=100
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-DISS"
+		clr=29
+		bclr=1
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=410
+		y=83
+		width=52
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-DISS.EGU"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+oval {
+	object {
+		x=465
+		y=82
+		width=18
+		height=18
+	}
+	"basic attribute" {
+		clr=12
+	}
+}
+oval {
+	object {
+		x=467
+		y=84
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):IFCTC1-PWRMON-DISS"
+	}
+}
+text {
+	object {
+		x=169
+		y=58
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Power IFC1210:"
+}
+text {
+	object {
+		x=169
+		y=83
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Power IFC_TC1:"
 }

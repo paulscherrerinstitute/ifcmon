@@ -1,6 +1,6 @@
 
 file {
-	name="/afs/psi.ch/user/s/scherrer/G/IFCMON/App/config/medm/G_IFCMON_ifc1210_ifctc1.adl"
+	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_ifc1210_ifctc1.adl"
 	version=030104
 }
 display {
@@ -669,11 +669,11 @@ text {
 	object {
 		x=788
 		y=768
-		width=35
+		width=112
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-FW-YEAR"
+		chan="$(IOC):IFCTC1-FW-SIGN"
 		clr=29
 		bclr=1
 	}
@@ -694,40 +694,6 @@ text {
 		clr=29
 		bclr=1
 	}
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=827
-		y=768
-		width=35
-		height=15
-	}
-	monitor {
-		chan="$(IOC):IFCTC1-FW-MONTH"
-		clr=29
-		bclr=1
-	}
-	align="horiz. centered"
-	format="hexadecimal"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=866
-		y=768
-		width=35
-		height=15
-	}
-	monitor {
-		chan="$(IOC):IFCTC1-FW-DAY"
-		clr=29
-		bclr=1
-	}
-	align="horiz. centered"
-	format="hexadecimal"
 	limits {
 	}
 }
@@ -1603,21 +1569,6 @@ oval {
 	bclr=5
 	label="-setup/details"
 }
-"related display" {
-	object {
-		x=786
-		y=729
-		width=90
-		height=15
-	}
-	display[0] {
-		name="G_IFCMON_ifctc1_cpld.adl"
-		args="IOC=$(IOC)"
-	}
-	clr=14
-	bclr=5
-	label="-setup/details"
-}
 rectangle {
 	object {
 		x=30
@@ -1727,21 +1678,6 @@ oval {
 }
 "related display" {
 	object {
-		x=510
-		y=625
-		width=60
-		height=15
-	}
-	display[0] {
-		name="G_IFCMON_tosca2.adl"
-		args="IOC=$(IOC)"
-	}
-	clr=14
-	bclr=5
-	label="-details"
-}
-"related display" {
-	object {
 		x=740
 		y=17
 		width=120
@@ -1763,7 +1699,8 @@ oval {
 		height=24
 	}
 	command[0] {
-		name="konqueror http://codebeamer.psi.ch/cb/project/104"
+		name="konqueror"
+		args="http://cb.psi.ch/cb/project/104"
 	}
 	clr=14
 	bclr=5
@@ -1817,13 +1754,13 @@ text {
 }
 "text update" {
 	object {
-		x=461
+		x=400
 		y=558
-		width=70
+		width=130
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-DISS"
+		chan="$(IOC):PGMCLOCK-FREQ"
 		clr=29
 		bclr=1
 	}
@@ -1839,7 +1776,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(IOC):IFCTC1-PWRMON-DISS.EGU"
+		chan="$(IOC):PGMCLOCK-FREQ.EGU"
 		clr=14
 		bclr=2
 	}
@@ -2176,21 +2113,6 @@ text {
 		clr=14
 	}
 	textix="PCI-express:"
-}
-"related display" {
-	object {
-		x=426
-		y=105
-		width=150
-		height=15
-	}
-	display[0] {
-		name="G_IFCMON_pci.adl"
-		args="IOC=$(IOC)"
-	}
-	clr=14
-	bclr=5
-	label="-setup/details"
 }
 polyline {
 	object {

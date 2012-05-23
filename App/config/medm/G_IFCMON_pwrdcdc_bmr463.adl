@@ -11,7 +11,7 @@ display {
 		height=200
 	}
 	clr=14
-	bclr=25
+	bclr=2
 	cmap=""
 	gridSpacing=5
 	gridOn=0
@@ -87,12 +87,23 @@ display {
 		1a7309,
 	}
 }
+rectangle {
+	object {
+		x=9
+		y=11
+		width=262
+		height=178
+	}
+	"basic attribute" {
+		clr=52
+	}
+}
 text {
 	object {
-		x=52
-		y=65
+		x=31
+		y=41
 		width=50
-		height=40
+		height=14
 	}
 	"basic attribute" {
 		clr=14
@@ -101,10 +112,10 @@ text {
 }
 text {
 	object {
-		x=30
-		y=24
+		x=18
+		y=13
 		width=51
-		height=40
+		height=20
 	}
 	"basic attribute" {
 		clr=14
@@ -113,10 +124,10 @@ text {
 }
 text {
 	object {
-		x=53
-		y=102
+		x=31
+		y=61
 		width=50
-		height=40
+		height=14
 	}
 	"basic attribute" {
 		clr=14
@@ -125,10 +136,10 @@ text {
 }
 text {
 	object {
-		x=53
-		y=140
+		x=31
+		y=83
 		width=50
-		height=39
+		height=14
 	}
 	"basic attribute" {
 		clr=14

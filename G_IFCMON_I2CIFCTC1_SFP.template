@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/22 14:58:59 $
+# $Date: 2012/05/23 13:04:24 $
 #
-# $Revision: 1.10 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1_SFP.template,v 1.10 2012/05/22 14:58:59 kalt_r Exp $
+# $Revision: 1.11 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1_SFP.template,v 1.11 2012/05/23 13:04:24 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -56,7 +56,7 @@ record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG")
 {
     field(DESC, "Status: $(DESCR)")
     field(DTYP, "regDevAsyn")
-    field(SCAN, "1 second")
+#    field(SCAN, "1 second")
     field(INP , "#C S @ifctc1_cpld/$(SFP_IOEXT_STATUS_REG) T=UINT8")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-FAULT")
 }
@@ -106,50 +106,8 @@ record ( mbbi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-LOS" )
     field(ONVL, "1" )
     field(ONST, "signal level lo" )
     field(ONSV, "MAJOR")
-    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-FLNK")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG-CALC")
 }
-
-# checks if SFP module is absent, then stop processing, else FLNK
-# module present: kick readout 
-record ( calcout, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-FLNK")
-{
-   field(DESC, "check if present")
-   field(INPA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-MOD-ABS.VAL NPP")
-   field(CALC, "A")
-   field(OOPT, "When Zero") # 1 = module absent = no further processing required
-   field(OVAL, "1")
-   field(OUT , "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG-CALC.PROC PP")
-#   field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-FLNK2")
-}
-
-# checks if SFP module is absent, then stop processing, else FLNK
-# module absent kick reset of values
-#record ( calcout, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-FLNK2")
-#{
-#   field(DESC, "check if present2")
-#   field(INPA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-MOD-ABS.VAL NPP")
-#   field(CALC, "A")
-#   field(OOPT, "When Non-zero")
-#   field(OVAL, "1")
-#   field(OUT , "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VENDOR-RST.PROC PP")
-#}
-
-#record ( stringout, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VENDOR-RST")
-#{
-#   field(DESC, "reset")
-#   field(DOL , "absent")
-#   field(OUTA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VENDOR.VAL NPP")
-#   field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE-RST")
-#}
-
-#record ( stringout, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE-RST")
-#{
-#   field(DESC, "reset")
-#   field(DOL , "absent")
-#   field(OUTA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE.VAL NPP")
-#   field(FLNK, "")
-#}
-
 
 #--------------------------------------------------------------------
 # control
@@ -208,6 +166,7 @@ record(ao,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG")
 # datasheet:        https://codebeamer.psi.ch/cb/proj/sources/sccFileLog.do?proj_id=104&filename=IFC%2FIFC1210_generic%2FFirmware%2FPSI%2FIFC_TC1%2FDocumentation%2FIFC_TC1_firmware_specification.doc&isDir=false
 # startup.script:   ifctc1_cpld
 #--------------------------------------------------------------------
+
 record(ao,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-SELECT")
 {
     field(DESC, "IFC_TC1 I2C mux")
@@ -216,6 +175,9 @@ record(ao,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-SELECT")
     field(VAL , "$(BUSMUX)")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VENDOR")
 }
+
+
+
 
 #--------------------------------------------------------------------
 # one SFP+ module here:       either for CENTRAL FPGA GTX or PCIe
@@ -239,6 +201,7 @@ record(stringin,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VENDOR")
     field(INP , "#C S @$(I2CBUSSFP)A0/20 T=STRING L=16")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
 }
+
 # Vendor Part Number
 record(stringin,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
 {
@@ -312,12 +275,12 @@ record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-LSB")
 }
 record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC")
 { 
-    field(DESC, "TEMP: $(DESCR)")
+    field(DESC, "Vcc: $(DESCR)")
     field(INPA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-LSB NPP")
     field(INPB, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-MSB NPP")
     field(C   , "0.0001") # LSB =100uV see datasheet
     field(CALC, "(A|(B<<8))*C")
-    field(PREC, "2") 
+    field(PREC, "1") 
     field(EGU , "V")
     field(HIHI, "3.6")
     field(HHSV, "MAJOR")
@@ -331,29 +294,25 @@ record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-MSB")
 {
     field(DESC, "TEMP-MSB: $(DESCR)")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUSSFP)A2/102 T=UINT8")
+    field(INP , "#C S @$(I2CBUSSFP)A2/104 T=UINT8")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-LSB")
 }
 record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-LSB")
 {
     field(DESC, "TEMP-LSB: $(DESCR)")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUSSFP)A2/103 T=UINT8")
+    field(INP , "#C S @$(I2CBUSSFP)A2/105 T=UINT8")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR")
 }
 record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR")
 { 
-    field(DESC, "TEMP: $(DESCR)")
+    field(DESC, "RXpwr: $(DESCR)")
     field(INPA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-LSB NPP")
     field(INPB, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-MSB NPP")
     field(C   , "0.0001") # LSB =0.1uW see datasheet
     field(CALC, "(A|(B<<8))*C")
-    field(PREC, "2") 
+    field(PREC, "1") 
     field(EGU , "mW")
-    field(HIHI, "3.6")
-    field(HHSV, "MAJOR")
-    field(LOLO, "3")
-    field(LLSV, "MAJOR")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-MSB")
 }
 
@@ -362,35 +321,40 @@ record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-MSB")
 {
     field(DESC, "TEMP-MSB: $(DESCR)")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUSSFP)A2/104 T=UINT8")
+    field(INP , "#C S @$(I2CBUSSFP)A2/103 T=UINT8")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-LSB")
 }
 record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-LSB")
 {
     field(DESC, "TEMP-LSB: $(DESCR)")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUSSFP)A2/105 T=UINT8")
+    field(INP , "#C S @$(I2CBUSSFP)A2/104 T=UINT8")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR")
 }
 record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR")
 { 
-    field(DESC, "TEMP: $(DESCR)")
+    field(DESC, "TXpwr: $(DESCR)")
     field(INPA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-LSB NPP")
     field(INPB, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-MSB NPP")
     field(C   , "0.0001") # LSB =0.1uW see datasheet
     field(CALC, "(A|(B<<8))*C")
-    field(PREC, "2") 
+    field(PREC, "1") 
     field(EGU , "mW")
-    field(HIHI, "3.6")
-    field(HHSV, "MAJOR")
-    field(LOLO, "3")
-    field(LLSV, "MAJOR")
-    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-SELECT-READ")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-FAN")
 }
 
-record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-SELECT-READ")
+# Debug
+#record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-SELECT-READ")
+#{
+#    field(DESC, "IFC_TC1 I2C mux")
+#    field(DTYP, "regDevAsyn")
+#    field(INP , "#C S @ifctc1_cpld/0x6 T=UINT8")
+#    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-FAN")
+#}
+
+record(fanout,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-FAN")
 {
-    field(DESC, "IFC_TC1 I2C mux")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_cpld/0x6 T=UINT8")
+    field(DISA, "$(DISABLE)")
+    field(DISV, "1")
+    field(FLNK, "$(FLNK)")
 }

@@ -7,8 +7,8 @@ display {
 	object {
 		x=10
 		y=25
-		width=508
-		height=372
+		width=545
+		height=399
 	}
 	clr=14
 	bclr=2
@@ -89,50 +89,50 @@ display {
 }
 composite {
 	object {
-		x=10
-		y=50
-		width=73
-		height=155
+		x=6
+		y=28
+		width=262
+		height=178
 	}
 	"composite name"="U701"
 	"composite file"="G_IFCMON_pwrdcdc_bmr463.adl;IOC=$(IOC),SUBDEV=$(SUBDEV),Uxxx=701"
 }
 composite {
 	object {
-		x=254
-		y=48
-		width=73
-		height=155
+		x=273
+		y=29
+		width=262
+		height=178
 	}
 	"composite name"="U702"
 	"composite file"="G_IFCMON_pwrdcdc_bmr463.adl;IOC=$(IOC),SUBDEV=$(SUBDEV),Uxxx=702"
 }
 composite {
 	object {
-		x=9
-		y=212
-		width=73
-		height=155
+		x=6
+		y=211
+		width=262
+		height=178
 	}
 	"composite name"="U703"
 	"composite file"="G_IFCMON_pwrdcdc_bmr463.adl;IOC=$(IOC),SUBDEV=$(SUBDEV),Uxxx=703"
 }
 composite {
 	object {
-		x=261
-		y=209
-		width=72
-		height=155
+		x=273
+		y=211
+		width=262
+		height=178
 	}
 	"composite name"="U704"
 	"composite file"="G_IFCMON_pwrdcdc_bmr463.adl;IOC=$(IOC),SUBDEV=$(SUBDEV),Uxxx=704"
 }
 text {
 	object {
-		x=14
-		y=6
+		x=5
+		y=4
 		width=274
-		height=40
+		height=20
 	}
 	"basic attribute" {
 		clr=20
