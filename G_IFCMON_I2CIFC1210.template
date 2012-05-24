@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/23 13:04:24 $
+# $Date: 2012/05/24 07:00:58 $
 #
-# $Revision: 1.7 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.7 2012/05/23 13:04:24 kalt_r Exp $
+# $Revision: 1.8 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.8 2012/05/24 07:00:58 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -282,11 +282,11 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I")
     field(DESC, "CH1 actual Current")
     field(INPA, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I-LSB NPP")
     field(INPB, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I-MSB NPP")
-    field(C   , "16.276") 		# 100mV ADC range/0.006R = 16.67A / 1024 = 16.276mA per LSB
+    field(C   , "0.016276") 		# 100mV ADC range/0.006R = 16.67A / 1024 = 16.276mA per LSB
     field(CALC, "(A|(B<<2))*C") 
-    field(PREC, "0") 
-    field(EGU , "mA")
-    field(HIHI, "5000")
+    field(PREC, "1") 
+    field(EGU , "A")
+    field(HIHI, "11.000") # according IFC1210 UG section 2.6 Imax = 11.2A
     field(HHSV, "MAJOR")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MIN-I-MSB")
 }
@@ -311,10 +311,10 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH1-MIN-I")
     field(DESC, "CH1 minimal Current")
     field(INPA, "$(IOC):IFC1210-PWRMON-CH1-MIN-I-LSB NPP")
     field(INPB, "$(IOC):IFC1210-PWRMON-CH1-MIN-I-MSB NPP")
-    field(C   , "16.276") 		# 100mV ADC range/0.006R = 16.67A / 1024 = 16.276mA per LSB
+    field(C   , "0.016276") 		# 100mV ADC range/0.006R = 16.67A / 1024 = 16.276mA per LSB
     field(CALC, "(A|(B<<2))*C") 
-    field(PREC, "0") 
-    field(EGU , "mA")
+    field(PREC, "1") 
+    field(EGU , "A")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MAX-I-MSB")
 }
 
@@ -338,11 +338,11 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH1-MAX-I")
     field(DESC, "CH1 maximal Current")
     field(INPA, "$(IOC):IFC1210-PWRMON-CH1-MAX-I-LSB NPP")
     field(INPB, "$(IOC):IFC1210-PWRMON-CH1-MAX-I-MSB NPP")
-    field(C   , "16.276") 		# 100mV ADC range/0.006R = 16.67A / 1024 = 16.276mA per LSB
+    field(C   , "0.016276") 		# 100mV ADC range/0.006R = 16.67A / 1024 = 16.276mA per LSB
     field(CALC, "(A|(B<<2))*C") 
-    field(PREC, "0") 
-    field(EGU , "mA")
-    field(HIHI, "6000")
+    field(PREC, "1") 
+    field(EGU , "A")
+    field(HIHI, "11.200") # according IFC1210 UG section 2.6 Imax = 11.2A
     field(HHSV, "MAJOR")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-W")
 }
@@ -354,8 +354,8 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-W")
     field(INPA, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V NPP")
     field(INPB, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I NPP") 		
     field(CALC, "A*B") 
-    field(PREC, "0") 
-    field(EGU , "mW")
+    field(PREC, "1") 
+    field(EGU , "W")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V-MSB")
 }
 
@@ -472,11 +472,11 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I")
     field(DESC, "CH2 actual Current")
     field(INPA, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I-LSB NPP")
     field(INPB, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I-MSB NPP")
-    field(C   , "16.276") 		# 100mV ADC range/0.006R = 16.67A / 1024 = 16.276mA per LSB
+    field(C   , "0.016276") 		# 100mV ADC range/0.006R = 16.67A / 1024 = 16.276mA per LSB
     field(CALC, "(A|(B<<2))*C")
-    field(PREC, "0") 
-    field(EGU , "mA")
-    field(HIHI, "8000")
+    field(PREC, "1") 
+    field(EGU , "A")
+    field(HIHI, "11") # according IFC1210 UG section 2.6 Imax = 11.2A
     field(HHSV, "MAJOR")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MIN-I-MSB")
 }
@@ -501,10 +501,10 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH2-MIN-I")
     field(DESC, "CH2 minimal Current")
     field(INPA, "$(IOC):IFC1210-PWRMON-CH2-MIN-I-LSB NPP")
     field(INPB, "$(IOC):IFC1210-PWRMON-CH2-MIN-I-MSB NPP")
-    field(C   , "16.276") 		# 100mV ADC range/0.006R = 16.67A / 1024 = 16.276mA per LSB
+    field(C   , "0.016276") 		# 100mV ADC range/0.006R = 16.67A / 1024 = 16.276mA per LSB
     field(CALC, "(A|(B<<2))*C")
-    field(PREC, "0") 
-    field(EGU , "mA")
+    field(PREC, "1") 
+    field(EGU , "A")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MAX-I-MSB")
 }
 
@@ -528,11 +528,11 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH2-MAX-I")
     field(DESC, "CH2 maximal Current")
     field(INPA, "$(IOC):IFC1210-PWRMON-CH2-MAX-I-LSB NPP")
     field(INPB, "$(IOC):IFC1210-PWRMON-CH2-MAX-I-MSB NPP")
-    field(C   , "16.276") 		# 100mV ADC range/0.006R = 16.67A / 1024 = 16.276mA per LSB
+    field(C   , "0.016276") 		# 100mV ADC range/0.006R = 16.67A / 1024 = 16.276mA per LSB
     field(CALC, "(A|(B<<2))*C") 
-    field(PREC, "0") 
-    field(EGU , "mA")
-    field(HIHI, "10000")
+    field(PREC, "1") 
+    field(EGU , "A")
+    field(HIHI, "11.2") # according IFC1210 UG section 2.6 Imax = 11.2A
     field(HHSV, "MAJOR")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-W")
 }
@@ -544,8 +544,8 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-W")
     field(INPA, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V NPP")
     field(INPB, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I NPP") 		
     field(CALC, "A*B") 
-    field(PREC, "0") 
-    field(EGU , "mW")
+    field(PREC, "1") 
+    field(EGU , "W")
     field(FLNK, "$(IOC):IFC1210-PWRMON-DISS")
 }
 
@@ -555,8 +555,7 @@ record(calc,"$(IOC):IFC1210-PWRMON-DISS")
     field(DESC, "actual total W")
     field(INPA, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-W NPP")
     field(INPB, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-W NPP") 		
-    field(C   , "0.001")
-    field(CALC, "(A+B)*C") 
+    field(CALC, "A+B") 
     field(PREC, "0") 
     field(EGU , "W")
     field(HIHI, "40")
