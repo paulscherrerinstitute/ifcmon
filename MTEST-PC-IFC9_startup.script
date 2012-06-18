@@ -4,9 +4,8 @@ require "regDev","test"
 require "pev","test"
 
 #######################################################################
-# Access trough PCIe_AGSW to USR1 - no longer required as soon DMA block
-# read transfer is implemented.
-pevAsynConfigure(0,"asynUsr1Pev","USR1", 0)
+# Access trough PCIe_AGSW to USR1 - for block transfer of status area
+pevConfigure(0,"Usr1StatusGeneric","USR1", 0, 0, 0, 255, 1)
 
 
 ### I2C components
@@ -36,8 +35,8 @@ pevAsynI2cConfigure(0, "pci_express_switch",0xc50000f5)
 pevAsynI2cConfigure(0, "pgm_clock",         0xe50000ee)
 
 # for FMC/XMC cards: One line for each I2C device on each bus
-#pevAsynI2cConfigure(0, "ifc1210_fmcxmc1",               0x840000xx) # replace xx bit 6:0 with I2C device address
-#pevAsynI2cConfigure(0, "ifc1210_fmcxmc2",               0xa40000xx) # replace xx bit 6:0 with I2C device address
+#pevAsynI2cConfigure(0, "ifc1210_fmcxmc1",               0x840000xx) # replace xx bit 6:0 with I2C device address, bit 7 = 1 for ELB direct access
+#pevAsynI2cConfigure(0, "ifc1210_fmcxmc2",               0xa40000xx) # replace xx bit 6:0 with I2C device address, bit 7 = 1 for ELB direct access
 
 # FMC 1/2 SFP+
 pevAsynI2cConfigure(0, "gtx1160_A0",        0x64000050)
