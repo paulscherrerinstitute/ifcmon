@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/06/18 07:55:21 $
+# $Date: 2012/06/18 13:29:20 $
 #
-# $Revision: 1.6 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_TCSR.template,v 1.6 2012/06/18 07:55:21 kalt_r Exp $
+# $Revision: 1.7 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_TCSR.template,v 1.7 2012/06/18 13:29:20 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -46,45 +46,45 @@
 #--------------------------------------------------------------------
 # Status
 
-#record(ai,"$(IOC):ILOC-GENERAL")
-#{
-#    field(DESC, "ILOC general")
-#    field(DTYP, "regDevAsyn")
-#    field(INP , "#C S @ifc1210_tcsr/0x00 T=UINT32")
-#    field(FLNK, "$(IOC):ILOC-PONFSM")
-#}
-#
-#record(ai,"$(IOC):ILOC-PONFSM")
-#{
-#    field(DESC, "ILOC PONFSM stat")
-#    field(DTYP, "regDevAsyn")
-#    field(INP , "#C S @ifc1210_tcsr/0x0C T=UINT32")
-#    field(FLNK, "$(IOC):ILOC-SIGN")
-#}
-#
-#record(ai,"$(IOC):ILOC-SIGN")
-#{
-#    field(DESC, "ILOC CENTRAL sign")
-#    field(DTYP, "regDevAsyn")
-#    field(INP , "#C S @ifc1210_tcsr/0x18 T=UINT32")
-#    field(FLNK, "$(IOC):V6-PCIE-DSN-L")
-#}
-#
-#record(ai,"$(IOC):V6-PCIE-DSN-L")
-#{
-#    field(DESC, "CENTRAL serial l")
-#    field(DTYP, "regDevAsyn")
-#    field(INP , "#C S @ifc1210_tcsr/0x38 T=UINT32")
-#    field(FLNK, "$(IOC):V6-PCIE-DSN-H")
-#}
-#
-#record(ai,"$(IOC):V6-PCIE-DSN-H")
-#{
-#    field(DESC, "CENTRAL serial h")
-#    field(DTYP, "regDevAsyn")
-#    field(INP , "#C S @ifc1210_tcsr/0x3C T=UINT32")
-#    field(FLNK, "$(IOC):")
-#}
+record(ai,"$(IOC):ILOC-GENERAL")
+{
+    field(DESC, "ILOC general")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S @PIO/0x00 T=UINT32")
+    field(PINI, "YES") # kick scanning once after startup of IOC
+    field(FLNK, "$(IOC):ILOC-PONFSM")
+}
+
+record(ai,"$(IOC):ILOC-PONFSM")
+{
+    field(DESC, "ILOC PONFSM stat")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S @PIO/0x0C T=UINT32")
+    field(FLNK, "$(IOC):ILOC-SIGN")
+}
+
+record(ai,"$(IOC):ILOC-SIGN")
+{
+    field(DESC, "ILOC CENTRAL sign")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S @PIO/0x18 T=UINT32")
+    field(FLNK, "$(IOC):V6-PCIE-DSN-L")
+}
+
+record(ai,"$(IOC):V6-PCIE-DSN-L")
+{
+    field(DESC, "CENTRAL serial l")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S @PIO/0x38 T=UINT32")
+    field(FLNK, "$(IOC):V6-PCIE-DSN-H")
+}
+
+record(ai,"$(IOC):V6-PCIE-DSN-H")
+{
+    field(DESC, "CENTRAL serial h")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S @PIO/0x3C T=UINT32")
+}
 
 
 
