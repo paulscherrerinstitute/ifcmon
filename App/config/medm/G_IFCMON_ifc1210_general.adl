@@ -1,6 +1,6 @@
 
 file {
-	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_ifc1210_general.adl"
+	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/./G_IFCMON_ifc1210_general.adl"
 	version=030104
 }
 display {
@@ -1340,7 +1340,7 @@ text {
 	object {
 		x=521
 		y=784
-		width=170
+		width=130
 		height=15
 	}
 	monitor {
@@ -1368,7 +1368,7 @@ text {
 	object {
 		x=521
 		y=802
-		width=170
+		width=130
 		height=15
 	}
 	monitor {
@@ -1391,4 +1391,36 @@ text {
 		clr=0
 	}
 	textix="Use with care - contact first user guide + datasheet!"
+}
+"text update" {
+	object {
+		x=658
+		y=784
+		width=30
+		height=15
+	}
+	monitor {
+		chan="$(IOC):PGMCLOCK-FREQ.EGU"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=658
+		y=802
+		width=30
+		height=15
+	}
+	monitor {
+		chan="$(IOC):PGMCLOCK-FVCO.EGU"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	limits {
+	}
 }
