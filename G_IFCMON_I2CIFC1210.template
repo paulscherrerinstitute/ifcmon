@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/24 07:00:58 $
+# $Date: 2012/06/18 07:59:13 $
 #
-# $Revision: 1.8 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.8 2012/05/24 07:00:58 kalt_r Exp $
+# $Revision: 1.9 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.9 2012/06/18 07:59:13 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -31,14 +31,6 @@
 #--------------------------------------------------------------------
 
 
-record(fanout,"$(IOC):IFC1210-I2C-FAN1")
-{
-    field(DESC, "periodical proc.")
-    field(SCAN, "1 second")
-    field(LNK1 ,"$(IOC):TEMP1")
-}
-
-
 # I2C bus 0x0:      temperature
 # device:           LM95235 temperature sensor U700 with local sensor only
 # datasheet:        https://codebeamer.psi.ch/cb/displayDocument/lm95235.pdf?doc_id=128846
@@ -50,9 +42,11 @@ record(ao,"$(IOC):TEMP1-CONF2")
 {
     field(DESC, "LM95235 U700 conf 2")
     field(DTYP, "regDevAsyn")
+    field(SCAN, "1 second")
     field(OUT , "#C S @lm95235_1/0xBF T=UINT8")
     field(PINI, "YES")
     field(VAL , "6") # see page 17 of datasheet: filter enabled
+    field(FLNK, "$(IOC):TEMP1-MSB")
 }
 
 # local sensor
@@ -61,25 +55,27 @@ record(ai,"$(IOC):TEMP1-MSB")
     field(DESC, "LM95235 U700 Local, MSB")
     field(DTYP, "regDevAsyn")
     field(INP , "#C S @lm95235_1/0x00 T=UINT8")
+    field(FLNK, "$(IOC):TEMP1-LSB")
 }
 record(ai,"$(IOC):TEMP1-LSB")
 {
     field(DESC, "LM95235 U700 Local, LSB")
     field(DTYP, "regDevAsyn")
     field(INP , "#C S @lm95235_1/0x30 T=UINT8")
+    field(FLNK, "$(IOC):TEMP1")
 }
 record(calc,"$(IOC):TEMP1")
 { 
     field(DESC, "LM95235 U700 Local Temp.")
-    field(INPA, "$(IOC):TEMP1-LSB PP")
-    field(INPB, "$(IOC):TEMP1-MSB PP")
+    field(INPA, "$(IOC):TEMP1-LSB NPP")
+    field(INPB, "$(IOC):TEMP1-MSB NPP")
     field(C   , "0.00390625") 		# scale 125/0x7D00, see LM95235 datasheet page 11
     field(CALC, "(A|B-(B&128?256:0)<<8)*C")
     field(PREC, "1") 
     field(EGU , "deg C")
     field(HIHI, "50")
     field(HHSV, "MAJOR")
-    field(FLNK, "$(IOC):TEMP2")
+    field(FLNK, "$(IOC):TEMP2-CONF2")
 }
 
 
@@ -99,6 +95,7 @@ record(ao,"$(IOC):TEMP2-CONF2")
     field(OUT , "#C S @lm95235_2/0xBF T=UINT8")
     field(PINI, "YES")
     field(VAL , "6") # see page 17 of datasheet: filter enabled
+    field(FLNK, "$(IOC):TEMP2-MSB")
 }
 
 # local sensor
@@ -107,18 +104,20 @@ record(ai,"$(IOC):TEMP2-MSB")
     field(DESC, "LM95235 U701 Local, MSB")
     field(DTYP, "regDevAsyn")
     field(INP , "#C S @lm95235_2/0x00 T=UINT8")
+    field(FLNK, "$(IOC):TEMP2-LSB")
 }
 record(ai,"$(IOC):TEMP2-LSB")
 {
     field(DESC, "LM95235 U701 Local, LSB")
     field(DTYP, "regDevAsyn")
     field(INP , "#C S @lm95235_2/0x30 T=UINT8")
+    field(FLNK, "$(IOC):TEMP2")
 }
 record(calc,"$(IOC):TEMP2")
 { 
     field(DESC, "LM95235 U701 Local Temp.")
-    field(INPA, "$(IOC):TEMP2-LSB PP")
-    field(INPB, "$(IOC):TEMP2-MSB PP")
+    field(INPA, "$(IOC):TEMP2-LSB NPP")
+    field(INPB, "$(IOC):TEMP2-MSB NPP")
     field(C   , "0.00390625") 		# scale 125/0x7D00, see LM95235 datasheet page 11
     field(CALC, "(A|B-(B&128?256:0)<<8)*C")
     field(PREC, "1") 
@@ -598,7 +597,7 @@ record(dfanout,"$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-DEACTIVE-SET")
     field(DOL , "0") # 0= no reset
     field(OMSL, "closed_loop")
     field(OUTA, "$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-ACTIVE NPP")
-#    field(FLNK, "") # end of IFC1210 processing chain
+    field(FLNK, "$(IOC):PGMCLOCK-REG0-CALC") 
 }
 
 
@@ -627,215 +626,168 @@ record(dfanout,"$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-DEACTIVE-SET")
 # datasheet:        https://codebeamer.psi.ch/cb/displayDocument/IDT8N4Q001+Rev+G+Advance+Data+Sheet.pdf?doc_id=128914
 # startup.script:   ifc1210_pgm_clock
 #--------------------------------------------------------------------
+
+#soft records for frequency calculation, internal FLNK's for update of freq. value for display
+record(ao,"$(IOC):PGMCLOCK-P")
+{
+    field(DESC, "IDT8N4Q001 P")
+    field(PINI, "YES") # default values for 200.0000x MHz
+    field(VAL , "1")
+    field(DRVL, "0")
+    field(DRVH, "3") # 2 bit
+    field(FLNK, "$(IOC):PGMCLOCK-FREQ")
+}
+
+record(ao,"$(IOC):PGMCLOCK-MINT")
+{
+    field(DESC, "IDT8N4Q001 MINT")
+    field(PINI, "YES")
+    field(VAL , "21")
+    field(DRVL, "0")
+    field(DRVH, "127") # 7 bit
+    field(FLNK, "$(IOC):PGMCLOCK-FREQ")
+}
+
+record(ao,"$(IOC):PGMCLOCK-MFRAC")
+{
+    field(DESC, "IDT8N4Q001 MFRAC")
+    field(PINI, "YES")
+    field(VAL , "35")
+    field(DRVL, "0")
+    field(DRVH, "262143") # 18 bit
+    field(FLNK, "$(IOC):PGMCLOCK-FREQ")
+}
+
+record(ao,"$(IOC):PGMCLOCK-N")
+{
+    field(DESC, "IDT8N4Q001 N")
+    field(PINI, "YES")
+    field(VAL , "12")
+    field(DRVL, "0")
+    field(DRVH, "128") # 7 bit
+    field(FLNK, "$(IOC):PGMCLOCK-FREQ")
+}
+
+record(calc,"$(IOC):PGMCLOCK-FREQ")
+{
+    field(DESC, "IDT8N4Q001 f calc")
+    field(INPA, "$(IOC):PGMCLOCK-P NPP")
+    field(INPB, "$(IOC):PGMCLOCK-MINT NPP")
+    field(INPC, "$(IOC):PGMCLOCK-MFRAC NPP")
+    field(INPD, "$(IOC):PGMCLOCK-N NPP")
+    field(E   , "114.285") # f_xtal in MHz / see datasheet for our chip IDT8N4QV01EG-0000
+    field(G   , "3.814697265625e-06") # = 1/2^18
+    field(CALC, "E*(B+(C*G))/(A*D)")
+    field(EGU , "MHz")
+    field(PREC, "6")
+    field(HIHI, "1300")
+    field(HHSV, "MAJOR")
+    field(LOLO, "15.476")
+    field(LLSV, "MAJOR")
+    field(FLNK, "$(IOC):PGMCLOCK-FVCO")
+}
+
+record(calc,"$(IOC):PGMCLOCK-FVCO")
+{
+    field(DESC, "IDT8N4Q001 f calc")
+    field(INPA, "$(IOC):PGMCLOCK-FREQ NPP")
+    field(INPB, "$(IOC):PGMCLOCK-N NPP")
+    field(CALC, "A*B")
+    field(EGU , "MHz")
+    field(PREC, "1")
+    field(HIHI, "2600")
+    field(HHSV, "MAJOR")
+    field(LOLO, "1950")
+    field(LLSV, "MAJOR")
+#    field(FLNK, "") # end of local FLNK chain for display update new frequency
+}
+
+
+
+# the I2C registers of the device for frequency configuration 00:
+record(calcout,"$(IOC):PGMCLOCK-REG0-CALC")
+{
+    field(DESC, "calc")
+    field(A   , "3")    # CP(1:0)
+    field(INPB, "$(IOC):PGMCLOCK-MINT.VAL NPP")
+    field(INPC, "$(IOC):PGMCLOCK-MFRAC.VAL NPP")
+    field(CALC, "(A<<6)+((B&31)<<1)+((C&131072)>>17)")
+    field(OUT,  "$(IOC):PGMCLOCK-REG0 NPP")
+    field(FLNK, "$(IOC):PGMCLOCK-REG0")
+}
 record(ao,"$(IOC):PGMCLOCK-REG0")
 {
     field(DESC, "IDT8N4Q001 ctrl reg 0")
     field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x00 T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
+    field(OUT,  "#C S @pgm_clock/0 T=UINT8")
+    field(FLNK, "$(IOC):PGMCLOCK-REG4-CALC")
 }
 
-record(ao,"$(IOC):PGMCLOCK-REG1")
+record(calcout,"$(IOC):PGMCLOCK-REG4-CALC")
 {
-    field(DESC, "IDT8N4Q001 ctrl reg 1")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x01 T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
+    field(DESC, "calc")
+    field(INPA, "$(IOC):PGMCLOCK-MFRAC.VAL NPP")
+    field(CALC, "((A&130560)>>9)")
+    field(OUT,  "$(IOC):PGMCLOCK-REG4 NPP")
+    field(FLNK, "$(IOC):PGMCLOCK-REG4")
 }
-
-record(ao,"$(IOC):PGMCLOCK-REG2")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 2")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x02 T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
-}
-
-record(ao,"$(IOC):PGMCLOCK-REG3")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 3")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x03 T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
-}
-
 record(ao,"$(IOC):PGMCLOCK-REG4")
 {
     field(DESC, "IDT8N4Q001 ctrl reg 4")
     field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x04 T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
+    field(OUT,  "#C S @pgm_clock/4 T=UINT8")
+    field(FLNK, "$(IOC):PGMCLOCK-REG8-CALC")
 }
 
-record(ao,"$(IOC):PGMCLOCK-REG5")
+record(calcout,"$(IOC):PGMCLOCK-REG8-CALC")
 {
-    field(DESC, "IDT8N4Q001 ctrl reg 5")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x05 T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
+    field(DESC, "calc")
+    field(INPA, "$(IOC):PGMCLOCK-MFRAC.VAL NPP")
+    field(CALC, "((A&510)>>1)")
+    field(OUT,  "$(IOC):PGMCLOCK-REG8 NPP")
+    field(FLNK, "$(IOC):PGMCLOCK-REG8")
 }
-
-record(ao,"$(IOC):PGMCLOCK-REG6")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 6")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x06 T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
-}
-
-record(ao,"$(IOC):PGMCLOCK-REG7")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 7")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x07 T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
-}
-
 record(ao,"$(IOC):PGMCLOCK-REG8")
 {
     field(DESC, "IDT8N4Q001 ctrl reg 8")
     field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x08 T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
+    field(OUT,  "#C S @pgm_clock/8 T=UINT8")
+    field(FLNK, "$(IOC):PGMCLOCK-REG12-CALC")
 }
 
-record(ao,"$(IOC):PGMCLOCK-REG9")
+record(calcout,"$(IOC):PGMCLOCK-REG12-CALC")
 {
-    field(DESC, "IDT8N4Q001 ctrl reg 9")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x09 T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
+    field(DESC, "calc")
+    field(INPA, "$(IOC):PGMCLOCK-N.VAL NPP")
+    field(INPB, "$(IOC):PGMCLOCK-MFRAC.VAL NPP")
+    field(CALC, "((B&1)<<7)+A")
+    field(OUT,  "$(IOC):PGMCLOCK-REG12 NPP")
+    field(FLNK, "$(IOC):PGMCLOCK-REG12")
 }
-
-record(ao,"$(IOC):PGMCLOCK-REG10")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 10")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x0A T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
-}
-
-record(ao,"$(IOC):PGMCLOCK-REG11")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 11")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x0B T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
-}
-
 record(ao,"$(IOC):PGMCLOCK-REG12")
 {
     field(DESC, "IDT8N4Q001 ctrl reg 12")
     field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x0C T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
+    field(OUT,  "#C S @pgm_clock/12 T=UINT8")
+    field(FLNK, "$(IOC):PGMCLOCK-REG20-CALC")
 }
 
-record(ao,"$(IOC):PGMCLOCK-REG13")
+record(calcout,"$(IOC):PGMCLOCK-REG20-CALC")
 {
-    field(DESC, "IDT8N4Q001 ctrl reg 13")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x0D T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
+    field(DESC, "calc")
+    field(INPA, "$(IOC):PGMCLOCK-P.VAL NPP")
+    field(B   , "0") # DSM
+    field(C   , "1") # DG: recommended setting 1
+    field(D   , "1") # DSM_ENA: enabled by default
+    field(E   , "0") # LF
+    field(CALC, "(A<<6)+(B<<3)+(C<<2)+(D<<1)+E")
+    field(OUT,  "$(IOC):PGMCLOCK-REG20 NPP")
+    field(FLNK, "$(IOC):PGMCLOCK-REG20")
 }
-
-record(ao,"$(IOC):PGMCLOCK-REG14")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 14")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x0E T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
-}
-
-record(ao,"$(IOC):PGMCLOCK-REG15")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 15")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x0F T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
-}
-
-# register 16d / 0x10 is reserved
-
-record(ao,"$(IOC):PGMCLOCK-REG17")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 17")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x11 T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
-}
-
-record(ao,"$(IOC):PGMCLOCK-REG18")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 18")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x12 T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
-}
-
-# register 19d / 0x13 is reserved
-
 record(ao,"$(IOC):PGMCLOCK-REG20")
 {
     field(DESC, "IDT8N4Q001 ctrl reg 20")
     field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x14 T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
+    field(OUT,  "#C S @pgm_clock/20 T=UINT8")
+#    field(FLNK, "") # end of IFC1210 processing chain
 }
-
-record(ao,"$(IOC):PGMCLOCK-REG21")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 21")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x15 T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
-}
-
-record(ao,"$(IOC):PGMCLOCK-REG22")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 22")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x16 T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
-}
-
-record(ao,"$(IOC):PGMCLOCK-REG23")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 23")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0x17 T=UINT8")
-    field(PINI, "NO") #### change to YES and update val field with power-on value
-    field(VAL,  "0")
-}
-
-
-record(ai,"$(IOC):PGMCLOCK-FREQ")
-{
-    field(DESC, "IDT8N4Q001 freq")
-    field(EGU , "MHz")
-    field(PREC, "6")
-    field(VAL , "0")
-}
-
-
