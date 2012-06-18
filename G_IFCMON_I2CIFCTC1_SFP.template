@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/23 13:04:24 $
+# $Date: 2012/06/18 07:58:05 $
 #
-# $Revision: 1.11 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1_SFP.template,v 1.11 2012/05/23 13:04:24 kalt_r Exp $
+# $Revision: 1.12 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1_SFP.template,v 1.12 2012/06/18 07:58:05 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -56,7 +56,6 @@ record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG")
 {
     field(DESC, "Status: $(DESCR)")
     field(DTYP, "regDevAsyn")
-#    field(SCAN, "1 second")
     field(INP , "#C S @ifctc1_cpld/$(SFP_IOEXT_STATUS_REG) T=UINT8")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-FAULT")
 }
