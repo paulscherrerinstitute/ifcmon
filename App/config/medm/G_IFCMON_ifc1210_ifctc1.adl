@@ -1783,21 +1783,6 @@ text {
 	limits {
 	}
 }
-"related display" {
-	object {
-		x=460
-		y=539
-		width=90
-		height=15
-	}
-	display[0] {
-		name="G_IFCMON_clk.adl"
-		args="IOC=$(IOC)"
-	}
-	clr=14
-	bclr=5
-	label="-setup/details"
-}
 rectangle {
 	object {
 		x=7
@@ -2996,5 +2981,31 @@ oval {
 	"dynamic attribute" {
 		clr="alarm"
 		chan="$(IOC):FMC12-VADJ-ENA"
+	}
+}
+oval {
+	object {
+		x=372
+		y=556
+		width=18
+		height=18
+	}
+	"basic attribute" {
+		clr=12
+	}
+}
+oval {
+	object {
+		x=374
+		y=558
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):PGMCLOCK-ENA-SET"
 	}
 }

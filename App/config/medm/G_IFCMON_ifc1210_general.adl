@@ -1,14 +1,14 @@
 
 file {
-	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_general.adl"
+	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_ifc1210_general.adl"
 	version=030104
 }
 display {
 	object {
-		x=
-		y=
-		width=659
-		height=400
+		x=112
+		y=39
+		width=709
+		height=827
 	}
 	clr=14
 	bclr=2
@@ -87,27 +87,1308 @@ display {
 		1a7309,
 	}
 }
+rectangle {
+	object {
+		x=4
+		y=4
+		width=700
+		height=25
+	}
+	"basic attribute" {
+		clr=7
+	}
+}
 text {
 	object {
-		x=74
-		y=110
+		x=553
+		y=7
 		width=50
-		height=40
+		height=20
 	}
 	"basic attribute" {
 		clr=14
 	}
 	textix="$(IOC)"
+	align="horiz. right"
+}
+rectangle {
+	object {
+		x=4
+		y=34
+		width=700
+		height=155
+	}
+	"basic attribute" {
+		clr=7
+	}
+}
+rectangle {
+	object {
+		x=9
+		y=64
+		width=690
+		height=120
+	}
+	"basic attribute" {
+		clr=4
+	}
 }
 text {
 	object {
-		x=80
-		y=40
-		width=51
-		height=40
+		x=12
+		y=72
+		width=90
+		height=15
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="general:"
+	textix="UBOOT boot from:"
+}
+text {
+	object {
+		x=13
+		y=90
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="FPGA local conf:"
+}
+text {
+	object {
+		x=12
+		y=108
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="FPGA JTAG:"
+}
+text {
+	object {
+		x=12
+		y=44
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Boot mode status (switches SW100/SW101)"
+}
+"text update" {
+	object {
+		x=158
+		y=72
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):SW101-P2020BOOT"
+		clr=14
+		bclr=2
+	}
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=158
+		y=90
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):SW100-FPGACONFIG"
+		clr=14
+		bclr=2
+	}
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=158
+		y=108
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):SW100-JTAGCONFIG"
+		clr=14
+		bclr=2
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=12
+		y=126
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Cold-Reset mode:"
+}
+"text update" {
+	object {
+		x=158
+		y=126
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):SW100-COLDRESET"
+		clr=14
+		bclr=2
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=5
+		y=7
+		width=50
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="IFC1210 general status & control"
+}
+text {
+	object {
+		x=12
+		y=144
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Enable PON-FSM:"
+}
+"text update" {
+	object {
+		x=158
+		y=144
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):SW100-PONFSM"
+		clr=14
+		bclr=2
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=12
+		y=162
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PON-FSM select:"
+}
+"text update" {
+	object {
+		x=158
+		y=162
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):SW100-PONFSMMODE"
+		clr=14
+		bclr=2
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=359
+		y=72
+		width=91
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PCIe SW100 cfg:"
+}
+text {
+	object {
+		x=360
+		y=108
+		width=91
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PCIe XMC1 stack:"
+}
+text {
+	object {
+		x=359
+		y=126
+		width=91
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PCIe XMC2 stack:"
+}
+"text update" {
+	object {
+		x=521
+		y=72
+		width=173
+		height=15
+	}
+	monitor {
+		chan="$(IOC):SW100-SWITCHMODE"
+		clr=14
+		bclr=2
+	}
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=521
+		y=108
+		width=173
+		height=15
+	}
+	monitor {
+		chan="$(IOC):PCIESTACK-XMC1"
+		clr=14
+		bclr=2
+	}
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=521
+		y=126
+		width=173
+		height=15
+	}
+	monitor {
+		chan="$(IOC):PCIESTACK-XMC2"
+		clr=14
+		bclr=2
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=359
+		y=144
+		width=91
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PCIe IFCTC1 stack:"
+}
+"text update" {
+	object {
+		x=521
+		y=144
+		width=173
+		height=15
+	}
+	monitor {
+		chan="$(IOC):PCIESTACK-IFCTC1"
+		clr=14
+		bclr=2
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=359
+		y=162
+		width=91
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PCIe clock mode:"
+}
+"text update" {
+	object {
+		x=521
+		y=162
+		width=173
+		height=15
+	}
+	monitor {
+		chan="$(IOC):PCIE-CLKMODE"
+		clr=14
+		bclr=2
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=359
+		y=90
+		width=91
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PCIe UBOOT cfg:"
+}
+"text update" {
+	object {
+		x=521
+		y=90
+		width=173
+		height=15
+	}
+	monitor {
+		chan="$(IOC):PCIE-CONFMODE"
+		clr=14
+		bclr=2
+	}
+	format="string"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=4
+		y=195
+		width=700
+		height=150
+	}
+	"basic attribute" {
+		clr=7
+	}
+}
+rectangle {
+	object {
+		x=9
+		y=225
+		width=690
+		height=115
+	}
+	"basic attribute" {
+		clr=4
+	}
+}
+text {
+	object {
+		x=12
+		y=233
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="VME mode:"
+}
+text {
+	object {
+		x=13
+		y=251
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="VME slot 1:"
+}
+text {
+	object {
+		x=12
+		y=269
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="RX sys-reset:"
+}
+text {
+	object {
+		x=12
+		y=205
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="VME status & control (switches SW101-SW103)"
+}
+"text update" {
+	object {
+		x=158
+		y=233
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):SW101-VMEMODE"
+		clr=14
+		bclr=2
+	}
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=158
+		y=251
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):SW101-VMESLOT1"
+		clr=14
+		bclr=2
+	}
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=158
+		y=269
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):SW101-VMERXSYSRST"
+		clr=14
+		bclr=2
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=12
+		y=287
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="TX sys-reset:"
+}
+"text update" {
+	object {
+		x=158
+		y=287
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):SW101-VMETXSYSRST"
+		clr=14
+		bclr=2
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=359
+		y=233
+		width=91
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="SW102 VME A23:20:"
+}
+"text update" {
+	object {
+		x=521
+		y=233
+		width=173
+		height=15
+	}
+	monitor {
+		chan="$(IOC):SW102-HEXROT"
+		clr=14
+		bclr=2
+	}
+	format="hexadecimal"
+	limits {
+	}
+}
+text {
+	object {
+		x=359
+		y=251
+		width=91
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="SW103 VME A19:16:"
+}
+"text update" {
+	object {
+		x=521
+		y=251
+		width=173
+		height=15
+	}
+	monitor {
+		chan="$(IOC):SW103-HEXROT"
+		clr=14
+		bclr=2
+	}
+	format="hexadecimal"
+	limits {
+	}
+}
+"text entry" {
+	object {
+		x=158
+		y=313
+		width=170
+		height=20
+	}
+	control {
+		chan="$(IOC):ELB-VME-CTL-SET"
+		clr=29
+		bclr=0
+	}
+	format="hexadecimal"
+	limits {
+	}
+}
+text {
+	object {
+		x=12
+		y=315
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="ELB-VME-CTL:"
+}
+rectangle {
+	object {
+		x=4
+		y=350
+		width=700
+		height=65
+	}
+	"basic attribute" {
+		clr=7
+	}
+}
+rectangle {
+	object {
+		x=9
+		y=380
+		width=690
+		height=30
+	}
+	"basic attribute" {
+		clr=4
+	}
+}
+text {
+	object {
+		x=12
+		y=388
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="XMC1:"
+}
+text {
+	object {
+		x=12
+		y=360
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="XMC status"
+}
+"text update" {
+	object {
+		x=158
+		y=388
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):XMC1-PRESENT"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=359
+		y=388
+		width=91
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="XMC2:"
+}
+"text update" {
+	object {
+		x=521
+		y=388
+		width=173
+		height=15
+	}
+	monitor {
+		chan="$(IOC):XMC2-PRESENT"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	format="string"
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=4
+		y=420
+		width=700
+		height=170
+	}
+	"basic attribute" {
+		clr=7
+	}
+}
+rectangle {
+	object {
+		x=9
+		y=450
+		width=690
+		height=135
+	}
+	"basic attribute" {
+		clr=4
+	}
+}
+text {
+	object {
+		x=12
+		y=458
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="FMC1:"
+}
+text {
+	object {
+		x=13
+		y=476
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="FMC1 PG M2C"
+}
+text {
+	object {
+		x=12
+		y=512
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="FMC1/2 PG C2M:"
+}
+text {
+	object {
+		x=12
+		y=430
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="FMC status & control"
+}
+"text update" {
+	object {
+		x=158
+		y=458
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):FMC1-PRESENT"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=158
+		y=476
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):FMC1-PGM2C"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	format="string"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=158
+		y=512
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):FMC12-PG-C2M"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=12
+		y=530
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="FMC1/2 VADJ ENA:"
+}
+"text update" {
+	object {
+		x=158
+		y=530
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):FMC12-VADJ-ENA"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=359
+		y=458
+		width=91
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="FMC2:"
+}
+"text update" {
+	object {
+		x=521
+		y=458
+		width=173
+		height=15
+	}
+	monitor {
+		chan="$(IOC):FMC2-PRESENT"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=359
+		y=476
+		width=91
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="FMC2 PG M2C:"
+}
+"text update" {
+	object {
+		x=521
+		y=476
+		width=173
+		height=15
+	}
+	monitor {
+		chan="$(IOC):FMC2-PGM2C"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=13
+		y=548
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Vadj DC/DC sync:"
+}
+"text update" {
+	object {
+		x=159
+		y=548
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):BMR-SYNC-RUN"
+		clr=14
+		bclr=2
+	}
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=13
+		y=566
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="DC/DC alert:"
+}
+"text update" {
+	object {
+		x=159
+		y=566
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):BMR-POWER-ALERT"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	format="string"
+	limits {
+	}
+}
+"choice button" {
+	object {
+		x=359
+		y=512
+		width=335
+		height=16
+	}
+	control {
+		chan="$(IOC):FMC12-PG-C2M-SET"
+		clr=14
+		bclr=5
+	}
+	stacking="column"
+}
+"choice button" {
+	object {
+		x=359
+		y=530
+		width=335
+		height=16
+	}
+	control {
+		chan="$(IOC):FMC12-VADJ-ENA-SET"
+		clr=14
+		bclr=5
+	}
+	stacking="column"
+}
+rectangle {
+	object {
+		x=4
+		y=594
+		width=700
+		height=229
+	}
+	"basic attribute" {
+		clr=7
+	}
+}
+rectangle {
+	object {
+		x=9
+		y=625
+		width=690
+		height=195
+	}
+	"basic attribute" {
+		clr=4
+	}
+}
+text {
+	object {
+		x=12
+		y=633
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="100 MHz fixed clock:"
+}
+text {
+	object {
+		x=13
+		y=651
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Distribution:"
+}
+text {
+	object {
+		x=12
+		y=605
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Clock control"
+}
+text {
+	object {
+		x=359
+		y=633
+		width=91
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pgm clock IDT8N4QV01EG-0000:"
+}
+text {
+	object {
+		x=359
+		y=651
+		width=91
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Pgm Clock:"
+}
+"choice button" {
+	object {
+		x=157
+		y=651
+		width=170
+		height=40
+	}
+	control {
+		chan="$(IOC):100MHZ-ENA-SET"
+		clr=14
+		bclr=5
+	}
+}
+"choice button" {
+	object {
+		x=521
+		y=651
+		width=170
+		height=40
+	}
+	control {
+		chan="$(IOC):PGMCLOCK-ENA-SET"
+		clr=14
+		bclr=5
+	}
+}
+"text entry" {
+	object {
+		x=521
+		y=696
+		width=170
+		height=20
+	}
+	control {
+		chan="$(IOC):PGMCLOCK-P"
+		clr=29
+		bclr=0
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=359
+		y=698
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="P[1:0]:"
+}
+"text entry" {
+	object {
+		x=521
+		y=716
+		width=170
+		height=20
+	}
+	control {
+		chan="$(IOC):PGMCLOCK-MINT"
+		clr=29
+		bclr=0
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=359
+		y=718
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="MINT[6:0]:"
+}
+"text entry" {
+	object {
+		x=521
+		y=736
+		width=170
+		height=20
+	}
+	control {
+		chan="$(IOC):PGMCLOCK-MFRAC"
+		clr=29
+		bclr=0
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=359
+		y=738
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="MFRAC[17:0]:"
+}
+"text entry" {
+	object {
+		x=521
+		y=756
+		width=170
+		height=20
+	}
+	control {
+		chan="$(IOC):PGMCLOCK-N"
+		clr=29
+		bclr=0
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=359
+		y=758
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="N[6:0]:"
+}
+text {
+	object {
+		x=359
+		y=784
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Output freq:"
+}
+"text update" {
+	object {
+		x=521
+		y=784
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):PGMCLOCK-FREQ"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+text {
+	object {
+		x=359
+		y=802
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="VCO lock freq ok:"
+}
+"text update" {
+	object {
+		x=521
+		y=802
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):PGMCLOCK-FVCO"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+text {
+	object {
+		x=162
+		y=605
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="Use with care - contact first user guide + datasheet!"
 }
