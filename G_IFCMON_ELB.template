@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/16 11:13:31 $
+# $Date: 2012/06/18 07:56:44 $
 #
-# $Revision: 1.4 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.4 2012/05/16 11:13:31 kalt_r Exp $
+# $Revision: 1.5 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.5 2012/06/18 07:56:44 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -22,15 +22,6 @@
 #--------------------------------------------------------------------
 
 
-record(fanout,"$(IOC):ELB-FAN1")
-{
-    field(DESC, "periodical proc.")
-    field(SCAN, "1 second")
-    field(LNK1 ,"$(IOC):ELB-STATIC-SW")
-}
-
-
-
 #--------------------------------------------------------------------
 # status / cyclic processing
 #--------------------------------------------------------------------
@@ -43,6 +34,7 @@ record(fanout,"$(IOC):ELB-FAN1")
 record(ai,"$(IOC):ELB-STATIC-SW")
 {
     field(DESC, "status of switches")
+    field(SCAN, "1 second")
     field(DTYP, "ifc1210")
     field(INP , "#C S0x4 @ELB")
     field(FLNK, "$(IOC):SW101-VMEMODE")
@@ -298,13 +290,13 @@ record ( mbbi, "$(IOC):PCIE-CONFMODE")
     field(SHFT, "24")
     field(NOBT, "4")
     field(ZRVL, "0")
-    field(ZRST, "single part")
+    field(ZRST, "Single part")
     field(ONVL, "1")
-    field(ONST, "single part/lat")
+    field(ONST, "Single part/lat")
     field(TWVL, "2")
-    field(TWST, "single part/EE")
+    field(TWST, "Single part/EE")
     field(THVL, "3")
-    field(THST, "s. part/lat/EE")
+    field(THST, "S. part/lat/EE")
     field(FLNK, "$(IOC):PCIE-CLKMODE")
 }
 record ( mbbi, "$(IOC):PCIE-CLKMODE")
@@ -462,6 +454,7 @@ record(ai,"$(IOC):ELB-BMRCTL")
     field(DESC, "BMR463 dc/dc st.")
     field(DTYP, "ifc1210")
     field(INP , "#C S0x40 @ELB")
+    field(FLNK, "$(IOC):BMR-SYNC-RUN")
 }
 record ( mbbi, "$(IOC):BMR-SYNC-RUN")
 {
@@ -555,14 +548,14 @@ record(ao,"$(IOC):ELB-FMCXMC-CTL-SET")
     field(OUT , "#C S0xC @ELB")
 }
 
-record ( mbbo, "$(IOC):IDTCLK-SEL-SET")
+record ( mbbo, "$(IOC):PGMCLOCK-SEL-SET")
 {
     field(DESC, "IDT pgm clock set")
     field(DTYP, "Raw Soft Channel")
     field(OUT , "$(IOC):ELB-GENERAL-CTL-SET PP")
     field(SHFT, "0")
     field(NOBT, "2")
-    field(VAL , "0")
+    field(VAL , "0") # only implemented FSEL = 00 I2C registers
     field(PINI, "YES")
     field(ZRVL, "0")
     field(ZRST, "00")
@@ -573,7 +566,7 @@ record ( mbbo, "$(IOC):IDTCLK-SEL-SET")
     field(THVL, "3")
     field(THST, "11")
 }
-record ( mbbo, "$(IOC):IDTCLK-ENA-SET")
+record ( mbbo, "$(IOC):PGMCLOCK-ENA-SET")
 {
     field(DESC, "IDT pgm clk ena set")
     field(DTYP, "Raw Soft Channel")
@@ -584,8 +577,10 @@ record ( mbbo, "$(IOC):IDTCLK-ENA-SET")
     field(PINI, "YES")
     field(ZRVL, "0")
     field(ZRST, "disabled")
+    field(ZRSV, "MINOR")
     field(ONVL, "1")
     field(ONST, "enabled")
+    field(ONSV, "NO_ALARM")
 }
 record ( mbbo, "$(IOC):12VFUSE-ENA-SET")
 {
