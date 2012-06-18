@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/06/18 13:29:33 $
+# $Date: 2012/06/18 14:48:51 $
 #
-# $Revision: 1.5 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_TMEM.template,v 1.5 2012/06/18 13:29:33 kalt_r Exp $
+# $Revision: 1.6 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_TMEM.template,v 1.6 2012/06/18 14:48:51 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -26,7 +26,7 @@
 #--------------------------------------------------------------------
 
 
-record(bi,"$(SYSTEM):USR1-ReadInitiator")
+record(bi,"$(IOC):USR1-ReadInitiator")
 {
     field(DTYP, "regDev")
     field(INP , "#C S @Usr1StatusGeneric/0")
@@ -257,7 +257,7 @@ record(mbbi,"$(IOC):GTX1131-TXBUFSTA")
     field(ONVL, "1")
     field(ONST, "no error")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1131-RXBUF")
+    field(FLNK, "$(IOC):GTX1131-TXBUFLVL")
 }
 record(mbbi,"$(IOC):GTX1131-TXBUFLVL")
 {
@@ -348,8 +348,8 @@ record(mbbi,"$(IOC):GTX1131-RXBUF")
     field(TWSV, "MINOR")
     
     field(THVL, "3")
-    field(THVL, "undefinded")
-    field(THVL, "MAJOR")
+    field(THST, "undefinded")
+    field(THSV, "MAJOR")
     
     field(FRVL, "4")
     field(FRST, "undefinded")
@@ -359,8 +359,8 @@ record(mbbi,"$(IOC):GTX1131-RXBUF")
     field(FVST, "buffer under")
     field(FVSV, "MAJOR")
     
-    field(SXSV, "6")
-    field(SXSV, "buffer over")
+    field(SXVL, "6")
+    field(SXST, "buffer over")
     field(SXSV, "MAJOR")
     
     field(SVVL, "7")
@@ -422,7 +422,7 @@ record(mbbi,"$(IOC):GTX1132-TXBUFSTA")
     field(ONVL, "1")
     field(ONST, "no error")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1132-RXBUF")
+    field(FLNK, "$(IOC):GTX1132-TXBUFLVL")
 }
 record(mbbi,"$(IOC):GTX1132-TXBUFLVL")
 {
@@ -513,8 +513,8 @@ record(mbbi,"$(IOC):GTX1132-RXBUF")
     field(TWSV, "MINOR")
     
     field(THVL, "3")
-    field(THVL, "undefinded")
-    field(THVL, "MAJOR")
+    field(THST, "undefinded")
+    field(THSV, "MAJOR")
     
     field(FRVL, "4")
     field(FRST, "undefinded")
@@ -524,8 +524,8 @@ record(mbbi,"$(IOC):GTX1132-RXBUF")
     field(FVST, "buffer under")
     field(FVSV, "MAJOR")
     
-    field(SXSV, "6")
-    field(SXSV, "buffer over")
+    field(SXVL, "6")
+    field(SXST, "buffer over")
     field(SXSV, "MAJOR")
     
     field(SVVL, "7")
@@ -587,7 +587,7 @@ record(mbbi,"$(IOC):GTX1133-TXBUFSTA")
     field(ONVL, "1")
     field(ONST, "no error")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1133-RXBUF")
+    field(FLNK, "$(IOC):GTX1133-TXBUFLVL")
 }
 record(mbbi,"$(IOC):GTX1133-TXBUFLVL")
 {
@@ -678,8 +678,8 @@ record(mbbi,"$(IOC):GTX1133-RXBUF")
     field(TWSV, "MINOR")
     
     field(THVL, "3")
-    field(THVL, "undefinded")
-    field(THVL, "MAJOR")
+    field(THST, "undefinded")
+    field(THSV, "MAJOR")
     
     field(FRVL, "4")
     field(FRST, "undefinded")
@@ -689,8 +689,8 @@ record(mbbi,"$(IOC):GTX1133-RXBUF")
     field(FVST, "buffer under")
     field(FVSV, "MAJOR")
     
-    field(SXSV, "6")
-    field(SXSV, "buffer over")
+    field(SXVL, "6")
+    field(SXST, "buffer over")
     field(SXSV, "MAJOR")
     
     field(SVVL, "7")
@@ -752,7 +752,7 @@ record(mbbi,"$(IOC):GTX1134-TXBUFSTA")
     field(ONVL, "1")
     field(ONST, "no error")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1134-RXBUF")
+    field(FLNK, "$(IOC):GTX1134-TXBUFLVL")
 }
 record(mbbi,"$(IOC):GTX1134-TXBUFLVL")
 {
@@ -843,8 +843,8 @@ record(mbbi,"$(IOC):GTX1134-RXBUF")
     field(TWSV, "MINOR")
     
     field(THVL, "3")
-    field(THVL, "undefinded")
-    field(THVL, "MAJOR")
+    field(THST, "undefinded")
+    field(THSV, "MAJOR")
     
     field(FRVL, "4")
     field(FRST, "undefinded")
@@ -854,8 +854,8 @@ record(mbbi,"$(IOC):GTX1134-RXBUF")
     field(FVST, "buffer under")
     field(FVSV, "MAJOR")
     
-    field(SXSV, "6")
-    field(SXSV, "buffer over")
+    field(SXVL, "6")
+    field(SXST, "buffer over")
     field(SXSV, "MAJOR")
     
     field(SVVL, "7")
@@ -918,7 +918,7 @@ record(mbbi,"$(IOC):GTX1141-TXBUFSTA")
     field(ONVL, "1")
     field(ONST, "no error")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1141-RXBUF")
+    field(FLNK, "$(IOC):GTX1141-TXBUFLVL")
 }
 record(mbbi,"$(IOC):GTX1141-TXBUFLVL")
 {
@@ -1009,8 +1009,8 @@ record(mbbi,"$(IOC):GTX1141-RXBUF")
     field(TWSV, "MINOR")
     
     field(THVL, "3")
-    field(THVL, "undefinded")
-    field(THVL, "MAJOR")
+    field(THST, "undefinded")
+    field(THSV, "MAJOR")
     
     field(FRVL, "4")
     field(FRST, "undefinded")
@@ -1020,8 +1020,8 @@ record(mbbi,"$(IOC):GTX1141-RXBUF")
     field(FVST, "buffer under")
     field(FVSV, "MAJOR")
     
-    field(SXSV, "6")
-    field(SXSV, "buffer over")
+    field(SXVL, "6")
+    field(SXST, "buffer over")
     field(SXSV, "MAJOR")
     
     field(SVVL, "7")
@@ -1083,7 +1083,7 @@ record(mbbi,"$(IOC):GTX1142-TXBUFSTA")
     field(ONVL, "1")
     field(ONST, "no error")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1142-RXBUF")
+    field(FLNK, "$(IOC):GTX1142-TXBUFLVL")
 }
 record(mbbi,"$(IOC):GTX1142-TXBUFLVL")
 {
@@ -1174,8 +1174,8 @@ record(mbbi,"$(IOC):GTX1142-RXBUF")
     field(TWSV, "MINOR")
     
     field(THVL, "3")
-    field(THVL, "undefinded")
-    field(THVL, "MAJOR")
+    field(THST, "undefinded")
+    field(THSV, "MAJOR")
     
     field(FRVL, "4")
     field(FRST, "undefinded")
@@ -1185,8 +1185,8 @@ record(mbbi,"$(IOC):GTX1142-RXBUF")
     field(FVST, "buffer under")
     field(FVSV, "MAJOR")
     
-    field(SXSV, "6")
-    field(SXSV, "buffer over")
+    field(SXVL, "6")
+    field(SXST, "buffer over")
     field(SXSV, "MAJOR")
     
     field(SVVL, "7")
@@ -1248,7 +1248,7 @@ record(mbbi,"$(IOC):GTX1143-TXBUFSTA")
     field(ONVL, "1")
     field(ONST, "no error")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1143-RXBUF")
+    field(FLNK, "$(IOC):GTX1143-TXBUFLVL")
 }
 record(mbbi,"$(IOC):GTX1143-TXBUFLVL")
 {
@@ -1339,8 +1339,8 @@ record(mbbi,"$(IOC):GTX1143-RXBUF")
     field(TWSV, "MINOR")
     
     field(THVL, "3")
-    field(THVL, "undefinded")
-    field(THVL, "MAJOR")
+    field(THST, "undefinded")
+    field(THSV, "MAJOR")
     
     field(FRVL, "4")
     field(FRST, "undefinded")
@@ -1350,8 +1350,8 @@ record(mbbi,"$(IOC):GTX1143-RXBUF")
     field(FVST, "buffer under")
     field(FVSV, "MAJOR")
     
-    field(SXSV, "6")
-    field(SXSV, "buffer over")
+    field(SXVL, "6")
+    field(SXST, "buffer over")
     field(SXSV, "MAJOR")
     
     field(SVVL, "7")
@@ -1413,7 +1413,7 @@ record(mbbi,"$(IOC):GTX1144-TXBUFSTA")
     field(ONVL, "1")
     field(ONST, "no error")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1144-RXBUF")
+    field(FLNK, "$(IOC):GTX1144-TXBUFLVL")
 }
 record(mbbi,"$(IOC):GTX1144-TXBUFLVL")
 {
@@ -1504,8 +1504,8 @@ record(mbbi,"$(IOC):GTX1144-RXBUF")
     field(TWSV, "MINOR")
     
     field(THVL, "3")
-    field(THVL, "undefinded")
-    field(THVL, "MAJOR")
+    field(THST, "undefinded")
+    field(THSV, "MAJOR")
     
     field(FRVL, "4")
     field(FRST, "undefinded")
@@ -1515,8 +1515,8 @@ record(mbbi,"$(IOC):GTX1144-RXBUF")
     field(FVST, "buffer under")
     field(FVSV, "MAJOR")
     
-    field(SXSV, "6")
-    field(SXSV, "buffer over")
+    field(SXVL, "6")
+    field(SXST, "buffer over")
     field(SXSV, "MAJOR")
     
     field(SVVL, "7")
@@ -1579,7 +1579,7 @@ record(mbbi,"$(IOC):GTX1161-TXBUFSTA")
     field(ONVL, "1")
     field(ONST, "no error")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1161-RXBUF")
+    field(FLNK, "$(IOC):GTX1161-TXBUFLVL")
 }
 record(mbbi,"$(IOC):GTX1161-TXBUFLVL")
 {
@@ -1670,8 +1670,8 @@ record(mbbi,"$(IOC):GTX1161-RXBUF")
     field(TWSV, "MINOR")
     
     field(THVL, "3")
-    field(THVL, "undefinded")
-    field(THVL, "MAJOR")
+    field(THST, "undefinded")
+    field(THSV, "MAJOR")
     
     field(FRVL, "4")
     field(FRST, "undefinded")
@@ -1681,8 +1681,8 @@ record(mbbi,"$(IOC):GTX1161-RXBUF")
     field(FVST, "buffer under")
     field(FVSV, "MAJOR")
     
-    field(SXSV, "6")
-    field(SXSV, "buffer over")
+    field(SXVL, "6")
+    field(SXST, "buffer over")
     field(SXSV, "MAJOR")
     
     field(SVVL, "7")
@@ -1744,7 +1744,7 @@ record(mbbi,"$(IOC):GTX1162-TXBUFSTA")
     field(ONVL, "1")
     field(ONST, "no error")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1162-RXBUF")
+    field(FLNK, "$(IOC):GTX1162-TXBUFLVL")
 }
 record(mbbi,"$(IOC):GTX1162-TXBUFLVL")
 {
@@ -1835,8 +1835,8 @@ record(mbbi,"$(IOC):GTX1162-RXBUF")
     field(TWSV, "MINOR")
     
     field(THVL, "3")
-    field(THVL, "undefinded")
-    field(THVL, "MAJOR")
+    field(THST, "undefinded")
+    field(THSV, "MAJOR")
     
     field(FRVL, "4")
     field(FRST, "undefinded")
@@ -1846,8 +1846,8 @@ record(mbbi,"$(IOC):GTX1162-RXBUF")
     field(FVST, "buffer under")
     field(FVSV, "MAJOR")
     
-    field(SXSV, "6")
-    field(SXSV, "buffer over")
+    field(SXVL, "6")
+    field(SXST, "buffer over")
     field(SXSV, "MAJOR")
     
     field(SVVL, "7")
@@ -1909,7 +1909,7 @@ record(mbbi,"$(IOC):GTX1163-TXBUFSTA")
     field(ONVL, "1")
     field(ONST, "no error")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1163-RXBUF")
+    field(FLNK, "$(IOC):GTX1163-TXBUFLVL")
 }
 record(mbbi,"$(IOC):GTX1163-TXBUFLVL")
 {
@@ -2000,8 +2000,8 @@ record(mbbi,"$(IOC):GTX1163-RXBUF")
     field(TWSV, "MINOR")
     
     field(THVL, "3")
-    field(THVL, "undefinded")
-    field(THVL, "MAJOR")
+    field(THST, "undefinded")
+    field(THSV, "MAJOR")
     
     field(FRVL, "4")
     field(FRST, "undefinded")
@@ -2011,8 +2011,8 @@ record(mbbi,"$(IOC):GTX1163-RXBUF")
     field(FVST, "buffer under")
     field(FVSV, "MAJOR")
     
-    field(SXSV, "6")
-    field(SXSV, "buffer over")
+    field(SXVL, "6")
+    field(SXST, "buffer over")
     field(SXSV, "MAJOR")
     
     field(SVVL, "7")
@@ -2074,7 +2074,7 @@ record(mbbi,"$(IOC):GTX1164-TXBUFSTA")
     field(ONVL, "1")
     field(ONST, "no error")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1164-RXBUF")
+    field(FLNK, "$(IOC):GTX1164-TXBUFLVL")
 }
 record(mbbi,"$(IOC):GTX1164-TXBUFLVL")
 {
@@ -2165,8 +2165,8 @@ record(mbbi,"$(IOC):GTX1164-RXBUF")
     field(TWSV, "MINOR")
     
     field(THVL, "3")
-    field(THVL, "undefinded")
-    field(THVL, "MAJOR")
+    field(THST, "undefinded")
+    field(THSV, "MAJOR")
     
     field(FRVL, "4")
     field(FRST, "undefinded")
@@ -2176,8 +2176,8 @@ record(mbbi,"$(IOC):GTX1164-RXBUF")
     field(FVST, "buffer under")
     field(FVSV, "MAJOR")
     
-    field(SXSV, "6")
-    field(SXSV, "buffer over")
+    field(SXVL, "6")
+    field(SXST, "buffer over")
     field(SXSV, "MAJOR")
     
     field(SVVL, "7")
@@ -2240,7 +2240,7 @@ record(mbbi,"$(IOC):GTX1121-TXBUFSTA")
     field(ONVL, "1")
     field(ONST, "no error")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1121-RXBUF")
+    field(FLNK, "$(IOC):GTX1121-TXBUFLVL")
 }
 record(mbbi,"$(IOC):GTX1121-TXBUFLVL")
 {
@@ -2331,8 +2331,8 @@ record(mbbi,"$(IOC):GTX1121-RXBUF")
     field(TWSV, "MINOR")
     
     field(THVL, "3")
-    field(THVL, "undefinded")
-    field(THVL, "MAJOR")
+    field(THST, "undefinded")
+    field(THSV, "MAJOR")
     
     field(FRVL, "4")
     field(FRST, "undefinded")
@@ -2342,8 +2342,8 @@ record(mbbi,"$(IOC):GTX1121-RXBUF")
     field(FVST, "buffer under")
     field(FVSV, "MAJOR")
     
-    field(SXSV, "6")
-    field(SXSV, "buffer over")
+    field(SXVL, "6")
+    field(SXST, "buffer over")
     field(SXSV, "MAJOR")
     
     field(SVVL, "7")
@@ -2405,7 +2405,7 @@ record(mbbi,"$(IOC):GTX1122-TXBUFSTA")
     field(ONVL, "1")
     field(ONST, "no error")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1122-RXBUF")
+    field(FLNK, "$(IOC):GTX1122-TXBUFLVL")
 }
 record(mbbi,"$(IOC):GTX1122-TXBUFLVL")
 {
@@ -2496,8 +2496,8 @@ record(mbbi,"$(IOC):GTX1122-RXBUF")
     field(TWSV, "MINOR")
     
     field(THVL, "3")
-    field(THVL, "undefinded")
-    field(THVL, "MAJOR")
+    field(THST, "undefinded")
+    field(THSV, "MAJOR")
     
     field(FRVL, "4")
     field(FRST, "undefinded")
@@ -2507,8 +2507,8 @@ record(mbbi,"$(IOC):GTX1122-RXBUF")
     field(FVST, "buffer under")
     field(FVSV, "MAJOR")
     
-    field(SXSV, "6")
-    field(SXSV, "buffer over")
+    field(SXVL, "6")
+    field(SXST, "buffer over")
     field(SXSV, "MAJOR")
     
     field(SVVL, "7")
@@ -2570,7 +2570,7 @@ record(mbbi,"$(IOC):GTX1123-TXBUFSTA")
     field(ONVL, "1")
     field(ONST, "no error")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1123-RXBUF")
+    field(FLNK, "$(IOC):GTX1123-TXBUFLVL")
 }
 record(mbbi,"$(IOC):GTX1123-TXBUFLVL")
 {
@@ -2661,8 +2661,8 @@ record(mbbi,"$(IOC):GTX1123-RXBUF")
     field(TWSV, "MINOR")
     
     field(THVL, "3")
-    field(THVL, "undefinded")
-    field(THVL, "MAJOR")
+    field(THST, "undefinded")
+    field(THSV, "MAJOR")
     
     field(FRVL, "4")
     field(FRST, "undefinded")
@@ -2672,8 +2672,8 @@ record(mbbi,"$(IOC):GTX1123-RXBUF")
     field(FVST, "buffer under")
     field(FVSV, "MAJOR")
     
-    field(SXSV, "6")
-    field(SXSV, "buffer over")
+    field(SXVL, "6")
+    field(SXST, "buffer over")
     field(SXSV, "MAJOR")
     
     field(SVVL, "7")
@@ -2735,7 +2735,7 @@ record(mbbi,"$(IOC):GTX1124-TXBUFSTA")
     field(ONVL, "1")
     field(ONST, "no error")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1124-RXBUF")
+    field(FLNK, "$(IOC):GTX1124-TXBUFLVL")
 }
 record(mbbi,"$(IOC):GTX1124-TXBUFLVL")
 {
@@ -2826,8 +2826,8 @@ record(mbbi,"$(IOC):GTX1124-RXBUF")
     field(TWSV, "MINOR")
     
     field(THVL, "3")
-    field(THVL, "undefinded")
-    field(THVL, "MAJOR")
+    field(THST, "undefinded")
+    field(THSV, "MAJOR")
     
     field(FRVL, "4")
     field(FRST, "undefinded")
@@ -2837,8 +2837,8 @@ record(mbbi,"$(IOC):GTX1124-RXBUF")
     field(FVST, "buffer under")
     field(FVSV, "MAJOR")
     
-    field(SXSV, "6")
-    field(SXSV, "buffer over")
+    field(SXVL, "6")
+    field(SXST, "buffer over")
     field(SXSV, "MAJOR")
     
     field(SVVL, "7")
