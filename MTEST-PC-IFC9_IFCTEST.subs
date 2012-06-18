@@ -7,23 +7,17 @@
 #
 
 
-
-#file pevTests.template{
-#{IOC = MTEST-PC-IFC9}
-#}
-
-#file i2cTests.template{
-#{IOC = MTEST-PC-IFC9}
-#}
-
-#file i2ctest.template{
-#{IOC = MTEST-PC-IFC9}
-#}
-
-
-
 file G_IFCMON_I2CIFC1210.template{
 {IOC = MTEST-PC-IFC9}
+}
+
+file G_IFCMON_I2CBMR463.template{
+pattern
+    {IOC                ,SUBDEV    ,I2CBUS          ,DESCR          }
+    {MTEST-PC-IFC9      ,BMR1V0    ,bmr463_1v0      ,"U704: 1V0"    }
+    {MTEST-PC-IFC9      ,BMR1V0OPT ,bmr463_1v0_opt  ,"U705: 1V0opt" }
+    {MTEST-PC-IFC9      ,BMR1V5    ,bmr463_1v5      ,"U706: 1V5"    }
+    {MTEST-PC-IFC9      ,BMRVADJ   ,bmr463_fmc_vadj ,"U707 Vadj"    }
 }
 
 file G_IFCMON_TMEM.template{
@@ -43,8 +37,7 @@ file G_IFCMON_I2CIFCTC1.template{
 }
 
 
-
-# line 56 scan 1 second ==> individual 1sec scanning for each of following instances of this template
+# Scanning: 1 sec update rate, FLNK'ed from I2CIFCTC1.template
 file G_IFCMON_I2CIFCTC1_SFP.template
 {    
     pattern

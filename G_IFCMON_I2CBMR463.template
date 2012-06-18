@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/05/03 09:41:53 $
+# $Date: 2012/06/18 07:56:02 $
 #
-# $Revision: 1.1 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CBMR463.template,v 1.1 2012/05/03 09:41:53 kalt_r Exp $
+# $Revision: 1.2 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CBMR463.template,v 1.2 2012/06/18 07:56:02 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -21,6 +21,11 @@
 #
 # This template requires following substitution parameters:
 # $(IOC)                                        The system name
+# $(SUBDEV)                                     Sub-Device
+#                       BMR1V0                  for BMR463 U704 VCC_1V0 (primary)
+#                       BMR1V0OPT               for BMR463 U705 VCC_1V0 (optional for LX240T big CENTRAL FPGA)
+#                       BMR1V5                  for BMR463 U706 VCC_1V5
+#                       BMRVADJ                 for BMR463 U707 FMC_Vadj 1.5-2.5V
 # $(I2CBUS)             ifc1210_bmr463_1v0      for BMR463 U704 VCC_1V0 (primary)
 #                       ifc1210_bmr463_1v0_opt  for BMR463 U705 VCC_1V0 (optional for LX240T big CENTRAL FPGA)
 #                       ifc1210_bmr463_1v5      for BMR463 U706 VCC_1V5
@@ -32,9 +37,64 @@
 #--------------------------------------------------------------------
 
 
+record(ai,"$(IOC):IFC1210-$(SUBDEV)-VIN")
+{
+    field(DESC, "$(DESCR): Vin")
+    field(SCAN, "1 second")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUS)/0x88 T=UINT8")
+    field(EGU , "V")
+    field(PREC, "2")
+    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-VOUT")
+}
 
+record(ai,"$(IOC):IFC1210-$(SUBDEV)-VOUT")
+{
+    field(DESC, "$(DESCR): Vout")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUS)/0x8B T=UINT8")
+    field(EGU , "V")
+    field(PREC, "2")
+    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-IOUT")
+}
 
+record(ai,"$(IOC):IFC1210-$(SUBDEV)-IOUT")
+{
+    field(DESC, "$(DESCR): Vout")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUS)/0x8C T=UINT8")
+    field(EGU , "A")
+    field(PREC, "1")
+    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-TEMP1")
+}
 
+record(ai,"$(IOC):IFC1210-$(SUBDEV)-TEMP1")
+{
+    field(DESC, "$(DESCR): Temp1")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUS)/0x8D T=UINT8")
+    field(EGU , "deg C")
+    field(PREC, "1")
+    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-DUTY")
+}
 
+record(ai,"$(IOC):IFC1210-$(SUBDEV)-DUTY")
+{
+    field(DESC, "$(DESCR): duty")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUS)/0x94 T=UINT8")
+    field(EGU , "%")
+    field(PREC, "0")
+    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-FREQ")
+}
 
+record(ai,"$(IOC):IFC1210-$(SUBDEV)-FREQ")
+{
+    field(DESC, "$(DESCR): Freq")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUS)/0x8D T=UINT8")
+    field(EGU , "kHz")
+    field(PREC, "2")
+#    field(FLNK, "$(IOC):")
+}
 
