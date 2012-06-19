@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
-# $Author: kalt_r $
-# $Date: 2012/06/18 14:48:51 $
+# $Author: schebacher $
+# $Date: 2012/06/19 08:20:38 $
 #
-# $Revision: 1.6 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_TMEM.template,v 1.6 2012/06/18 14:48:51 kalt_r Exp $
+# $Revision: 1.7 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_TMEM.template,v 1.7 2012/06/19 08:20:38 schebacher Exp $
 #
 #--------------------------------------------------------------------
 
@@ -242,11 +242,11 @@ record(mbbi,"$(IOC):GTX1131-RXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1131-TXBUF")
+    field(FLNK, "$(IOC):GTX1131-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1131-TXBUFSTA")
 {
-    field(DESC, "GTX1131 txbuf")
+    field(DESC, "GTX1131 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1131-STATUS NPP")
     field(SHFT, "6")
@@ -261,7 +261,7 @@ record(mbbi,"$(IOC):GTX1131-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1131-TXBUFLVL")
 {
-    field(DESC, "GTX1131 txbuf")
+    field(DESC, "GTX1131 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1131-STATUS NPP")
     field(SHFT, "7")
@@ -407,11 +407,11 @@ record(mbbi,"$(IOC):GTX1132-RXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1132-TXBUF")
+    field(FLNK, "$(IOC):GTX1132-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1132-TXBUFSTA")
 {
-    field(DESC, "GTX1132 txbuf")
+    field(DESC, "GTX1132 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1132-STATUS NPP")
     field(SHFT, "6")
@@ -426,7 +426,7 @@ record(mbbi,"$(IOC):GTX1132-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1132-TXBUFLVL")
 {
-    field(DESC, "GTX1132 txbuf")
+    field(DESC, "GTX1132 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1132-STATUS NPP")
     field(SHFT, "7")
@@ -572,11 +572,11 @@ record(mbbi,"$(IOC):GTX1133-RXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1133-TXBUF")
+    field(FLNK, "$(IOC):GTX1133-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1133-TXBUFSTA")
 {
-    field(DESC, "GTX1133 txbuf")
+    field(DESC, "GTX1133 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1133-STATUS NPP")
     field(SHFT, "6")
@@ -591,7 +591,7 @@ record(mbbi,"$(IOC):GTX1133-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1133-TXBUFLVL")
 {
-    field(DESC, "GTX1133 txbuf")
+    field(DESC, "GTX1133 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1133-STATUS NPP")
     field(SHFT, "7")
@@ -737,11 +737,11 @@ record(mbbi,"$(IOC):GTX1134-RXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1134-TXBUF")
+    field(FLNK, "$(IOC):GTX1134-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1134-TXBUFSTA")
 {
-    field(DESC, "GTX1134 txbuf")
+    field(DESC, "GTX1134 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1134-STATUS NPP")
     field(SHFT, "6")
@@ -756,7 +756,7 @@ record(mbbi,"$(IOC):GTX1134-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1134-TXBUFLVL")
 {
-    field(DESC, "GTX1134 txbuf")
+    field(DESC, "GTX1134 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1134-STATUS NPP")
     field(SHFT, "7")
@@ -903,11 +903,11 @@ record(mbbi,"$(IOC):GTX1141-RXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1141-TXBUF")
+    field(FLNK, "$(IOC):GTX1141-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1141-TXBUFSTA")
 {
-    field(DESC, "GTX1141 txbuf")
+    field(DESC, "GTX1141 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1141-STATUS NPP")
     field(SHFT, "6")
@@ -922,7 +922,7 @@ record(mbbi,"$(IOC):GTX1141-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1141-TXBUFLVL")
 {
-    field(DESC, "GTX1141 txbuf")
+    field(DESC, "GTX1141 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1141-STATUS NPP")
     field(SHFT, "7")
@@ -1068,11 +1068,11 @@ record(mbbi,"$(IOC):GTX1142-RXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1142-TXBUF")
+    field(FLNK, "$(IOC):GTX1142-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1142-TXBUFSTA")
 {
-    field(DESC, "GTX1142 txbuf")
+    field(DESC, "GTX1142 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1142-STATUS NPP")
     field(SHFT, "6")
@@ -1087,7 +1087,7 @@ record(mbbi,"$(IOC):GTX1142-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1142-TXBUFLVL")
 {
-    field(DESC, "GTX1142 txbuf")
+    field(DESC, "GTX1142 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1142-STATUS NPP")
     field(SHFT, "7")
@@ -1233,11 +1233,11 @@ record(mbbi,"$(IOC):GTX1143-RXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1143-TXBUF")
+    field(FLNK, "$(IOC):GTX1143-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1143-TXBUFSTA")
 {
-    field(DESC, "GTX1143 txbuf")
+    field(DESC, "GTX1143 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1143-STATUS NPP")
     field(SHFT, "6")
@@ -1252,7 +1252,7 @@ record(mbbi,"$(IOC):GTX1143-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1143-TXBUFLVL")
 {
-    field(DESC, "GTX1143 txbuf")
+    field(DESC, "GTX1143 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1143-STATUS NPP")
     field(SHFT, "7")
@@ -1398,11 +1398,11 @@ record(mbbi,"$(IOC):GTX1144-RXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1144-TXBUF")
+    field(FLNK, "$(IOC):GTX1144-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1144-TXBUFSTA")
 {
-    field(DESC, "GTX1144 txbuf")
+    field(DESC, "GTX1144 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1144-STATUS NPP")
     field(SHFT, "6")
@@ -1417,7 +1417,7 @@ record(mbbi,"$(IOC):GTX1144-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1144-TXBUFLVL")
 {
-    field(DESC, "GTX1144 txbuf")
+    field(DESC, "GTX1144 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1144-STATUS NPP")
     field(SHFT, "7")
@@ -1564,11 +1564,11 @@ record(mbbi,"$(IOC):GTX1161-RXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1161-TXBUF")
+    field(FLNK, "$(IOC):GTX1161-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1161-TXBUFSTA")
 {
-    field(DESC, "GTX1161 txbuf")
+    field(DESC, "GTX1161 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1161-STATUS NPP")
     field(SHFT, "6")
@@ -1583,7 +1583,7 @@ record(mbbi,"$(IOC):GTX1161-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1161-TXBUFLVL")
 {
-    field(DESC, "GTX1161 txbuf")
+    field(DESC, "GTX1161 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1161-STATUS NPP")
     field(SHFT, "7")
@@ -1729,11 +1729,11 @@ record(mbbi,"$(IOC):GTX1162-RXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1162-TXBUF")
+    field(FLNK, "$(IOC):GTX1162-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1162-TXBUFSTA")
 {
-    field(DESC, "GTX1162 txbuf")
+    field(DESC, "GTX1162 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1162-STATUS NPP")
     field(SHFT, "6")
@@ -1748,7 +1748,7 @@ record(mbbi,"$(IOC):GTX1162-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1162-TXBUFLVL")
 {
-    field(DESC, "GTX1162 txbuf")
+    field(DESC, "GTX1162 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1162-STATUS NPP")
     field(SHFT, "7")
@@ -1894,11 +1894,11 @@ record(mbbi,"$(IOC):GTX1163-RXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1163-TXBUF")
+    field(FLNK, "$(IOC):GTX1163-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1163-TXBUFSTA")
 {
-    field(DESC, "GTX1163 txbuf")
+    field(DESC, "GTX1163 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1163-STATUS NPP")
     field(SHFT, "6")
@@ -1913,7 +1913,7 @@ record(mbbi,"$(IOC):GTX1163-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1163-TXBUFLVL")
 {
-    field(DESC, "GTX1163 txbuf")
+    field(DESC, "GTX1163 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1163-STATUS NPP")
     field(SHFT, "7")
@@ -2059,11 +2059,11 @@ record(mbbi,"$(IOC):GTX1164-RXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1164-TXBUF")
+    field(FLNK, "$(IOC):GTX1164-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1164-TXBUFSTA")
 {
-    field(DESC, "GTX1164 txbuf")
+    field(DESC, "GTX1164 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1164-STATUS NPP")
     field(SHFT, "6")
@@ -2078,7 +2078,7 @@ record(mbbi,"$(IOC):GTX1164-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1164-TXBUFLVL")
 {
-    field(DESC, "GTX1164 txbuf")
+    field(DESC, "GTX1164 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1164-STATUS NPP")
     field(SHFT, "7")
@@ -2225,11 +2225,11 @@ record(mbbi,"$(IOC):GTX1121-RXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1121-TXBUF")
+    field(FLNK, "$(IOC):GTX1121-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1121-TXBUFSTA")
 {
-    field(DESC, "GTX1121 txbuf")
+    field(DESC, "GTX1121 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1121-STATUS NPP")
     field(SHFT, "6")
@@ -2244,7 +2244,7 @@ record(mbbi,"$(IOC):GTX1121-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1121-TXBUFLVL")
 {
-    field(DESC, "GTX1121 txbuf")
+    field(DESC, "GTX1121 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1121-STATUS NPP")
     field(SHFT, "7")
@@ -2390,11 +2390,11 @@ record(mbbi,"$(IOC):GTX1122-RXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1122-TXBUF")
+    field(FLNK, "$(IOC):GTX1122-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1122-TXBUFSTA")
 {
-    field(DESC, "GTX1122 txbuf")
+    field(DESC, "GTX1122 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1122-STATUS NPP")
     field(SHFT, "6")
@@ -2409,7 +2409,7 @@ record(mbbi,"$(IOC):GTX1122-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1122-TXBUFLVL")
 {
-    field(DESC, "GTX1122 txbuf")
+    field(DESC, "GTX1122 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1122-STATUS NPP")
     field(SHFT, "7")
@@ -2555,11 +2555,11 @@ record(mbbi,"$(IOC):GTX1123-RXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1123-TXBUF")
+    field(FLNK, "$(IOC):GTX1123-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1123-TXBUFSTA")
 {
-    field(DESC, "GTX1123 txbuf")
+    field(DESC, "GTX1123 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1123-STATUS NPP")
     field(SHFT, "6")
@@ -2574,7 +2574,7 @@ record(mbbi,"$(IOC):GTX1123-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1123-TXBUFLVL")
 {
-    field(DESC, "GTX1123 txbuf")
+    field(DESC, "GTX1123 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1123-STATUS NPP")
     field(SHFT, "7")
@@ -2720,11 +2720,11 @@ record(mbbi,"$(IOC):GTX1124-RXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1124-TXBUF")
+    field(FLNK, "$(IOC):GTX1124-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1124-TXBUFSTA")
 {
-    field(DESC, "GTX1124 txbuf")
+    field(DESC, "GTX1124 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1124-STATUS NPP")
     field(SHFT, "6")
@@ -2739,7 +2739,7 @@ record(mbbi,"$(IOC):GTX1124-TXBUFSTA")
 }
 record(mbbi,"$(IOC):GTX1124-TXBUFLVL")
 {
-    field(DESC, "GTX1124 txbuf")
+    field(DESC, "GTX1124 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
     field(INP , "$(IOC):GTX1124-STATUS NPP")
     field(SHFT, "7")
