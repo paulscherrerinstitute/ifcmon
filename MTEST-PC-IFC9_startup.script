@@ -1,7 +1,7 @@
 # KR84 02.05.2012: This shall become generic part of G_IFCMON startup.script
 
 require "regDev","test"
-require "pev","test"
+require "pev"
 
 #######################################################################
 # Access trough PCIe_AGSW to USR1 - for block transfer of status area
