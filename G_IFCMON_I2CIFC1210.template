@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/06/18 07:59:13 $
+# $Date: 2012/06/20 13:41:34 $
 #
-# $Revision: 1.9 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.9 2012/06/18 07:59:13 kalt_r Exp $
+# $Revision: 1.10 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.10 2012/06/20 13:41:34 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -789,5 +789,5 @@ record(ao,"$(IOC):PGMCLOCK-REG20")
     field(DESC, "IDT8N4Q001 ctrl reg 20")
     field(DTYP, "regDevAsyn")
     field(OUT,  "#C S @pgm_clock/20 T=UINT8")
-#    field(FLNK, "") # end of IFC1210 processing chain
+    field(FLNK, "$(IOC):IFCTC1-FW-MAJOR") # end of IFC1210 processing chain, now go to IFC_TC1
 }

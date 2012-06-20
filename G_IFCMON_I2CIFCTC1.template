@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/06/18 07:57:32 $
+# $Date: 2012/06/20 13:41:34 $
 #
-# $Revision: 1.12 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1.template,v 1.12 2012/06/18 07:57:32 kalt_r Exp $
+# $Revision: 1.13 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1.template,v 1.13 2012/06/20 13:41:34 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -61,7 +61,7 @@ record(ai,"$(IOC):IFCTC1-FW-MAJOR")
 {
     field(DESC, "IFC_TC1 Fw Id major")
     field(DTYP, "regDevAsyn")
-    field(SCAN, "1 second")
+#    field(SCAN, "1 second")
     field(INP , "#C S @ifctc1_cpld/0x1 T=UINT8") 
     field(FLNK, "$(IOC):IFCTC1-FW-MINOR")
 }
