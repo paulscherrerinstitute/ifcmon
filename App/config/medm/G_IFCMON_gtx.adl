@@ -1,14 +1,14 @@
 
 file {
-	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_gtx.adl"
+	name="/afs/psi.ch/user/s/schebacher/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_gtx.adl"
 	version=030104
 }
 display {
 	object {
-		x=
-		y=
-		width=400
-		height=400
+		x=307
+		y=25
+		width=524
+		height=574
 	}
 	clr=14
 	bclr=2
@@ -87,51 +87,553 @@ display {
 		1a7309,
 	}
 }
-text {
+rectangle {
 	object {
-		x=71
-		y=114
-		width=50
-		height=40
+		x=20
+		y=10
+		width=483
+		height=550
 	}
 	"basic attribute" {
-		clr=14
+		clr=9
 	}
-	textix="$(IOC)"
 }
 text {
 	object {
-		x=77
-		y=160
+		x=166
+		y=25
 		width=50
 		height=40
 	}
 	"basic attribute" {
-		clr=14
-	}
-	textix="$(SUBDEV)"
-}
-text {
-	object {
-		x=72
-		y=207
-		width=50
-		height=40
-	}
-	"basic attribute" {
-		clr=14
+		clr=0
 	}
 	textix="$(SFPFCT)"
 }
+rectangle {
+	object {
+		x=42
+		y=88
+		width=434
+		height=241
+	}
+	"basic attribute" {
+		clr=33
+	}
+}
+polyline {
+	object {
+		x=40
+		y=126
+		width=437
+		height=2
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	points {
+		(41,127)
+		(476,127)
+	}
+}
 text {
 	object {
-		x=85
-		y=63
+		x=166
+		y=96
 		width=168
-		height=40
+		height=25
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="GTX:"
+	textix="STATUS"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=256
+		y=126
+		width=2
+		height=205
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	points {
+		(257,127)
+		(257,330)
+	}
+}
+text {
+	object {
+		x=44
+		y=129
+		width=74
+		height=29
+	}
+	"basic attribute" {
+		clr=9
+	}
+	align="horiz. centered"
+}
+text {
+	object {
+		x=42
+		y=130
+		width=207
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="TX side"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=263
+		y=131
+		width=207
+		height=20
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="RX side"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=53
+		y=170
+		width=144
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Tx PLL lock detect"
+}
+oval {
+	object {
+		x=226
+		y=167
+		width=21
+		height=21
+	}
+	"basic attribute" {
+		clr=0
+		width=2
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):$(SUBDEV)-TXPLLLKDET"
+	}
+}
+oval {
+	object {
+		x=224
+		y=166
+		width=23
+		height=23
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+text {
+	object {
+		x=275
+		y=168
+		width=144
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Rx PLL lock detect"
+}
+oval {
+	object {
+		x=448
+		y=165
+		width=21
+		height=21
+	}
+	"basic attribute" {
+		clr=0
+		width=2
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):$(SUBDEV)-RXPLLLKDET"
+	}
+}
+oval {
+	object {
+		x=446
+		y=164
+		width=23
+		height=23
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+text {
+	object {
+		x=53
+		y=205
+		width=144
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Tx Over-/Underflow"
+}
+oval {
+	object {
+		x=226
+		y=202
+		width=21
+		height=21
+	}
+	"basic attribute" {
+		clr=0
+		width=2
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):$(SUBDEV)-TXBUFSTA"
+	}
+}
+oval {
+	object {
+		x=224
+		y=201
+		width=23
+		height=23
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+text {
+	object {
+		x=54
+		y=240
+		width=144
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Tx Buffer fullness :"
+}
+"text update" {
+	object {
+		x=70
+		y=269
+		width=166
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$(SUBDEV)-TXBUFLVL"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=275
+		y=205
+		width=144
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="RX Loss of Synchro"
+}
+oval {
+	object {
+		x=448
+		y=202
+		width=21
+		height=21
+	}
+	"basic attribute" {
+		clr=0
+		width=2
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):$(SUBDEV)-LOSSSYNC"
+	}
+}
+oval {
+	object {
+		x=446
+		y=201
+		width=23
+		height=23
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+polyline {
+	object {
+		x=41
+		y=152
+		width=437
+		height=2
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	points {
+		(42,153)
+		(477,153)
+	}
+}
+text {
+	object {
+		x=275
+		y=240
+		width=144
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="RX Buffer status :"
+}
+oval {
+	object {
+		x=448
+		y=237
+		width=21
+		height=21
+	}
+	"basic attribute" {
+		clr=0
+		width=2
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):$(SUBDEV)-RXBUF"
+	}
+}
+oval {
+	object {
+		x=446
+		y=236
+		width=23
+		height=23
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+"text update" {
+	object {
+		x=273
+		y=268
+		width=166
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$(SUBDEV)-RXBUF"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=42
+		y=360
+		width=435
+		height=177
+	}
+	"basic attribute" {
+		clr=52
+	}
+}
+text {
+	object {
+		x=120
+		y=370
+		width=306
+		height=20
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="Rx Eye Diagram Height"
+	align="horiz. centered"
+}
+polyline {
+	object {
+		x=42
+		y=395
+		width=436
+		height=2
+	}
+	"basic attribute" {
+		clr=0
+		width=2
+	}
+	points {
+		(43,396)
+		(477,396)
+	}
+}
+polyline {
+	object {
+		x=55
+		y=419
+		width=398
+		height=95
+	}
+	"basic attribute" {
+		clr=0
+		width=2
+	}
+	points {
+		(56,420)
+		(127,420)
+		(166,513)
+		(375,513)
+		(414,420)
+		(451,420)
+		(452,422)
+	}
+}
+polyline {
+	object {
+		x=56
+		y=418
+		width=409
+		height=98
+	}
+	"basic attribute" {
+		clr=0
+		width=2
+	}
+	points {
+		(57,515)
+		(126,515)
+		(163,419)
+		(375,419)
+		(417,515)
+		(455,515)
+		(464,515)
+	}
+}
+oval {
+	object {
+		x=172
+		y=425
+		width=197
+		height=83
+	}
+	"basic attribute" {
+		clr=0
+	}
+}
+polyline {
+	object {
+		x=270
+		y=428
+		width=2
+		height=76
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	points {
+		(271,429)
+		(271,503)
+	}
+}
+polyline {
+	object {
+		x=265
+		y=429
+		width=12
+		height=7
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	points {
+		(266,435)
+		(271,430)
+		(276,435)
+	}
+}
+polyline {
+	object {
+		x=264
+		y=496
+		width=11
+		height=9
+	}
+	"basic attribute" {
+		clr=14
+		width=2
+	}
+	points {
+		(265,497)
+		(271,504)
+		(274,498)
+	}
+}
+"text update" {
+	object {
+		x=280
+		y=455
+		width=50
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$(SUBDEV)-RXEYEH"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+text {
+	object {
+		x=335
+		y=455
+		width=24
+		height=18
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="mV"
 }
