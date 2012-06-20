@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
-# $Author: schebacher $
-# $Date: 2012/06/19 08:20:38 $
+# $Author: kalt_r $
+# $Date: 2012/06/20 13:38:30 $
 #
-# $Revision: 1.7 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_TMEM.template,v 1.7 2012/06/19 08:20:38 schebacher Exp $
+# $Revision: 1.8 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_TMEM.template,v 1.8 2012/06/20 13:38:30 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -201,17 +201,182 @@ record(ai,"$(IOC):GTX-IMPLEMENTED")
     field(DESC, "CENTRAL GTX impl")
     field(DTYP, "regDev")
     field(INP , "#C S @Usr1StatusGeneric/0x000058 T=UINT32")
-    field(FLNK, "$(IOC):GTX1131-STATUS")
+    field(FLNK, "$(IOC):GTX1130-STATUS")
 }
 
 ####################################### GTX Status ##############################
 # GTX113 VMEP0 / IFC_TC1
+# GTX1130
+record(ai,"$(IOC):GTX1130-STATUS")
+{
+    field(DESC, "GTX1130 sta")
+    field(DTYP, "regDev")
+    field(INP , "#C S @Usr1StatusGeneric/0x00005C T=UINT32")
+    field(FLNK, "$(IOC):GTX1130-TXPLLLKDET")
+}
+record(mbbi,"$(IOC):GTX1130-TXPLLLKDET")
+{
+    field(DESC, "GTX1130 txplllkdet")
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(IOC):GTX1130-STATUS NPP")
+    field(SHFT, "0")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "not locked")
+    field(ZRSV, "MAJOR")
+    field(ONVL, "1")
+    field(ONST, "locked")
+    field(ONSV, "NO_ALARM")
+    field(FLNK, "$(IOC):GTX1130-RXPLLLKDET")
+}
+record(mbbi,"$(IOC):GTX1130-RXPLLLKDET")
+{
+    field(DESC, "GTX1130 rxplllkdet")
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(IOC):GTX1130-STATUS NPP")
+    field(SHFT, "1")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "not locked")
+    field(ZRSV, "MAJOR")
+    field(ONVL, "1")
+    field(ONST, "locked")
+    field(ONSV, "NO_ALARM")
+    field(FLNK, "$(IOC):GTX1130-TXBUFSTA")
+}
+record(mbbi,"$(IOC):GTX1130-TXBUFSTA")
+{
+    field(DESC, "GTX1130 TXBUFSTA")
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(IOC):GTX1130-STATUS NPP")
+    field(SHFT, "6")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "under/overflow")
+    field(ZRSV, "MAJOR")
+    field(ONVL, "1")
+    field(ONST, "no error")
+    field(ONSV, "NO_ALARM")
+    field(FLNK, "$(IOC):GTX1130-TXBUFLVL")
+}
+record(mbbi,"$(IOC):GTX1130-TXBUFLVL")
+{
+    field(DESC, "GTX1130 TXBUFSTA")
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(IOC):GTX1130-STATUS NPP")
+    field(SHFT, "7")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "less than half")
+    field(ZRSV, "MINOR")
+    field(ONVL, "1")
+    field(ONST, "at least half")
+    field(ONSV, "NO_ALARM")
+    field(FLNK, "$(IOC):GTX1130-RXEYEH")
+}
+record(calc,"$(IOC):GTX1130-RXEYEH")
+{
+    field(DESC, "GTX1130 rx eye")
+    field(INPA, "$(IOC):GTX1130-STATUS NPP")
+    field(B   , "6.4516") # 200mV = 11111 = 31d  --> 6.4516 mV/LSB
+    field(CALC, "((A>>8)&31)*B")
+    field(EGU , "mVpp")
+    field(PREC, "0")
+    field(LOLO, "40")
+    field(LLSV, "MAJOR")
+    field(FLNK, "$(IOC):GTX1130-TXPOL")
+}
+record(mbbi,"$(IOC):GTX1130-TXPOL")
+{
+    field(DESC, "GTX1130 txpol")
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(IOC):GTX1130-STATUS NPP")
+    field(SHFT, "13")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "normal")
+    field(ONVL, "1")
+    field(ONST, "inverted")
+    field(FLNK, "$(IOC):GTX1130-RXPOL")
+}
+record(mbbi,"$(IOC):GTX1130-RXPOL")
+{
+    field(DESC, "GTX1130 rxpol")
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(IOC):GTX1130-STATUS NPP")
+    field(SHFT, "14")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "normal")
+    field(ONVL, "1")
+    field(ONST, "inverted")
+    field(FLNK, "$(IOC):GTX1130-LOSSSYNC")
+}
+record(mbbi,"$(IOC):GTX1130-LOSSSYNC")
+{
+    field(DESC, "GTX1130 losssync")
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(IOC):GTX1130-STATUS NPP")
+    field(SHFT, "20")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "ok")
+    field(ZRSV, "NO_ALARM")
+    field(ONVL, "1")
+    field(ONST, "lost")
+    field(ONSV, "MAJOR")
+    field(FLNK, "$(IOC):GTX1130-RXBUF")
+}
+record(mbbi,"$(IOC):GTX1130-RXBUF")
+{
+    field(DESC, "GTX1130 rxbuf")
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(IOC):GTX1130-STATUS NPP")
+    field(SHFT, "29")
+    field(NOBT, "3")
+    
+    field(ZRVL, "0")
+    field(ZRST, "nominal")
+    field(ZRSV, "NO_ALARM")
+    
+    field(ONVL, "1")
+    field(ONST, "buffer lo")
+    field(ONSV, "MINOR")
+    
+    field(TWVL, "2")
+    field(TWST, "buffer lolo")
+    field(TWSV, "MINOR")
+    
+    field(THVL, "3")
+    field(THST, "undefinded")
+    field(THSV, "MAJOR")
+    
+    field(FRVL, "4")
+    field(FRST, "undefinded")
+    field(FRSV, "MAJOR")
+    
+    field(FVVL, "5")
+    field(FVST, "buffer under")
+    field(FVSV, "MAJOR")
+    
+    field(SXVL, "6")
+    field(SXST, "buffer over")
+    field(SXSV, "MAJOR")
+    
+    field(SVVL, "7")
+    field(SVST, "undefinded")
+    field(SVSV, "MAJOR")
+    
+    field(FLNK, "$(IOC):GTX1131-STATUS")
+}
+# end GTX1130
+
 # GTX1131
 record(ai,"$(IOC):GTX1131-STATUS")
 {
     field(DESC, "GTX1131 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x00005C T=UINT32")
+    field(INP , "#C S @Usr1StatusGeneric/0x000060 T=UINT32")
     field(FLNK, "$(IOC):GTX1131-TXPLLLKDET")
 }
 record(mbbi,"$(IOC):GTX1131-TXPLLLKDET")
@@ -284,7 +449,7 @@ record(calc,"$(IOC):GTX1131-RXEYEH")
     field(PREC, "0")
     field(LOLO, "40")
     field(LLSV, "MAJOR")
-    field(FLNK, "")
+    field(FLNK, "$(IOC):GTX1131-TXPOL")
 }
 record(mbbi,"$(IOC):GTX1131-TXPOL")
 {
@@ -376,7 +541,7 @@ record(ai,"$(IOC):GTX1132-STATUS")
 {
     field(DESC, "GTX1132 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000060 T=UINT32")
+    field(INP , "#C S @Usr1StatusGeneric/0x000064 T=UINT32")
     field(FLNK, "$(IOC):GTX1132-TXPLLLKDET")
 }
 record(mbbi,"$(IOC):GTX1132-TXPLLLKDET")
@@ -449,7 +614,7 @@ record(calc,"$(IOC):GTX1132-RXEYEH")
     field(PREC, "0")
     field(LOLO, "40")
     field(LLSV, "MAJOR")
-    field(FLNK, "")
+    field(FLNK, "$(IOC):GTX1132-TXPOL")
 }
 record(mbbi,"$(IOC):GTX1132-TXPOL")
 {
@@ -541,7 +706,7 @@ record(ai,"$(IOC):GTX1133-STATUS")
 {
     field(DESC, "GTX1133 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000064 T=UINT32")
+    field(INP , "#C S @Usr1StatusGeneric/0x000068 T=UINT32")
     field(FLNK, "$(IOC):GTX1133-TXPLLLKDET")
 }
 record(mbbi,"$(IOC):GTX1133-TXPLLLKDET")
@@ -614,7 +779,7 @@ record(calc,"$(IOC):GTX1133-RXEYEH")
     field(PREC, "0")
     field(LOLO, "40")
     field(LLSV, "MAJOR")
-    field(FLNK, "")
+    field(FLNK, "$(IOC):GTX1133-TXPOL")
 }
 record(mbbi,"$(IOC):GTX1133-TXPOL")
 {
@@ -697,23 +862,24 @@ record(mbbi,"$(IOC):GTX1133-RXBUF")
     field(SVST, "undefinded")
     field(SVSV, "MAJOR")
     
-    field(FLNK, "$(IOC):GTX1134-STATUS")
+    field(FLNK, "$(IOC):GTX1140-STATUS")
 }
 # end GTX1133
 
-# GTX1134
-record(ai,"$(IOC):GTX1134-STATUS")
+# GTX114 VMEP0 / IFC_TC1
+# GTX1140
+record(ai,"$(IOC):GTX1140-STATUS")
 {
-    field(DESC, "GTX1134 sta")
+    field(DESC, "GTX1140 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000068 T=UINT32")
-    field(FLNK, "$(IOC):GTX1134-TXPLLLKDET")
+    field(INP , "#C S @Usr1StatusGeneric/0x00006C T=UINT32")
+    field(FLNK, "$(IOC):GTX1140-TXPLLLKDET")
 }
-record(mbbi,"$(IOC):GTX1134-TXPLLLKDET")
+record(mbbi,"$(IOC):GTX1140-TXPLLLKDET")
 {
-    field(DESC, "GTX1134 txplllkdet")
+    field(DESC, "GTX1140 txplllkdet")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1134-STATUS NPP")
+    field(INP , "$(IOC):GTX1140-STATUS NPP")
     field(SHFT, "0")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -722,13 +888,13 @@ record(mbbi,"$(IOC):GTX1134-TXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1134-RXPLLLKDET")
+    field(FLNK, "$(IOC):GTX1140-RXPLLLKDET")
 }
-record(mbbi,"$(IOC):GTX1134-RXPLLLKDET")
+record(mbbi,"$(IOC):GTX1140-RXPLLLKDET")
 {
-    field(DESC, "GTX1134 rxplllkdet")
+    field(DESC, "GTX1140 rxplllkdet")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1134-STATUS NPP")
+    field(INP , "$(IOC):GTX1140-STATUS NPP")
     field(SHFT, "1")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -737,13 +903,13 @@ record(mbbi,"$(IOC):GTX1134-RXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1134-TXBUFSTA")
+    field(FLNK, "$(IOC):GTX1140-TXBUFSTA")
 }
-record(mbbi,"$(IOC):GTX1134-TXBUFSTA")
+record(mbbi,"$(IOC):GTX1140-TXBUFSTA")
 {
-    field(DESC, "GTX1134 TXBUFSTA")
+    field(DESC, "GTX1140 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1134-STATUS NPP")
+    field(INP , "$(IOC):GTX1140-STATUS NPP")
     field(SHFT, "6")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -752,13 +918,13 @@ record(mbbi,"$(IOC):GTX1134-TXBUFSTA")
     field(ONVL, "1")
     field(ONST, "no error")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1134-TXBUFLVL")
+    field(FLNK, "$(IOC):GTX1140-TXBUFLVL")
 }
-record(mbbi,"$(IOC):GTX1134-TXBUFLVL")
+record(mbbi,"$(IOC):GTX1140-TXBUFLVL")
 {
-    field(DESC, "GTX1134 TXBUFSTA")
+    field(DESC, "GTX1140 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1134-STATUS NPP")
+    field(INP , "$(IOC):GTX1140-STATUS NPP")
     field(SHFT, "7")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -767,51 +933,51 @@ record(mbbi,"$(IOC):GTX1134-TXBUFLVL")
     field(ONVL, "1")
     field(ONST, "at least half")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1134-RXEYEH")
+    field(FLNK, "$(IOC):GTX1140-RXEYEH")
 }
-record(calc,"$(IOC):GTX1134-RXEYEH")
+record(calc,"$(IOC):GTX1140-RXEYEH")
 {
-    field(DESC, "GTX1134 rx eye")
-    field(INPA, "$(IOC):GTX1134-STATUS NPP")
+    field(DESC, "GTX1140 rx eye")
+    field(INPA, "$(IOC):GTX1140-STATUS NPP")
     field(B   , "6.4516") # 200mV = 11111 = 31d  --> 6.4516 mV/LSB
     field(CALC, "((A>>8)&31)*B")
     field(EGU , "mVpp")
     field(PREC, "0")
     field(LOLO, "40")
     field(LLSV, "MAJOR")
-    field(FLNK, "")
+    field(FLNK, "$(IOC):GTX1140-TXPOL")
 }
-record(mbbi,"$(IOC):GTX1134-TXPOL")
+record(mbbi,"$(IOC):GTX1140-TXPOL")
 {
-    field(DESC, "GTX1134 txpol")
+    field(DESC, "GTX1140 txpol")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1134-STATUS NPP")
+    field(INP , "$(IOC):GTX1140-STATUS NPP")
     field(SHFT, "13")
     field(NOBT, "1")
     field(ZRVL, "0")
     field(ZRST, "normal")
     field(ONVL, "1")
     field(ONST, "inverted")
-    field(FLNK, "$(IOC):GTX1134-RXPOL")
+    field(FLNK, "$(IOC):GTX1140-RXPOL")
 }
-record(mbbi,"$(IOC):GTX1134-RXPOL")
+record(mbbi,"$(IOC):GTX1140-RXPOL")
 {
-    field(DESC, "GTX1134 rxpol")
+    field(DESC, "GTX1140 rxpol")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1134-STATUS NPP")
+    field(INP , "$(IOC):GTX1140-STATUS NPP")
     field(SHFT, "14")
     field(NOBT, "1")
     field(ZRVL, "0")
     field(ZRST, "normal")
     field(ONVL, "1")
     field(ONST, "inverted")
-    field(FLNK, "$(IOC):GTX1134-LOSSSYNC")
+    field(FLNK, "$(IOC):GTX1140-LOSSSYNC")
 }
-record(mbbi,"$(IOC):GTX1134-LOSSSYNC")
+record(mbbi,"$(IOC):GTX1140-LOSSSYNC")
 {
-    field(DESC, "GTX1134 losssync")
+    field(DESC, "GTX1140 losssync")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1134-STATUS NPP")
+    field(INP , "$(IOC):GTX1140-STATUS NPP")
     field(SHFT, "20")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -820,13 +986,13 @@ record(mbbi,"$(IOC):GTX1134-LOSSSYNC")
     field(ONVL, "1")
     field(ONST, "lost")
     field(ONSV, "MAJOR")
-    field(FLNK, "$(IOC):GTX1134-RXBUF")
+    field(FLNK, "$(IOC):GTX1140-RXBUF")
 }
-record(mbbi,"$(IOC):GTX1134-RXBUF")
+record(mbbi,"$(IOC):GTX1140-RXBUF")
 {
-    field(DESC, "GTX1134 rxbuf")
+    field(DESC, "GTX1140 rxbuf")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1134-STATUS NPP")
+    field(INP , "$(IOC):GTX1140-STATUS NPP")
     field(SHFT, "29")
     field(NOBT, "3")
     
@@ -864,15 +1030,14 @@ record(mbbi,"$(IOC):GTX1134-RXBUF")
     
     field(FLNK, "$(IOC):GTX1141-STATUS")
 }
-# end GTX1134
+# end GTX1140
 
-# GTX114 VMEP0 / IFC_TC1
 # GTX1141
 record(ai,"$(IOC):GTX1141-STATUS")
 {
     field(DESC, "GTX1141 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x00006C T=UINT32")
+    field(INP , "#C S @Usr1StatusGeneric/0x000070 T=UINT32")
     field(FLNK, "$(IOC):GTX1141-TXPLLLKDET")
 }
 record(mbbi,"$(IOC):GTX1141-TXPLLLKDET")
@@ -945,7 +1110,7 @@ record(calc,"$(IOC):GTX1141-RXEYEH")
     field(PREC, "0")
     field(LOLO, "40")
     field(LLSV, "MAJOR")
-    field(FLNK, "")
+    field(FLNK, "$(IOC):GTX1141-TXPOL")
 }
 record(mbbi,"$(IOC):GTX1141-TXPOL")
 {
@@ -1037,7 +1202,7 @@ record(ai,"$(IOC):GTX1142-STATUS")
 {
     field(DESC, "GTX1142 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000070 T=UINT32")
+    field(INP , "#C S @Usr1StatusGeneric/0x000074 T=UINT32")
     field(FLNK, "$(IOC):GTX1142-TXPLLLKDET")
 }
 record(mbbi,"$(IOC):GTX1142-TXPLLLKDET")
@@ -1110,7 +1275,7 @@ record(calc,"$(IOC):GTX1142-RXEYEH")
     field(PREC, "0")
     field(LOLO, "40")
     field(LLSV, "MAJOR")
-    field(FLNK, "")
+    field(FLNK, "$(IOC):GTX1142-TXPOL")
 }
 record(mbbi,"$(IOC):GTX1142-TXPOL")
 {
@@ -1202,7 +1367,7 @@ record(ai,"$(IOC):GTX1143-STATUS")
 {
     field(DESC, "GTX1143 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000074 T=UINT32")
+    field(INP , "#C S @Usr1StatusGeneric/0x000078 T=UINT32")
     field(FLNK, "$(IOC):GTX1143-TXPLLLKDET")
 }
 record(mbbi,"$(IOC):GTX1143-TXPLLLKDET")
@@ -1275,7 +1440,7 @@ record(calc,"$(IOC):GTX1143-RXEYEH")
     field(PREC, "0")
     field(LOLO, "40")
     field(LLSV, "MAJOR")
-    field(FLNK, "")
+    field(FLNK, "$(IOC):GTX1143-TXPOL")
 }
 record(mbbi,"$(IOC):GTX1143-TXPOL")
 {
@@ -1358,23 +1523,24 @@ record(mbbi,"$(IOC):GTX1143-RXBUF")
     field(SVST, "undefinded")
     field(SVSV, "MAJOR")
     
-    field(FLNK, "$(IOC):GTX1144-STATUS")
+    field(FLNK, "$(IOC):GTX1160-STATUS")
 }
 # end GTX1143
 
-# GTX1144
-record(ai,"$(IOC):GTX1144-STATUS")
+# GTX116 FMC1
+# GTX1160
+record(ai,"$(IOC):GTX1160-STATUS")
 {
-    field(DESC, "GTX1144 sta")
+    field(DESC, "GTX1160 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000078 T=UINT32")
-    field(FLNK, "$(IOC):GTX1144-TXPLLLKDET")
+    field(INP , "#C S @Usr1StatusGeneric/0x00007C T=UINT32")
+    field(FLNK, "$(IOC):GTX1160-TXPLLLKDET")
 }
-record(mbbi,"$(IOC):GTX1144-TXPLLLKDET")
+record(mbbi,"$(IOC):GTX1160-TXPLLLKDET")
 {
-    field(DESC, "GTX1144 txplllkdet")
+    field(DESC, "GTX1160 txplllkdet")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1144-STATUS NPP")
+    field(INP , "$(IOC):GTX1160-STATUS NPP")
     field(SHFT, "0")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -1383,13 +1549,13 @@ record(mbbi,"$(IOC):GTX1144-TXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1144-RXPLLLKDET")
+    field(FLNK, "$(IOC):GTX1160-RXPLLLKDET")
 }
-record(mbbi,"$(IOC):GTX1144-RXPLLLKDET")
+record(mbbi,"$(IOC):GTX1160-RXPLLLKDET")
 {
-    field(DESC, "GTX1144 rxplllkdet")
+    field(DESC, "GTX1160 rxplllkdet")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1144-STATUS NPP")
+    field(INP , "$(IOC):GTX1160-STATUS NPP")
     field(SHFT, "1")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -1398,13 +1564,13 @@ record(mbbi,"$(IOC):GTX1144-RXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1144-TXBUFSTA")
+    field(FLNK, "$(IOC):GTX1160-TXBUFSTA")
 }
-record(mbbi,"$(IOC):GTX1144-TXBUFSTA")
+record(mbbi,"$(IOC):GTX1160-TXBUFSTA")
 {
-    field(DESC, "GTX1144 TXBUFSTA")
+    field(DESC, "GTX1160 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1144-STATUS NPP")
+    field(INP , "$(IOC):GTX1160-STATUS NPP")
     field(SHFT, "6")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -1413,13 +1579,13 @@ record(mbbi,"$(IOC):GTX1144-TXBUFSTA")
     field(ONVL, "1")
     field(ONST, "no error")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1144-TXBUFLVL")
+    field(FLNK, "$(IOC):GTX1160-TXBUFLVL")
 }
-record(mbbi,"$(IOC):GTX1144-TXBUFLVL")
+record(mbbi,"$(IOC):GTX1160-TXBUFLVL")
 {
-    field(DESC, "GTX1144 TXBUFSTA")
+    field(DESC, "GTX1160 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1144-STATUS NPP")
+    field(INP , "$(IOC):GTX1160-STATUS NPP")
     field(SHFT, "7")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -1428,51 +1594,51 @@ record(mbbi,"$(IOC):GTX1144-TXBUFLVL")
     field(ONVL, "1")
     field(ONST, "at least half")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1144-RXEYEH")
+    field(FLNK, "$(IOC):GTX1160-RXEYEH")
 }
-record(calc,"$(IOC):GTX1144-RXEYEH")
+record(calc,"$(IOC):GTX1160-RXEYEH")
 {
-    field(DESC, "GTX1144 rx eye")
-    field(INPA, "$(IOC):GTX1144-STATUS NPP")
+    field(DESC, "GTX1160 rx eye")
+    field(INPA, "$(IOC):GTX1160-STATUS NPP")
     field(B   , "6.4516") # 200mV = 11111 = 31d  --> 6.4516 mV/LSB
     field(CALC, "((A>>8)&31)*B")
     field(EGU , "mVpp")
     field(PREC, "0")
     field(LOLO, "40")
     field(LLSV, "MAJOR")
-    field(FLNK, "")
+    field(FLNK, "$(IOC):GTX1160-TXPOL")
 }
-record(mbbi,"$(IOC):GTX1144-TXPOL")
+record(mbbi,"$(IOC):GTX1160-TXPOL")
 {
-    field(DESC, "GTX1144 txpol")
+    field(DESC, "GTX1160 txpol")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1144-STATUS NPP")
+    field(INP , "$(IOC):GTX1160-STATUS NPP")
     field(SHFT, "13")
     field(NOBT, "1")
     field(ZRVL, "0")
     field(ZRST, "normal")
     field(ONVL, "1")
     field(ONST, "inverted")
-    field(FLNK, "$(IOC):GTX1144-RXPOL")
+    field(FLNK, "$(IOC):GTX1160-RXPOL")
 }
-record(mbbi,"$(IOC):GTX1144-RXPOL")
+record(mbbi,"$(IOC):GTX1160-RXPOL")
 {
-    field(DESC, "GTX1144 rxpol")
+    field(DESC, "GTX1160 rxpol")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1144-STATUS NPP")
+    field(INP , "$(IOC):GTX1160-STATUS NPP")
     field(SHFT, "14")
     field(NOBT, "1")
     field(ZRVL, "0")
     field(ZRST, "normal")
     field(ONVL, "1")
     field(ONST, "inverted")
-    field(FLNK, "$(IOC):GTX1144-LOSSSYNC")
+    field(FLNK, "$(IOC):GTX1160-LOSSSYNC")
 }
-record(mbbi,"$(IOC):GTX1144-LOSSSYNC")
+record(mbbi,"$(IOC):GTX1160-LOSSSYNC")
 {
-    field(DESC, "GTX1144 losssync")
+    field(DESC, "GTX1160 losssync")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1144-STATUS NPP")
+    field(INP , "$(IOC):GTX1160-STATUS NPP")
     field(SHFT, "20")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -1481,13 +1647,13 @@ record(mbbi,"$(IOC):GTX1144-LOSSSYNC")
     field(ONVL, "1")
     field(ONST, "lost")
     field(ONSV, "MAJOR")
-    field(FLNK, "$(IOC):GTX1144-RXBUF")
+    field(FLNK, "$(IOC):GTX1160-RXBUF")
 }
-record(mbbi,"$(IOC):GTX1144-RXBUF")
+record(mbbi,"$(IOC):GTX1160-RXBUF")
 {
-    field(DESC, "GTX1144 rxbuf")
+    field(DESC, "GTX1160 rxbuf")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1144-STATUS NPP")
+    field(INP , "$(IOC):GTX1160-STATUS NPP")
     field(SHFT, "29")
     field(NOBT, "3")
     
@@ -1525,15 +1691,14 @@ record(mbbi,"$(IOC):GTX1144-RXBUF")
     
     field(FLNK, "$(IOC):GTX1161-STATUS")
 }
-# end GTX1144
+# end GTX1160
 
-# GTX116 FMC1
 # GTX1161
 record(ai,"$(IOC):GTX1161-STATUS")
 {
     field(DESC, "GTX1161 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x00007C T=UINT32")
+    field(INP , "#C S @Usr1StatusGeneric/0x000080 T=UINT32")
     field(FLNK, "$(IOC):GTX1161-TXPLLLKDET")
 }
 record(mbbi,"$(IOC):GTX1161-TXPLLLKDET")
@@ -1606,7 +1771,7 @@ record(calc,"$(IOC):GTX1161-RXEYEH")
     field(PREC, "0")
     field(LOLO, "40")
     field(LLSV, "MAJOR")
-    field(FLNK, "")
+    field(FLNK, "$(IOC):GTX1161-TXPOL")
 }
 record(mbbi,"$(IOC):GTX1161-TXPOL")
 {
@@ -1698,7 +1863,7 @@ record(ai,"$(IOC):GTX1162-STATUS")
 {
     field(DESC, "GTX1162 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000080 T=UINT32")
+    field(INP , "#C S @Usr1StatusGeneric/0x000084 T=UINT32")
     field(FLNK, "$(IOC):GTX1162-TXPLLLKDET")
 }
 record(mbbi,"$(IOC):GTX1162-TXPLLLKDET")
@@ -1771,7 +1936,7 @@ record(calc,"$(IOC):GTX1162-RXEYEH")
     field(PREC, "0")
     field(LOLO, "40")
     field(LLSV, "MAJOR")
-    field(FLNK, "")
+    field(FLNK, "$(IOC):GTX1162-TXPOL")
 }
 record(mbbi,"$(IOC):GTX1162-TXPOL")
 {
@@ -1863,7 +2028,7 @@ record(ai,"$(IOC):GTX1163-STATUS")
 {
     field(DESC, "GTX1163 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000084 T=UINT32")
+    field(INP , "#C S @Usr1StatusGeneric/0x000088 T=UINT32")
     field(FLNK, "$(IOC):GTX1163-TXPLLLKDET")
 }
 record(mbbi,"$(IOC):GTX1163-TXPLLLKDET")
@@ -1936,7 +2101,7 @@ record(calc,"$(IOC):GTX1163-RXEYEH")
     field(PREC, "0")
     field(LOLO, "40")
     field(LLSV, "MAJOR")
-    field(FLNK, "")
+    field(FLNK, "$(IOC):GTX1163-TXPOL")
 }
 record(mbbi,"$(IOC):GTX1163-TXPOL")
 {
@@ -2019,23 +2184,24 @@ record(mbbi,"$(IOC):GTX1163-RXBUF")
     field(SVST, "undefinded")
     field(SVSV, "MAJOR")
     
-    field(FLNK, "$(IOC):GTX1164-STATUS")
+    field(FLNK, "$(IOC):GTX1120-STATUS")
 }
 # end GTX1163
 
-# GTX1164
-record(ai,"$(IOC):GTX1164-STATUS")
+# GTX112 FMC2
+# GTX1120
+record(ai,"$(IOC):GTX1120-STATUS")
 {
-    field(DESC, "GTX1164 sta")
+    field(DESC, "GTX1120 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000088 T=UINT32")
-    field(FLNK, "$(IOC):GTX1164-TXPLLLKDET")
+    field(INP , "#C S @Usr1StatusGeneric/0x00008C T=UINT32")
+    field(FLNK, "$(IOC):GTX1120-TXPLLLKDET")
 }
-record(mbbi,"$(IOC):GTX1164-TXPLLLKDET")
+record(mbbi,"$(IOC):GTX1120-TXPLLLKDET")
 {
-    field(DESC, "GTX1164 txplllkdet")
+    field(DESC, "GTX1120 txplllkdet")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1164-STATUS NPP")
+    field(INP , "$(IOC):GTX1120-STATUS NPP")
     field(SHFT, "0")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -2044,13 +2210,13 @@ record(mbbi,"$(IOC):GTX1164-TXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1164-RXPLLLKDET")
+    field(FLNK, "$(IOC):GTX1120-RXPLLLKDET")
 }
-record(mbbi,"$(IOC):GTX1164-RXPLLLKDET")
+record(mbbi,"$(IOC):GTX1120-RXPLLLKDET")
 {
-    field(DESC, "GTX1164 rxplllkdet")
+    field(DESC, "GTX1120 rxplllkdet")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1164-STATUS NPP")
+    field(INP , "$(IOC):GTX1120-STATUS NPP")
     field(SHFT, "1")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -2059,13 +2225,13 @@ record(mbbi,"$(IOC):GTX1164-RXPLLLKDET")
     field(ONVL, "1")
     field(ONST, "locked")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1164-TXBUFSTA")
+    field(FLNK, "$(IOC):GTX1120-TXBUFSTA")
 }
-record(mbbi,"$(IOC):GTX1164-TXBUFSTA")
+record(mbbi,"$(IOC):GTX1120-TXBUFSTA")
 {
-    field(DESC, "GTX1164 TXBUFSTA")
+    field(DESC, "GTX1120 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1164-STATUS NPP")
+    field(INP , "$(IOC):GTX1120-STATUS NPP")
     field(SHFT, "6")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -2074,13 +2240,13 @@ record(mbbi,"$(IOC):GTX1164-TXBUFSTA")
     field(ONVL, "1")
     field(ONST, "no error")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1164-TXBUFLVL")
+    field(FLNK, "$(IOC):GTX1120-TXBUFLVL")
 }
-record(mbbi,"$(IOC):GTX1164-TXBUFLVL")
+record(mbbi,"$(IOC):GTX1120-TXBUFLVL")
 {
-    field(DESC, "GTX1164 TXBUFSTA")
+    field(DESC, "GTX1120 TXBUFSTA")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1164-STATUS NPP")
+    field(INP , "$(IOC):GTX1120-STATUS NPP")
     field(SHFT, "7")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -2089,51 +2255,51 @@ record(mbbi,"$(IOC):GTX1164-TXBUFLVL")
     field(ONVL, "1")
     field(ONST, "at least half")
     field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1164-RXEYEH")
+    field(FLNK, "$(IOC):GTX1120-RXEYEH")
 }
-record(calc,"$(IOC):GTX1164-RXEYEH")
+record(calc,"$(IOC):GTX1120-RXEYEH")
 {
-    field(DESC, "GTX1164 rx eye")
-    field(INPA, "$(IOC):GTX1164-STATUS NPP")
+    field(DESC, "GTX1120 rx eye")
+    field(INPA, "$(IOC):GTX1120-STATUS NPP")
     field(B   , "6.4516") # 200mV = 11111 = 31d  --> 6.4516 mV/LSB
     field(CALC, "((A>>8)&31)*B")
     field(EGU , "mVpp")
     field(PREC, "0")
     field(LOLO, "40")
     field(LLSV, "MAJOR")
-    field(FLNK, "")
+    field(FLNK, "$(IOC):GTX1120-TXPOL")
 }
-record(mbbi,"$(IOC):GTX1164-TXPOL")
+record(mbbi,"$(IOC):GTX1120-TXPOL")
 {
-    field(DESC, "GTX1164 txpol")
+    field(DESC, "GTX1120 txpol")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1164-STATUS NPP")
+    field(INP , "$(IOC):GTX1120-STATUS NPP")
     field(SHFT, "13")
     field(NOBT, "1")
     field(ZRVL, "0")
     field(ZRST, "normal")
     field(ONVL, "1")
     field(ONST, "inverted")
-    field(FLNK, "$(IOC):GTX1164-RXPOL")
+    field(FLNK, "$(IOC):GTX1120-RXPOL")
 }
-record(mbbi,"$(IOC):GTX1164-RXPOL")
+record(mbbi,"$(IOC):GTX1120-RXPOL")
 {
-    field(DESC, "GTX1164 rxpol")
+    field(DESC, "GTX1120 rxpol")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1164-STATUS NPP")
+    field(INP , "$(IOC):GTX1120-STATUS NPP")
     field(SHFT, "14")
     field(NOBT, "1")
     field(ZRVL, "0")
     field(ZRST, "normal")
     field(ONVL, "1")
     field(ONST, "inverted")
-    field(FLNK, "$(IOC):GTX1164-LOSSSYNC")
+    field(FLNK, "$(IOC):GTX1120-LOSSSYNC")
 }
-record(mbbi,"$(IOC):GTX1164-LOSSSYNC")
+record(mbbi,"$(IOC):GTX1120-LOSSSYNC")
 {
-    field(DESC, "GTX1164 losssync")
+    field(DESC, "GTX1120 losssync")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1164-STATUS NPP")
+    field(INP , "$(IOC):GTX1120-STATUS NPP")
     field(SHFT, "20")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -2142,13 +2308,13 @@ record(mbbi,"$(IOC):GTX1164-LOSSSYNC")
     field(ONVL, "1")
     field(ONST, "lost")
     field(ONSV, "MAJOR")
-    field(FLNK, "$(IOC):GTX1164-RXBUF")
+    field(FLNK, "$(IOC):GTX1120-RXBUF")
 }
-record(mbbi,"$(IOC):GTX1164-RXBUF")
+record(mbbi,"$(IOC):GTX1120-RXBUF")
 {
-    field(DESC, "GTX1164 rxbuf")
+    field(DESC, "GTX1120 rxbuf")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1164-STATUS NPP")
+    field(INP , "$(IOC):GTX1120-STATUS NPP")
     field(SHFT, "29")
     field(NOBT, "3")
     
@@ -2186,15 +2352,14 @@ record(mbbi,"$(IOC):GTX1164-RXBUF")
     
     field(FLNK, "$(IOC):GTX1121-STATUS")
 }
-# end GTX1164
+# end GTX1120
 
-# GTX112 FMC2
 # GTX1121
 record(ai,"$(IOC):GTX1121-STATUS")
 {
     field(DESC, "GTX1121 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x00008C T=UINT32")
+    field(INP , "#C S @Usr1StatusGeneric/0x000090 T=UINT32")
     field(FLNK, "$(IOC):GTX1121-TXPLLLKDET")
 }
 record(mbbi,"$(IOC):GTX1121-TXPLLLKDET")
@@ -2267,7 +2432,7 @@ record(calc,"$(IOC):GTX1121-RXEYEH")
     field(PREC, "0")
     field(LOLO, "40")
     field(LLSV, "MAJOR")
-    field(FLNK, "")
+    field(FLNK, "$(IOC):GTX1121-TXPOL")
 }
 record(mbbi,"$(IOC):GTX1121-TXPOL")
 {
@@ -2359,7 +2524,7 @@ record(ai,"$(IOC):GTX1122-STATUS")
 {
     field(DESC, "GTX1122 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000090 T=UINT32")
+    field(INP , "#C S @Usr1StatusGeneric/0x000094 T=UINT32")
     field(FLNK, "$(IOC):GTX1122-TXPLLLKDET")
 }
 record(mbbi,"$(IOC):GTX1122-TXPLLLKDET")
@@ -2432,7 +2597,7 @@ record(calc,"$(IOC):GTX1122-RXEYEH")
     field(PREC, "0")
     field(LOLO, "40")
     field(LLSV, "MAJOR")
-    field(FLNK, "")
+    field(FLNK, "$(IOC):GTX1122-TXPOL")
 }
 record(mbbi,"$(IOC):GTX1122-TXPOL")
 {
@@ -2524,7 +2689,7 @@ record(ai,"$(IOC):GTX1123-STATUS")
 {
     field(DESC, "GTX1123 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000094 T=UINT32")
+    field(INP , "#C S @Usr1StatusGeneric/0x000098 T=UINT32")
     field(FLNK, "$(IOC):GTX1123-TXPLLLKDET")
 }
 record(mbbi,"$(IOC):GTX1123-TXPLLLKDET")
@@ -2597,7 +2762,7 @@ record(calc,"$(IOC):GTX1123-RXEYEH")
     field(PREC, "0")
     field(LOLO, "40")
     field(LLSV, "MAJOR")
-    field(FLNK, "")
+    field(FLNK, "$(IOC):GTX1123-TXPOL")
 }
 record(mbbi,"$(IOC):GTX1123-TXPOL")
 {
@@ -2679,173 +2844,8 @@ record(mbbi,"$(IOC):GTX1123-RXBUF")
     field(SVVL, "7")
     field(SVST, "undefinded")
     field(SVSV, "MAJOR")
-    
-    field(FLNK, "$(IOC):GTX1124-STATUS")
 }
 # end GTX1123
-
-# GTX1124
-record(ai,"$(IOC):GTX1124-STATUS")
-{
-    field(DESC, "GTX1124 sta")
-    field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000098 T=UINT32")
-    field(FLNK, "$(IOC):GTX1124-TXPLLLKDET")
-}
-record(mbbi,"$(IOC):GTX1124-TXPLLLKDET")
-{
-    field(DESC, "GTX1124 txplllkdet")
-    field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1124-STATUS NPP")
-    field(SHFT, "0")
-    field(NOBT, "1")
-    field(ZRVL, "0")
-    field(ZRST, "not locked")
-    field(ZRSV, "MAJOR")
-    field(ONVL, "1")
-    field(ONST, "locked")
-    field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1124-RXPLLLKDET")
-}
-record(mbbi,"$(IOC):GTX1124-RXPLLLKDET")
-{
-    field(DESC, "GTX1124 rxplllkdet")
-    field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1124-STATUS NPP")
-    field(SHFT, "1")
-    field(NOBT, "1")
-    field(ZRVL, "0")
-    field(ZRST, "not locked")
-    field(ZRSV, "MAJOR")
-    field(ONVL, "1")
-    field(ONST, "locked")
-    field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1124-TXBUFSTA")
-}
-record(mbbi,"$(IOC):GTX1124-TXBUFSTA")
-{
-    field(DESC, "GTX1124 TXBUFSTA")
-    field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1124-STATUS NPP")
-    field(SHFT, "6")
-    field(NOBT, "1")
-    field(ZRVL, "0")
-    field(ZRST, "under/overflow")
-    field(ZRSV, "MAJOR")
-    field(ONVL, "1")
-    field(ONST, "no error")
-    field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1124-TXBUFLVL")
-}
-record(mbbi,"$(IOC):GTX1124-TXBUFLVL")
-{
-    field(DESC, "GTX1124 TXBUFSTA")
-    field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1124-STATUS NPP")
-    field(SHFT, "7")
-    field(NOBT, "1")
-    field(ZRVL, "0")
-    field(ZRST, "less than half")
-    field(ZRSV, "MINOR")
-    field(ONVL, "1")
-    field(ONST, "at least half")
-    field(ONSV, "NO_ALARM")
-    field(FLNK, "$(IOC):GTX1124-RXEYEH")
-}
-record(calc,"$(IOC):GTX1124-RXEYEH")
-{
-    field(DESC, "GTX1124 rx eye")
-    field(INPA, "$(IOC):GTX1124-STATUS NPP")
-    field(B   , "6.4516") # 200mV = 11111 = 31d  --> 6.4516 mV/LSB
-    field(CALC, "((A>>8)&31)*B")
-    field(EGU , "mVpp")
-    field(PREC, "0")
-    field(LOLO, "40")
-    field(LLSV, "MAJOR")
-    field(FLNK, "")
-}
-record(mbbi,"$(IOC):GTX1124-TXPOL")
-{
-    field(DESC, "GTX1124 txpol")
-    field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1124-STATUS NPP")
-    field(SHFT, "13")
-    field(NOBT, "1")
-    field(ZRVL, "0")
-    field(ZRST, "normal")
-    field(ONVL, "1")
-    field(ONST, "inverted")
-    field(FLNK, "$(IOC):GTX1124-RXPOL")
-}
-record(mbbi,"$(IOC):GTX1124-RXPOL")
-{
-    field(DESC, "GTX1124 rxpol")
-    field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1124-STATUS NPP")
-    field(SHFT, "14")
-    field(NOBT, "1")
-    field(ZRVL, "0")
-    field(ZRST, "normal")
-    field(ONVL, "1")
-    field(ONST, "inverted")
-    field(FLNK, "$(IOC):GTX1124-LOSSSYNC")
-}
-record(mbbi,"$(IOC):GTX1124-LOSSSYNC")
-{
-    field(DESC, "GTX1124 losssync")
-    field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1124-STATUS NPP")
-    field(SHFT, "20")
-    field(NOBT, "1")
-    field(ZRVL, "0")
-    field(ZRST, "ok")
-    field(ZRSV, "NO_ALARM")
-    field(ONVL, "1")
-    field(ONST, "lost")
-    field(ONSV, "MAJOR")
-    field(FLNK, "$(IOC):GTX1124-RXBUF")
-}
-record(mbbi,"$(IOC):GTX1124-RXBUF")
-{
-    field(DESC, "GTX1124 rxbuf")
-    field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):GTX1124-STATUS NPP")
-    field(SHFT, "29")
-    field(NOBT, "3")
-    
-    field(ZRVL, "0")
-    field(ZRST, "nominal")
-    field(ZRSV, "NO_ALARM")
-    
-    field(ONVL, "1")
-    field(ONST, "buffer lo")
-    field(ONSV, "MINOR")
-    
-    field(TWVL, "2")
-    field(TWST, "buffer lolo")
-    field(TWSV, "MINOR")
-    
-    field(THVL, "3")
-    field(THST, "undefinded")
-    field(THSV, "MAJOR")
-    
-    field(FRVL, "4")
-    field(FRST, "undefinded")
-    field(FRSV, "MAJOR")
-    
-    field(FVVL, "5")
-    field(FVST, "buffer under")
-    field(FVSV, "MAJOR")
-    
-    field(SXVL, "6")
-    field(SXST, "buffer over")
-    field(SXSV, "MAJOR")
-    
-    field(SVVL, "7")
-    field(SVST, "undefinded")
-    field(SVSV, "MAJOR")
-}
-# end GTX1124
 
 
 # missing: the GTX command registers, the should implemented in USER application template if required
