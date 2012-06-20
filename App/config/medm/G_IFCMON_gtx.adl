@@ -100,7 +100,7 @@ rectangle {
 }
 text {
 	object {
-		x=166
+		x=227
 		y=25
 		width=50
 		height=40
@@ -109,6 +109,7 @@ text {
 		clr=0
 	}
 	textix="$(SFPFCT)"
+	align="horiz. centered"
 }
 rectangle {
 	object {
@@ -219,9 +220,9 @@ text {
 oval {
 	object {
 		x=226
-		y=167
-		width=21
-		height=21
+		y=168
+		width=19
+		height=19
 	}
 	"basic attribute" {
 		clr=0
@@ -229,7 +230,7 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(IOC):$(SUBDEV)-TXPLLLKDET"
+		chan="$(IOC):$(SFPFCT)-TXPLLLKDET"
 	}
 }
 oval {
@@ -260,9 +261,9 @@ text {
 oval {
 	object {
 		x=448
-		y=165
-		width=21
-		height=21
+		y=166
+		width=19
+		height=19
 	}
 	"basic attribute" {
 		clr=0
@@ -270,7 +271,7 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(IOC):$(SUBDEV)-RXPLLLKDET"
+		chan="$(IOC):$(SFPFCT)-RXPLLLKDET"
 	}
 }
 oval {
@@ -301,9 +302,9 @@ text {
 oval {
 	object {
 		x=226
-		y=202
-		width=21
-		height=21
+		y=203
+		width=19
+		height=19
 	}
 	"basic attribute" {
 		clr=0
@@ -311,7 +312,7 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(IOC):$(SUBDEV)-TXBUFSTA"
+		chan="$(IOC):$(SFPFCT)-TXBUFSTA"
 	}
 }
 oval {
@@ -347,7 +348,7 @@ text {
 		height=15
 	}
 	monitor {
-		chan="$(IOC):$(SUBDEV)-TXBUFLVL"
+		chan="$(IOC):$(SFPFCT)-TXBUFLVL"
 		clr=14
 		bclr=2
 	}
@@ -369,9 +370,9 @@ text {
 oval {
 	object {
 		x=448
-		y=202
-		width=21
-		height=21
+		y=203
+		width=19
+		height=19
 	}
 	"basic attribute" {
 		clr=0
@@ -379,7 +380,7 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(IOC):$(SUBDEV)-LOSSSYNC"
+		chan="$(IOC):$(SFPFCT)-LOSSSYNC"
 	}
 }
 oval {
@@ -426,9 +427,9 @@ text {
 oval {
 	object {
 		x=448
-		y=237
-		width=21
-		height=21
+		y=238
+		width=19
+		height=19
 	}
 	"basic attribute" {
 		clr=0
@@ -436,7 +437,7 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(IOC):$(SUBDEV)-RXBUF"
+		chan="$(IOC):$(SFPFCT)-RXBUF"
 	}
 }
 oval {
@@ -460,7 +461,7 @@ oval {
 		height=15
 	}
 	monitor {
-		chan="$(IOC):$(SUBDEV)-RXBUF"
+		chan="$(IOC):$(SFPFCT)-RXBUF"
 		clr=14
 		bclr=2
 	}
@@ -618,7 +619,7 @@ polyline {
 		height=15
 	}
 	monitor {
-		chan="$(IOC):$(SUBDEV)-RXEYEH"
+		chan="$(IOC):$(SFPFCT)-RXEYEH"
 		clr=14
 		bclr=2
 	}
@@ -636,4 +637,17 @@ text {
 		clr=14
 	}
 	textix="mV"
+}
+text {
+	object {
+		x=148
+		y=62
+		width=213
+		height=20
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="$(SUBDEV)"
+	align="horiz. centered"
 }
