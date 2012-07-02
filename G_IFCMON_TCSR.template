@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/06/19 13:16:39 $
+# $Date: 2012/07/02 13:19:48 $
 #
-# $Revision: 1.8 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_TCSR.template,v 1.8 2012/06/19 13:16:39 kalt_r Exp $
+# $Revision: 1.9 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_TCSR.template,v 1.9 2012/07/02 13:19:48 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -24,7 +24,7 @@
 # 0x800    0xBFF   1k       SMEM_IDMA #1
 # 0xC00    0xFFF   1k       SMEM_IDMA #2 (not implemented in IFC1210)
 # 0x1000   0x13FF  1k       SUSER #1
-# 0x400    0x17FF  1k       SUSER #2     (not implemented in IFC1210)
+# 0x1400   0x17FF  1k       SUSER #2     (not implemented in IFC1210)
 #
 #
 # The whole IO-Bus / TCSR registers are available trough PCI BAR3.
@@ -45,12 +45,13 @@
 # PCIe_AGSW                              IO-Bus: 0x000 - 0x3FF
 #--------------------------------------------------------------------
 # Status
+# kick scanning once after startup of IOC
 
 record(ai,"$(IOC):ILOC-GENERAL")
 {
     field(DESC, "ILOC general")
     field(DTYP, "ifc1210")
-    field(INP , "#C S0x0000 @PIO")
+    field(INP , "#C S0 @PIO")
     field(PINI, "YES") # kick scanning once after startup of IOC
     field(FLNK, "$(IOC):ILOC-PONFSM")
 }
@@ -59,7 +60,7 @@ record(ai,"$(IOC):ILOC-PONFSM")
 {
     field(DESC, "ILOC PONFSM stat")
     field(DTYP, "ifc1210")
-    field(INP , "#C S0x000C @PIO")
+    field(INP , "#C S12 @PIO")
     field(FLNK, "$(IOC):TOSCAII-REVISION")
 }
 
@@ -67,7 +68,7 @@ record(ai,"$(IOC):TOSCAII-REVISION")
 {
     field(DESC, "ILOC CENTRAL sign")
     field(DTYP, "ifc1210")
-    field(INP , "#C S0x0034 @PIO")
+    field(INP , "#C S52 @PIO")
     field(FLNK, "$(IOC):V6-PCIE-DSN-L")
 }
 
@@ -75,7 +76,7 @@ record(ai,"$(IOC):V6-PCIE-DSN-L")
 {
     field(DESC, "CENTRAL serial l")
     field(DTYP, "ifc1210")
-    field(INP , "#C S0x0038 @PIO")
+    field(INP , "#C S56 @PIO")
     field(FLNK, "$(IOC):V6-PCIE-DSN-H")
 }
 
@@ -83,7 +84,7 @@ record(ai,"$(IOC):V6-PCIE-DSN-H")
 {
     field(DESC, "CENTRAL serial h")
     field(DTYP, "ifc1210")
-    field(INP , "#C S0x003C @PIO")
+    field(INP , "#C S60 @PIO")
 }
 
 
