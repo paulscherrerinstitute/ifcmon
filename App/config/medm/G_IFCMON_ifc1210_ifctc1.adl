@@ -1,6 +1,6 @@
 
 file {
-	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_ifc1210_ifctc1.adl"
+	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/./G_IFCMON_ifc1210_ifctc1.adl"
 	version=030104
 }
 display {
@@ -524,7 +524,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="CENTRAL: Loaded user firmware name"
+	textix="CENTRAL: Loaded user firmware signature"
 }
 text {
 	object {
@@ -536,7 +536,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="         Loaded user firmware signature"
+	textix="         Loaded user firmware name"
 }
 "text update" {
 	object {
@@ -572,9 +572,9 @@ text {
 }
 "text update" {
 	object {
-		x=400
-		y=646
-		width=170
+		x=346
+		y=666
+		width=230
 		height=15
 	}
 	monitor {
@@ -589,7 +589,7 @@ text {
 "text update" {
 	object {
 		x=400
-		y=666
+		y=646
 		width=100
 		height=15
 	}
