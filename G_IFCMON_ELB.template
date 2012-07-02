@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/06/20 13:38:54 $
+# $Date: 2012/07/02 13:24:25 $
 #
-# $Revision: 1.6 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.6 2012/06/20 13:38:54 kalt_r Exp $
+# $Revision: 1.7 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.7 2012/07/02 13:24:25 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -23,7 +23,7 @@
 
 
 #--------------------------------------------------------------------
-# status / cyclic processing
+# status / processing once at EPICS startup
 #--------------------------------------------------------------------
 
 # refer to chapters 2.3.1 - 2.3.4 in IFC1210 UG
@@ -34,7 +34,7 @@
 record(ai,"$(IOC):ELB-STATIC-SW")
 {
     field(DESC, "status of switches")
-    field(SCAN, "1 second")
+    field(PINI, "YES")
     field(DTYP, "ifc1210")
     field(INP , "#C S0x4 @ELB")
     field(FLNK, "$(IOC):SW101-VMEMODE")
@@ -318,14 +318,18 @@ record(ai,"$(IOC):ELB-PON-SIGN")
     field(DESC, "PON FPGA signature")
     field(DTYP, "ifc1210")
     field(INP , "#C S0x1C @ELB")
-    field(FLNK, "$(IOC):ELB-FMCXMC-CTL")
 }
 
+
+#--------------------------------------------------------------------
+# status / cyclic processing
+#--------------------------------------------------------------------
 record(ai,"$(IOC):ELB-FMCXMC-CTL")
 {
     field(DESC, "status XMC/FMC")
     field(DTYP, "ifc1210")
     field(INP , "#C S0xC @ELB")
+    field(SCAN, "1 second")
     field(FLNK, "$(IOC):XMC1-PRESENT")
 }
 record ( mbbi, "$(IOC):XMC1-PRESENT")
