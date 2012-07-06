@@ -1,0 +1,1111 @@
+
+file {
+	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_ifctc1.adl"
+	version=030104
+}
+display {
+	object {
+		x=1989
+		y=74
+		width=359
+		height=794
+	}
+	clr=14
+	bclr=2
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+rectangle {
+	object {
+		x=59
+		y=0
+		width=300
+		height=795
+	}
+	"basic attribute" {
+		clr=9
+	}
+}
+text {
+	object {
+		x=144
+		y=1
+		width=125
+		height=40
+	}
+	"basic attribute" {
+		clr=0
+	}
+	textix="IFC_TC1"
+}
+rectangle {
+	object {
+		x=79
+		y=668
+		width=250
+		height=60
+	}
+	"basic attribute" {
+		clr=4
+	}
+}
+text {
+	object {
+		x=82
+		y=671
+		width=200
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Firmware:"
+}
+text {
+	object {
+		x=82
+		y=691
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="CPLD Revision       ."
+}
+"text update" {
+	object {
+		x=211
+		y=691
+		width=50
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-FW-MAJOR"
+		clr=29
+		bclr=1
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+text {
+	object {
+		x=82
+		y=710
+		width=220
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="CPLD date YMD"
+}
+"text update" {
+	object {
+		x=211
+		y=710
+		width=112
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-FW-SIGN"
+		clr=29
+		bclr=1
+	}
+	align="horiz. centered"
+	format="hexadecimal"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=273
+		y=691
+		width=50
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-FW-MINOR"
+		clr=29
+		bclr=1
+	}
+	limits {
+	}
+}
+rectangle {
+	object {
+		x=79
+		y=374
+		width=280
+		height=44
+	}
+	"basic attribute" {
+		clr=36
+	}
+}
+"related display" {
+	object {
+		x=312
+		y=382
+		width=40
+		height=30
+	}
+	display[0] {
+		name="G_IFCMON_ifctc1_sfp.adl"
+		args="IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1143"
+	}
+	clr=14
+	bclr=5
+	label="-SFP"
+}
+"text update" {
+	object {
+		x=85
+		y=397
+		width=150
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-SFP-GTX1143-TYPE"
+		clr=0
+		bclr=36
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=84
+		y=378
+		width=200
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="SFP1 / GTX 114_3"
+}
+"related display" {
+	object {
+		x=263
+		y=382
+		width=40
+		height=30
+	}
+	display[0] {
+		name="G_IFCMON_gtx.adl"
+		args="IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1143"
+	}
+	clr=14
+	bclr=5
+	label="-GTX"
+}
+rectangle {
+	object {
+		x=79
+		y=423
+		width=280
+		height=44
+	}
+	"basic attribute" {
+		clr=36
+	}
+}
+"related display" {
+	object {
+		x=312
+		y=431
+		width=40
+		height=30
+	}
+	display[0] {
+		name="G_IFCMON_ifctc1_sfp.adl"
+		args="IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1142"
+	}
+	clr=14
+	bclr=5
+	label="-SFP"
+}
+"text update" {
+	object {
+		x=85
+		y=446
+		width=150
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-SFP-GTX1142-TYPE"
+		clr=0
+		bclr=36
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=84
+		y=427
+		width=200
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="SFP2 / GTX 114_2"
+}
+"related display" {
+	object {
+		x=263
+		y=431
+		width=40
+		height=30
+	}
+	display[0] {
+		name="G_IFCMON_gtx.adl"
+		args="IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1142"
+	}
+	clr=14
+	bclr=5
+	label="-GTX"
+}
+rectangle {
+	object {
+		x=79
+		y=472
+		width=280
+		height=44
+	}
+	"basic attribute" {
+		clr=36
+	}
+}
+"related display" {
+	object {
+		x=312
+		y=480
+		width=40
+		height=30
+	}
+	display[0] {
+		name="G_IFCMON_ifctc1_sfp.adl"
+		args="IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1141"
+	}
+	clr=14
+	bclr=5
+	label="-SFP"
+}
+"text update" {
+	object {
+		x=85
+		y=495
+		width=150
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-SFP-GTX1141-TYPE"
+		clr=0
+		bclr=36
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=84
+		y=476
+		width=200
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="SFP3 / GTX 114_1"
+}
+"related display" {
+	object {
+		x=263
+		y=480
+		width=40
+		height=30
+	}
+	display[0] {
+		name="G_IFCMON_gtx.adl"
+		args="IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1141"
+	}
+	clr=14
+	bclr=5
+	label="-GTX"
+}
+rectangle {
+	object {
+		x=79
+		y=521
+		width=280
+		height=44
+	}
+	"basic attribute" {
+		clr=36
+	}
+}
+"related display" {
+	object {
+		x=312
+		y=529
+		width=40
+		height=30
+	}
+	display[0] {
+		name="G_IFCMON_ifctc1_sfp.adl"
+		args="IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1140"
+	}
+	clr=14
+	bclr=5
+	label="-SFP"
+}
+"text update" {
+	object {
+		x=85
+		y=544
+		width=150
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-SFP-GTX1140-TYPE"
+		clr=0
+		bclr=36
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=84
+		y=525
+		width=200
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="SFP4 / GTX 114_0"
+}
+"related display" {
+	object {
+		x=263
+		y=529
+		width=40
+		height=30
+	}
+	display[0] {
+		name="G_IFCMON_gtx.adl"
+		args="IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1140"
+	}
+	clr=14
+	bclr=5
+	label="-GTX"
+}
+rectangle {
+	object {
+		x=79
+		y=570
+		width=280
+		height=44
+	}
+	"basic attribute" {
+		clr=36
+	}
+}
+"related display" {
+	object {
+		x=312
+		y=578
+		width=40
+		height=30
+	}
+	display[0] {
+		name="G_IFCMON_ifctc1_sfp.adl"
+		args="IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1133"
+	}
+	clr=14
+	bclr=5
+	label="-SFP"
+}
+"text update" {
+	object {
+		x=85
+		y=593
+		width=150
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-SFP-GTX1133-TYPE"
+		clr=0
+		bclr=36
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=84
+		y=574
+		width=200
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="SFP5 / GTX 113_3"
+}
+"related display" {
+	object {
+		x=263
+		y=578
+		width=40
+		height=30
+	}
+	display[0] {
+		name="G_IFCMON_gtx.adl"
+		args="IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1133"
+	}
+	clr=14
+	bclr=5
+	label="-GTX"
+}
+rectangle {
+	object {
+		x=79
+		y=619
+		width=280
+		height=44
+	}
+	"basic attribute" {
+		clr=36
+	}
+}
+"related display" {
+	object {
+		x=312
+		y=627
+		width=40
+		height=30
+	}
+	display[0] {
+		name="G_IFCMON_ifctc1_sfp.adl"
+		args="IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1132"
+	}
+	clr=14
+	bclr=5
+	label="-SFP"
+}
+"text update" {
+	object {
+		x=85
+		y=642
+		width=150
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-SFP-GTX1132-TYPE"
+		clr=0
+		bclr=36
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=84
+		y=623
+		width=200
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="SFP6 / GTX 113_2"
+}
+"related display" {
+	object {
+		x=263
+		y=627
+		width=40
+		height=30
+	}
+	display[0] {
+		name="G_IFCMON_gtx.adl"
+		args="IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1132"
+	}
+	clr=14
+	bclr=5
+	label="-GTX"
+}
+rectangle {
+	object {
+		x=79
+		y=167
+		width=280
+		height=44
+	}
+	"basic attribute" {
+		clr=33
+	}
+}
+"related display" {
+	object {
+		x=312
+		y=175
+		width=40
+		height=30
+	}
+	display[0] {
+		name="G_IFCMON_ifctc1_sfp.adl"
+		args="IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=PCIEP12"
+	}
+	clr=14
+	bclr=5
+	label="-SFP"
+}
+"text update" {
+	object {
+		x=85
+		y=190
+		width=150
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-SFP-PCIEP12-TYPE"
+		clr=0
+		bclr=33
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=84
+		y=171
+		width=200
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PCIe 1 / port 12"
+}
+rectangle {
+	object {
+		x=79
+		y=216
+		width=280
+		height=44
+	}
+	"basic attribute" {
+		clr=33
+	}
+}
+"related display" {
+	object {
+		x=312
+		y=224
+		width=40
+		height=30
+	}
+	display[0] {
+		name="G_IFCMON_ifctc1_sfp.adl"
+		args="IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=PCIEP13"
+	}
+	clr=14
+	bclr=5
+	label="-SFP"
+}
+"text update" {
+	object {
+		x=85
+		y=239
+		width=150
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-SFP-PCIEP13-TYPE"
+		clr=0
+		bclr=33
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=84
+		y=220
+		width=200
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PCIe 2 / port 13"
+}
+rectangle {
+	object {
+		x=79
+		y=265
+		width=280
+		height=44
+	}
+	"basic attribute" {
+		clr=33
+	}
+}
+"related display" {
+	object {
+		x=312
+		y=273
+		width=40
+		height=30
+	}
+	display[0] {
+		name="G_IFCMON_ifctc1_sfp.adl"
+		args="IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=PCIEP14"
+	}
+	clr=14
+	bclr=5
+	label="-SFP"
+}
+"text update" {
+	object {
+		x=85
+		y=288
+		width=150
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-SFP-PCIEP14-TYPE"
+		clr=0
+		bclr=33
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=84
+		y=269
+		width=200
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PCIe 3 / port 14"
+}
+rectangle {
+	object {
+		x=79
+		y=314
+		width=280
+		height=44
+	}
+	"basic attribute" {
+		clr=33
+	}
+}
+"related display" {
+	object {
+		x=312
+		y=322
+		width=40
+		height=30
+	}
+	display[0] {
+		name="G_IFCMON_ifctc1_sfp.adl"
+		args="IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=PCIEP15"
+	}
+	clr=14
+	bclr=5
+	label="-SFP"
+}
+"text update" {
+	object {
+		x=85
+		y=337
+		width=150
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-SFP-PCIEP15-TYPE"
+		clr=0
+		bclr=33
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=84
+		y=318
+		width=200
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PCIe 4 / port 15"
+}
+rectangle {
+	object {
+		x=79
+		y=42
+		width=280
+		height=120
+	}
+	"basic attribute" {
+		clr=33
+	}
+}
+text {
+	object {
+		x=84
+		y=45
+		width=200
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PCIe ext. cabling (HCI)"
+}
+"text update" {
+	object {
+		x=221
+		y=71
+		width=130
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-HCI-TYPE"
+		clr=29
+		bclr=1
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=84
+		y=71
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="connector type"
+}
+text {
+	object {
+		x=84
+		y=90
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PCIe EP type"
+}
+"text update" {
+	object {
+		x=221
+		y=90
+		width=130
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PCIE-UPDN"
+		clr=29
+		bclr=1
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=84
+		y=109
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="PCIe DN prsnt"
+}
+"text update" {
+	object {
+		x=222
+		y=110
+		width=130
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PCIE-PRESENT"
+		clr=29
+		bclr=1
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
+}
+"related display" {
+	object {
+		x=96
+		y=136
+		width=250
+		height=15
+	}
+	display[0] {
+		name="G_IFCMON_ifctc1_pcie.adl"
+		args="IOC=$(IOC)"
+	}
+	clr=14
+	bclr=5
+	label="-PCIe ext cabling redriver setup/details"
+}
+rectangle {
+	object {
+		x=79
+		y=740
+		width=250
+		height=45
+	}
+	"basic attribute" {
+		clr=4
+	}
+}
+text {
+	object {
+		x=82
+		y=743
+		width=200
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Power:"
+}
+text {
+	object {
+		x=82
+		y=763
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Dissipation"
+}
+"text update" {
+	object {
+		x=211
+		y=763
+		width=70
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-DISS"
+		clr=29
+		bclr=1
+	}
+	align="horiz. right"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=286
+		y=763
+		width=16
+		height=15
+	}
+	monitor {
+		chan="$(IOC):IFCTC1-PWRMON-DISS.EGU"
+		clr=14
+		bclr=2
+	}
+	limits {
+	}
+}
+oval {
+	object {
+		x=306
+		y=762
+		width=18
+		height=18
+	}
+	"basic attribute" {
+		clr=12
+	}
+}
+oval {
+	object {
+		x=308
+		y=764
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):IFCTC1-PWRMON-DISS"
+	}
+}
+"related display" {
+	object {
+		x=209
+		y=744
+		width=90
+		height=15
+	}
+	display[0] {
+		name="G_IFCMON_pwrmon.adl"
+		args="IOC=$(IOC),SUBDEV=IFCTC1"
+	}
+	clr=14
+	bclr=5
+	label="-setup/details"
+}
+polyline {
+	object {
+		x=0
+		y=53
+		width=86
+		height=5
+	}
+	"basic attribute" {
+		clr=33
+		width=5
+	}
+	points {
+		(2,55)
+		(83,55)
+	}
+}
+polyline {
+	object {
+		x=1
+		y=393
+		width=86
+		height=5
+	}
+	"basic attribute" {
+		clr=36
+		width=5
+	}
+	points {
+		(3,395)
+		(84,395)
+	}
+}
