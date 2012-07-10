@@ -1,14 +1,14 @@
 
 file {
-	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_fmc.adl"
-	version=030104
+	name="/afs/psi.ch/user/s/schebacher/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_fmc.adl"
+	version=030105
 }
 display {
 	object {
-		x=
-		y=
-		width=400
-		height=400
+		x=20
+		y=285
+		width=291
+		height=196
 	}
 	clr=14
 	bclr=2
@@ -87,27 +87,317 @@ display {
 		1a7309,
 	}
 }
-text {
+rectangle {
 	object {
-		x=74
-		y=110
-		width=50
-		height=40
+		x=0
+		y=0
+		width=280
+		height=195
 	}
 	"basic attribute" {
-		clr=14
+		clr=57
 	}
-	textix="$(IOC)"
 }
 text {
 	object {
-		x=79
-		y=40
-		width=50
-		height=40
+		x=26
+		y=2
+		width=200
+		height=15
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="FMC:"
+	textix="$(FMC):"
+}
+rectangle {
+	object {
+		x=0
+		y=79
+		width=245
+		height=110
+	}
+	"basic attribute" {
+		clr=36
+	}
+}
+"related display" {
+	object {
+		x=160
+		y=85
+		width=40
+		height=20
+	}
+	display[0] {
+		name="G_IFCMON_ifctc1_sfp.adl"
+		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=GTX1160"
+	}
+	clr=14
+	bclr=5
+	label="-SFP"
+}
+"text update" {
+	object {
+		x=3
+		y=93
+		width=150
+		height=10
+	}
+	monitor {
+		chan="$(IOC):$(FMC)-SFP-GTX1160-TYPE"
+		clr=0
+		bclr=36
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=3
+		y=83
+		width=200
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="SFP10/D0/GTX 116_0"
+}
+"related display" {
+	object {
+		x=202
+		y=85
+		width=40
+		height=20
+	}
+	display[0] {
+		name="G_IFCMON_gtx.adl"
+		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=GTX1160"
+	}
+	clr=14
+	bclr=5
+	label="-GTX"
+}
+"related display" {
+	object {
+		x=160
+		y=111
+		width=40
+		height=20
+	}
+	display[0] {
+		name="G_IFCMON_ifctc1_sfp.adl"
+		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=GTX1161"
+	}
+	clr=14
+	bclr=5
+	label="-SFP"
+}
+"text update" {
+	object {
+		x=3
+		y=119
+		width=150
+		height=10
+	}
+	monitor {
+		chan="$(IOC):$(FMC)-SFP-GTX1161-TYPE"
+		clr=0
+		bclr=36
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=3
+		y=109
+		width=200
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="SFP11/D1/GTX 116_1"
+}
+"related display" {
+	object {
+		x=202
+		y=111
+		width=40
+		height=20
+	}
+	display[0] {
+		name="G_IFCMON_gtx.adl"
+		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=GTX1161"
+	}
+	clr=14
+	bclr=5
+	label="-GTX"
+}
+"related display" {
+	object {
+		x=160
+		y=137
+		width=40
+		height=20
+	}
+	display[0] {
+		name="G_IFCMON_ifctc1_sfp.adl"
+		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=GTX1162"
+	}
+	clr=14
+	bclr=5
+	label="-SFP"
+}
+"text update" {
+	object {
+		x=3
+		y=145
+		width=150
+		height=10
+	}
+	monitor {
+		chan="$(IOC):$(FMC)-SFP-GTX1162-TYPE"
+		clr=0
+		bclr=36
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=3
+		y=135
+		width=200
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="SFP12/D2/GTX 116_2"
+}
+"related display" {
+	object {
+		x=202
+		y=137
+		width=40
+		height=20
+	}
+	display[0] {
+		name="G_IFCMON_gtx.adl"
+		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=GTX1162"
+	}
+	clr=14
+	bclr=5
+	label="-GTX"
+}
+"related display" {
+	object {
+		x=160
+		y=163
+		width=40
+		height=20
+	}
+	display[0] {
+		name="G_IFCMON_ifctc1_sfp.adl"
+		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=GTX1163"
+	}
+	clr=14
+	bclr=5
+	label="-SFP"
+}
+"text update" {
+	object {
+		x=3
+		y=171
+		width=150
+		height=10
+	}
+	monitor {
+		chan="$(IOC):$(FMC)-SFP-GTX1163-TYPE"
+		clr=0
+		bclr=36
+	}
+	align="horiz. right"
+	format="string"
+	limits {
+	}
+}
+text {
+	object {
+		x=3
+		y=161
+		width=200
+		height=10
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="SFP13/D3/GTX 116_3"
+}
+"related display" {
+	object {
+		x=202
+		y=163
+		width=40
+		height=20
+	}
+	display[0] {
+		name="G_IFCMON_gtx.adl"
+		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=GTX1163"
+	}
+	clr=14
+	bclr=5
+	label="-GTX"
+}
+polyline {
+	object {
+		x=243
+		y=172
+		width=53
+		height=5
+	}
+	"basic attribute" {
+		clr=36
+		width=5
+	}
+	points {
+		(245,174)
+		(293,174)
+	}
+}
+text {
+	object {
+		x=25
+		y=28
+		width=200
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Installed FMC type"
+}
+"text update" {
+	object {
+		x=25
+		y=45
+		width=170
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$(FMC)-TYPE-READ"
+		clr=0
+		bclr=57
+	}
+	format="string"
+	limits {
+	}
 }
