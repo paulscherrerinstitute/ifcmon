@@ -4,8 +4,8 @@ require "regDev","test"
 require "pev"
 
 #######################################################################
-# Access trough PCIe_AGSW to USR1 - for block transfer of status area
-pevConfigure(0,"Usr1StatusGeneric","USR1", 0, 0, 0, 255, 1)
+# Access trough PCIe_AGSW to USR1 - for block transfer of status area 32-bit registers, therefore use WS swapping option
+pevConfigure(0,"Usr1StatusGeneric","USR1", 0, "DS", 0, 255, 1)
 
 
 ### I2C components
