@@ -1,6 +1,6 @@
 
 file {
-	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/./G_IFCMON_ifc1210_ifctc1.adl"
+	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_ifc1210_ifctc1.adl"
 	version=030104
 }
 display {
@@ -97,6 +97,54 @@ rectangle {
 	"basic attribute" {
 		clr=9
 	}
+}
+rectangle {
+	object {
+		x=12
+		y=336
+		width=270
+		height=190
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+rectangle {
+	object {
+		x=12
+		y=133
+		width=270
+		height=190
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=36
+		y=171
+		width=137
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="FMC2/XMC2 slot empty"
+}
+text {
+	object {
+		x=36
+		y=380
+		width=137
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="FMC1/XMC1/PMC slot empty"
 }
 text {
 	object {
@@ -1400,7 +1448,7 @@ oval {
 rectangle {
 	object {
 		x=7
-		y=132
+		y=131
 		width=277
 		height=195
 	}
