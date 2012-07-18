@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/06/18 07:56:02 $
+# $Date: 2012/07/18 08:25:42 $
 #
-# $Revision: 1.2 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CBMR463.template,v 1.2 2012/06/18 07:56:02 kalt_r Exp $
+# $Revision: 1.3 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CBMR463.template,v 1.3 2012/07/18 08:25:42 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -42,7 +42,7 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-VIN")
     field(DESC, "$(DESCR): Vin")
     field(SCAN, "1 second")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUS)/0x88 T=UINT8")
+    field(INP , "#C S @$(I2CBUS)/0x88 T=UINT16")
     field(EGU , "V")
     field(PREC, "2")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-VOUT")
@@ -52,7 +52,7 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-VOUT")
 {
     field(DESC, "$(DESCR): Vout")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUS)/0x8B T=UINT8")
+    field(INP , "#C S @$(I2CBUS)/0x8B T=UINT16")
     field(EGU , "V")
     field(PREC, "2")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-IOUT")
@@ -62,9 +62,21 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-IOUT")
 {
     field(DESC, "$(DESCR): Vout")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUS)/0x8C T=UINT8")
+    field(INP , "#C S @$(I2CBUS)/0x8C T=UINT16")
     field(EGU , "A")
     field(PREC, "1")
+    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-TEMP1")
+}
+
+# output power calculation
+record(calc,"$(IOC):IFC1210-$(SUBDEV)-POUT")
+{ 
+    field(DESC, "$(DESCR): Pout")
+    field(INPA, "$(IOC):IFC1210-$(SUBDEV)-VOUT NPP")
+    field(INPB, "$(IOC):IFC1210-$(SUBDEV)-IOUT NPP") 		
+    field(CALC, "A*B") 
+    field(PREC, "2") 
+    field(EGU , "W")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-TEMP1")
 }
 
@@ -72,7 +84,7 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-TEMP1")
 {
     field(DESC, "$(DESCR): Temp1")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUS)/0x8D T=UINT8")
+    field(INP , "#C S @$(I2CBUS)/0x8D T=UINT16")
     field(EGU , "deg C")
     field(PREC, "1")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-DUTY")
@@ -82,7 +94,7 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-DUTY")
 {
     field(DESC, "$(DESCR): duty")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUS)/0x94 T=UINT8")
+    field(INP , "#C S @$(I2CBUS)/0x94 T=UINT16")
     field(EGU , "%")
     field(PREC, "0")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-FREQ")
@@ -92,7 +104,7 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-FREQ")
 {
     field(DESC, "$(DESCR): Freq")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUS)/0x8D T=UINT8")
+    field(INP , "#C S @$(I2CBUS)/0x8D T=UINT16")
     field(EGU , "kHz")
     field(PREC, "2")
 #    field(FLNK, "$(IOC):")
