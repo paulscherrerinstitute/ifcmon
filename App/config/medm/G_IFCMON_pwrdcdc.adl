@@ -95,7 +95,7 @@ composite {
 		height=178
 	}
 	"composite name"="U701"
-	"composite file"="G_IFCMON_pwrdcdc_bmr463.adl;IOC=$(IOC),SUBDEV=$(SUBDEV),Uxxx=701"
+	"composite file"="G_IFCMON_pwrdcdc_bmr463.adl;IOC=$(IOC),SUBDEV=BMR1V0"
 }
 composite {
 	object {
@@ -105,7 +105,7 @@ composite {
 		height=178
 	}
 	"composite name"="U702"
-	"composite file"="G_IFCMON_pwrdcdc_bmr463.adl;IOC=$(IOC),SUBDEV=$(SUBDEV),Uxxx=702"
+	"composite file"="G_IFCMON_pwrdcdc_bmr463.adl;IOC=$(IOC),SUBDEV=BMR1V5"
 }
 composite {
 	object {
@@ -115,7 +115,7 @@ composite {
 		height=178
 	}
 	"composite name"="U703"
-	"composite file"="G_IFCMON_pwrdcdc_bmr463.adl;IOC=$(IOC),SUBDEV=$(SUBDEV),Uxxx=703"
+	"composite file"="G_IFCMON_pwrdcdc_bmr463.adl;IOC=$(IOC),SUBDEV=BMR1V0OPT"
 }
 composite {
 	object {
@@ -125,17 +125,17 @@ composite {
 		height=178
 	}
 	"composite name"="U704"
-	"composite file"="G_IFCMON_pwrdcdc_bmr463.adl;IOC=$(IOC),SUBDEV=$(SUBDEV),Uxxx=704"
+	"composite file"="G_IFCMON_pwrdcdc_bmr463.adl;IOC=$(IOC),SUBDEV=BMRVADJ"
 }
 text {
 	object {
-		x=5
-		y=4
+		x=6
+		y=7
 		width=274
 		height=20
 	}
 	"basic attribute" {
 		clr=20
 	}
-	textix="dc/dc converters:"
+	textix="IFC1210 onboard DC/DC converters:"
 }

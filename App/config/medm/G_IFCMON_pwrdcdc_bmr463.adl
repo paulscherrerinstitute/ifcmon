@@ -100,49 +100,335 @@ rectangle {
 }
 text {
 	object {
-		x=31
-		y=41
-		width=50
-		height=14
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="$(IOC)"
-}
-text {
-	object {
-		x=18
-		y=13
+		x=12
+		y=12
 		width=51
 		height=20
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="dc/dc BMR463:"
+	textix="DC/DC converter: $(SUBDEV)"
+}
+"text update" {
+	object {
+		x=117
+		y=53
+		width=112
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$IFC1210-(SUBDEV)-VIN"
+		clr=29
+		bclr=1
+	}
+	align="horiz. centered"
+	format="hexadecimal"
+	limits {
+	}
 }
 text {
 	object {
-		x=31
-		y=61
+		x=15
+		y=53
 		width=50
 		height=14
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="$(SUBDEV)"
+	textix="Input voltage"
+}
+"text update" {
+	object {
+		x=233
+		y=53
+		width=30
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$IFC1210-(SUBDEV)-VIN.EGU"
+		clr=29
+		bclr=1
+	}
+	align="horiz. centered"
+	format="hexadecimal"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=117
+		y=71
+		width=112
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$IFC1210-(SUBDEV)-VOUT"
+		clr=29
+		bclr=1
+	}
+	align="horiz. centered"
+	format="hexadecimal"
+	limits {
+	}
 }
 text {
 	object {
-		x=31
-		y=83
+		x=15
+		y=71
 		width=50
 		height=14
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="$(Uxxx)"
+	textix="Output voltage"
+}
+"text update" {
+	object {
+		x=233
+		y=71
+		width=30
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$IFC1210-(SUBDEV)-VOUT.EGU"
+		clr=29
+		bclr=1
+	}
+	align="horiz. centered"
+	format="hexadecimal"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=117
+		y=89
+		width=112
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$IFC1210-(SUBDEV)-IOUT"
+		clr=29
+		bclr=1
+	}
+	align="horiz. centered"
+	format="hexadecimal"
+	limits {
+	}
+}
+text {
+	object {
+		x=15
+		y=89
+		width=50
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Output current"
+}
+"text update" {
+	object {
+		x=233
+		y=89
+		width=30
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$IFC1210-(SUBDEV)-IOUT.EGU"
+		clr=29
+		bclr=1
+	}
+	align="horiz. centered"
+	format="hexadecimal"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=117
+		y=107
+		width=112
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$IFC1210-(SUBDEV)-POUT"
+		clr=29
+		bclr=1
+	}
+	align="horiz. centered"
+	format="hexadecimal"
+	limits {
+	}
+}
+text {
+	object {
+		x=15
+		y=107
+		width=50
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Output power"
+}
+"text update" {
+	object {
+		x=233
+		y=107
+		width=30
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$IFC1210-(SUBDEV)-POUT.EGU"
+		clr=29
+		bclr=1
+	}
+	align="horiz. centered"
+	format="hexadecimal"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=117
+		y=133
+		width=112
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$IFC1210-(SUBDEV)-TEMP1"
+		clr=29
+		bclr=1
+	}
+	align="horiz. centered"
+	format="hexadecimal"
+	limits {
+	}
+}
+text {
+	object {
+		x=15
+		y=133
+		width=50
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Temperature"
+}
+"text update" {
+	object {
+		x=233
+		y=133
+		width=30
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$IFC1210-(SUBDEV)-TEMP1.EGU"
+		clr=29
+		bclr=1
+	}
+	align="horiz. centered"
+	format="hexadecimal"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=117
+		y=151
+		width=112
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$IFC1210-(SUBDEV)-DUTY"
+		clr=29
+		bclr=1
+	}
+	align="horiz. centered"
+	format="hexadecimal"
+	limits {
+	}
+}
+text {
+	object {
+		x=15
+		y=151
+		width=50
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Duty cycle"
+}
+"text update" {
+	object {
+		x=233
+		y=151
+		width=30
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$IFC1210-(SUBDEV)-DUTY.EGU"
+		clr=29
+		bclr=1
+	}
+	align="horiz. centered"
+	format="hexadecimal"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=117
+		y=169
+		width=112
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$IFC1210-(SUBDEV)-FREQ"
+		clr=29
+		bclr=1
+	}
+	align="horiz. centered"
+	format="hexadecimal"
+	limits {
+	}
+}
+text {
+	object {
+		x=15
+		y=169
+		width=50
+		height=14
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Switching freq"
+}
+"text update" {
+	object {
+		x=233
+		y=169
+		width=30
+		height=15
+	}
+	monitor {
+		chan="$(IOC):$IFC1210-(SUBDEV)-FREQ.EGU"
+		clr=29
+		bclr=1
+	}
+	align="horiz. centered"
+	format="hexadecimal"
+	limits {
+	}
 }
