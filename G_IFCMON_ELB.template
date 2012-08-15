@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/07/02 13:24:25 $
+# $Date: 2012/08/15 12:45:24 $
 #
-# $Revision: 1.7 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.7 2012/07/02 13:24:25 kalt_r Exp $
+# $Revision: 1.8 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.8 2012/08/15 12:45:24 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -469,8 +469,10 @@ record ( mbbi, "$(IOC):BMR-SYNC-RUN")
     field(NOBT, "1")
     field(ZRVL, "0")
     field(ZRST, "0")
+    field(ZRSV, "MINOR")
     field(ONVL, "1")
     field(ONST, "1")
+    field(ONSV, "NO_ALARM")
     field(FLNK, "$(IOC):BMR-POWER-ALERT")
 }
 record ( mbbi, "$(IOC):BMR-POWER-ALERT")
@@ -623,6 +625,35 @@ record(ao,"$(IOC):ELB-GENERAL-CTL-SET")
     field(OUT , "#C S0x10 @ELB")
 }
 
+
+record(ao,"$(IOC):ELB-BMRSYNCCNT-SET")
+{
+    field(DESC, "BMR463 switch cnt")
+    field(DTYP, "Soft Channel")
+    field(DRVL, "78")  # 2*78*10ns  = 1.5625us = 1/640 kHz
+    field(DRVH, "250") # 2*250*10ns = 5us      = 1/200 kHz
+    field(PINI, "YES")
+    field(VAL , "156") # 2*156*10ns = 3.125us  = 1/320 kHz = default power-on setting
+    field(FLNK, "$(IOC):ELB-BMRSYNCFREQ")
+}
+record(calc,"$(IOC):ELB-BMRSYNCFREQ")
+{ 
+    field(DESC, "BMR463 switch f")
+    field(INPA, "$(IOC):ELB-BMRSYNCCNT-SET NPP")		
+    field(CALC, "1/(2*A*0.00001)") 
+    field(PREC, "0") 
+    field(EGU , "kHz")
+    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-TEMP1")
+}
+record(calcout,"$(IOC):ELB-FMCXMC-CTL-SET-CALC")
+{
+    field(DESC, "calculates reg.")
+    field(INPA, "$(IOC)ELB-BMRCTL.VAL NPP")
+    field(INPB, "0xffffff00")
+    field(INPC, "$(IOC):ELB-BMRSYNCCNT-SET.VAL NPP")
+    field(CALC, "(A&B)|C")
+    field(OUT , "$(IOC):ELB-BMRCTL-SET PP")
+}
 record(ao,"$(IOC):ELB-BMRCTL-SET")
 {
     field(DESC, "BMR463 dc/dc ctrl.")
