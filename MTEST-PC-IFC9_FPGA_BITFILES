@@ -1,0 +1,10 @@
+##########################################################################
+# filename       url
+##########################################################################
+ifc1210_iocstandard_20120727_CENTRAL.bit    https://codebeamer.psi.ch/svn/IFC_SourceCode/IFC/IFC1210_applications/Standard_IOC/Firmware/Synth/Bit_files/
+ifc1210_basic_20120727_IO.bit               https://codebeamer.psi.ch/svn/IFC_SourceCode/IFC/IFC1210_applications/Standard_IOC/Firmware/Synth/Bit_files/
+##########################################################################
+# $Source: /cvs/G/IFCMON/Attic/MTEST-PC-IFC9_FPGA_BITFILES,v $
+# $Date: 2012/08/15 09:10:05 $
+# $Revision: 1.1 $
+# $Author: kalt_r $
