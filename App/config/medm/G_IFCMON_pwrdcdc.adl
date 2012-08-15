@@ -5,13 +5,13 @@ file {
 }
 display {
 	object {
-		x=10
-		y=25
-		width=545
-		height=399
+		x=1154
+		y=205
+		width=540
+		height=494
 	}
 	clr=14
-	bclr=2
+	bclr=5
 	cmap=""
 	gridSpacing=5
 	gridOn=0
@@ -90,7 +90,7 @@ display {
 composite {
 	object {
 		x=6
-		y=28
+		y=130
 		width=262
 		height=178
 	}
@@ -100,7 +100,7 @@ composite {
 composite {
 	object {
 		x=273
-		y=29
+		y=130
 		width=262
 		height=178
 	}
@@ -110,7 +110,7 @@ composite {
 composite {
 	object {
 		x=6
-		y=211
+		y=313
 		width=262
 		height=178
 	}
@@ -120,7 +120,7 @@ composite {
 composite {
 	object {
 		x=273
-		y=211
+		y=313
 		width=262
 		height=178
 	}
@@ -138,4 +138,152 @@ text {
 		clr=20
 	}
 	textix="IFC1210 onboard DC/DC converters:"
+}
+"text entry" {
+	object {
+		x=302
+		y=81
+		width=170
+		height=20
+	}
+	control {
+		chan="$(IOC):ELB-BMRSYNCCNT-SET"
+		clr=29
+		bclr=0
+	}
+	format="hexadecimal"
+	limits {
+	}
+}
+text {
+	object {
+		x=40
+		y=84
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="BMR-SYNC-CNT (0,64,78..250):"
+}
+text {
+	object {
+		x=40
+		y=109
+		width=90
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Driven switching frequency:"
+}
+"text update" {
+	object {
+		x=304
+		y=109
+		width=130
+		height=15
+	}
+	monitor {
+		chan="$(IOC):ELB-BMRSYNCFREQ"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=441
+		y=109
+		width=30
+		height=15
+	}
+	monitor {
+		chan="$(IOC):ELB-BMRSYNCFREQ.EGU"
+		clr=14
+		bclr=2
+	}
+	clrmod="alarm"
+	limits {
+	}
+}
+text {
+	object {
+		x=40
+		y=59
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="BMR synchronous operation:"
+}
+oval {
+	object {
+		x=304
+		y=57
+		width=18
+		height=18
+	}
+	"basic attribute" {
+		clr=12
+	}
+}
+oval {
+	object {
+		x=306
+		y=59
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):BMR-SYNC-RUN"
+	}
+}
+text {
+	object {
+		x=40
+		y=34
+		width=100
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+	}
+	textix="Common power alert status:"
+}
+oval {
+	object {
+		x=304
+		y=32
+		width=18
+		height=18
+	}
+	"basic attribute" {
+		clr=12
+	}
+}
+oval {
+	object {
+		x=306
+		y=34
+		width=14
+		height=14
+	}
+	"basic attribute" {
+		clr=36
+	}
+	"dynamic attribute" {
+		clr="alarm"
+		chan="$(IOC):BMR-POWER-ALERT"
+	}
 }

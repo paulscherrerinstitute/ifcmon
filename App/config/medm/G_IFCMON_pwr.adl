@@ -8,7 +8,7 @@ display {
 		x=10
 		y=25
 		width=631
-		height=805
+		height=900
 	}
 	clr=14
 	bclr=2
@@ -136,11 +136,11 @@ composite {
 	object {
 		x=51
 		y=411
-		width=530
-		height=385
+		width=529
+		height=484
 	}
 	"composite name"="dcdc"
-	"composite file"="G_IFCMON_pwrdcdc.adl;IOC=$(IOC),SUBDEV=$(SUBDEV)"
+	"composite file"="G_IFCMON_pwrdcdc.adl;IOC=$(IOC)"
 }
 "text update" {
 	object {
