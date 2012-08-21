@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/08/15 12:45:24 $
+# $Date: 2012/08/21 14:35:13 $
 #
-# $Revision: 1.8 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.8 2012/08/15 12:45:24 kalt_r Exp $
+# $Revision: 1.9 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.9 2012/08/21 14:35:13 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -643,12 +643,12 @@ record(calc,"$(IOC):ELB-BMRSYNCFREQ")
     field(CALC, "1/(2*A*0.00001)") 
     field(PREC, "0") 
     field(EGU , "kHz")
-    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-TEMP1")
+    field(FLNK, "$(IOC):ELB-BMRCTL-SET-CALC")
 }
-record(calcout,"$(IOC):ELB-FMCXMC-CTL-SET-CALC")
+record(calcout,"$(IOC):ELB-BMRCTL-SET-CALC")
 {
     field(DESC, "calculates reg.")
-    field(INPA, "$(IOC)ELB-BMRCTL.VAL NPP")
+    field(INPA, "$(IOC):ELB-BMRCTL.VAL NPP")
     field(INPB, "0xffffff00")
     field(INPC, "$(IOC):ELB-BMRSYNCCNT-SET.VAL NPP")
     field(CALC, "(A&B)|C")
