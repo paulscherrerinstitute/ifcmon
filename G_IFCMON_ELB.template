@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/08/21 14:35:13 $
+# $Date: 2012/08/22 09:12:00 $
 #
-# $Revision: 1.9 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.9 2012/08/21 14:35:13 kalt_r Exp $
+# $Revision: 1.10 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.10 2012/08/22 09:12:00 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -630,7 +630,7 @@ record(ao,"$(IOC):ELB-BMRSYNCCNT-SET")
 {
     field(DESC, "BMR463 switch cnt")
     field(DTYP, "Soft Channel")
-    field(DRVL, "78")  # 2*78*10ns  = 1.5625us = 1/640 kHz
+    field(DRVL, "0")   # 2*78*10ns  = 1.5625us = 1/640 kHz
     field(DRVH, "250") # 2*250*10ns = 5us      = 1/200 kHz
     field(PINI, "YES")
     field(VAL , "156") # 2*156*10ns = 3.125us  = 1/320 kHz = default power-on setting
