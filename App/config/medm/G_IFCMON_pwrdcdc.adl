@@ -1,12 +1,12 @@
 
 file {
-	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_pwrdcdc.adl"
+	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/./G_IFCMON_pwrdcdc.adl"
 	version=030104
 }
 display {
 	object {
-		x=1154
-		y=205
+		x=178
+		y=151
 		width=540
 		height=494
 	}
@@ -143,7 +143,7 @@ text {
 	object {
 		x=302
 		y=81
-		width=170
+		width=50
 		height=20
 	}
 	control {
@@ -151,7 +151,6 @@ text {
 		clr=29
 		bclr=0
 	}
-	format="hexadecimal"
 	limits {
 	}
 }
@@ -183,7 +182,7 @@ text {
 	object {
 		x=304
 		y=109
-		width=130
+		width=50
 		height=15
 	}
 	monitor {
@@ -197,7 +196,7 @@ text {
 }
 "text update" {
 	object {
-		x=441
+		x=358
 		y=109
 		width=30
 		height=15
