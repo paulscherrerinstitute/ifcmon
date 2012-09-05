@@ -196,7 +196,7 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(IOC):IFCTC1-PWRMON-DISS"
+		chan="$(IOC):IFC1210-PWRMON-DISS"
 	}
 }
 "text update" {

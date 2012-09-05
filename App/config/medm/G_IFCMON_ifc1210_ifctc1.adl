@@ -705,7 +705,7 @@ oval {
 	}
 	"dynamic attribute" {
 		clr="alarm"
-		chan="$(IOC):IFCTC1-PWRMON-DISS"
+		chan="$(IOC):IFC1210-PWRMON-DISS"
 	}
 }
 "related display" {
@@ -736,7 +736,7 @@ oval {
 	}
 	clr=14
 	bclr=5
-	label="EPICS/IOCMON"
+	label="IOCMON"
 }
 "shell command" {
 	object {
@@ -746,8 +746,7 @@ oval {
 		height=24
 	}
 	command[0] {
-		name="konqueror"
-		args="http://cb.psi.ch/cb/project/104"
+		name="konqueror http://codebeamer.psi.ch/cb/project/104 &"
 	}
 	clr=14
 	bclr=5
