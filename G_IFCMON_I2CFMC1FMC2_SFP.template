@@ -1,0 +1,208 @@
+#--------------------------------------------------------------------
+# Original Author: KR84 / Paul Scherrer Institut
+# $Author: kalt_r $
+# $Date: 2012/09/06 15:11:41 $
+#
+# $Revision: 1.1 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CFMC1FMC2_SFP.template,v 1.1 2012/09/06 15:11:41 kalt_r Exp $
+#
+#--------------------------------------------------------------------
+
+
+# Module Description:
+# the SFP+ modules of IFC_TC1 are coverd in this template:
+#    -SFP+ modules I2C from I2C master in TUSER
+#    -no parallel i/o signal covered here, since this is very application specific
+#
+#
+# You may find more infos on I2C bus structure here:
+# https://codebeamer.psi.ch/cb/wiki/140335
+#
+#
+# This template requires following in a common part of the startup.script:
+#     e.g.  pevAsynI2cConfigure(0, "lm95235_1",  0x400004c)
+# for each device
+#
+#
+#
+#
+# This template requires following substitution parameters:
+# $(IOC)                    The system name / crate name
+# $(SUBDEV)                 "FMC1" or "FMC2"
+# $(SFPFCT)                 The function over SFP, e.g. GTX1160, ...
+# $(I2CBUSSFP)              e.g. gtx1160_xx where xx is inserted here as A0 and A2
+# $(DESCR)                  e.g. "SFP10- GTX 116_0"
+#
+#--------------------------------------------------------------------
+
+
+#--------------------------------------------------------------------
+# one SFP+ module here:       either for CENTRAL FPGA GTX or PCIe
+#--------------------------------------------------------------------
+
+
+# I2C bus 0x0-0x7:  FMC1 / FMC2 over I2C master in TUSER block
+# device:           SFP+ modules
+# datasheet:        ftp://ftp.seagate.com/sff/ for SFF specs and VENDOR datasheets, e.g. AVAGO Technologies
+#--------------------------------------------------------------------
+
+#--------------------------------------------------------------------
+# status
+#--------------------------------------------------------------------
+
+#Vendor Name
+record(stringin,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VENDOR")
+{
+    field(DESC, "vendor: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A0/20 T=STRING L=16")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
+}
+
+# Vendor Part Number
+record(stringin,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
+{
+    field(DESC, "type: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A0/40 T=STRING L=20")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-SR-NR")
+}
+
+# Vendor Serial Number
+record(stringin,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-SR-NR")
+{
+    field(DESC, "sn: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A0/68 T=STRING L=16")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-DATE-CODE")
+}
+
+# Vendor Date Code
+record(stringin,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-DATE-CODE")
+{
+    field(DESC, "date: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A0/84 T=STRING L=8")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-MSB")
+}
+
+# Temperature measurement
+record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-MSB")
+{
+    field(DESC, "TEMP-MSB: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A2/96 T=UINT8")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-LSB")
+}
+record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-LSB")
+{
+    field(DESC, "TEMP-LSB: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A2/97 T=UINT8")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP")
+}
+record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP")
+{ 
+    field(DESC, "TEMP: $(DESCR)")
+    field(INPA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-LSB NPP")
+    field(INPB, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-MSB NPP")
+    field(C   , "0.00390625") # LSB =1/256 degree celsius see datasheet
+    field(CALC, "(A|B-(B&128?256:0)<<8)*C")
+    field(PREC, "1") 
+    field(EGU , "deg C")
+    field(HIHI, "65")
+    field(HHSV, "MAJOR")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-MSB")
+}
+
+# VCC 
+record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-MSB")
+{
+    field(DESC, "TEMP-MSB: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A2/98 T=UINT8")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-LSB")
+}
+record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-LSB")
+{
+    field(DESC, "TEMP-LSB: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A2/99 T=UINT8")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC")
+}
+record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC")
+{ 
+    field(DESC, "Vcc: $(DESCR)")
+    field(INPA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-LSB NPP")
+    field(INPB, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-MSB NPP")
+    field(C   , "0.0001") # LSB =100uV see datasheet
+    field(CALC, "(A|(B<<8))*C")
+    field(PREC, "1") 
+    field(EGU , "V")
+    field(HIHI, "3.6")
+    field(HHSV, "MAJOR")
+    field(LOLO, "3")
+    field(LLSV, "MAJOR")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-MSB")
+}
+
+# TX power 
+record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-MSB")
+{
+    field(DESC, "TEMP-MSB: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A2/104 T=UINT8")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-LSB")
+}
+record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-LSB")
+{
+    field(DESC, "TEMP-LSB: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A2/105 T=UINT8")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR")
+}
+record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR")
+{ 
+    field(DESC, "RXpwr: $(DESCR)")
+    field(INPA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-LSB NPP")
+    field(INPB, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-MSB NPP")
+    field(C   , "0.0001") # LSB =0.1uW see datasheet
+    field(CALC, "(A|(B<<8))*C")
+    field(PREC, "1") 
+    field(EGU , "mW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-MSB")
+}
+
+# RX power
+record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-MSB")
+{
+    field(DESC, "TEMP-MSB: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A2/103 T=UINT8")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-LSB")
+}
+record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-LSB")
+{
+    field(DESC, "TEMP-LSB: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A2/104 T=UINT8")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR")
+}
+record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR")
+{ 
+    field(DESC, "TXpwr: $(DESCR)")
+    field(INPA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-LSB NPP")
+    field(INPB, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-MSB NPP")
+    field(C   , "0.0001") # LSB =0.1uW see datasheet
+    field(CALC, "(A|(B<<8))*C")
+    field(PREC, "1") 
+    field(EGU , "mW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-FAN")
+}
+
+record(fanout,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-FAN")
+{
+    field(DISA, "$(DISABLE)")
+    field(DISV, "1")
+    field(FLNK, "$(FLNK)")
+}
