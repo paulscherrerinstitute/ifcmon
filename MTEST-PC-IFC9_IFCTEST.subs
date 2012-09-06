@@ -2,42 +2,28 @@
 # Author: KR84
 # Date:   27.04.2012
 #
-# Purpose: Test the IFC1210 IFCMON generic infrastructure
+# Purpose: Hardware monitoring for IFC1210 and universal highspeed transition card IFC_TC1.
 #
 #
 
-
+# Scanning: 1 sec
 file G_IFCMON_I2CIFC1210.template{
 {IOC = MTEST-PC-IFC9}
 }
-
-#file G_IFCMON_I2CBMR463.template{
-#pattern
-#    {IOC                ,SUBDEV    ,I2CBUS          ,DESCR          }
-#    {MTEST-PC-IFC9      ,BMR1V0    ,bmr463_1v0      ,"U704: 1V0"    }
-#    {MTEST-PC-IFC9      ,BMR1V0OPT ,bmr463_1v0_opt  ,"U705: 1V0opt" }
-#    {MTEST-PC-IFC9      ,BMR1V5    ,bmr463_1v5      ,"U706: 1V5"    }
-#    {MTEST-PC-IFC9      ,BMRVADJ   ,bmr463_fmc_vadj ,"U707 Vadj"    }
-#}
-
-file G_IFCMON_TMEM.template{
-{IOC = MTEST-PC-IFC9}
+# Scanning: 1 sec update rate, FLNK'ed from G_IFCMON_I2CIFC1210.template
+file G_IFCMON_I2CBMR463.template{
+pattern
+    {IOC                ,SUBDEV    ,BMR ,DESCR          ,DISABLE, FLNK             }
+    {MTEST-PC-IFC9      ,BMR1V0    ,0   ,"U704: 1V0"    ,0      , MTEST-PC-IFC9:IFC1210-BMR1V0OPT-VIN}
+    {MTEST-PC-IFC9      ,BMR1V0OPT ,3   ,"U705: 1V0opt" ,0      , MTEST-PC-IFC9:IFC1210-BMR1V5-VIN   }
+    {MTEST-PC-IFC9      ,BMR1V5    ,1   ,"U706: 1V5"    ,0      , MTEST-PC-IFC9:IFC1210-BMRVADJ-VIN  }
+    {MTEST-PC-IFC9      ,BMRVADJ   ,2   ,"U707: Vadj"   ,1      , MTEST-PC-IFC9:IFCTC1-FW-MAJOR      }
 }
-
-file G_IFCMON_TCSR.template{
-{IOC = MTEST-PC-IFC9}
-}
-
-file G_IFCMON_ELB.template{
-{IOC = MTEST-PC-IFC9}
-}
-
+# Scanning: 1 sec update rate, FLNK'ed from G_IFCMON_I2CBMR463.template
 file G_IFCMON_I2CIFCTC1.template{
 {IOC = MTEST-PC-IFC9}
 }
-
-
-# Scanning: 1 sec update rate, FLNK'ed from I2CIFCTC1.template
+# Scanning: 1 sec update rate, FLNK'ed from G_IFCMON_I2CIFCTC1.template
 file G_IFCMON_I2CIFCTC1_SFP.template
 {    
     pattern
@@ -51,16 +37,40 @@ file G_IFCMON_I2CIFCTC1_SFP.template
     {MTEST-PC-IFC9      ,IFCTC1 ,GTX1141    ,gtx1141_   ,0x24                   ,0x25               ,9      ,"SFP3 - GTX 114_1"    0       , MTEST-PC-IFC9:IFCTC1-SFP-GTX1140-STAT-REG}
     {MTEST-PC-IFC9      ,IFCTC1 ,GTX1140    ,gtx1140_   ,0x26                   ,0x27               ,10     ,"SFP4 - GTX 114_0"    0       , MTEST-PC-IFC9:IFCTC1-SFP-GTX1133-STAT-REG}
     {MTEST-PC-IFC9      ,IFCTC1 ,GTX1133    ,gtx1133_   ,0x28                   ,0x29               ,11     ,"SFP5 - GTX 113_3"    0       , MTEST-PC-IFC9:IFCTC1-SFP-GTX1132-STAT-REG}
-    {MTEST-PC-IFC9      ,IFCTC1 ,GTX1132    ,gtx1132_   ,0x2A                   ,0x2B               ,12     ,"SFP6 - GTX 113_2"    1       , MTEST-PC-IFC9:IFCTC1-SFP-GTX1132-STAT-REG}
-
-#    {MTEST-PC-IFC9      ,FMC1   ,GTX1160    ,gtx1160_   ,0x00                   ,0x00               ,12     ,"SFP10- GTX 116_0"   }
-#    {MTEST-PC-IFC9      ,FMC1   ,GTX1161    ,gtx1161_   ,0x00                   ,0x00               ,12     ,"SFP11- GTX 116_1"   }
-#    {MTEST-PC-IFC9      ,FMC1   ,GTX1162    ,gtx1162_   ,0x00                   ,0x00               ,12     ,"SFP12- GTX 116_2"   }
-#    {MTEST-PC-IFC9      ,FMC1   ,GTX1163    ,gtx1163_   ,0x00                   ,0x00               ,12     ,"SFP13- GTX 116_3"   }
-#    {MTEST-PC-IFC9      ,FMC2   ,GTX1120    ,gtx1120_   ,0x00                   ,0x00               ,12     ,"SFP20- GTX 112_0"   }
-#    {MTEST-PC-IFC9      ,FMC2   ,GTX1121    ,gtx1121_   ,0x00                   ,0x00               ,12     ,"SFP21- GTX 112_1"   }
-#    {MTEST-PC-IFC9      ,FMC2   ,GTX1122    ,gtx1122_   ,0x00                   ,0x00               ,12     ,"SFP22- GTX 112_2"   }
-#    {MTEST-PC-IFC9      ,FMC2   ,GTX1123    ,gtx1123_   ,0x00                   ,0x00               ,12     ,"SFP23- GTX 112_3"   }
+    {MTEST-PC-IFC9      ,IFCTC1 ,GTX1132    ,gtx1132_   ,0x2A                   ,0x2B               ,12     ,"SFP6 - GTX 113_2"    1       , MTEST-PC-IFC9:FMC1-SFP-GTX1161-VENDOR    }
 }
+# Scanning: 1 sec update rate, FLNK'ed from G_IFCMON_I2CIFCTC1_SFP.template
+# compared to above IFCTC1_SFP, here only SFP I2C access used and not pins, sicne this is very application specific
+file G_IFCMON_I2CFMC1FMC2_SFP.template
+{    
+    pattern
+    {IOC                ,SUBDEV ,SFPFCT     ,I2CBUSSFP                                                      ,DESCR                ,DISABLE , FLNK                                     }
+    {MTEST-PC-IFC9      ,FMC1   ,GTX1160    ,gtx1160_                                                       ,"SFP10- GTX 116_0"    0       , MTEST-PC-IFC9:FMC1-SFP-GTX1161-VENDOR    }
+    {MTEST-PC-IFC9      ,FMC1   ,GTX1161    ,gtx1161_                                                       ,"SFP11- GTX 116_1"    0       , MTEST-PC-IFC9:FMC1-SFP-GTX1162-VENDOR    }
+    {MTEST-PC-IFC9      ,FMC1   ,GTX1162    ,gtx1162_                                                       ,"SFP12- GTX 116_2"    0       , MTEST-PC-IFC9:FMC1-SFP-GTX1163-VENDOR    }
+    {MTEST-PC-IFC9      ,FMC1   ,GTX1163    ,gtx1163_                                                       ,"SFP13- GTX 116_3"    0       , MTEST-PC-IFC9:FMC2-SFP-GTX1120-VENDOR    }
+    {MTEST-PC-IFC9      ,FMC2   ,GTX1120    ,gtx1120_                                                       ,"SFP20- GTX 112_0"    0       , MTEST-PC-IFC9:FMC2-SFP-GTX1121-VENDOR    }
+    {MTEST-PC-IFC9      ,FMC2   ,GTX1121    ,gtx1121_                                                       ,"SFP21- GTX 112_1"    0       , MTEST-PC-IFC9:FMC2-SFP-GTX1122-VENDOR    }
+    {MTEST-PC-IFC9      ,FMC2   ,GTX1122    ,gtx1122_                                                       ,"SFP22- GTX 112_2"    0       , MTEST-PC-IFC9:FMC2-SFP-GTX1123-VENDOR    }
+    {MTEST-PC-IFC9      ,FMC2   ,GTX1123    ,gtx1123_                                                       ,"SFP23- GTX 112_3"    1       , MTEST-PC-IFC9:FMC2-SFP-GTX1123-VENDOR    }
+}
+# end of I2C processing chain, started above in G_IFCMON_I2CIFC1210.template
+
+# Scanning: 1 sec
+file G_IFCMON_TMEM.template{
+{IOC = MTEST-PC-IFC9}
+}
+
+# Scanning: 1 sec
+file G_IFCMON_TCSR.template{
+{IOC = MTEST-PC-IFC9}
+}
+
+# Scanning: 1 sec
+file G_IFCMON_ELB.template{
+{IOC = MTEST-PC-IFC9}
+}
+
+
 
 
