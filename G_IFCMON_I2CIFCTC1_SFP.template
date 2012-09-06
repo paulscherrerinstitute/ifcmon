@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/06/18 07:58:05 $
+# $Date: 2012/09/06 13:36:53 $
 #
-# $Revision: 1.12 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1_SFP.template,v 1.12 2012/06/18 07:58:05 kalt_r Exp $
+# $Revision: 1.13 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1_SFP.template,v 1.13 2012/09/06 13:36:53 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -342,7 +342,7 @@ record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-FAN")
 }
 
-# Debug
+# Debug for I2C multiplexer
 #record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-SELECT-READ")
 #{
 #    field(DESC, "IFC_TC1 I2C mux")
