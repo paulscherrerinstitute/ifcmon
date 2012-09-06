@@ -1,7 +1,7 @@
 
 file {
-	name="/afs/psi.ch/user/s/schebacher/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_fmc.adl"
-	version=030105
+	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/./G_IFCMON_fmc.adl"
+	version=030104
 }
 display {
 	object {
@@ -129,8 +129,8 @@ rectangle {
 		height=20
 	}
 	display[0] {
-		name="G_IFCMON_ifctc1_sfp.adl"
-		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=GTX1160"
+		name="G_IFCMON_fmc_sfp.adl"
+		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=$(GTX0)"
 	}
 	clr=14
 	bclr=5
@@ -144,7 +144,7 @@ rectangle {
 		height=10
 	}
 	monitor {
-		chan="$(IOC):$(FMC)-SFP-GTX1160-TYPE"
+		chan="$(IOC):$(FMC)-SFP-$(GTX0)-TYPE"
 		clr=0
 		bclr=36
 	}
@@ -163,7 +163,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="SFP10/D0/GTX 116_0"
+	textix="$(GTX0)"
 }
 "related display" {
 	object {
@@ -174,7 +174,7 @@ text {
 	}
 	display[0] {
 		name="G_IFCMON_gtx.adl"
-		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=GTX1160"
+		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=$(GTX0)"
 	}
 	clr=14
 	bclr=5
@@ -188,8 +188,8 @@ text {
 		height=20
 	}
 	display[0] {
-		name="G_IFCMON_ifctc1_sfp.adl"
-		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=GTX1161"
+		name="G_IFCMON_fmc_sfp.adl"
+		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=$(GTX1)"
 	}
 	clr=14
 	bclr=5
@@ -203,7 +203,7 @@ text {
 		height=10
 	}
 	monitor {
-		chan="$(IOC):$(FMC)-SFP-GTX1161-TYPE"
+		chan="$(IOC):$(FMC)-SFP-$(GTX1)-TYPE"
 		clr=0
 		bclr=36
 	}
@@ -222,7 +222,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="SFP11/D1/GTX 116_1"
+	textix="$(GTX1)"
 }
 "related display" {
 	object {
@@ -233,7 +233,7 @@ text {
 	}
 	display[0] {
 		name="G_IFCMON_gtx.adl"
-		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=GTX1161"
+		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=$(GTX1)"
 	}
 	clr=14
 	bclr=5
@@ -247,8 +247,8 @@ text {
 		height=20
 	}
 	display[0] {
-		name="G_IFCMON_ifctc1_sfp.adl"
-		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=GTX1162"
+		name="G_IFCMON_fmc_sfp.adl"
+		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=$(GTX2)"
 	}
 	clr=14
 	bclr=5
@@ -262,7 +262,7 @@ text {
 		height=10
 	}
 	monitor {
-		chan="$(IOC):$(FMC)-SFP-GTX1162-TYPE"
+		chan="$(IOC):$(FMC)-SFP-$(GTX2)-TYPE"
 		clr=0
 		bclr=36
 	}
@@ -281,7 +281,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="SFP12/D2/GTX 116_2"
+	textix="$(GTX2)"
 }
 "related display" {
 	object {
@@ -292,7 +292,7 @@ text {
 	}
 	display[0] {
 		name="G_IFCMON_gtx.adl"
-		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=GTX1162"
+		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=$(GTX2)"
 	}
 	clr=14
 	bclr=5
@@ -306,8 +306,8 @@ text {
 		height=20
 	}
 	display[0] {
-		name="G_IFCMON_ifctc1_sfp.adl"
-		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=GTX1163"
+		name="G_IFCMON_fmc_sfp.adl"
+		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=$(GTX3)"
 	}
 	clr=14
 	bclr=5
@@ -321,7 +321,7 @@ text {
 		height=10
 	}
 	monitor {
-		chan="$(IOC):$(FMC)-SFP-GTX1163-TYPE"
+		chan="$(IOC):$(FMC)-SFP-$(GTX3)-TYPE"
 		clr=0
 		bclr=36
 	}
@@ -340,7 +340,7 @@ text {
 	"basic attribute" {
 		clr=14
 	}
-	textix="SFP13/D3/GTX 116_3"
+	textix="$(GTX3)"
 }
 "related display" {
 	object {
@@ -351,7 +351,7 @@ text {
 	}
 	display[0] {
 		name="G_IFCMON_gtx.adl"
-		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=GTX1163"
+		args="IOC=$(IOC),SUBDEV=$(FMC),SFPFCT=$(GTX3)"
 	}
 	clr=14
 	bclr=5

@@ -1211,7 +1211,7 @@ composite {
 		height=195
 	}
 	"composite name"="FMC2"
-	"composite file"="G_IFCMON_fmc.adl;IOC=$(IOC);FMC=FMC2"
+	"composite file"="G_IFCMON_fmc.adl;IOC=$(IOC);FMC=FMC2;GTX0=GTX1120;GTX1=GTX1121;GTX2=GTX1122;GTX3=GTX1123"
 	"dynamic attribute" {
 		vis="if zero"
 		chan="$(IOC):FMC2-PRESENT"
@@ -1225,7 +1225,7 @@ composite {
 		height=195
 	}
 	"composite name"="FMC1"
-	"composite file"="G_IFCMON_fmc.adl;IOC=$(IOC);FMC=FMC1"
+	"composite file"="G_IFCMON_fmc.adl;IOC=$(IOC);FMC=FMC1;GTX0=GTX1160;GTX1=GTX1161;GTX2=GTX1162;GTX3=GTX1163"
 	"dynamic attribute" {
 		vis="if zero"
 		chan="$(IOC):FMC1-PRESENT"
