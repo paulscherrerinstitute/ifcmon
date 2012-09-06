@@ -4,8 +4,8 @@ require "regDev","test"
 require "pev"
 
 #######################################################################
-# Access trough PCIe_AGSW to USR1 - for block transfer of status area 32-bit registers, therefore use WS swapping option
-pevConfigure(0,"Usr1StatusGeneric","USR1", 0, "DS", 0, 255, 1)
+# Access trough PCIe_AGSW to USR1 - for block transfer of status area 32-bit registers, therefore use DS / 32-bit swapping option
+pevConfigure(0,"Usr1StatusGeneric","USR1", 0, "DS", 0, 256, 1)
 
 
 ### I2C components
@@ -20,69 +20,63 @@ pevConfigure(0,"Usr1StatusGeneric","USR1", 0, "DS", 0, 255, 1)
 
 ## on IFC1210 mainboard
 ## All these accesses go over ELB-bus directly to PON FPGA, therefore bit 7 of following code is set.
-pevAsynI2cConfigure(0, "lm95235_1",         0x040000cc)
-pevAsynI2cConfigure(0, "lm95235_2",         0x04000098)
-pevAsynI2cConfigure(0, "max5970",           0x450000b0)
-pevAsynI2cConfigure(0, "pci_express_switch",0xc50000f5)
-pevAsynI2cConfigure(0, "pgm_clock",         0xe50000ee)
-
-# for FMC/XMC cards: One line for each I2C device on each bus
-#pevAsynI2cConfigure(0, "ifc1210_fmcxmc1",               0x840000xx) # replace xx bit 6:0 with I2C device address, bit 7 = 1 for ELB direct access
-#pevAsynI2cConfigure(0, "ifc1210_fmcxmc2",               0xa40000xx) # replace xx bit 6:0 with I2C device address, bit 7 = 1 for ELB direct access
+pevAsynI2cConfigure(0, "lm95235_1",         0x000000cc)
+pevAsynI2cConfigure(0, "lm95235_2",         0x00000098)
+pevAsynI2cConfigure(0, "max5970",           0x400000b0)
+pevAsynI2cConfigure(0, "pgm_clock",         0xe00000ee)
 
 # FMC 1/2 SFP+
-pevAsynI2cConfigure(0, "gtx1160_A0",        0x64000050)
-pevAsynI2cConfigure(0, "gtx1161_A0",        0x64000050)
-pevAsynI2cConfigure(0, "gtx1162_A0",        0x64000050)
-pevAsynI2cConfigure(0, "gtx1163_A0",        0x64000050)
+pevAsynI2cConfigure(0, "gtx1160_A0",        0x60000050)
+pevAsynI2cConfigure(0, "gtx1161_A0",        0x60000050)
+pevAsynI2cConfigure(0, "gtx1162_A0",        0x60000050)
+pevAsynI2cConfigure(0, "gtx1163_A0",        0x60000050)
 
-pevAsynI2cConfigure(0, "gtx1160_A2",        0x64000051)
-pevAsynI2cConfigure(0, "gtx1161_A2",        0x64000051)
-pevAsynI2cConfigure(0, "gtx1162_A2",        0x64000051)
-pevAsynI2cConfigure(0, "gtx1163_A2",        0x64000051)
+pevAsynI2cConfigure(0, "gtx1160_A2",        0x60000051)
+pevAsynI2cConfigure(0, "gtx1161_A2",        0x60000051)
+pevAsynI2cConfigure(0, "gtx1162_A2",        0x60000051)
+pevAsynI2cConfigure(0, "gtx1163_A2",        0x60000051)
 
-pevAsynI2cConfigure(0, "gtx1120_A0",        0x64000050)
-pevAsynI2cConfigure(0, "gtx1121_A0",        0x64000050)
-pevAsynI2cConfigure(0, "gtx1122_A0",        0x64000050)
-pevAsynI2cConfigure(0, "gtx1123_A0",        0x64000050)
+pevAsynI2cConfigure(0, "gtx1120_A0",        0x60000050)
+pevAsynI2cConfigure(0, "gtx1121_A0",        0x60000050)
+pevAsynI2cConfigure(0, "gtx1122_A0",        0x60000050)
+pevAsynI2cConfigure(0, "gtx1123_A0",        0x60000050)
 
-pevAsynI2cConfigure(0, "gtx1120_A2",        0x64000051)
-pevAsynI2cConfigure(0, "gtx1121_A2",        0x64000051)
-pevAsynI2cConfigure(0, "gtx1122_A2",        0x64000051)
-pevAsynI2cConfigure(0, "gtx1123_A2",        0x64000051)
+pevAsynI2cConfigure(0, "gtx1120_A2",        0x60000051)
+pevAsynI2cConfigure(0, "gtx1121_A2",        0x60000051)
+pevAsynI2cConfigure(0, "gtx1122_A2",        0x60000051)
+pevAsynI2cConfigure(0, "gtx1123_A2",        0x60000051)
 
 
 ## IFC_TC1 transition card
 ## All these accesses go over PCIe_AGSW I2C master and NOT over ELB bus, therefore bit 7 is cleared.
-pevAsynI2cConfigure(0, "ifctc1_cpld",       0x64000012)
-pevAsynI2cConfigure(0, "ifctc1_max5970",    0x6400003A)
-pevAsynI2cConfigure(0, "ifctc1_eeprom",     0x64000054)
+pevAsynI2cConfigure(0, "ifctc1_cpld",       0x60000012)
+pevAsynI2cConfigure(0, "ifctc1_max5970",    0x6000003A)
 
 #SFP+ GTX
-pevAsynI2cConfigure(0, "gtx1143_A0",        0x64000050)
-pevAsynI2cConfigure(0, "gtx1142_A0",        0x64000050)
-pevAsynI2cConfigure(0, "gtx1141_A0",        0x64000050)
-pevAsynI2cConfigure(0, "gtx1140_A0",        0x64000050)
-pevAsynI2cConfigure(0, "gtx1133_A0",        0x64000050)
-pevAsynI2cConfigure(0, "gtx1132_A0",        0x64000050)
+pevAsynI2cConfigure(0, "gtx1143_A0",        0x60000050)
+pevAsynI2cConfigure(0, "gtx1142_A0",        0x60000050)
+pevAsynI2cConfigure(0, "gtx1141_A0",        0x60000050)
+pevAsynI2cConfigure(0, "gtx1140_A0",        0x60000050)
+pevAsynI2cConfigure(0, "gtx1133_A0",        0x60000050)
+pevAsynI2cConfigure(0, "gtx1132_A0",        0x60000050)
 
-pevAsynI2cConfigure(0, "gtx1143_A2",        0x64000051)
-pevAsynI2cConfigure(0, "gtx1142_A2",        0x64000051)
-pevAsynI2cConfigure(0, "gtx1141_A2",        0x64000051)
-pevAsynI2cConfigure(0, "gtx1140_A2",        0x64000051)
-pevAsynI2cConfigure(0, "gtx1133_A2",        0x64000051)
-pevAsynI2cConfigure(0, "gtx1132_A2",        0x64000051)
+pevAsynI2cConfigure(0, "gtx1143_A2",        0x60000051)
+pevAsynI2cConfigure(0, "gtx1142_A2",        0x60000051)
+pevAsynI2cConfigure(0, "gtx1141_A2",        0x60000051)
+pevAsynI2cConfigure(0, "gtx1140_A2",        0x60000051)
+pevAsynI2cConfigure(0, "gtx1133_A2",        0x60000051)
+pevAsynI2cConfigure(0, "gtx1132_A2",        0x60000051)
 
 #SFP+ PCIe
-pevAsynI2cConfigure(0, "pci_p12_A0",        0x64000050)
-pevAsynI2cConfigure(0, "pci_p13_A0",        0x64000050)
-pevAsynI2cConfigure(0, "pci_p14_A0",        0x64000050)
-pevAsynI2cConfigure(0, "pci_p15_A0",        0x64000050)
+pevAsynI2cConfigure(0, "pci_p12_A0",        0x60000050)
+pevAsynI2cConfigure(0, "pci_p13_A0",        0x60000050)
+pevAsynI2cConfigure(0, "pci_p14_A0",        0x60000050)
+pevAsynI2cConfigure(0, "pci_p15_A0",        0x60000050)
 
-pevAsynI2cConfigure(0, "pci_p12_A2",        0x64000051)
-pevAsynI2cConfigure(0, "pci_p13_A2",        0x64000051)
-pevAsynI2cConfigure(0, "pci_p14_A2",        0x64000051)
-pevAsynI2cConfigure(0, "pci_p15_A2",        0x64000051)
+pevAsynI2cConfigure(0, "pci_p12_A2",        0x60000051)
+pevAsynI2cConfigure(0, "pci_p13_A2",        0x60000051)
+pevAsynI2cConfigure(0, "pci_p14_A2",        0x60000051)
+pevAsynI2cConfigure(0, "pci_p15_A2",        0x60000051)
 
 
 
