@@ -1,12 +1,12 @@
 
 file {
-	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_pwrdcdc_bmr463.adl"
+	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/./G_IFCMON_pwrdcdc_bmr463.adl"
 	version=030104
 }
 display {
 	object {
-		x=10
-		y=25
+		x=1293
+		y=362
 		width=282
 		height=200
 	}
@@ -113,24 +113,23 @@ text {
 "text update" {
 	object {
 		x=117
-		y=53
+		y=36
 		width=112
 		height=15
 	}
 	monitor {
-		chan="$(IOC):$IFC1210-(SUBDEV)-VIN"
+		chan="$(IOC):IFC1210-$(SUBDEV)-VIN"
 		clr=29
 		bclr=1
 	}
-	align="horiz. centered"
-	format="hexadecimal"
+	align="horiz. right"
 	limits {
 	}
 }
 text {
 	object {
 		x=15
-		y=53
+		y=36
 		width=50
 		height=14
 	}
@@ -142,41 +141,39 @@ text {
 "text update" {
 	object {
 		x=233
-		y=53
+		y=36
 		width=30
 		height=15
 	}
 	monitor {
-		chan="$(IOC):$IFC1210-(SUBDEV)-VIN.EGU"
+		chan="$(IOC):IFC1210-$(SUBDEV)-VIN.EGU"
 		clr=29
 		bclr=1
 	}
-	align="horiz. centered"
-	format="hexadecimal"
+	format="string"
 	limits {
 	}
 }
 "text update" {
 	object {
 		x=117
-		y=71
+		y=54
 		width=112
 		height=15
 	}
 	monitor {
-		chan="$(IOC):$IFC1210-(SUBDEV)-VOUT"
+		chan="$(IOC):IFC1210-$(SUBDEV)-VOUT"
 		clr=29
 		bclr=1
 	}
-	align="horiz. centered"
-	format="hexadecimal"
+	align="horiz. right"
 	limits {
 	}
 }
 text {
 	object {
 		x=15
-		y=71
+		y=54
 		width=50
 		height=14
 	}
@@ -188,41 +185,39 @@ text {
 "text update" {
 	object {
 		x=233
-		y=71
+		y=54
 		width=30
 		height=15
 	}
 	monitor {
-		chan="$(IOC):$IFC1210-(SUBDEV)-VOUT.EGU"
+		chan="$(IOC):IFC1210-$(SUBDEV)-VOUT.EGU"
 		clr=29
 		bclr=1
 	}
-	align="horiz. centered"
-	format="hexadecimal"
+	format="string"
 	limits {
 	}
 }
 "text update" {
 	object {
 		x=117
-		y=89
+		y=72
 		width=112
 		height=15
 	}
 	monitor {
-		chan="$(IOC):$IFC1210-(SUBDEV)-IOUT"
+		chan="$(IOC):IFC1210-$(SUBDEV)-IOUT"
 		clr=29
 		bclr=1
 	}
-	align="horiz. centered"
-	format="hexadecimal"
+	align="horiz. right"
 	limits {
 	}
 }
 text {
 	object {
 		x=15
-		y=89
+		y=72
 		width=50
 		height=14
 	}
@@ -234,41 +229,39 @@ text {
 "text update" {
 	object {
 		x=233
-		y=89
+		y=72
 		width=30
 		height=15
 	}
 	monitor {
-		chan="$(IOC):$IFC1210-(SUBDEV)-IOUT.EGU"
+		chan="$(IOC):IFC1210-$(SUBDEV)-IOUT.EGU"
 		clr=29
 		bclr=1
 	}
-	align="horiz. centered"
-	format="hexadecimal"
+	format="string"
 	limits {
 	}
 }
 "text update" {
 	object {
 		x=117
-		y=107
+		y=90
 		width=112
 		height=15
 	}
 	monitor {
-		chan="$(IOC):$IFC1210-(SUBDEV)-POUT"
+		chan="$(IOC):IFC1210-$(SUBDEV)-POUT"
 		clr=29
 		bclr=1
 	}
-	align="horiz. centered"
-	format="hexadecimal"
+	align="horiz. right"
 	limits {
 	}
 }
 text {
 	object {
 		x=15
-		y=107
+		y=90
 		width=50
 		height=14
 	}
@@ -280,41 +273,39 @@ text {
 "text update" {
 	object {
 		x=233
-		y=107
+		y=90
 		width=30
 		height=15
 	}
 	monitor {
-		chan="$(IOC):$IFC1210-(SUBDEV)-POUT.EGU"
+		chan="$(IOC):IFC1210-$(SUBDEV)-POUT.EGU"
 		clr=29
 		bclr=1
 	}
-	align="horiz. centered"
-	format="hexadecimal"
+	format="string"
 	limits {
 	}
 }
 "text update" {
 	object {
 		x=117
-		y=133
+		y=109
 		width=112
 		height=15
 	}
 	monitor {
-		chan="$(IOC):$IFC1210-(SUBDEV)-TEMP1"
+		chan="$(IOC):IFC1210-$(SUBDEV)-TEMP1"
 		clr=29
 		bclr=1
 	}
-	align="horiz. centered"
-	format="hexadecimal"
+	align="horiz. right"
 	limits {
 	}
 }
 text {
 	object {
 		x=15
-		y=133
+		y=109
 		width=50
 		height=14
 	}
@@ -326,87 +317,51 @@ text {
 "text update" {
 	object {
 		x=233
-		y=133
+		y=109
 		width=30
 		height=15
 	}
 	monitor {
-		chan="$(IOC):$IFC1210-(SUBDEV)-TEMP1.EGU"
+		chan="$(IOC):IFC1210-$(SUBDEV)-TEMP1.EGU"
 		clr=29
 		bclr=1
 	}
-	align="horiz. centered"
-	format="hexadecimal"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=117
-		y=151
-		width=112
-		height=15
-	}
-	monitor {
-		chan="$(IOC):$IFC1210-(SUBDEV)-DUTY"
-		clr=29
-		bclr=1
-	}
-	align="horiz. centered"
-	format="hexadecimal"
+	format="string"
 	limits {
 	}
 }
 text {
 	object {
 		x=15
-		y=151
+		y=147
 		width=50
 		height=14
 	}
 	"basic attribute" {
 		clr=14
 	}
-	textix="Duty cycle"
-}
-"text update" {
-	object {
-		x=233
-		y=151
-		width=30
-		height=15
-	}
-	monitor {
-		chan="$(IOC):$IFC1210-(SUBDEV)-DUTY.EGU"
-		clr=29
-		bclr=1
-	}
-	align="horiz. centered"
-	format="hexadecimal"
-	limits {
-	}
+	textix="Sync Interleave"
 }
 "text update" {
 	object {
 		x=117
-		y=169
+		y=128
 		width=112
 		height=15
 	}
 	monitor {
-		chan="$(IOC):$IFC1210-(SUBDEV)-FREQ"
+		chan="$(IOC):IFC1210-$(SUBDEV)-FREQ"
 		clr=29
 		bclr=1
 	}
-	align="horiz. centered"
-	format="hexadecimal"
+	align="horiz. right"
 	limits {
 	}
 }
 text {
 	object {
 		x=15
-		y=169
+		y=128
 		width=50
 		height=14
 	}
@@ -418,17 +373,46 @@ text {
 "text update" {
 	object {
 		x=233
-		y=169
+		y=128
 		width=30
 		height=15
 	}
 	monitor {
-		chan="$(IOC):$IFC1210-(SUBDEV)-FREQ.EGU"
+		chan="$(IOC):IFC1210-$(SUBDEV)-FREQ.EGU"
 		clr=29
 		bclr=1
 	}
-	align="horiz. centered"
-	format="hexadecimal"
+	format="string"
+	limits {
+	}
+}
+"choice button" {
+	object {
+		x=15
+		y=171
+		width=250
+		height=15
+	}
+	control {
+		chan="$(IOC):IFC1210-$(SUBDEV)-SYNCPIN"
+		clr=29
+		bclr=1
+	}
+	clrmod="alarm"
+	stacking="column"
+}
+"text entry" {
+	object {
+		x=152
+		y=146
+		width=112
+		height=20
+	}
+	control {
+		chan="$(IOC):IFC1210-$(SUBDEV)-INTERLEAVE"
+		clr=29
+		bclr=0
+	}
 	limits {
 	}
 }
