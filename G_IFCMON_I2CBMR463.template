@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/07/18 08:25:42 $
+# $Date: 2012/09/18 12:21:21 $
 #
-# $Revision: 1.3 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CBMR463.template,v 1.3 2012/07/18 08:25:42 kalt_r Exp $
+# $Revision: 1.4 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CBMR463.template,v 1.4 2012/09/18 12:21:21 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -16,7 +16,9 @@
 # You may find more infos on I2C bus structure here:
 # https://codebeamer.psi.ch/cb/wiki/140335
 #
-#
+# Even if we access BMR463 devices over I2C master, it will required special PmBus protocol. Therefore
+# in the PEV kernel driver API not the I2C routines but the bmr ones are called. So here the recrod DTYP
+# and INP / OUT field specify wich BMR to access.
 #
 #
 # This template requires following substitution parameters:
@@ -26,23 +28,25 @@
 #                       BMR1V0OPT               for BMR463 U705 VCC_1V0 (optional for LX240T big CENTRAL FPGA)
 #                       BMR1V5                  for BMR463 U706 VCC_1V5
 #                       BMRVADJ                 for BMR463 U707 FMC_Vadj 1.5-2.5V
-# $(I2CBUS)             ifc1210_bmr463_1v0      for BMR463 U704 VCC_1V0 (primary)
-#                       ifc1210_bmr463_1v0_opt  for BMR463 U705 VCC_1V0 (optional for LX240T big CENTRAL FPGA)
-#                       ifc1210_bmr463_1v5      for BMR463 U706 VCC_1V5
-#                       ifc1210_bmr463_fmc_vadj for BMR463 U707 FMC_Vadj 1.5-2.5V
+# $(BMR)                0                       for BMR463 U704
+#                       1                       for BMR463 U706
+#                       2                       for BMR463 U707
+#                       3                       for BMR463 U705 (1V0 optional)
 # $(DESCR)              e.g. "BMR463 U707 FMC_Vadj 1.5-2.5V"
 #
 #
 #
 #--------------------------------------------------------------------
 
-
+#--------------------------------------------------------------------
+# Status records (cycling processing)
+#--------------------------------------------------------------------
 record(ai,"$(IOC):IFC1210-$(SUBDEV)-VIN")
 {
     field(DESC, "$(DESCR): Vin")
-    field(SCAN, "1 second")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUS)/0x88 T=UINT16")
+#    field(SCAN, "1 second")
+    field(DTYP, "ifc1210")
+    field(INP , "#C$(BMR) S0x88 @BMR_11U 2")
     field(EGU , "V")
     field(PREC, "2")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-VOUT")
@@ -51,8 +55,8 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-VIN")
 record(ai,"$(IOC):IFC1210-$(SUBDEV)-VOUT")
 {
     field(DESC, "$(DESCR): Vout")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUS)/0x8B T=UINT16")
+    field(DTYP, "ifc1210")
+    field(INP , "#C$(BMR) S0x8B @BMR_16U 2")
     field(EGU , "V")
     field(PREC, "2")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-IOUT")
@@ -61,11 +65,11 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-VOUT")
 record(ai,"$(IOC):IFC1210-$(SUBDEV)-IOUT")
 {
     field(DESC, "$(DESCR): Vout")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUS)/0x8C T=UINT16")
+    field(DTYP, "ifc1210")
+    field(INP , "#C$(BMR) S0x8C @BMR_11U 2")
     field(EGU , "A")
     field(PREC, "1")
-    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-TEMP1")
+    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-POUT")
 }
 
 # output power calculation
@@ -83,30 +87,94 @@ record(calc,"$(IOC):IFC1210-$(SUBDEV)-POUT")
 record(ai,"$(IOC):IFC1210-$(SUBDEV)-TEMP1")
 {
     field(DESC, "$(DESCR): Temp1")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUS)/0x8D T=UINT16")
+    field(DTYP, "ifc1210")
+    field(INP , "#C$(BMR) S0x8D @BMR_11S 2")
     field(EGU , "deg C")
     field(PREC, "1")
-    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-DUTY")
-}
-
-record(ai,"$(IOC):IFC1210-$(SUBDEV)-DUTY")
-{
-    field(DESC, "$(DESCR): duty")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUS)/0x94 T=UINT16")
-    field(EGU , "%")
-    field(PREC, "0")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-FREQ")
 }
 
 record(ai,"$(IOC):IFC1210-$(SUBDEV)-FREQ")
 {
     field(DESC, "$(DESCR): Freq")
-    field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUS)/0x8D T=UINT16")
+    field(DTYP, "ifc1210")
+    field(INP , "#C$(BMR) S0x95 @BMR_11U 2")
     field(EGU , "kHz")
-    field(PREC, "2")
-#    field(FLNK, "$(IOC):")
+    field(PREC, "1")
+    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-USERCONFIG")
 }
 
+# debug
+record(ai,"$(IOC):IFC1210-$(SUBDEV)-USERCONFIG")
+{
+    field(DESC, "$(DESCR): USRCFG")
+    field(DTYP, "ifc1210")
+    field(INP , "#C$(BMR) S0xD1 @BMR 2")
+    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-SYNCPIN")
+}
+
+
+
+#--------------------------------------------------------------------
+# Control records (PP)
+#--------------------------------------------------------------------
+record ( mbbo, "$(IOC):IFC1210-$(SUBDEV)-SYNCPIN")
+{
+    field(DESC, "$(DESCR): SYNC")
+    field(DTYP, "Raw Soft Channel")
+    field(OUT , "$(IOC):IFC1210-$(SUBDEV)-USERCONFIG-CALC.B NPP")
+    field(SHFT, "6")
+    field(NOBT, "1")
+    field(VAL , "1")
+    field(PINI, "NO")
+    field(ZRVL, "0")
+    field(ZRST, "SYNC internal")
+    field(ZRSV, "MINOR")
+    field(ONVL, "1")
+    field(ONST, "SYNC input")
+    field(ONSV, "NO_ALARM")
+    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-USERCONFIG-CALC")
+}
+record(calcout,"$(IOC):IFC1210-$(SUBDEV)-USERCONFIG-CALC")
+{
+    field(DESC, "calculates reg.")
+#    field(INPA, "$(IOC):IFC1210-$(SUBDEV)-USERCONFIG.VAL NPP")
+    field(INPB, "$(IOC):IFC1210-$(SUBDEV)-SYNCPIN.RVAL NPP")
+    field(INPC, "0x0001")  # allow bit 6 to change, set all other bit to zero, see BMR463 AN302 PMBus Command Set Page 24 / Table 8.
+    field(CALC, "C|B")
+    field(OUT , "$(IOC):IFC1210-$(SUBDEV)-USERCONFIG-SET PP")
+}
+record(ao,"$(IOC):IFC1210-$(SUBDEV)-USERCONFIG-SET")
+{
+    field(DESC, "$(DESCR): USRCFG")
+    field(DTYP, "ifc1210")
+    field(OUT , "#C$(BMR) S0xD1 @BMR 2")
+    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-INTERLEAVE")
+}
+
+record(ao,"$(IOC):IFC1210-$(SUBDEV)-INTERLEAVE")
+{
+    field(DESC, "$(DESCR): INTERLEAVE")
+    field(DTYP, "ifc1210")
+    field(OUT , "#C$(BMR) S0x37 @BMR 2")
+    field(VAL , "$(INTERLEAVE)")
+    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-INTERLEAVE-R")
+}
+
+# debug
+record(ai,"$(IOC):IFC1210-$(SUBDEV)-INTERLEAVE-R")
+{
+    field(DESC, "$(DESCR): INTERLEAVE")
+    field(DTYP, "ifc1210")
+    field(INP , "#C$(BMR) S0x37 @BMR 2")
+    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-FAN")
+}
+
+
+
+record(fanout,"$(IOC):IFC1210-$(SUBDEV)-FAN")
+{
+    field(DISA, "$(DISABLE)")
+    field(DISV, "1")
+    field(FLNK, "$(FLNK)") # FLNK towards next BMR463
+}
