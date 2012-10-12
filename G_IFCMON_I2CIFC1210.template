@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/09/06 12:38:19 $
+# $Date: 2012/10/12 12:30:53 $
 #
-# $Revision: 1.11 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.11 2012/09/06 12:38:19 kalt_r Exp $
+# $Revision: 1.12 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.12 2012/10/12 12:30:53 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -73,7 +73,7 @@ record(calc,"$(IOC):TEMP1")
     field(CALC, "(A|B-(B&128?256:0)<<8)*C")
     field(PREC, "1") 
     field(EGU , "deg C")
-    field(HIHI, "50")
+    field(HIHI, "60")
     field(HHSV, "MAJOR")
     field(FLNK, "$(IOC):TEMP2-CONF2")
 }
@@ -122,7 +122,7 @@ record(calc,"$(IOC):TEMP2")
     field(CALC, "(A|B-(B&128?256:0)<<8)*C")
     field(PREC, "1") 
     field(EGU , "deg C")
-    field(HIHI, "50")
+    field(HIHI, "60")
     field(HHSV, "MAJOR")
     field(FLNK, "$(IOC):P2020-CORETEMP")
 }
@@ -559,7 +559,7 @@ record(calc,"$(IOC):IFC1210-PWRMON-DISS")
     field(EGU , "W")
     field(HIHI, "40")
     field(HHSV, "MAJOR")
-    field(FLNK, "$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-ACTIVE")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-PDRST-ACT")
 }
 
 #--------------------------------------------------------------------
@@ -571,32 +571,32 @@ record(dfanout,"$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-SET")
 {
     field(DOL , "15") # 15 = reset
     field(OMSL, "closed_loop")
-    field(OUTA, "$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-ACTIVE NPP")
+    field(OUTA, "$(IOC):IFC1210-PWRMON-PDRST-ACT NPP")
 }
 
-record(ao,"$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-ACTIVE")
+record(ao,"$(IOC):IFC1210-PWRMON-PDRST-ACT")
 {
     field(DESC, "peak detection RESET")
     field(DTYP, "regDevAsyn")
     field(OUT , "#C S @max5970/0x41 T=UINT8")
     field(VAL , "0") # 0= no reset / 15=reset 
-    field(FLNK, "$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-DEACTIVE")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-PDRST-DACT")
 }
 
-record(ao,"$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-DEACTIVE")
+record(ao,"$(IOC):IFC1210-PWRMON-PDRST-DACT")
 {
     field(DESC, "peak detection RESET")
     field(DTYP, "regDevAsyn")
     field(OUT , "#C S @max5970/0x41 T=UINT8")
     field(VAL , "0") # always 0= no reset
-    field(FLNK, "$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-DEACTIVE-SET")
+    field(FLNK, "$(IOC):IFC1210-PWRMON-PDRST-DACT-SET")
 }
 
-record(dfanout,"$(IOC):IFC1210-PWRMON-PEAK-DET-RESET-DEACTIVE-SET")
+record(dfanout,"$(IOC):IFC1210-PWRMON-PDRST-DACT-SET")
 {
     field(DOL , "0") # 0= no reset
     field(OMSL, "closed_loop")
-    field(OUTA, "$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-ACTIVE NPP")
+    field(OUTA, "$(IOC):IFCTC1-PWRMON-PDRST-ACT NPP")
     field(FLNK, "$(IOC):PGMCLOCK-REG0-CALC") 
 }
 
