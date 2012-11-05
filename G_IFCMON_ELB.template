@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/09/06 12:36:52 $
+# $Date: 2012/11/05 13:19:18 $
 #
-# $Revision: 1.11 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.11 2012/09/06 12:36:52 kalt_r Exp $
+# $Revision: 1.12 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.12 2012/11/05 13:19:18 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -31,7 +31,7 @@
 # bits 15:8     DIP SW100
 # bits 27:24    HexRot SW102
 # bits 31:28    HexRot SW103
-record(ai,"$(IOC):ELB-STATIC-SW")
+record(longin,"$(IOC):ELB-STATIC-SW")
 {
     field(DESC, "status of switches")
     field(PINI, "YES")
@@ -221,7 +221,7 @@ record ( mbbi, "$(IOC):SW103-HEXROT")
     field(FLNK, "$(IOC):ELB-PCIESW-CTL")
 }
 
-record(ai,"$(IOC):ELB-PCIESW-CTL")
+record(longin,"$(IOC):ELB-PCIESW-CTL")
 {
     field(DESC, "PCIe switch ctrl")
     field(DTYP, "ifc1210")
@@ -313,7 +313,7 @@ record ( mbbi, "$(IOC):PCIE-CLKMODE")
     field(FLNK, "$(IOC):ELB-PON-SIGN")
 }
 
-record(ai,"$(IOC):ELB-PON-SIGN")
+record(longin,"$(IOC):ELB-PON-SIGN")
 {
     field(DESC, "PON FPGA signature")
     field(DTYP, "ifc1210")
@@ -324,7 +324,7 @@ record(ai,"$(IOC):ELB-PON-SIGN")
 #--------------------------------------------------------------------
 # status / cyclic processing
 #--------------------------------------------------------------------
-record(ai,"$(IOC):ELB-FMCXMC-CTL")
+record(longin,"$(IOC):ELB-FMCXMC-CTL")
 {
     field(DESC, "status XMC/FMC")
     field(DTYP, "ifc1210")
@@ -453,7 +453,7 @@ record ( mbbi, "$(IOC):FMC12-VADJ-ENA")
     field(FLNK, "$(IOC):ELB-BMRCTL")
 }
 
-record(ai,"$(IOC):ELB-BMRCTL")
+record(longin,"$(IOC):ELB-BMRCTL")
 {
     field(DESC, "BMR463 dc/dc st.")
     field(DTYP, "ifc1210")

@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/07/02 13:19:48 $
+# $Date: 2012/11/05 13:19:18 $
 #
-# $Revision: 1.9 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_TCSR.template,v 1.9 2012/07/02 13:19:48 kalt_r Exp $
+# $Revision: 1.10 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_TCSR.template,v 1.10 2012/11/05 13:19:18 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -47,7 +47,7 @@
 # Status
 # kick scanning once after startup of IOC
 
-record(ai,"$(IOC):ILOC-GENERAL")
+record(longin,"$(IOC):ILOC-GENERAL")
 {
     field(DESC, "ILOC general")
     field(DTYP, "ifc1210")
@@ -56,7 +56,7 @@ record(ai,"$(IOC):ILOC-GENERAL")
     field(FLNK, "$(IOC):ILOC-PONFSM")
 }
 
-record(ai,"$(IOC):ILOC-PONFSM")
+record(longin,"$(IOC):ILOC-PONFSM")
 {
     field(DESC, "ILOC PONFSM stat")
     field(DTYP, "ifc1210")
@@ -64,7 +64,7 @@ record(ai,"$(IOC):ILOC-PONFSM")
     field(FLNK, "$(IOC):TOSCAII-REVISION")
 }
 
-record(ai,"$(IOC):TOSCAII-REVISION")
+record(longin,"$(IOC):TOSCAII-REVISION")
 {
     field(DESC, "ILOC CENTRAL sign")
     field(DTYP, "ifc1210")
@@ -72,7 +72,7 @@ record(ai,"$(IOC):TOSCAII-REVISION")
     field(FLNK, "$(IOC):V6-PCIE-DSN-L")
 }
 
-record(ai,"$(IOC):V6-PCIE-DSN-L")
+record(longin,"$(IOC):V6-PCIE-DSN-L")
 {
     field(DESC, "CENTRAL serial l")
     field(DTYP, "ifc1210")
@@ -80,7 +80,7 @@ record(ai,"$(IOC):V6-PCIE-DSN-L")
     field(FLNK, "$(IOC):V6-PCIE-DSN-H")
 }
 
-record(ai,"$(IOC):V6-PCIE-DSN-H")
+record(longin,"$(IOC):V6-PCIE-DSN-H")
 {
     field(DESC, "CENTRAL serial h")
     field(DTYP, "ifc1210")
@@ -120,7 +120,7 @@ record(ao,"$(IOC):CENTRAL-SMONCONF40")
     field(FLNK, "$(IOC):CENTRAL-CORETEMP")
 }
 
-record(ai,"$(IOC):CENTRAL-CORETEMP-RAW")
+record(longin,"$(IOC):CENTRAL-CORETEMP-RAW")
 {
     field(DESC, "raw input sys_mon")
     field(DTYP, "ifc1210")
@@ -140,7 +140,7 @@ record(calc,"$(IOC):CENTRAL-CORETEMP")
     field(FLNK, "$(IOC):CENTRAL-CORETEMPH")
 }
 
-record(ai,"$(IOC):CENTRAL-CORETEMPH-RAW")
+record(longin,"$(IOC):CENTRAL-CORETEMPH-RAW")
 {
     field(DESC, "raw input sys_mon")
     field(DTYP, "ifc1210")
@@ -158,7 +158,7 @@ record(calc,"$(IOC):CENTRAL-CORETEMPH")
     field(FLNK, "$(IOC):CENTRAL-CORETEMPL")
 }
 
-record(ai,"$(IOC):CENTRAL-CORETEMPL-RAW")
+record(longin,"$(IOC):CENTRAL-CORETEMPL-RAW")
 {
     field(DESC, "raw input sys_mon")
     field(DTYP, "ifc1210")
@@ -176,7 +176,7 @@ record(calc,"$(IOC):CENTRAL-CORETEMPL")
     field(FLNK, "$(IOC):CENTRAL-VCCINT")
 }
 
-record(ai,"$(IOC):CENTRAL-VCCINT-RAW")
+record(longin,"$(IOC):CENTRAL-VCCINT-RAW")
 {
     field(DESC, "raw input sys_mon")
     field(DTYP, "ifc1210")
@@ -197,7 +197,7 @@ record(calc,"$(IOC):CENTRAL-VCCINT")
     field(FLNK, "$(IOC):CENTRAL-VCCINTH")
 }
 
-record(ai,"$(IOC):CENTRAL-VCCINTH-RAW")
+record(longin,"$(IOC):CENTRAL-VCCINTH-RAW")
 {
     field(DESC, "raw input sys_mon")
     field(DTYP, "ifc1210")
@@ -214,7 +214,7 @@ record(calc,"$(IOC):CENTRAL-VCCINTH")
     field(FLNK, "$(IOC):CENTRAL-VCCINTL")
 }
 
-record(ai,"$(IOC):CENTRAL-VCCINTL-RAW")
+record(longin,"$(IOC):CENTRAL-VCCINTL-RAW")
 {
     field(DESC, "raw input sys_mon")
     field(DTYP, "ifc1210")
@@ -231,7 +231,7 @@ record(calc,"$(IOC):CENTRAL-VCCINTL")
     field(FLNK, "$(IOC):CENTRAL-VCCAUX")
 }
 
-record(ai,"$(IOC):CENTRAL-VCCAUX-RAW")
+record(longin,"$(IOC):CENTRAL-VCCAUX-RAW")
 {
     field(DESC, "raw input sys_mon")
     field(DTYP, "ifc1210")
@@ -252,7 +252,7 @@ record(calc,"$(IOC):CENTRAL-VCCAUX")
     field(FLNK, "$(IOC):CENTRAL-VCCAUXH")
 }
 
-record(ai,"$(IOC):CENTRAL-VCCAUXH-RAW")
+record(longin,"$(IOC):CENTRAL-VCCAUXH-RAW")
 {
     field(DESC, "raw input sys_mon")
     field(DTYP, "ifc1210")
@@ -269,7 +269,7 @@ record(calc,"$(IOC):CENTRAL-VCCAUXH")
     field(FLNK, "$(IOC):CENTRAL-VCCAUXL")
 }
 
-record(ai,"$(IOC):CENTRAL-VCCAUXL-RAW")
+record(longin,"$(IOC):CENTRAL-VCCAUXL-RAW")
 {
     field(DESC, "raw input sys_mon")
     field(DTYP, "ifc1210")
@@ -305,7 +305,7 @@ record(seq,"$(IOC):CENTRAL-SMONCONF2-DLY")
         field(LNK1,"$(IOC):CENTRAL-FMCVADJ.PROC PP")
 }
 
-record(ai,"$(IOC):CENTRAL-FMCVADJ-RAW")
+record(longin,"$(IOC):CENTRAL-FMCVADJ-RAW")
 {
     field(DESC, "raw input sys_mon")
     field(DTYP, "ifc1210")
