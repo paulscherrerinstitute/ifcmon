@@ -1,6 +1,6 @@
 
 file {
-	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_fmc_sfp.adl"
+	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/./G_IFCMON_fmc_sfp.adl"
 	version=030104
 }
 display {
@@ -218,18 +218,6 @@ text {
 		clr=14
 	}
 	textix="Part Number:"
-}
-text {
-	object {
-		x=15
-		y=128
-		width=90
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Serial Number:"
 }
 text {
 	object {
@@ -469,21 +457,6 @@ text {
 	limits {
 	}
 }
-"text update" {
-	object {
-		x=173
-		y=128
-		width=170
-		height=15
-	}
-	monitor {
-		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-SR-NR"
-		clr=14
-		bclr=2
-	}
-	limits {
-	}
-}
 text {
 	object {
 		x=323
@@ -565,33 +538,6 @@ text {
 		bclr=2
 	}
 	clrmod="alarm"
-	limits {
-	}
-}
-text {
-	object {
-		x=15
-		y=153
-		width=90
-		height=15
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Date Code:"
-}
-"text update" {
-	object {
-		x=173
-		y=153
-		width=170
-		height=15
-	}
-	monitor {
-		chan="$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-DATE-CODE"
-		clr=14
-		bclr=2
-	}
 	limits {
 	}
 }
