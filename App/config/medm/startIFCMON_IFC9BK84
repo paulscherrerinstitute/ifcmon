@@ -1,0 +1,1 @@
+medm -macro IOC=MTEST-PC-IFC9,SFPFCT=PCIEP12,SUBDEV=IFCTC1 -x G_IFCMON_ifctc1_sfp.adl &
