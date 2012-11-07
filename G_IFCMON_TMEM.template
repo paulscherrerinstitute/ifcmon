@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
-# $Author: schebacher $
-# $Date: 2012/06/21 13:08:04 $
+# $Author: kalt_r $
+# $Date: 2012/11/07 10:18:53 $
 #
-# $Revision: 1.9 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_TMEM.template,v 1.9 2012/06/21 13:08:04 schebacher Exp $
+# $Revision: 1.10 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_TMEM.template,v 1.10 2012/11/07 10:18:53 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -31,7 +31,7 @@ record(bi,"$(IOC):USR1-ReadInitiator")
     field(DTYP, "regDev")
     field(INP , "#C S @Usr1StatusGeneric/0")
     field(PRIO, "HIGH")
-    field(SCAN, "1 second")
+    field(SCAN, "2 second")
     field(FLNK, "$(IOC):CENTRAL-REVISION")
 }
 

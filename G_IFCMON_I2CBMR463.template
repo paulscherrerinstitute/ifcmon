@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/09/18 12:21:21 $
+# $Date: 2012/11/07 10:18:53 $
 #
-# $Revision: 1.4 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CBMR463.template,v 1.4 2012/09/18 12:21:21 kalt_r Exp $
+# $Revision: 1.5 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CBMR463.template,v 1.5 2012/11/07 10:18:53 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -44,7 +44,6 @@
 record(ai,"$(IOC):IFC1210-$(SUBDEV)-VIN")
 {
     field(DESC, "$(DESCR): Vin")
-#    field(SCAN, "1 second")
     field(DTYP, "ifc1210")
     field(INP , "#C$(BMR) S0x88 @BMR_11U 2")
     field(EGU , "V")
