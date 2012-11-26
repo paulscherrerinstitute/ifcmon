@@ -1,11 +1,21 @@
 # KR84 02.05.2012: This shall become generic part of G_IFCMON startup.script
 
 require "regDev","test"
-require "pev"
+require "pev","kalantari"
 
 #######################################################################
 # Access trough PCIe_AGSW to USR1 - for block transfer of status area 32-bit registers, therefore use DS / 32-bit swapping option
-pevConfigure(0,"Usr1StatusGeneric","USR1", 0, "DS", 0, 256, 1)
+## pev[Asyn]Configure(
+##    crate,
+##    name,
+##    resource,
+##    offset,
+##    vmeProtocol,
+##    intrVec,
+##    mapSize,
+##    blockMode,
+##    swap)
+pevConfigure(0,"Usr1StatusGeneric","USR1", 0, 0 , 0, 256, 1, "DS")
 
 
 ### I2C components
@@ -17,6 +27,8 @@ pevConfigure(0,"Usr1StatusGeneric","USR1", 0, "DS", 0, 256, 1)
 #                              which is only used for VME_P0 (transition card)
 #                           1: PEV-driver accesses I2C over ELB bus to PON FPGA (default)
 #                   10:8    10-bit I2C Address extension field
+#                   15      0: Come back from PEV driver call by polling bit in hw
+#                           1: Come back from PEV driver with semaphore timeout
 
 ## on IFC1210 mainboard
 ## All these accesses go over ELB-bus directly to PON FPGA, therefore bit 7 of following code is set.

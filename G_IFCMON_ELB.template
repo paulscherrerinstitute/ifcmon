@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/11/07 10:18:53 $
+# $Date: 2012/11/26 06:52:10 $
 #
-# $Revision: 1.13 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.13 2012/11/07 10:18:53 kalt_r Exp $
+# $Revision: 1.14 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.14 2012/11/26 06:52:10 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -329,7 +329,8 @@ record(longin,"$(IOC):ELB-FMCXMC-CTL")
     field(DESC, "status XMC/FMC")
     field(DTYP, "ifc1210")
     field(INP , "#C S0xC @ELB")
-    field(SCAN, "2 second")
+    field(SCAN, "$(SCAN)")
+    field(EVNT, "$(EVNT)")
     field(FLNK, "$(IOC):XMC1-PRESENT")
 }
 record ( mbbi, "$(IOC):XMC1-PRESENT")

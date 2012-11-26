@@ -6,11 +6,14 @@
 #
 #
 
-# Scanning: 1 sec
-file G_IFCMON_I2CIFC1210.template{
-{IOC = MTEST-PC-IFC9}
+# Scanning: 2 sec
+file G_IFCMON_I2CIFC1210.template
+{
+    pattern
+    {IOC                , SCAN       , EVNT }
+    {MTEST-PC-IFC9      , "2 second" , 1    }
 }
-# Scanning: 1 sec update rate, FLNK'ed from G_IFCMON_I2CIFC1210.template
+# Scanning: 2 sec update rate, FLNK'ed from G_IFCMON_I2CIFC1210.template
 # for interleave seetings see:
 #    https://codebeamer.psi.ch/cb/displayDocument/PMBus_Specification_Part_I_Rev_1-1_20070205.pdf?doc_id=128848    page 56
 #    https://codebeamer.psi.ch/cb/displayDocument/BMR463+AN302+PMBus+Command+Set.pdf?doc_id=142711                 page 32
@@ -22,11 +25,11 @@ pattern
     {MTEST-PC-IFC9      ,BMR1V5    ,1   ,"U706: 1V5"    ,0x02f8     ,0      , MTEST-PC-IFC9:IFC1210-BMRVADJ-VIN  }
     {MTEST-PC-IFC9      ,BMRVADJ   ,2   ,"U707: Vadj"   ,0x03fc     ,0      , MTEST-PC-IFC9:IFCTC1-FW-MAJOR      }
 }
-# Scanning: 1 sec update rate, FLNK'ed from G_IFCMON_I2CBMR463.template
+# Scanning: 2 sec update rate, FLNK'ed from G_IFCMON_I2CBMR463.template
 file G_IFCMON_I2CIFCTC1.template{
 {IOC = MTEST-PC-IFC9}
 }
-# Scanning: 1 sec update rate, FLNK'ed from G_IFCMON_I2CIFCTC1.template
+# Scanning: 2 sec update rate, FLNK'ed from G_IFCMON_I2CIFCTC1.template
 file G_IFCMON_I2CIFCTC1_SFP.template
 {    
     pattern
@@ -42,7 +45,7 @@ file G_IFCMON_I2CIFCTC1_SFP.template
     {MTEST-PC-IFC9      ,IFCTC1 ,GTX1133    ,gtx1133_   ,0x28                   ,0x29               ,11     ,"SFP5 - GTX 113_3"    0       , MTEST-PC-IFC9:IFCTC1-SFP-GTX1132-STAT-REG}
     {MTEST-PC-IFC9      ,IFCTC1 ,GTX1132    ,gtx1132_   ,0x2A                   ,0x2B               ,12     ,"SFP6 - GTX 113_2"    1       , MTEST-PC-IFC9:FMC1-SFP-GTX1161-VENDOR    }
 }
-# Scanning: 1 sec update rate, FLNK'ed from G_IFCMON_I2CIFCTC1_SFP.template
+# Scanning: 2 sec update rate, FLNK'ed from G_IFCMON_I2CIFCTC1_SFP.template
 # compared to above IFCTC1_SFP, here only SFP I2C access used and not pins, sicne this is very application specific
 file G_IFCMON_I2CFMC1FMC2_SFP.template
 {    
@@ -59,19 +62,28 @@ file G_IFCMON_I2CFMC1FMC2_SFP.template
 }
 # end of I2C processing chain, started above in G_IFCMON_I2CIFC1210.template
 
-# Scanning: 1 sec
-file G_IFCMON_TMEM.template{
-{IOC = MTEST-PC-IFC9}
+# Scanning: 2 sec
+file G_IFCMON_TMEM.template
+{
+    pattern
+    {IOC                , SCAN       , EVNT }
+    {MTEST-PC-IFC9      , "2 second" , 1    }
 }
 
-# Scanning: 1 sec
-file G_IFCMON_TCSR.template{
-{IOC = MTEST-PC-IFC9}
+# Scanning: 2 sec
+file G_IFCMON_TCSR.template
+{
+    pattern
+    {IOC                , SCAN       , EVNT }
+    {MTEST-PC-IFC9      , "2 second" , 1    }
 }
 
-# Scanning: 1 sec
-file G_IFCMON_ELB.template{
-{IOC = MTEST-PC-IFC9}
+# Scanning: 2 sec
+file G_IFCMON_ELB.template
+{
+    pattern
+    {IOC                , SCAN       , EVNT }
+    {MTEST-PC-IFC9      , "2 second" , 1    }
 }
 
 
