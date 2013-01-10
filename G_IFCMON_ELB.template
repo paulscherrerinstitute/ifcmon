@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
-# $Author: kalt_r $
-# $Date: 2012/11/26 06:52:10 $
+# $Author: kalantari $
+# $Date: 2013/01/10 10:21:33 $
 #
-# $Revision: 1.14 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.14 2012/11/26 06:52:10 kalt_r Exp $
+# $Revision: 1.15 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.15 2013/01/10 10:21:33 kalantari Exp $
 #
 #--------------------------------------------------------------------
 
@@ -661,5 +661,10 @@ record(ao,"$(IOC):ELB-BMRCTL-SET")
     field(OUT , "#C S0x40 @ELB")
 }
 
-
+#### example stringin added by Babak
+record(stringin,"$(IOC):ELB-NOR"){
+	field(DTYP, "ifc1210")
+	field(INP, "#C S0x20 @ELB 40")
+	field(SCAN, "Passive")
+}
 
