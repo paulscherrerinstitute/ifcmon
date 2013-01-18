@@ -1,12 +1,12 @@
 
 file {
-	name="/afs/psi.ch/user/k/kalt_r/cvs_root/G/IFCMON/App/config/medm/G_IFCMON_ifc1210_ifctc1.adl"
+	name="/afs/psi.ch/user/j/jurcevic_m/cvsroot/G/IFCMON/App/config/medm/G_IFCMON_ifc1210_ifctc1.adl"
 	version=030104
 }
 display {
 	object {
-		x=111
-		y=46
+		x=21
+		y=52
 		width=946
 		height=862
 	}
@@ -1505,4 +1505,19 @@ text {
 		chan="$(IOC):XMC1-PRESENT"
 	}
 	textix="XMC1 present"
+}
+"related display" {
+	object {
+		x=401
+		y=586
+		width=99
+		height=16
+	}
+	display[0] {
+		name="G_IFCMON_ifc1210_swfw.adl"
+		args="IOC=$(IOC),SUBDEV=IFC1210"
+	}
+	clr=14
+	bclr=5
+	label="-SW/FW Details"
 }
