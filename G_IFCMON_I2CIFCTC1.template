@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/11/07 10:18:53 $
+# $Date: 2013/03/01 15:51:33 $
 #
-# $Revision: 1.14 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1.template,v 1.14 2012/11/07 10:18:53 kalt_r Exp $
+# $Revision: 1.15 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1.template,v 1.15 2013/03/01 15:51:33 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -812,7 +812,7 @@ record(calc,"$(IOC):IFCTC1-PWRMON-DISS")
     field(EGU , "W")
     field(HIHI, "10")
     field(HHSV, "MAJOR")
-    field(FLNK, "$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-ACTIVE")
+    field(FLNK, "$(IOC):IFCTC1-PWRMON-PDR-ACTIVE")
 }
 
 #--------------------------------------------------------------------
@@ -824,32 +824,32 @@ record(dfanout,"$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-SET")
 {
     field(DOL , "15") # 15 = reset
     field(OMSL, "closed_loop")
-    field(OUTA, "$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-ACTIVE NPP")
+    field(OUTA, "$(IOC):IFCTC1-PWRMON-PDR-ACTIVE NPP")
 }
 
-record(ao,"$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-ACTIVE")
+record(ao,"$(IOC):IFCTC1-PWRMON-PDR-ACTIVE")
 {
     field(DESC, "peak detection RESET")
     field(DTYP, "regDevAsyn")
     field(OUT , "#C S @ifctc1_max5970/0x41 T=UINT8")
 #    field(VAL , "0") # 0= no reset / 15=reset 
-    field(FLNK, "$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-DEACTIVE")
+    field(FLNK, "$(IOC):IFCTC1-PWRMON-PDR-DEACTIVE")
 }
 
-record(ao,"$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-DEACTIVE")
+record(ao,"$(IOC):IFCTC1-PWRMON-PDR-DEACTIVE")
 {
     field(DESC, "peak detection RESET")
     field(DTYP, "regDevAsyn")
     field(OUT , "#C S @ifctc1_max5970/0x41 T=UINT8")
     field(VAL , "0") # always 0= no reset
-    field(FLNK, "$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-DEACTIVE-SET")
+    field(FLNK, "$(IOC):IFCTC1-PWRMON-PDR-DEACTIVE-SET")
 }
 
-record(dfanout,"$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-DEACTIVE-SET")
+record(dfanout,"$(IOC):IFCTC1-PWRMON-PDR-DEACTIVE-SET")
 {
     field(DOL , "0") # 0= no reset
     field(OMSL, "closed_loop")
-    field(OUTA, "$(IOC):IFCTC1-PWRMON-PEAK-DET-RESET-ACTIVE NPP")
+    field(OUTA, "$(IOC):IFCTC1-PWRMON-PDR-ACTIVE NPP")
     field(FLNK, "$(IOC):IFCTC1-SFP-PCIEP12-STAT-REG") # kick the SFP modules readout chain (in other template G_IFCMON_I2CIFCTC1_SFP.template)
 }
 
