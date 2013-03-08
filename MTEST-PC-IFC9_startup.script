@@ -1,10 +1,16 @@
 # KR84 02.05.2012: This shall become generic part of G_IFCMON startup.script
 
-require "regDev","test"
-require "pev","kalantari"
+require "regDev"
+require "pev"
 
 #######################################################################
 # Access trough PCIe_AGSW to USR1 - for block transfer of status area 32-bit registers, therefore use DS / 32-bit swapping option
+# define access to TOSCA-II CENTRAL FPGA ressources
+# Swapping options: 0  = no     swapping
+#                   WS = 16 bit swapping
+#                   DS = 32 bit swapping
+#                   QS = 64 bit swapping
+
 ## pev[Asyn]Configure(
 ##    crate,
 ##    name,
@@ -14,8 +20,15 @@ require "pev","kalantari"
 ##    intrVec,
 ##    mapSize,
 ##    blockMode,
-##    swap)
-pevConfigure(0,"Usr1StatusGeneric","USR1", 0, 0 , 0, 256, 1, "DS")
+##    swap,
+##    VME_DMA_packet_size)
+
+# ---------------------------------------------------------------------
+
+# Access to LLRF data over TOSCA-II
+# ---------------------------------------------------------------------
+# This area is intended to write single 32-bit registers using single w access (downlink data path)
+pevConfigure(0,"Usr1StatusGeneric","USR1", 0, 0 , 0, 256, 1, "DS", 0)
 
 
 ### I2C components
@@ -36,28 +49,6 @@ pevAsynI2cConfigure(0, "lm95235_1",         0x000000cc)
 pevAsynI2cConfigure(0, "lm95235_2",         0x00000098)
 pevAsynI2cConfigure(0, "max5970",           0x400000b0)
 pevAsynI2cConfigure(0, "pgm_clock",         0xe00000ee)
-
-# FMC 1/2 SFP+
-pevAsynI2cConfigure(0, "gtx1160_A0",        0x60000050)
-pevAsynI2cConfigure(0, "gtx1161_A0",        0x60000050)
-pevAsynI2cConfigure(0, "gtx1162_A0",        0x60000050)
-pevAsynI2cConfigure(0, "gtx1163_A0",        0x60000050)
-
-pevAsynI2cConfigure(0, "gtx1160_A2",        0x60000051)
-pevAsynI2cConfigure(0, "gtx1161_A2",        0x60000051)
-pevAsynI2cConfigure(0, "gtx1162_A2",        0x60000051)
-pevAsynI2cConfigure(0, "gtx1163_A2",        0x60000051)
-
-pevAsynI2cConfigure(0, "gtx1120_A0",        0x60000050)
-pevAsynI2cConfigure(0, "gtx1121_A0",        0x60000050)
-pevAsynI2cConfigure(0, "gtx1122_A0",        0x60000050)
-pevAsynI2cConfigure(0, "gtx1123_A0",        0x60000050)
-
-pevAsynI2cConfigure(0, "gtx1120_A2",        0x60000051)
-pevAsynI2cConfigure(0, "gtx1121_A2",        0x60000051)
-pevAsynI2cConfigure(0, "gtx1122_A2",        0x60000051)
-pevAsynI2cConfigure(0, "gtx1123_A2",        0x60000051)
-
 
 ## IFC_TC1 transition card
 ## All these accesses go over PCIe_AGSW I2C master and NOT over ELB bus, therefore bit 7 is cleared.
