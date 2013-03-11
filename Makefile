@@ -1,6 +1,6 @@
 # $Source: /cvs/G/IFCMON/Makefile,v $
-# $Date: 2013/03/11 13:53:44 $
-# $Revision: 1.4 $
+# $Date: 2013/03/11 14:09:08 $
+# $Revision: 1.5 $
 # $Author: kalt_r $
 
 svnfiles ::
@@ -20,7 +20,7 @@ FIND1-RLLE-CV10W ::
 MTEST-VME-KR846 ::
 	getFiles -q -c IOCSTANDARD_CURRENT_FPGA_BITFILES
 	swit -ioc MTEST-VME-KR846
-	getFiles -q -d MTEST-VME-KR84x_FPGA_BITFILES
+	getFiles -q -d IOCSTANDARD_CURRENT_FPGA_BITFILES
 
 # KR84, test in trfcb network
 MTEST-VME-KR847 ::
