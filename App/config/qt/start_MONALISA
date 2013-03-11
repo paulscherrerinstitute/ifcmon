@@ -1,0 +1,3 @@
+startDM -graphicssystem native -macro "IOC=MONALISA-CVME-LLRF1" ./G_IFCMON_main.ui
+startDM -graphicssystem native -macro "IOC=MONALISA-CVME-LLRF2" ./G_IFCMON_main.ui
+startDM -graphicssystem native -macro "IOC=MONALISA-CVME-LLRF3" ./G_IFCMON_main.ui
