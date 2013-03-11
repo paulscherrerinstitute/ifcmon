@@ -1,1 +1,0 @@
-medm -macro IOC=MTEST-PC-IFC1 -x G_IFCMON_ifc1210_ifctc1.adl &
