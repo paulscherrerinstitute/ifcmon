@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
-# $Author: jurcevic_m $
-# $Date: 2013/01/18 08:28:10 $
+# $Author: kalt_r $
+# $Date: 2013/03/12 06:46:40 $
 #
-# $Revision: 1.16 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.16 2013/01/18 08:28:10 jurcevic_m Exp $
+# $Revision: 1.17 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.17 2013/03/12 06:46:40 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -318,8 +318,26 @@ record(longin,"$(IOC):ELB-PON-SIGN")
     field(DESC, "PON FPGA signature")
     field(DTYP, "ifc1210")
     field(INP , "#C S0x1C @ELB")
+    field(FLNK, "$(IOC):ELB-NOR")
 }
 
+# Strings for UBOOT versions display
+record(stringin,"$(IOC):ELB-NOR"){
+    field(DTYP, "ifc1210")
+    field(INP, "#C S0x20 @ELB 32")
+    field(FLNK, "$(IOC):ELB-SPI")
+}
+
+record(stringin,"$(IOC):ELB-SPI"){
+    field(DTYP, "ifc1210")
+    field(INP, "#C S0x40 @ELB 32")
+    field(FLNK, "$(IOC):ELB-PON")
+}
+
+record(stringin,"$(IOC):ELB-PON"){
+    field(DTYP, "ifc1210")
+    field(INP, "#C S0x60 @ELB 32")
+}
 
 #--------------------------------------------------------------------
 # status / cyclic processing
@@ -661,22 +679,5 @@ record(ao,"$(IOC):ELB-BMRCTL-SET")
     field(OUT , "#C S0x40 @ELB")
 }
 
-#### example stringin added by Babak
-record(stringin,"$(IOC):ELB-NOR"){
-	field(DTYP, "ifc1210")
-	field(INP, "#C S0x20 @ELB 32")
-	field(SCAN, "$(SCAN)")
-}
 
-record(stringin,"$(IOC):ELB-SPI"){
-	field(DTYP, "ifc1210")
-	field(INP, "#C S0x40 @ELB 32")
-	field(SCAN, "$(SCAN)")
-}
-
-record(stringin,"$(IOC):ELB-PON"){
-	field(DTYP, "ifc1210")
-	field(INP, "#C S0x60 @ELB 32")
-	field(SCAN, "$(SCAN)")
-}
 
