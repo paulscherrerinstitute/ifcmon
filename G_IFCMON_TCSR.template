@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
-# $Author: kalt_r $
-# $Date: 2012/11/26 06:52:10 $
+# $Author: zimoch $
+# $Date: 2013/03/18 13:00:39 $
 #
-# $Revision: 1.12 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_TCSR.template,v 1.12 2012/11/26 06:52:10 kalt_r Exp $
+# $Revision: 1.13 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_TCSR.template,v 1.13 2013/03/18 13:00:39 zimoch Exp $
 #
 #--------------------------------------------------------------------
 
@@ -121,74 +121,51 @@ record(ao,"$(IOC):CENTRAL-SMONCONF40")
     field(FLNK, "$(IOC):CENTRAL-CORETEMP")
 }
 
-record(longin,"$(IOC):CENTRAL-CORETEMP-RAW")
+record(ai,"$(IOC):CENTRAL-CORETEMP")
 {
-    field(DESC, "raw input sys_mon")
-    field(DTYP, "ifc1210")
-    field(INP , "#C S0x0 @SMON")
-}
-record(calc,"$(IOC):CENTRAL-CORETEMP")
-{ 
     field(DESC, "CENTRAL core temp")
-    field(INPA, "$(IOC):CENTRAL-CORETEMP-RAW PP")
-    field(B   , "0.4921630859375") # = 503.975 / 1024
-    field(C   , "273.15")
-    field(CALC, "((A>>6)*B)-C") # the same as G/DRV/pev/src/XprsMon/conf.c line 487
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x0 @SMON_10S")
+    field(ASLO, "0.4921630859375") # = 503.975 / 1024
+    field(AOFF, "-273.15")
     field(PREC, "1") 
     field(EGU , "deg C")
     field(HIHI, "90")
-    field(HHSV, "MAJOR")
     field(FLNK, "$(IOC):CENTRAL-CORETEMPH")
 }
 
-record(longin,"$(IOC):CENTRAL-CORETEMPH-RAW")
+record(ai,"$(IOC):CENTRAL-CORETEMPH")
 {
-    field(DESC, "raw input sys_mon")
-    field(DTYP, "ifc1210")
-    field(INP , "#C S0x20 @SMON")
-}
-record(calc,"$(IOC):CENTRAL-CORETEMPH")
-{ 
     field(DESC, "CENTRAL core temp h")
-    field(INPA, "$(IOC):CENTRAL-CORETEMPH-RAW PP")
-    field(B   , "0.4921630859375") # = 503.975 / 1024
-    field(C   , "273.15")
-    field(CALC, "((A>>6)*B)-C") # the same as G/DRV/pev/src/XprsMon/conf.c line 487
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x20 @SMON_10S")
+    field(ASLO, "0.4921630859375") # = 503.975 / 1024
+    field(AOFF, "-273.15")
     field(PREC, "1") 
     field(EGU , "deg C")
+    field(HIHI, "90")
     field(FLNK, "$(IOC):CENTRAL-CORETEMPL")
 }
 
-record(longin,"$(IOC):CENTRAL-CORETEMPL-RAW")
+record(ai,"$(IOC):CENTRAL-CORETEMPL")
 {
-    field(DESC, "raw input sys_mon")
+    field(DESC, "CENTRAL core temp l")
     field(DTYP, "ifc1210")
-    field(INP , "#C S0x24 @SMON")
-}
-record(calc,"$(IOC):CENTRAL-CORETEMPL")
-{ 
-    field(DESC, "CENTRAL core temp h")
-    field(INPA, "$(IOC):CENTRAL-CORETEMPL-RAW PP")
-    field(B   , "0.4921630859375") # = 503.975 / 1024
-    field(C   , "273.15")
-    field(CALC, "((A>>6)*B)-C") # the same as G/DRV/pev/src/XprsMon/conf.c line 487
+    field(INP , "#C S0x24 @SMON_10S")
+    field(ASLO, "0.4921630859375") # = 503.975 / 1024
+    field(AOFF, "-273.15")
     field(PREC, "1") 
     field(EGU , "deg C")
+    field(HIHI, "90")
     field(FLNK, "$(IOC):CENTRAL-VCCINT")
 }
 
-record(longin,"$(IOC):CENTRAL-VCCINT-RAW")
+record(ai,"$(IOC):CENTRAL-VCCINT")
 {
-    field(DESC, "raw input sys_mon")
-    field(DTYP, "ifc1210")
-    field(INP , "#C S0x1 @SMON")
-}
-record(calc,"$(IOC):CENTRAL-VCCINT")
-{ 
     field(DESC, "CENTRAL VCCint")
-    field(INPA, "$(IOC):CENTRAL-VCCINT-RAW PP")
-    field(B   , "0.0029296875") # = 3 / 1024
-    field(CALC, "((A>>6)*B)") # the same as G/DRV/pev/src/XprsMon/conf.c line 500
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x1 @SMON_10S")
+    field(ASLO, "0.0029296875") # = 3 / 1024
     field(PREC, "2") 
     field(EGU , "V")
     field(LOLO, "0.95")
@@ -198,52 +175,34 @@ record(calc,"$(IOC):CENTRAL-VCCINT")
     field(FLNK, "$(IOC):CENTRAL-VCCINTH")
 }
 
-record(longin,"$(IOC):CENTRAL-VCCINTH-RAW")
+record(ai,"$(IOC):CENTRAL-VCCINTH")
 {
-    field(DESC, "raw input sys_mon")
-    field(DTYP, "ifc1210")
-    field(INP , "#C S0x21 @SMON")
-}
-record(calc,"$(IOC):CENTRAL-VCCINTH")
-{ 
     field(DESC, "CENTRAL VCCint h")
-    field(INPA, "$(IOC):CENTRAL-VCCINTH-RAW PP")
-    field(B   , "0.0029296875") # = 3 / 1024
-    field(CALC, "((A>>6)*B)") # the same as G/DRV/pev/src/XprsMon/conf.c line 500
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x21 @SMON_10S")
+    field(ASLO, "0.0029296875") # = 3 / 1024
     field(PREC, "2") 
     field(EGU , "V")
     field(FLNK, "$(IOC):CENTRAL-VCCINTL")
 }
 
-record(longin,"$(IOC):CENTRAL-VCCINTL-RAW")
+record(ai,"$(IOC):CENTRAL-VCCINTL")
 {
-    field(DESC, "raw input sys_mon")
-    field(DTYP, "ifc1210")
-    field(INP , "#C S0x25 @SMON")
-}
-record(calc,"$(IOC):CENTRAL-VCCINTL")
-{ 
     field(DESC, "CENTRAL VCCint l")
-    field(INPA, "$(IOC):CENTRAL-VCCINTL-RAW PP")
-    field(B   , "0.0029296875") # = 3 / 1024
-    field(CALC, "((A>>6)*B)") # the same as G/DRV/pev/src/XprsMon/conf.c line 500
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x25 @SMON_10S")
+    field(ASLO, "0.0029296875") # = 3 / 1024
     field(PREC, "2") 
     field(EGU , "V")
     field(FLNK, "$(IOC):CENTRAL-VCCAUX")
 }
 
-record(longin,"$(IOC):CENTRAL-VCCAUX-RAW")
+record(ai,"$(IOC):CENTRAL-VCCAUX")
 {
-    field(DESC, "raw input sys_mon")
-    field(DTYP, "ifc1210")
-    field(INP , "#C S0x2 @SMON")
-}
-record(calc,"$(IOC):CENTRAL-VCCAUX")
-{ 
     field(DESC, "CENTRAL VCCaux")
-    field(INPA, "$(IOC):CENTRAL-VCCAUX-RAW PP")
-    field(B   , "0.0029296875") # = 3 / 1024
-    field(CALC, "((A>>6)*B)") # the same as G/DRV/pev/src/XprsMon/conf.c line 500
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x2 @SMON_10S")
+    field(ASLO, "0.0029296875") # = 3 / 1024
     field(PREC, "2") 
     field(EGU , "V")
     field(LOLO, "2.55")
@@ -253,35 +212,23 @@ record(calc,"$(IOC):CENTRAL-VCCAUX")
     field(FLNK, "$(IOC):CENTRAL-VCCAUXH")
 }
 
-record(longin,"$(IOC):CENTRAL-VCCAUXH-RAW")
+record(ai,"$(IOC):CENTRAL-VCCAUXH")
 {
-    field(DESC, "raw input sys_mon")
-    field(DTYP, "ifc1210")
-    field(INP , "#C S0x22 @SMON")
-}
-record(calc,"$(IOC):CENTRAL-VCCAUXH")
-{ 
     field(DESC, "CENTRAL VCCaux h")
-    field(INPA, "$(IOC):CENTRAL-VCCAUXH-RAW PP")
-    field(B   , "0.0029296875") # = 3 / 1024
-    field(CALC, "((A>>6)*B)") # the same as G/DRV/pev/src/XprsMon/conf.c line 500
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x22 @SMON_10S")
+    field(ASLO, "0.0029296875") # = 3 / 1024
     field(PREC, "2") 
     field(EGU , "V")
     field(FLNK, "$(IOC):CENTRAL-VCCAUXL")
 }
 
-record(longin,"$(IOC):CENTRAL-VCCAUXL-RAW")
+record(ai,"$(IOC):CENTRAL-VCCAUXL")
 {
-    field(DESC, "raw input sys_mon")
-    field(DTYP, "ifc1210")
-    field(INP , "#C S0x26 @SMON")
-}
-record(calc,"$(IOC):CENTRAL-VCCAUXL")
-{ 
     field(DESC, "CENTRAL VCCaux l")
-    field(INPA, "$(IOC):CENTRAL-VCCAUXL-RAW PP")
-    field(B   , "0.0029296875") # = 3 / 1024
-    field(CALC, "((A>>6)*B)") # the same as G/DRV/pev/src/XprsMon/conf.c line 500
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x26 @SMON_10S")
+    field(ASLO, "0.0029296875") # = 3 / 1024
     field(PREC, "2") 
     field(EGU , "V")
     field(FLNK, "$(IOC):CENTRAL-SMONCONF2")
@@ -306,24 +253,18 @@ record(seq,"$(IOC):CENTRAL-SMONCONF2-DLY")
         field(LNK1,"$(IOC):CENTRAL-FMCVADJ.PROC PP")
 }
 
-record(longin,"$(IOC):CENTRAL-FMCVADJ-RAW")
+record(ai,"$(IOC):CENTRAL-FMCVADJ-RAW")
 {
-    field(DESC, "raw input sys_mon")
-    field(DTYP, "ifc1210")
-    field(INP , "#C S0x3 @SMON")
-}
-record(calc,"$(IOC):CENTRAL-FMCVADJ")
-{ 
     field(DESC, "CENTRAL FMC Vadj")
-    field(INPA, "$(IOC):CENTRAL-FMCVADJ-RAW PP")
-    field(B   , "0.0025")
-    field(CALC, "((A>>6)*B)") # the same as G/DRV/pev/src/XprsMon/conf.c line 535
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x3 @SMON_10S")
+    field(ASLO, "0.0025")
     field(PREC, "2") 
     field(EGU , "V")
     field(LOLO, "1.45")         # the whole range 1.5-2.5V for Vadj
     field(LLSV, "MAJOR")
     field(HIHI, "2.60")
-    field(HHSV, "MAJOR")
+    field(FLNK, "$(IOC):CENTRAL-VCCAUXL")
 }
 
 
