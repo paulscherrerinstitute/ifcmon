@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
-# $Author: zimoch $
-# $Date: 2013/03/18 13:00:39 $
+# $Author: kalt_r $
+# $Date: 2013/03/19 14:09:41 $
 #
-# $Revision: 1.13 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_TCSR.template,v 1.13 2013/03/18 13:00:39 zimoch Exp $
+# $Revision: 1.14 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_TCSR.template,v 1.14 2013/03/19 14:09:41 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -250,7 +250,7 @@ record(seq,"$(IOC):CENTRAL-SMONCONF2-DLY")
         field(DESC,"100ms delay")   # as in line 508 of G/DRV/pev/src/XprsMon/conf.c    
         field(DLY1,"0.1")
         field(DO1,"1")
-        field(LNK1,"$(IOC):CENTRAL-FMCVADJ.PROC PP")
+        field(LNK1,"$(IOC):CENTRAL-FMCVADJ-RAW.PROC PP")
 }
 
 record(ai,"$(IOC):CENTRAL-FMCVADJ-RAW")
