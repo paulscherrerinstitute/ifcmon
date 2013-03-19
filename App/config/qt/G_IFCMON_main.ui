@@ -4271,6 +4271,7 @@ border-radius: 2px;
      <enum>caRowColMenu::Menu</enum>
     </property>
    </widget>
+   <zorder>caRectangle_10</zorder>
    <zorder>caRectangle_0</zorder>
    <zorder>caRectangle_1</zorder>
    <zorder>caRectangle_2</zorder>
@@ -4324,7 +4325,6 @@ border-radius: 2px;
    <zorder>caInclude_0</zorder>
    <zorder>caInclude_1</zorder>
    <zorder>caInclude_2</zorder>
-   <zorder>caRectangle_10</zorder>
    <zorder>caLabel_28</zorder>
    <zorder>caLabel_29</zorder>
    <zorder>caLabel_30</zorder>
