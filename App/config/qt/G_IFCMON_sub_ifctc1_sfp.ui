@@ -290,9 +290,9 @@ border-radius: 2px;
    <widget class="caLabel" name="caLabel_3">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>266</x>
       <y>15</y>
-      <width>182</width>
+      <width>236</width>
       <height>20</height>
      </rect>
     </property>
