@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/11/26 06:52:10 $
+# $Date: 2013/03/19 14:10:32 $
 #
-# $Revision: 1.14 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.14 2012/11/26 06:52:10 kalt_r Exp $
+# $Revision: 1.15 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.15 2013/03/19 14:10:32 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -45,7 +45,6 @@ record(ao,"$(IOC):TEMP1-CONF2")
     field(SCAN, "$(SCAN)")
     field(EVNT, "$(EVNT)")
     field(OUT , "#C S @lm95235_1/0xBF T=UINT8")
-    field(PINI, "YES")
     field(VAL , "6") # see page 17 of datasheet: filter enabled
     field(FLNK, "$(IOC):TEMP1-MSB")
 }
@@ -94,7 +93,6 @@ record(ao,"$(IOC):TEMP2-CONF2")
     field(DESC, "LM95235 U701 conf 2")
     field(DTYP, "regDevAsyn")
     field(OUT , "#C S @lm95235_2/0xBF T=UINT8")
-    field(PINI, "YES")
     field(VAL , "6") # see page 17 of datasheet: filter enabled
     field(FLNK, "$(IOC):TEMP2-MSB")
 }
@@ -597,8 +595,8 @@ record(dfanout,"$(IOC):IFC1210-PWRMON-PDRST-DACT-SET")
 {
     field(DOL , "0") # 0= no reset
     field(OMSL, "closed_loop")
-    field(OUTA, "$(IOC):IFCTC1-PWRMON-PDRST-ACT NPP")
-    field(FLNK, "$(IOC):PGMCLOCK-REG0-CALC") 
+    field(OUTA, "$(IOC):IFC1210-PWRMON-PDRST-ACT NPP")
+    field(FLNK, "$(IOC):IFC1210-BMR1V0-VIN") # end of IFC1210/ELB main processing chain, forwoard to IFC1210/BMR_DC-DC
 }
 
 
@@ -621,6 +619,10 @@ record(dfanout,"$(IOC):IFC1210-PWRMON-PDRST-DACT-SET")
 
 
 
+#--------------------------------------------------------------------
+# status scanned once with PINI YES
+#--------------------------------------------------------------------
+
 
 # I2C bus 0x7:      clock
 # device:           IDT 8N4Q001 programmable clock generator
@@ -628,46 +630,86 @@ record(dfanout,"$(IOC):IFC1210-PWRMON-PDRST-DACT-SET")
 # startup.script:   ifc1210_pgm_clock
 #--------------------------------------------------------------------
 
+
+# the I2C registers of the device for frequency configuration 00, read all them once:
+record(ai,"$(IOC):PGMCLOCK-REG0")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 0")
+    field(DTYP, "regDevAsyn")
+    field(INP,  "#C S @pgm_clock/0 T=UINT8")
+    field(PINI, "YES")
+    field(FLNK, "$(IOC):PGMCLOCK-REG4")
+}
+
+record(ai,"$(IOC):PGMCLOCK-REG4")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 4")
+    field(DTYP, "regDevAsyn")
+    field(INP,  "#C S @pgm_clock/4 T=UINT8")
+    field(FLNK, "$(IOC):PGMCLOCK-REG8")
+}
+
+record(ai,"$(IOC):PGMCLOCK-REG8")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 8")
+    field(DTYP, "regDevAsyn")
+    field(INP,  "#C S @pgm_clock/8 T=UINT8")
+    field(FLNK, "$(IOC):PGMCLOCK-REG12")
+}
+
+record(ai,"$(IOC):PGMCLOCK-REG12")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 12")
+    field(DTYP, "regDevAsyn")
+    field(INP,  "#C S @pgm_clock/12 T=UINT8")
+    field(FLNK, "$(IOC):PGMCLOCK-REG20")
+}
+
+record(ai,"$(IOC):PGMCLOCK-REG20")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 20")
+    field(DTYP, "regDevAsyn")
+    field(INP,  "#C S @pgm_clock/20 T=UINT8")
+    field(FLNK, "$(IOC):PGMCLOCK-P")
+}
+
 #soft records for frequency calculation, internal FLNK's for update of freq. value for display
-record(ao,"$(IOC):PGMCLOCK-P")
+record(calc,"$(IOC):PGMCLOCK-P")
 {
-    field(DESC, "IDT8N4Q001 P")
-    field(PINI, "YES") # default values for 200.0000x MHz
-    field(VAL , "1")
-    field(DRVL, "0")
-    field(DRVH, "3") # 2 bit
+    field(DESC, "IDT8N4Q001 f calc")
+    field(INPA, "$(IOC):PGMCLOCK-REG20 NPP")
+    field(CALC, "(A>>6)&0x3")
+    field(FLNK, "$(IOC):PGMCLOCK-MINT")
+}
+
+record(calc,"$(IOC):PGMCLOCK-MINT")
+{
+    field(DESC, "IDT8N4Q001 f calc")
+    field(INPA, "$(IOC):PGMCLOCK-REG0 NPP")
+    field(CALC, "(A>>1)&0x1f")
+    field(FLNK, "$(IOC):PGMCLOCK-MFRAC")
+}
+
+record(calc,"$(IOC):PGMCLOCK-MFRAC")
+{
+    field(DESC, "IDT8N4Q001 f calc")
+    field(INPA, "$(IOC):PGMCLOCK-REG0 NPP")
+    field(INPB, "$(IOC):PGMCLOCK-REG4 NPP")
+    field(INPC, "$(IOC):PGMCLOCK-REG8 NPP")
+    field(INPD, "$(IOC):PGMCLOCK-REG12 NPP")
+    field(CALC, "((A<<17)&0x2ffff)+((B<<16)&0x1fe00)+((C<<8)&0x1fe)+((C>>7)&0x1)")
+    field(FLNK, "$(IOC):PGMCLOCK-N")
+}
+
+record(calc,"$(IOC):PGMCLOCK-N")
+{
+    field(DESC, "IDT8N4Q001 f calc")
+    field(INPA, "$(IOC):PGMCLOCK-REG12 NPP")
+    field(CALC, "A&0x7f")
     field(FLNK, "$(IOC):PGMCLOCK-FREQ")
 }
 
-record(ao,"$(IOC):PGMCLOCK-MINT")
-{
-    field(DESC, "IDT8N4Q001 MINT")
-    field(PINI, "YES")
-    field(VAL , "21")
-    field(DRVL, "0")
-    field(DRVH, "127") # 7 bit
-    field(FLNK, "$(IOC):PGMCLOCK-FREQ")
-}
 
-record(ao,"$(IOC):PGMCLOCK-MFRAC")
-{
-    field(DESC, "IDT8N4Q001 MFRAC")
-    field(PINI, "YES")
-    field(VAL , "35")
-    field(DRVL, "0")
-    field(DRVH, "262143") # 18 bit
-    field(FLNK, "$(IOC):PGMCLOCK-FREQ")
-}
-
-record(ao,"$(IOC):PGMCLOCK-N")
-{
-    field(DESC, "IDT8N4Q001 N")
-    field(PINI, "YES")
-    field(VAL , "12")
-    field(DRVL, "0")
-    field(DRVH, "128") # 7 bit
-    field(FLNK, "$(IOC):PGMCLOCK-FREQ")
-}
 
 record(calc,"$(IOC):PGMCLOCK-FREQ")
 {
@@ -700,95 +742,9 @@ record(calc,"$(IOC):PGMCLOCK-FVCO")
     field(HHSV, "MAJOR")
     field(LOLO, "1950")
     field(LLSV, "MAJOR")
-#    field(FLNK, "") # end of local FLNK chain for display update new frequency
+#    field(FLNK, "") # end of local FLNK chain for readout programmable frequency once
 }
 
 
 
-# the I2C registers of the device for frequency configuration 00:
-record(calcout,"$(IOC):PGMCLOCK-REG0-CALC")
-{
-    field(DESC, "calc")
-    field(A   , "3")    # CP(1:0)
-    field(INPB, "$(IOC):PGMCLOCK-MINT.VAL NPP")
-    field(INPC, "$(IOC):PGMCLOCK-MFRAC.VAL NPP")
-    field(CALC, "(A<<6)+((B&31)<<1)+((C&131072)>>17)")
-    field(OUT,  "$(IOC):PGMCLOCK-REG0 NPP")
-    field(FLNK, "$(IOC):PGMCLOCK-REG0")
-}
-record(ao,"$(IOC):PGMCLOCK-REG0")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 0")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/0 T=UINT8")
-    field(FLNK, "$(IOC):PGMCLOCK-REG4-CALC")
-}
 
-record(calcout,"$(IOC):PGMCLOCK-REG4-CALC")
-{
-    field(DESC, "calc")
-    field(INPA, "$(IOC):PGMCLOCK-MFRAC.VAL NPP")
-    field(CALC, "((A&130560)>>9)")
-    field(OUT,  "$(IOC):PGMCLOCK-REG4 NPP")
-    field(FLNK, "$(IOC):PGMCLOCK-REG4")
-}
-record(ao,"$(IOC):PGMCLOCK-REG4")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 4")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/4 T=UINT8")
-    field(FLNK, "$(IOC):PGMCLOCK-REG8-CALC")
-}
-
-record(calcout,"$(IOC):PGMCLOCK-REG8-CALC")
-{
-    field(DESC, "calc")
-    field(INPA, "$(IOC):PGMCLOCK-MFRAC.VAL NPP")
-    field(CALC, "((A&510)>>1)")
-    field(OUT,  "$(IOC):PGMCLOCK-REG8 NPP")
-    field(FLNK, "$(IOC):PGMCLOCK-REG8")
-}
-record(ao,"$(IOC):PGMCLOCK-REG8")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 8")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/8 T=UINT8")
-    field(FLNK, "$(IOC):PGMCLOCK-REG12-CALC")
-}
-
-record(calcout,"$(IOC):PGMCLOCK-REG12-CALC")
-{
-    field(DESC, "calc")
-    field(INPA, "$(IOC):PGMCLOCK-N.VAL NPP")
-    field(INPB, "$(IOC):PGMCLOCK-MFRAC.VAL NPP")
-    field(CALC, "((B&1)<<7)+A")
-    field(OUT,  "$(IOC):PGMCLOCK-REG12 NPP")
-    field(FLNK, "$(IOC):PGMCLOCK-REG12")
-}
-record(ao,"$(IOC):PGMCLOCK-REG12")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 12")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/12 T=UINT8")
-    field(FLNK, "$(IOC):PGMCLOCK-REG20-CALC")
-}
-
-record(calcout,"$(IOC):PGMCLOCK-REG20-CALC")
-{
-    field(DESC, "calc")
-    field(INPA, "$(IOC):PGMCLOCK-P.VAL NPP")
-    field(B   , "0") # DSM
-    field(C   , "1") # DG: recommended setting 1
-    field(D   , "1") # DSM_ENA: enabled by default
-    field(E   , "0") # LF
-    field(CALC, "(A<<6)+(B<<3)+(C<<2)+(D<<1)+E")
-    field(OUT,  "$(IOC):PGMCLOCK-REG20 NPP")
-    field(FLNK, "$(IOC):PGMCLOCK-REG20")
-}
-record(ao,"$(IOC):PGMCLOCK-REG20")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 20")
-    field(DTYP, "regDevAsyn")
-    field(OUT,  "#C S @pgm_clock/20 T=UINT8")
-    field(FLNK, "$(IOC):IFC1210-BMR1V0-VIN") # end of IFC1210 main processing chain, IFC1210 / BMR DC-DC
-}

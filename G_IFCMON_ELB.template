@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2013/03/12 06:46:40 $
+# $Date: 2013/03/19 14:10:32 $
 #
-# $Revision: 1.17 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.17 2013/03/12 06:46:40 kalt_r Exp $
+# $Revision: 1.18 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.18 2013/03/19 14:10:32 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -507,9 +507,31 @@ record ( mbbi, "$(IOC):BMR-POWER-ALERT")
     field(ONVL, "1")
     field(ONST, "BMRxx alert")
     field(ONSV, "MAJOR")
-#    field(FLNK, "")  ## here is the end if the read/status processing chain used FLNKs at above records
+    field(FLNK, "$(IOC):ELB-GENERAL-CTL")
 }
 
+record(ai,"$(IOC):ELB-GENERAL-CTL")
+{
+    field(DESC, "IFC1210 gen. ctrl")
+    field(DTYP, "ifc1210")
+    field(INP , "#C S0x10 @ELB")
+    field(FLNK, "$(IOC):PGMCLOCK-ENA")
+}
+record ( mbbi, "$(IOC):PGMCLOCK-ENA")
+{
+    field(DESC, "IDT pgm clk ena")
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(IOC):ELB-GENERAL-CTL NPP")
+    field(SHFT, "2")
+    field(NOBT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "disabled")
+    field(ZRSV, "NO_ALARM")
+    field(ONVL, "1")
+    field(ONST, "enabled")
+    field(ONSV, "MINOR")
+}
+#    field(FLNK, "")  ## here is the end if the read/status processing chain used FLNKs at above records
 
 
 #--------------------------------------------------------------------
@@ -601,10 +623,10 @@ record ( mbbo, "$(IOC):PGMCLOCK-ENA-SET")
     field(PINI, "YES")
     field(ZRVL, "0")
     field(ZRST, "disabled")
-    field(ZRSV, "MINOR")
+    field(ZRSV, "NO_ALARM")
     field(ONVL, "1")
     field(ONST, "enabled")
-    field(ONSV, "NO_ALARM")
+    field(ONSV, "MINOR")
 }
 record ( mbbo, "$(IOC):12VFUSE-ENA-SET")
 {
@@ -634,7 +656,7 @@ record ( mbbo, "$(IOC):100MHZ-ENA-SET")
     field(ZRSV, "NO_ALARM")
     field(ONVL, "1")
     field(ONST, "disabled")
-    field(ZRSV, "MINOR")
+    field(ONSV, "MINOR")
 }
 record(ao,"$(IOC):ELB-GENERAL-CTL-SET")
 {
