@@ -3429,7 +3429,7 @@ border-radius: 2px;
      </rect>
     </property>
     <property name="macro">
-     <string>IOC=$(IOC);FMC=FMC2;GTX0=GTX1120;GTX1=GTX1121;GTX2=GTX1122;GTX3=GTX1123</string>
+     <string notr="true">IOC=$(IOC),FMC=FMC2</string>
     </property>
     <property name="filename" stdset="0">
      <string notr="true">G_IFCMON_include_fmc.ui</string>
@@ -3451,7 +3451,7 @@ border-radius: 2px;
      </rect>
     </property>
     <property name="macro">
-     <string>IOC=$(IOC);FMC=FMC1;GTX0=GTX1160;GTX1=GTX1161;GTX2=GTX1162;GTX3=GTX1163</string>
+     <string notr="true">IOC=$(IOC),FMC=FMC1</string>
     </property>
     <property name="filename" stdset="0">
      <string notr="true">G_IFCMON_include_fmc.ui</string>
