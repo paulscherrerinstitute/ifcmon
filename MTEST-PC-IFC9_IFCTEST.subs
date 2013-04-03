@@ -43,22 +43,7 @@ file G_IFCMON_I2CIFCTC1_SFP.template
     {MTEST-PC-IFC9      ,IFCTC1 ,GTX1141    ,gtx1141_   ,0x24                   ,0x25               ,9      ,"SFP3 - GTX 114_1"    0       , MTEST-PC-IFC9:IFCTC1-SFP-GTX1140-STAT-REG}
     {MTEST-PC-IFC9      ,IFCTC1 ,GTX1140    ,gtx1140_   ,0x26                   ,0x27               ,10     ,"SFP4 - GTX 114_0"    0       , MTEST-PC-IFC9:IFCTC1-SFP-GTX1133-STAT-REG}
     {MTEST-PC-IFC9      ,IFCTC1 ,GTX1133    ,gtx1133_   ,0x28                   ,0x29               ,11     ,"SFP5 - GTX 113_3"    0       , MTEST-PC-IFC9:IFCTC1-SFP-GTX1132-STAT-REG}
-    {MTEST-PC-IFC9      ,IFCTC1 ,GTX1132    ,gtx1132_   ,0x2A                   ,0x2B               ,12     ,"SFP6 - GTX 113_2"    1       , MTEST-PC-IFC9:FMC1-SFP-GTX1161-VENDOR    }
-}
-# Scanning: 2 sec update rate, FLNK'ed from G_IFCMON_I2CIFCTC1_SFP.template
-# compared to above IFCTC1_SFP, here only SFP I2C access used and not pins, sicne this is very application specific
-file G_IFCMON_I2CFMC1FMC2_SFP.template
-{    
-    pattern
-    {IOC                ,SUBDEV ,SFPFCT     ,I2CBUSSFP                                                      ,DESCR                ,DISABLE , FLNK                                     }
-    {MTEST-PC-IFC9      ,FMC1   ,GTX1160    ,gtx1160_                                                       ,"SFP10- GTX 116_0"    0       , MTEST-PC-IFC9:FMC1-SFP-GTX1161-VENDOR    }
-    {MTEST-PC-IFC9      ,FMC1   ,GTX1161    ,gtx1161_                                                       ,"SFP11- GTX 116_1"    0       , MTEST-PC-IFC9:FMC1-SFP-GTX1162-VENDOR    }
-    {MTEST-PC-IFC9      ,FMC1   ,GTX1162    ,gtx1162_                                                       ,"SFP12- GTX 116_2"    0       , MTEST-PC-IFC9:FMC1-SFP-GTX1163-VENDOR    }
-    {MTEST-PC-IFC9      ,FMC1   ,GTX1163    ,gtx1163_                                                       ,"SFP13- GTX 116_3"    0       , MTEST-PC-IFC9:FMC2-SFP-GTX1120-VENDOR    }
-    {MTEST-PC-IFC9      ,FMC2   ,GTX1120    ,gtx1120_                                                       ,"SFP20- GTX 112_0"    0       , MTEST-PC-IFC9:FMC2-SFP-GTX1121-VENDOR    }
-    {MTEST-PC-IFC9      ,FMC2   ,GTX1121    ,gtx1121_                                                       ,"SFP21- GTX 112_1"    0       , MTEST-PC-IFC9:FMC2-SFP-GTX1122-VENDOR    }
-    {MTEST-PC-IFC9      ,FMC2   ,GTX1122    ,gtx1122_                                                       ,"SFP22- GTX 112_2"    0       , MTEST-PC-IFC9:FMC2-SFP-GTX1123-VENDOR    }
-    {MTEST-PC-IFC9      ,FMC2   ,GTX1123    ,gtx1123_                                                       ,"SFP23- GTX 112_3"    1       , MTEST-PC-IFC9:FMC2-SFP-GTX1123-VENDOR    }
+    {MTEST-PC-IFC9      ,IFCTC1 ,GTX1132    ,gtx1132_   ,0x2A                   ,0x2B               ,12     ,"SFP6 - GTX 113_2"    1       , MTEST-PC-IFC9:IFCTC1-SFP-GTX1132-STAT-REG}
 }
 # end of I2C processing chain, started above in G_IFCMON_I2CIFC1210.template
 
