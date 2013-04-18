@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2013/03/19 14:10:32 $
+# $Date: 2013/04/18 11:46:01 $
 #
-# $Revision: 1.18 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.18 2013/03/19 14:10:32 kalt_r Exp $
+# $Revision: 1.19 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.19 2013/04/18 11:46:01 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -349,6 +349,7 @@ record(longin,"$(IOC):ELB-FMCXMC-CTL")
     field(INP , "#C S0xC @ELB")
     field(SCAN, "$(SCAN)")
     field(EVNT, "$(EVNT)")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):XMC1-PRESENT")
 }
 record ( mbbi, "$(IOC):XMC1-PRESENT")
@@ -364,6 +365,7 @@ record ( mbbi, "$(IOC):XMC1-PRESENT")
     field(ONVL, "1")
     field(ONST, "not present")
     field(ONSV, "MINOR")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):XMC2-PRESENT")
 }
 record ( mbbi, "$(IOC):XMC2-PRESENT")
@@ -379,6 +381,7 @@ record ( mbbi, "$(IOC):XMC2-PRESENT")
     field(ONVL, "1")
     field(ONST, "not present")
     field(ONSV, "MINOR")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):FMC1-PGM2C")
 }
 record ( mbbi, "$(IOC):FMC1-PGM2C")
@@ -394,6 +397,7 @@ record ( mbbi, "$(IOC):FMC1-PGM2C")
     field(ONVL, "1")
     field(ONST, "powered")
     field(ONSV, "NO_ALARM")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):FMC1-PRESENT")
 }
 record ( mbbi, "$(IOC):FMC1-PRESENT")
@@ -409,6 +413,7 @@ record ( mbbi, "$(IOC):FMC1-PRESENT")
     field(ONVL, "1")
     field(ONST, "not present")
     field(ONSV, "MINOR")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):FMC2-PGM2C")
 }
 record ( mbbi, "$(IOC):FMC2-PGM2C")
@@ -424,6 +429,7 @@ record ( mbbi, "$(IOC):FMC2-PGM2C")
     field(ONVL, "1")
     field(ONST, "powered")
     field(ONSV, "NO_ALARM")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):FMC2-PRESENT")
 }
 record ( mbbi, "$(IOC):FMC2-PRESENT")
@@ -439,6 +445,7 @@ record ( mbbi, "$(IOC):FMC2-PRESENT")
     field(ONVL, "1")
     field(ONST, "not present")
     field(ONSV, "MINOR")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):FMC12-PG-C2M")
 }
 record ( mbbi, "$(IOC):FMC12-PG-C2M")
@@ -454,6 +461,7 @@ record ( mbbi, "$(IOC):FMC12-PG-C2M")
     field(ONVL, "1")
     field(ONST, "power enabled")
     field(ONSV, "NO_ALARM")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):FMC12-VADJ-ENA")
 }
 record ( mbbi, "$(IOC):FMC12-VADJ-ENA")
@@ -469,6 +477,7 @@ record ( mbbi, "$(IOC):FMC12-VADJ-ENA")
     field(ONVL, "1")
     field(ONST, "Vadj enabled")
     field(ONSV, "NO_ALARM")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):ELB-BMRCTL")
 }
 
@@ -477,6 +486,7 @@ record(longin,"$(IOC):ELB-BMRCTL")
     field(DESC, "BMR463 dc/dc st.")
     field(DTYP, "ifc1210")
     field(INP , "#C S0x40 @ELB")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):BMR-SYNC-RUN")
 }
 record ( mbbi, "$(IOC):BMR-SYNC-RUN")
@@ -492,6 +502,7 @@ record ( mbbi, "$(IOC):BMR-SYNC-RUN")
     field(ONVL, "1")
     field(ONST, "1")
     field(ONSV, "NO_ALARM")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):BMR-POWER-ALERT")
 }
 record ( mbbi, "$(IOC):BMR-POWER-ALERT")
@@ -507,6 +518,7 @@ record ( mbbi, "$(IOC):BMR-POWER-ALERT")
     field(ONVL, "1")
     field(ONST, "BMRxx alert")
     field(ONSV, "MAJOR")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):ELB-GENERAL-CTL")
 }
 
@@ -515,6 +527,7 @@ record(ai,"$(IOC):ELB-GENERAL-CTL")
     field(DESC, "IFC1210 gen. ctrl")
     field(DTYP, "ifc1210")
     field(INP , "#C S0x10 @ELB")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):PGMCLOCK-ENA")
 }
 record ( mbbi, "$(IOC):PGMCLOCK-ENA")
@@ -530,6 +543,7 @@ record ( mbbi, "$(IOC):PGMCLOCK-ENA")
     field(ONVL, "1")
     field(ONST, "enabled")
     field(ONSV, "MINOR")
+    field(PRIO, "LOW")
 }
 #    field(FLNK, "")  ## here is the end if the read/status processing chain used FLNKs at above records
 

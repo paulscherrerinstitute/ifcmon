@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2013/03/19 14:09:41 $
+# $Date: 2013/04/18 11:46:01 $
 #
-# $Revision: 1.14 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_TCSR.template,v 1.14 2013/03/19 14:09:41 kalt_r Exp $
+# $Revision: 1.15 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_TCSR.template,v 1.15 2013/04/18 11:46:01 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -108,6 +108,7 @@ record(ao,"$(IOC):CENTRAL-SMONCONF48")
     field(OUT , "#C S0x48 @SMON")
     field(VAL , "240") # = 0xF0 = 240d
     field(PINI, "YES")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):CENTRAL-SMONCONF40")
 }
 
@@ -118,6 +119,7 @@ record(ao,"$(IOC):CENTRAL-SMONCONF40")
     field(OUT , "#C S0x40 @SMON")
     field(VAL , "0") # = 0x3000 = 12288 d
     field(PINI, "YES")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):CENTRAL-CORETEMP")
 }
 
@@ -131,6 +133,7 @@ record(ai,"$(IOC):CENTRAL-CORETEMP")
     field(PREC, "1") 
     field(EGU , "deg C")
     field(HIHI, "90")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):CENTRAL-CORETEMPH")
 }
 
@@ -144,6 +147,7 @@ record(ai,"$(IOC):CENTRAL-CORETEMPH")
     field(PREC, "1") 
     field(EGU , "deg C")
     field(HIHI, "90")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):CENTRAL-CORETEMPL")
 }
 
@@ -157,6 +161,7 @@ record(ai,"$(IOC):CENTRAL-CORETEMPL")
     field(PREC, "1") 
     field(EGU , "deg C")
     field(HIHI, "90")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):CENTRAL-VCCINT")
 }
 
@@ -172,6 +177,7 @@ record(ai,"$(IOC):CENTRAL-VCCINT")
     field(LLSV, "MAJOR")
     field(HIHI, "1.06")
     field(HHSV, "MAJOR")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):CENTRAL-VCCINTH")
 }
 
@@ -183,6 +189,7 @@ record(ai,"$(IOC):CENTRAL-VCCINTH")
     field(ASLO, "0.0029296875") # = 3 / 1024
     field(PREC, "2") 
     field(EGU , "V")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):CENTRAL-VCCINTL")
 }
 
@@ -194,6 +201,7 @@ record(ai,"$(IOC):CENTRAL-VCCINTL")
     field(ASLO, "0.0029296875") # = 3 / 1024
     field(PREC, "2") 
     field(EGU , "V")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):CENTRAL-VCCAUX")
 }
 
@@ -209,6 +217,7 @@ record(ai,"$(IOC):CENTRAL-VCCAUX")
     field(LLSV, "MAJOR")
     field(HIHI, "2.65")
     field(HHSV, "MAJOR")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):CENTRAL-VCCAUXH")
 }
 
@@ -220,6 +229,7 @@ record(ai,"$(IOC):CENTRAL-VCCAUXH")
     field(ASLO, "0.0029296875") # = 3 / 1024
     field(PREC, "2") 
     field(EGU , "V")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):CENTRAL-VCCAUXL")
 }
 
@@ -231,6 +241,7 @@ record(ai,"$(IOC):CENTRAL-VCCAUXL")
     field(ASLO, "0.0029296875") # = 3 / 1024
     field(PREC, "2") 
     field(EGU , "V")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):CENTRAL-SMONCONF2")
 }
 
@@ -242,6 +253,7 @@ record(ao,"$(IOC):CENTRAL-SMONCONF2")
     field(OUT , "#C S0x40 @SMON")
     field(VAL , "3") # = 0x3
     field(PINI, "YES")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):CENTRAL-SMONCONF2-DLY")
 }
 
@@ -264,6 +276,7 @@ record(ai,"$(IOC):CENTRAL-FMCVADJ-RAW")
     field(LOLO, "1.45")         # the whole range 1.5-2.5V for Vadj
     field(LLSV, "MAJOR")
     field(HIHI, "2.60")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):CENTRAL-VCCAUXL")
 }
 

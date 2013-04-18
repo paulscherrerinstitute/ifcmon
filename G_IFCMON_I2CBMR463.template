@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2012/11/07 10:18:53 $
+# $Date: 2013/04/18 11:46:01 $
 #
-# $Revision: 1.5 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CBMR463.template,v 1.5 2012/11/07 10:18:53 kalt_r Exp $
+# $Revision: 1.6 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CBMR463.template,v 1.6 2013/04/18 11:46:01 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -48,6 +48,7 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-VIN")
     field(INP , "#C$(BMR) S0x88 @BMR_11U 2")
     field(EGU , "V")
     field(PREC, "2")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-VOUT")
 }
 
@@ -58,6 +59,7 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-VOUT")
     field(INP , "#C$(BMR) S0x8B @BMR_16U 2")
     field(EGU , "V")
     field(PREC, "2")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-IOUT")
 }
 
@@ -68,6 +70,7 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-IOUT")
     field(INP , "#C$(BMR) S0x8C @BMR_11U 2")
     field(EGU , "A")
     field(PREC, "1")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-POUT")
 }
 
@@ -80,6 +83,7 @@ record(calc,"$(IOC):IFC1210-$(SUBDEV)-POUT")
     field(CALC, "A*B") 
     field(PREC, "2") 
     field(EGU , "W")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-TEMP1")
 }
 
@@ -90,6 +94,7 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-TEMP1")
     field(INP , "#C$(BMR) S0x8D @BMR_11S 2")
     field(EGU , "deg C")
     field(PREC, "1")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-FREQ")
 }
 
@@ -100,6 +105,7 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-FREQ")
     field(INP , "#C$(BMR) S0x95 @BMR_11U 2")
     field(EGU , "kHz")
     field(PREC, "1")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-USERCONFIG")
 }
 
@@ -109,6 +115,7 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-USERCONFIG")
     field(DESC, "$(DESCR): USRCFG")
     field(DTYP, "ifc1210")
     field(INP , "#C$(BMR) S0xD1 @BMR 2")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-SYNCPIN")
 }
 
@@ -132,6 +139,7 @@ record ( mbbo, "$(IOC):IFC1210-$(SUBDEV)-SYNCPIN")
     field(ONVL, "1")
     field(ONST, "SYNC input")
     field(ONSV, "NO_ALARM")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-USERCONFIG-CALC")
 }
 record(calcout,"$(IOC):IFC1210-$(SUBDEV)-USERCONFIG-CALC")
@@ -142,12 +150,14 @@ record(calcout,"$(IOC):IFC1210-$(SUBDEV)-USERCONFIG-CALC")
     field(INPC, "0x0001")  # allow bit 6 to change, set all other bit to zero, see BMR463 AN302 PMBus Command Set Page 24 / Table 8.
     field(CALC, "C|B")
     field(OUT , "$(IOC):IFC1210-$(SUBDEV)-USERCONFIG-SET PP")
+    field(PRIO, "LOW")
 }
 record(ao,"$(IOC):IFC1210-$(SUBDEV)-USERCONFIG-SET")
 {
     field(DESC, "$(DESCR): USRCFG")
     field(DTYP, "ifc1210")
     field(OUT , "#C$(BMR) S0xD1 @BMR 2")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-INTERLEAVE")
 }
 
@@ -157,6 +167,7 @@ record(ao,"$(IOC):IFC1210-$(SUBDEV)-INTERLEAVE")
     field(DTYP, "ifc1210")
     field(OUT , "#C$(BMR) S0x37 @BMR 2")
     field(VAL , "$(INTERLEAVE)")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-INTERLEAVE-R")
 }
 
@@ -166,6 +177,7 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-INTERLEAVE-R")
     field(DESC, "$(DESCR): INTERLEAVE")
     field(DTYP, "ifc1210")
     field(INP , "#C$(BMR) S0x37 @BMR 2")
+    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-FAN")
 }
 
@@ -175,5 +187,6 @@ record(fanout,"$(IOC):IFC1210-$(SUBDEV)-FAN")
 {
     field(DISA, "$(DISABLE)")
     field(DISV, "1")
+    field(PRIO, "LOW")
     field(FLNK, "$(FLNK)") # FLNK towards next BMR463
 }
