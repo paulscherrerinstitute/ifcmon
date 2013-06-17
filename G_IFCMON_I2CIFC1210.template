@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2013/04/18 11:46:01 $
+# $Date: 2013/06/17 13:47:06 $
 #
-# $Revision: 1.16 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.16 2013/04/18 11:46:01 kalt_r Exp $
+# $Revision: 1.17 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.17 2013/06/17 13:47:06 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -511,7 +511,7 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I")
     field(DESC, "CH2 actual Current")
     field(INPA, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I-LSB NPP")
     field(INPB, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I-MSB NPP")
-    field(C   , "0.016276") 		# 100mV ADC range/0.006R = 16.67A / 1024 = 16.276mA per LSB
+    field(C   , "0.0325521") 		# 100mV ADC range/0.003R = 33.33A / 1024 = 32.5521mA per LSB
     field(CALC, "(A|(B<<2))*C")
     field(PREC, "1") 
     field(EGU , "A")
@@ -543,7 +543,7 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH2-MIN-I")
     field(DESC, "CH2 minimal Current")
     field(INPA, "$(IOC):IFC1210-PWRMON-CH2-MIN-I-LSB NPP")
     field(INPB, "$(IOC):IFC1210-PWRMON-CH2-MIN-I-MSB NPP")
-    field(C   , "0.016276") 		# 100mV ADC range/0.006R = 16.67A / 1024 = 16.276mA per LSB
+    field(C   , "0.0325521") 		# 100mV ADC range/0.003R = 33.33A / 1024 = 32.5521mA per LSB
     field(CALC, "(A|(B<<2))*C")
     field(PREC, "1") 
     field(EGU , "A")
@@ -573,7 +573,7 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH2-MAX-I")
     field(DESC, "CH2 maximal Current")
     field(INPA, "$(IOC):IFC1210-PWRMON-CH2-MAX-I-LSB NPP")
     field(INPB, "$(IOC):IFC1210-PWRMON-CH2-MAX-I-MSB NPP")
-    field(C   , "0.016276") 		# 100mV ADC range/0.006R = 16.67A / 1024 = 16.276mA per LSB
+    field(C   , "0.0325521") 		# 100mV ADC range/0.003R = 33.33A / 1024 = 32.5521mA per LSB
     field(CALC, "(A|(B<<2))*C") 
     field(PREC, "1") 
     field(EGU , "A")
