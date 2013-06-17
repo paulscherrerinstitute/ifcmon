@@ -1,6 +1,6 @@
 # $Source: /cvs/G/IFCMON/Makefile,v $
-# $Date: 2013/03/11 14:09:08 $
-# $Revision: 1.5 $
+# $Date: 2013/06/17 13:48:08 $
+# $Revision: 1.6 $
 # $Author: kalt_r $
 
 svnfiles ::
@@ -26,6 +26,12 @@ MTEST-VME-KR846 ::
 MTEST-VME-KR847 ::
 	getFiles -q -c IOCSTANDARD_CURRENT_FPGA_BITFILES
 	swit -ioc MTEST-VME-KR847
+	getFiles -q -d IOCSTANDARD_CURRENT_FPGA_BITFILES
+
+# KR84, test in WLHA lab 7 slot crate
+MTEST-VME-KR84x ::
+	getFiles -q -c IOCSTANDARD_CURRENT_FPGA_BITFILES
+	swit -ioc 'MTEST-VME-KR841 MTEST-VME-KR842 MTEST-VME-KR843 MTEST-VME-KR844 MTEST-VME-KR845 MTEST-VME-KR846 MTEST-VME-KR847'
 	getFiles -q -d IOCSTANDARD_CURRENT_FPGA_BITFILES
 
 # KR84, test in office network WLHA lab test syste
