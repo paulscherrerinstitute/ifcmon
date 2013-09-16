@@ -1,7 +1,7 @@
 # $Source: /cvs/G/IFCMON/Makefile,v $
-# $Date: 2013/07/24 13:12:42 $
-# $Revision: 1.7 $
-# $Author: schebacher $
+# $Date: 2013/09/16 06:55:38 $
+# $Revision: 1.8 $
+# $Author: kalt_r $
 
 svnfiles ::
 	getFiles -q -c *FPGA_BITFILES
@@ -41,4 +41,8 @@ sMONALISA ::
 # SI84, test in office network WLHA lab test system
 sMRFCB01 ::
 	swit -ioc 'MRFCB01-CVME-LLRF1 MRFCB01-CVME-LLRF2 MRFCB01-CVME-LLRF3'
+
+# KR84, OBLA C-band test stand TRFCB01
+sTRFCB01 ::
+	swit -ioc 'TRFCB01-CVME-LLRF1 TRFCB01-CVME-LLRF2 TRFCB01-CVME-LLRF3'
 
