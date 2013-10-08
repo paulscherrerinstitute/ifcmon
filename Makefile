@@ -1,6 +1,6 @@
 # $Source: /cvs/G/IFCMON/Makefile,v $
-# $Date: 2013/09/18 14:25:40 $
-# $Revision: 1.9 $
+# $Date: 2013/10/08 08:41:01 $
+# $Revision: 1.10 $
 # $Author: kalt_r $
 
 svnfiles ::
@@ -45,6 +45,10 @@ sMRFCB01 ::
 # test in office network WLHA lab test system
 sMRFCB02 ::
 	swit -ioc 'MRFCB02-CVME-LLRF1 MRFCB02-CVME-LLRF2'
+        
+# test in office network for controls / Cosylab profiling
+sMRFCB03 ::
+	swit -ioc 'MRFCB03-CVME-LLRF1'
 
 # OBLA C-band test stand TRFCB01
 sTRFCB01 ::
