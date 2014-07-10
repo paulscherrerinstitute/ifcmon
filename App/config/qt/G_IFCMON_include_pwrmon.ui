@@ -2231,45 +2231,6 @@ border-radius: 2px;
      <enum>caGraphics::Circle</enum>
     </property>
    </widget>
-   <widget class="caMessageButton" name="caMessageButton_0">
-    <property name="geometry">
-     <rect>
-      <x>249</x>
-      <y>287</y>
-      <width>120</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="fontScaleMode">
-     <enum>EPushButton::Height</enum>
-    </property>
-    <property name="channel" stdset="0">
-     <string>$(IOC):$(SUBDEV)-PWRMON-PEAK-DET-RESET-SET.PROC</string>
-    </property>
-    <property name="label">
-     <string>reset Peak Values</string>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color>
-      <red>158</red>
-      <green>158</green>
-      <blue>158</blue>
-     </color>
-    </property>
-    <property name="pressMessage">
-     <string>1</string>
-    </property>
-    <property name="colorMode">
-     <enum>caMessageButton::Static</enum>
-    </property>
-   </widget>
    <widget class="caLabel" name="caLabel_13">
     <property name="geometry">
      <rect>
@@ -3392,7 +3353,6 @@ border-radius: 2px;
    <zorder>caLineEdit_17</zorder>
    <zorder>caLineEdit_18</zorder>
    <zorder>caLineEdit_19</zorder>
-   <zorder>caMessageButton_0</zorder>
    <zorder>caLineEdit_20</zorder>
    <zorder>caLineEdit_21</zorder>
    <zorder>caLineEdit_22</zorder>
@@ -3404,11 +3364,6 @@ border-radius: 2px;
   </widget>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>caMessageButton</class>
-   <extends>QPushButton</extends>
-   <header>caMessageButton</header>
-  </customwidget>
   <customwidget>
    <class>caLabel</class>
    <extends>QLabel</extends>

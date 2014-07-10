@@ -216,90 +216,6 @@ border-radius: 2px;
      </color>
     </property>
    </widget>
-   <widget class="caTextEntry" name="caTextEntry_0">
-    <property name="geometry">
-     <rect>
-      <x>302</x>
-      <y>81</y>
-      <width>50</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="channel" stdset="0">
-     <string>$(IOC):ELB-BMRSYNCCNT-SET</string>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>39</red>
-      <green>84</green>
-      <blue>141</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color>
-      <red>255</red>
-      <green>255</green>
-      <blue>255</blue>
-     </color>
-    </property>
-    <property name="colorMode">
-     <enum>caLineEdit::Static</enum>
-    </property>
-    <property name="precisionMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="limitsMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="maxValue">
-     <double>1.000000000000000</double>
-    </property>
-    <property name="minValue">
-     <double>0.000000000000000</double>
-    </property>
-    <property name="fontScaleMode">
-     <enum>caLineEdit::Height</enum>
-    </property>
-    <property name="formatType">
-     <enum>caLineEdit::decimal</enum>
-    </property>
-   </widget>
-   <widget class="caLabel" name="caLabel_1">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>84</y>
-      <width>251</width>
-      <height>15</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-    <property name="text">
-     <string>BMR-SYNC-CNT (0,64,78..250):</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="fontScaleMode">
-     <enum>ESimpleLabel::Height</enum>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-   </widget>
    <widget class="caLabel" name="caLabel_2">
     <property name="geometry">
      <rect>
@@ -659,7 +575,6 @@ border-radius: 2px;
    <zorder>caInclude_2</zorder>
    <zorder>caInclude_3</zorder>
    <zorder>caLabel_0</zorder>
-   <zorder>caLabel_1</zorder>
    <zorder>caLabel_2</zorder>
    <zorder>caLabel_3</zorder>
    <zorder>caGraphics_0</zorder>
@@ -667,17 +582,11 @@ border-radius: 2px;
    <zorder>caGraphics_2</zorder>
    <zorder>caGraphics_1</zorder>
    <zorder>caGraphics_3</zorder>
-   <zorder>caTextEntry_0</zorder>
    <zorder>caLineEdit_0</zorder>
    <zorder>caLineEdit_1</zorder>
   </widget>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>caTextEntry</class>
-   <extends>caLineEdit</extends>
-   <header>caTextEntry</header>
-  </customwidget>
   <customwidget>
    <class>caLabel</class>
    <extends>QLabel</extends>
