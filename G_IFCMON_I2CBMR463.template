@@ -1,10 +1,10 @@
 #--------------------------------------------------------------------
 # Original Author: KR84 / Paul Scherrer Institut
 # $Author: kalt_r $
-# $Date: 2013/04/18 11:46:01 $
+# $Date: 2014/07/10 18:25:25 $
 #
-# $Revision: 1.6 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CBMR463.template,v 1.6 2013/04/18 11:46:01 kalt_r Exp $
+# $Revision: 1.7 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CBMR463.template,v 1.7 2014/07/10 18:25:25 kalt_r Exp $
 #
 #--------------------------------------------------------------------
 
@@ -116,7 +116,7 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-USERCONFIG")
     field(DTYP, "ifc1210")
     field(INP , "#C$(BMR) S0xD1 @BMR 2")
     field(PRIO, "LOW")
-    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-SYNCPIN")
+    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-USERCONFIG")
 }
 
 
@@ -124,55 +124,35 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-USERCONFIG")
 #--------------------------------------------------------------------
 # Control records (PP)
 #--------------------------------------------------------------------
-record ( mbbo, "$(IOC):IFC1210-$(SUBDEV)-SYNCPIN")
+
+record(ai,"$(IOC):IFC1210-$(SUBDEV)-USERCONFIG")
+{
+    field(DESC, "$(DESCR): USRCFG")
+    field(DTYP, "ifc1210")
+    field(INP , "#C$(BMR) S0xD1 @BMR 2")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-SYNCPIN")
+}
+record ( mbbi, "$(IOC):IFC1210-$(SUBDEV)-SYNCPIN")
 {
     field(DESC, "$(DESCR): SYNC")
-    field(DTYP, "Raw Soft Channel")
-    field(OUT , "$(IOC):IFC1210-$(SUBDEV)-USERCONFIG-CALC.B NPP")
+    field(DTYP, "Soft Channel")
+    field(INP , "$(IOC):IFC1210-$(SUBDEV)-USERCONFIG NPP")
     field(SHFT, "6")
     field(NOBT, "1")
     field(VAL , "1")
     field(PINI, "NO")
     field(ZRVL, "0")
     field(ZRST, "SYNC internal")
-    field(ZRSV, "MINOR")
+    field(ZRSV, "NO_ALARM")
     field(ONVL, "1")
     field(ONST, "SYNC input")
     field(ONSV, "NO_ALARM")
     field(PRIO, "LOW")
-    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-USERCONFIG-CALC")
-}
-record(calcout,"$(IOC):IFC1210-$(SUBDEV)-USERCONFIG-CALC")
-{
-    field(DESC, "calculates reg.")
-#    field(INPA, "$(IOC):IFC1210-$(SUBDEV)-USERCONFIG.VAL NPP")
-    field(INPB, "$(IOC):IFC1210-$(SUBDEV)-SYNCPIN.RVAL NPP")
-    field(INPC, "0x0001")  # allow bit 6 to change, set all other bit to zero, see BMR463 AN302 PMBus Command Set Page 24 / Table 8.
-    field(CALC, "C|B")
-    field(OUT , "$(IOC):IFC1210-$(SUBDEV)-USERCONFIG-SET PP")
-    field(PRIO, "LOW")
-}
-record(ao,"$(IOC):IFC1210-$(SUBDEV)-USERCONFIG-SET")
-{
-    field(DESC, "$(DESCR): USRCFG")
-    field(DTYP, "ifc1210")
-    field(OUT , "#C$(BMR) S0xD1 @BMR 2")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-INTERLEAVE")
 }
 
-record(ao,"$(IOC):IFC1210-$(SUBDEV)-INTERLEAVE")
-{
-    field(DESC, "$(DESCR): INTERLEAVE")
-    field(DTYP, "ifc1210")
-    field(OUT , "#C$(BMR) S0x37 @BMR 2")
-    field(VAL , "$(INTERLEAVE)")
-    field(PRIO, "LOW")
-    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-INTERLEAVE-R")
-}
-
-# debug
-record(ai,"$(IOC):IFC1210-$(SUBDEV)-INTERLEAVE-R")
+record(ai,"$(IOC):IFC1210-$(SUBDEV)-INTERLEAVE")
 {
     field(DESC, "$(DESCR): INTERLEAVE")
     field(DTYP, "ifc1210")
@@ -180,8 +160,6 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-INTERLEAVE-R")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-FAN")
 }
-
-
 
 record(fanout,"$(IOC):IFC1210-$(SUBDEV)-FAN")
 {
