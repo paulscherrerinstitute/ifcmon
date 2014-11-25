@@ -1,0 +1,416 @@
+#--------------------------------------------------------------------
+# Original Author: GF32 / Paul Scherrer Institut
+# $Author: gaertner $
+# $Date: 2014/11/25 09:50:20 $
+#
+# $Revision: 1.1 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC2_PCIE.template,v 1.1 2014/11/25 09:50:20 gaertner Exp $
+#
+#--------------------------------------------------------------------
+
+
+# Module Description:
+# the PCIe repeaters of IFC_TC2 are covered in this template:
+#    -SFP+ modules I2C
+#    -CPLD IO extender to SFP+ modules
+#
+#
+# You may find more infos on I2C bus structure here:
+# https://codebeamer.psi.ch/cb/wiki/140335
+#
+#
+# This template requires following in a common part of the startup.script:
+#     e.g.  pevAsynI2cConfigure(0, "lm95235_1",  0x400004c)
+# for each device
+#
+#
+#
+#
+# This template requires following substitution parameters:
+# $(IOC)                    The system name / crate name
+# $(PCIENR)					PCIe switch port number e.g. 08 / 12
+# $(FLNK)					forward link of last element in this template
+#
+#--------------------------------------------------------------------
+
+
+
+
+#--------------------------------------------------------------------
+# one PCIe repeater here:
+#--------------------------------------------------------------------
+
+
+#--------------------------------------------------------------------
+# I2C bus 0x3:      transition card over VME_P0 over PCI-express->CENTRAL
+# device:           DS80PCI102 - 8.0 Gbps 1-Lane PCIe Repeater
+# datasheet:        http://www.ti.com/lit/ds/symlink/ds80pci102.pdf
+# startup.script:   ifctc2_pcierep$(PCIENR)
+#--------------------------------------------------------------------
+
+#--------------------------------------------------------------------
+# control
+#--------------------------------------------------------------------
+
+
+#--------------------------------------------------------------------
+# status
+#--------------------------------------------------------------------
+
+record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CTRL1")
+{
+    field(DESC, "IFC_TC2 PCIe rep Control 1 register")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x01 T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-PWDN-CHA")
+}
+record(mbbi,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-PWDN-CHA")
+{
+    field(DESC, "IFC_TC2 PCIe rep Power down CH A")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CTRL1 NPP")
+    field(NOBT, "1")
+    field(SHFT, "0")
+    field(ZRVL, "0")
+    field(ZRST, "normal operation")
+    field(ONVL, "1")
+    field(ONST, "powerdown")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-PWDN-CHB")
+}
+record(mbbi,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-PWDN-CHB")
+{
+    field(DESC, "IFC_TC2 PCIe rep Power down CH B")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CTRL1 NPP")
+    field(NOBT, "1")
+    field(SHFT, "1")
+    field(ZRVL, "0")
+    field(ZRST, "normal operation")
+    field(ONVL, "1")
+    field(ONST, "powerdown")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CTRL2")
+}
+record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CTRL2")
+{
+    field(DESC, "IFC_TC2 PCIe rep Control 2 register")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x02 T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-PWDN-OSC")
+}
+record(mbbi,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-PWDN-OSC")
+{
+    field(DESC, "IFC_TC2 PCIe rep Power down Oscillator")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CTRL2 NPP")
+    field(NOBT, "1")
+    field(SHFT, "2")
+    field(ZRVL, "0")
+    field(ZRST, "normal operation")
+    field(ONVL, "1")
+    field(ONST, "powerdown")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-PWDN-INP")
+}
+record(mbbi,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-PWDN-INP")
+{
+    field(DESC, "IFC_TC2 PCIe rep Power down Inputs")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CTRL2 NPP")
+    field(NOBT, "1")
+    field(SHFT, "3")
+    field(ZRVL, "0")
+    field(ZRST, "normal operation")
+    field(ONVL, "1")
+    field(ONST, "powerdown")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-OVRR")
+}
+record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-OVRR")
+{
+    field(DESC, "IFC_TC2 PCIe rep Pin override register")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x08 T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-EQ")
+}
+record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-EQ")
+{
+    field(DESC, "IFC_TC2 PCIe rep CHA EQ register")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x0F T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-DEMREG")
+}
+record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-DEMREG")
+{
+    field(DESC, "IFC_TC2 PCIe rep CHA DEM Ctrl register")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x11 T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-DEM")
+}
+record(mbbi,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-DEM")
+{
+    field(DESC, "IFC_TC2 PCIe rep CHA DEM Control")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-DEMREG NPP")
+    field(NOBT, "3")
+    field(SHFT, "0")
+    field(ZRVL, "0")
+    field(ZRST, "0 dB")
+    field(ONVL, "1")
+    field(ONST, "-1.5 dB")
+    field(TWVL, "2")
+    field(TWST, "-3.5 dB")
+    field(THVL, "3")
+    field(THST, "-5 dB")
+    field(FRVL, "4")
+    field(FRST, "-6 dB")
+    field(FVVL, "5")
+    field(FVST, "-8 dB")
+    field(SXVL, "6")
+    field(SXST, "-9 dB")
+    field(SVVL, "7")
+    field(SVST, "-12 dB")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-RATE")
+}
+record(mbbi,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-RATE")
+{
+    field(DESC, "IFC_TC2 PCIe rep CHA Rate Information")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-DEMREG NPP")
+    field(NOBT, "2")
+    field(SHFT, "5")
+    field(ZRVL, "0")
+    field(ZRST, "GEN1 - 2.5G")
+    field(ONVL, "1")
+    field(ONST, "GEN2 - 5.0G")
+	field(TWVL, "2")
+    field(TWST, "empty")
+    field(THVL, "3")
+    field(THST, "GEN3 - 8.0G")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-THRES")
+}
+record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-THRES")
+{
+    field(DESC, "IFC_TC2 PCIe rep CHA Idle Thresh. reg.")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x12 T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-THRD")
+}
+record(mbbi,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-THRD")
+{
+    field(DESC, "IFC_TC2 PCIe rep CHA De-Assert Threshold")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-THRES NPP")
+    field(NOBT, "2")
+    field(SHFT, "0")
+    field(ZRVL, "0")
+    field(ZRST, "110 mV")
+    field(ONVL, "1")
+    field(ONST, "100 mV")
+    field(TWVL, "2")
+    field(TWST, "150 mV")
+    field(THVL, "3")
+    field(THST, "130 mV")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-THRA")
+}
+record(mbbi,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-THRA")
+{
+    field(DESC, "IFC_TC2 PCIe rep CHA Assert Threshold")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-THRES NPP")
+    field(NOBT, "2")
+    field(SHFT, "2")
+    field(ZRVL, "0")
+    field(ZRST, "180 mV")
+    field(ONVL, "1")
+    field(ONST, "160 mV")
+    field(TWVL, "2")
+    field(TWST, "210 mV")
+    field(THVL, "3")
+    field(THST, "190 mV")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-VODREG")
+}
+record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-VODREG")
+{
+    field(DESC, "IFC_TC2 PCIe rep CHA VOD register")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x25 T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-VOD")
+}
+record(mbbi,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-VOD")
+{
+    field(DESC, "IFC_TC2 PCIe rep CHA output ampl control")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-VODREG NPP")
+    field(NOBT, "3")
+    field(SHFT, "2")
+    field(ZRVL, "0")
+    field(ZRST, "0.7 V")
+    field(ONVL, "1")
+    field(ONST, "0.8 V")
+    field(TWVL, "2")
+    field(TWST, "0.9 V")
+    field(THVL, "3")
+    field(THST, "1.0 V")
+    field(FRVL, "4")
+    field(FRST, "1.1 V")
+    field(FVVL, "5")
+    field(FVST, "1.2 V")
+    field(SXVL, "6")
+    field(SXST, "1.3 V")
+    field(SVVL, "7")
+    field(SVST, "1.4 V")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-EQ")
+}
+record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-EQ")
+{
+    field(DESC, "IFC_TC2 PCIe rep CHB EQ register")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x16 T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-DEMREG")
+}
+
+record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-DEMREG")
+{
+    field(DESC, "IFC_TC2 PCIe rep CHB DEM Ctrl register")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x18 T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-DEM")
+}
+record(mbbi,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-DEM")
+{
+    field(DESC, "IFC_TC2 PCIe rep CHB DEM Control")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-DEMREG NPP")
+    field(NOBT, "3")
+    field(SHFT, "0")
+    field(ZRVL, "0")
+    field(ZRST, "0 dB")
+    field(ONVL, "1")
+    field(ONST, "-1.5 dB")
+    field(TWVL, "2")
+    field(TWST, "-3.5 dB")
+    field(THVL, "3")
+    field(THST, "-5 dB")
+    field(FRVL, "4")
+    field(FRST, "-6 dB")
+    field(FVVL, "5")
+    field(FVST, "-8 dB")
+    field(SXVL, "6")
+    field(SXST, "-9 dB")
+    field(SVVL, "7")
+    field(SVST, "-12 dB")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-RATE")
+}
+record(mbbi,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-RATE")
+{
+    field(DESC, "IFC_TC2 PCIe rep CHB Rate Information")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-DEMREG NPP")
+    field(NOBT, "2")
+    field(SHFT, "5")
+    field(ZRVL, "0")
+    field(ZRST, "GEN1 - 2.5G")
+    field(ONVL, "1")
+    field(ONST, "GEN2 - 5.0G")
+	field(TWVL, "2")
+    field(TWST, "empty")
+    field(THVL, "3")
+    field(THST, "GEN3 - 8.0G")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-THRES")
+}
+record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-THRES")
+{
+    field(DESC, "IFC_TC2 PCIe rep CHB Idle Thresh. reg")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x19 T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-THRD")
+}
+record(mbbi,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-THRD")
+{
+    field(DESC, "IFC_TC2 PCIe rep CHB De-Assert Threshold")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-THRES NPP")
+    field(NOBT, "2")
+    field(SHFT, "0")
+    field(ZRVL, "0")
+    field(ZRST, "110 mV")
+    field(ONVL, "1")
+    field(ONST, "100 mV")
+    field(TWVL, "2")
+    field(TWST, "150 mV")
+    field(THVL, "3")
+    field(THST, "130 mV")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-THRA")
+}
+record(mbbi,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-THRA")
+{
+    field(DESC, "IFC_TC2 PCIe rep CHB Assert Threshold")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-THRES NPP")
+    field(NOBT, "2")
+    field(SHFT, "2")
+    field(ZRVL, "0")
+    field(ZRST, "180 mV")
+    field(ONVL, "1")
+    field(ONST, "160 mV")
+    field(TWVL, "2")
+    field(TWST, "210 mV")
+    field(THVL, "3")
+    field(THST, "190 mV")
+    field(PRIO, "LOW")
+    field(FLNK, "$(FLNK)")
+}
+record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-VODREG")
+{
+    field(DESC, "IFC_TC2 PCIe rep CHB VOD register")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x25 T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-VOD")
+}
+record(mbbi,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-VOD")
+{
+    field(DESC, "IFC_TC2 PCIe rep CHB output ampl control")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-VODREG NPP")
+    field(NOBT, "3")
+    field(SHFT, "2")
+    field(ZRVL, "0")
+    field(ZRST, "0.7 V")
+    field(ONVL, "1")
+    field(ONST, "0.8 V")
+    field(TWVL, "2")
+    field(TWST, "0.9 V")
+    field(THVL, "3")
+    field(THST, "1.0 V")
+    field(FRVL, "4")
+    field(FRST, "1.1 V")
+    field(FVVL, "5")
+    field(FVST, "1.2 V")
+    field(SXVL, "6")
+    field(SXST, "1.3 V")
+    field(SVVL, "7")
+    field(SVST, "1.4 V")
+    field(PRIO, "LOW")
+    field(FLNK, "$(FLNK)")
+}

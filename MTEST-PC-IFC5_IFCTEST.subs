@@ -1,0 +1,93 @@
+# IFC1210 .subs file to be replaced / deleted after migration to IFCMON
+# Author: GF32
+# Date:   25.11.2014
+#
+# Purpose: Hardware monitoring for IFC1210 and universal highspeed transition card IFC_TC2.
+#
+#
+
+# Scanning: 2 sec
+file G_IFCMON_I2CIFC1210.template
+{
+    pattern
+    {IOC                , SCAN       , EVNT }
+    {MTEST-PC-IFC5      , "2 second" , 1    }
+}
+# Scanning: 2 sec update rate, FLNK'ed from G_IFCMON_I2CIFC1210.template
+# for interleave seetings see:
+#    https://codebeamer.psi.ch/cb/displayDocument/PMBus_Specification_Part_I_Rev_1-1_20070205.pdf?doc_id=128848    page 56
+#    https://codebeamer.psi.ch/cb/displayDocument/BMR463+AN302+PMBus+Command+Set.pdf?doc_id=142711                 page 32
+file G_IFCMON_I2CBMR463.template{
+pattern
+    {IOC                ,SUBDEV    ,BMR ,DESCR          ,INTERLEAVE ,DISABLE, FLNK                               }
+    {MTEST-PC-IFC5      ,BMR1V0    ,0   ,"U704: 1V0"    ,0x01f1     ,0      , MTEST-PC-IFC5:IFC1210-BMR1V0OPT-VIN}
+    {MTEST-PC-IFC5      ,BMR1V0OPT ,3   ,"U705: 1V0opt" ,0x01f4     ,0      , MTEST-PC-IFC5:IFC1210-BMR1V5-VIN   }
+    {MTEST-PC-IFC5      ,BMR1V5    ,1   ,"U706: 1V5"    ,0x02f8     ,0      , MTEST-PC-IFC5:IFC1210-BMRVADJ-VIN  }
+    {MTEST-PC-IFC5      ,BMRVADJ   ,2   ,"U707: Vadj"   ,0x03fc     ,0      , MTEST-PC-IFC5:IFCTC2-GTXREP-PWDN   }
+}
+# Scanning: 2 sec update rate, FLNK'ed from G_IFCMON_I2CBMR463.template
+file G_IFCMON_I2CIFCTC2.template{
+	{IOC = MTEST-PC-IFC5, FLNK = MTEST-PC-IFC5:IFCTC2-GTXREP-CH0-EQ}
+}
+# Scanning: 2 sec update rate, FLNK'ed from G_IFCMON_I2CIFCTC2.template
+file G_IFCMON_I2CIFCTC2_GTX.template{
+	pattern
+	{IOC		,CHNR	,CHREGOFFS	,FLNK                                }
+	{MTEST-PC-IFC5	,0	,0x00		,MTEST-PC-IFC5:IFCTC2-GTXREP-CH1-EQ  }
+	{MTEST-PC-IFC5	,1	,0x07		,MTEST-PC-IFC5:IFCTC2-GTXREP-CH2-EQ  }
+	{MTEST-PC-IFC5	,2	,0x0E		,MTEST-PC-IFC5:IFCTC2-GTXREP-CH3-EQ  }
+	{MTEST-PC-IFC5	,3	,0x15		,MTEST-PC-IFC5:IFCTC2-GTXREP-CH4-EQ  }
+	{MTEST-PC-IFC5	,4	,0x1D		,MTEST-PC-IFC5:IFCTC2-GTXREP-CH5-EQ  }
+	{MTEST-PC-IFC5	,5	,0x24		,MTEST-PC-IFC5:IFCTC2-GTXREP-CH6-EQ  }
+	{MTEST-PC-IFC5	,6	,0x2B		,MTEST-PC-IFC5:IFCTC2-GTXREP-CH7-EQ  }
+	{MTEST-PC-IFC5	,7	,0x32		,MTEST-PC-IFC5:IFCTC2-PCIEREP08-CTRL1}
+}
+# Scanning: 2 sec update rate, FLNK'ed from G_IFCMON_I2CIFCTC2_GTX.template
+file G_IFCMON_I2CIFCTC2_PCIE.template{
+	pattern
+	{IOC		,PCIENR	,FLNK                                      }
+	{MTEST-PC-IFC5	,08	,MTEST-PC-IFC5:IFCTC2-PCIEREP12-CTRL1      }
+	{MTEST-PC-IFC5	,12	,MTEST-PC-IFC5:IFCTC2-SFP-PCIEP08-GTXSELECT}
+}
+
+# Scanning: 2 sec update rate, FLNK'ed from G_IFCMON_I2CIFCTC2_PCIE.template
+file G_IFCMON_I2CIFCTC2_SFP.template
+{    
+	pattern
+	{IOC		,SUBDEV	,SFPFCT		,I2CBUSSFP  ,BUSMUXGTX	,BUSMUXPCIE	,DESCR			,DISABLE , FLNK                                      }
+	{MTEST-PC-IFC5	,IFCTC2 ,PCIEP08	,pci_p08_   ,0		,4		,"SFP - PCIe port 8"	,0       , MTEST-PC-IFC5:IFCTC2-SFP-PCIEP12-GTXSELECT}
+	{MTEST-PC-IFC5	,IFCTC2 ,PCIEP12	,pci_p12_   ,0		,5		,"SFP - PCIe port 12"	,0       , MTEST-PC-IFC5:IFCTC2-SFP-GTX1143-GTXSELECT}
+	{MTEST-PC-IFC5	,IFCTC2 ,GTX1143	,gtx1143_   ,8		,0		,"SFP1 - GTX 114_3"	,0       , MTEST-PC-IFC5:IFCTC2-SFP-GTX1142-GTXSELECT}
+	{MTEST-PC-IFC5	,IFCTC2 ,GTX1142	,gtx1142_   ,9		,0		,"SFP2 - GTX 114_2"	,0       , MTEST-PC-IFC5:IFCTC2-SFP-GTX1141-GTXSELECT}
+	{MTEST-PC-IFC5	,IFCTC2 ,GTX1141	,gtx1141_   ,10		,0		,"SFP3 - GTX 114_1"	,0       , MTEST-PC-IFC5:IFCTC2-SFP-GTX1140-GTXSELECT}
+	{MTEST-PC-IFC5	,IFCTC2 ,GTX1140	,gtx1140_   ,11		,0		,"SFP4 - GTX 114_0"	,0       , MTEST-PC-IFC5:IFCTC2-SFP-GTX1133-GTXSELECT}
+	{MTEST-PC-IFC5	,IFCTC2 ,GTX1133	,gtx1133_   ,12		,0		,"SFP5 - GTX 113_3"	,0       , MTEST-PC-IFC5:IFCTC2-SFP-GTX1132-GTXSELECT}
+	{MTEST-PC-IFC5	,IFCTC2 ,GTX1132	,gtx1132_   ,13		,0		,"SFP6 - GTX 113_2"	,0       , MTEST-PC-IFC5:IFCTC2-SFP-GTX1131-GTXSELECT}
+	{MTEST-PC-IFC5	,IFCTC2 ,GTX1131	,gtx1131_   ,14		,0		,"SFP7 - GTX 113_1"	,0       , MTEST-PC-IFC5:IFCTC2-SFP-GTX1130-GTXSELECT}
+	{MTEST-PC-IFC5	,IFCTC2 ,GTX1130	,gtx1130_   ,15		,0		,"SFP8 - GTX 113_0"	,1       , MTEST-PC-IFC5:IFCTC2-SFP-GTX1130-GTXSELECT}
+}
+# end of I2C processing chain, started above in G_IFCMON_I2CIFC1210.template
+
+# Scanning: 2 sec
+file G_IFCMON_TMEM.template
+{
+    pattern
+    {IOC                , SCAN       , EVNT }
+    {MTEST-PC-IFC5      , "2 second" , 1    }
+}
+
+# Scanning: 2 sec
+file G_IFCMON_TCSR.template
+{
+    pattern
+    {IOC                , SCAN       , EVNT }
+    {MTEST-PC-IFC5      , "2 second" , 1    }
+}
+
+# Scanning: 2 sec
+file G_IFCMON_ELB.template
+{
+    pattern
+    {IOC                , SCAN       , EVNT }
+    {MTEST-PC-IFC5      , "2 second" , 1    }
+}

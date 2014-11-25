@@ -1,0 +1,396 @@
+#--------------------------------------------------------------------
+# Original Author: KR84 / Paul Scherrer Institut
+# $Author: gaertner $
+# $Date: 2014/11/25 09:50:20 $
+#
+# $Revision: 1.1 $
+# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC2_SFP.template,v 1.1 2014/11/25 09:50:20 gaertner Exp $
+#
+#--------------------------------------------------------------------
+
+
+# Module Description:
+# the SFP+ modules of IFC_TC1 are coverd in this template:
+#    -SFP+ modules I2C
+#    -CPLD IO extender to SFP+ modules
+#
+#
+# You may find more infos on I2C bus structure here:
+# https://codebeamer.psi.ch/cb/wiki/140335
+#
+#
+# This template requires following in a common part of the startup.script:
+#     e.g.  pevAsynI2cConfigure(0, "lm95235_1",  0x400004c)
+# for each device
+#
+#
+#
+#
+# This template requires following substitution parameters:
+# $(IOC)                    The system name / crate name
+# $(SUBDEV)                 "IFCTC1" for SFP's on IFC_TC1      and      "IFC1210" for SFP's on IFC1210 mainboard
+# $(SFPFCT)                 The function over SFP, e.g. GTX1143, GTX1142, PCIEP12, PCIEP13, ..
+# $(I2CBUSSFP)              e.g. ifctc1_sfp1_gtx_114_3_xx .. ifctc1_sfp_pcie4_port15_xx where xx is inserted here as A0 and A2
+# $(BUSMUXGTX)				Nr. according https://codebeamer.psi.ch/cb/proj/sources/sccFileLog.do?proj_id=104&filename=IFC%2FIFC1210_generic%2FFirmware%2FPSI%2FIFC_TC1%2FDocumentation%2FIFC_TC1_firmware_specification.doc&isDir=false
+#                           to select the correct device, see section 2.3 table 8.
+# $(BUSMUXPCIE)				Nr. according https://codebeamer.psi.ch/cb/proj/sources/sccFileLog.do?proj_id=104&filename=IFC%2FIFC1210_generic%2FFirmware%2FPSI%2FIFC_TC1%2FDocumentation%2FIFC_TC1_firmware_specification.doc&isDir=false
+#                           to select the correct device, see section 2.3 table 8.
+# $(DESCR)                  e.g. "SFP1 / GTX 114_3"
+#                           or   "SFP / PCIe port 12"
+#
+#--------------------------------------------------------------------
+
+
+
+
+
+# I2C bus 0x3:      transition card over VME_P0 over PCI-express->CENTRAL
+# device:           PCA9547 - 8-channel I2C-bus multiplexer with reset
+# datasheet:        http://www.nxp.com/documents/data_sheet/PCA9547.pdf
+# startup.script:   ifctc2_mux_gtx
+#--------------------------------------------------------------------
+record(ao,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-GTXSELECT")
+{
+    field(DESC, "IFC_TC2 GTX SFP I2C mux")
+    field(DTYP, "regDevAsyn")
+    field(OUT , "#C S @ifctc2_mux_gtx/0x0 T=UINT8")
+    field(VAL , "$(BUSMUXGTX)")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-PCIESELECT")
+}
+
+
+# I2C bus 0x3:      transition card over VME_P0 over PCI-express->CENTRAL
+# device:           PCA9540B - 2-channel I2C-bus multiplexer
+# datasheet:        http://www.nxp.com/documents/data_sheet/PCA9540B.pdf
+# startup.script:   ifctc2_mux_pcie
+#--------------------------------------------------------------------
+record(ao,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-PCIESELECT")
+{
+    field(DESC, "IFC_TC2 PCIe SFP I2C mux")
+    field(DTYP, "regDevAsyn")
+    field(OUT , "#C S @ifctc2_mux_pcie/0x0 T=UINT8")
+    field(VAL , "$(BUSMUXPCIE)")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG-CALC")
+}
+
+
+
+
+
+
+#--------------------------------------------------------------------
+# one SFP+ module here:       either for CENTRAL FPGA GTX or PCIe
+#--------------------------------------------------------------------
+
+
+# I2C bus 0x3:      transition card over VME_P0 over PCI-express->CENTRAL
+# device:           SFP+ modules
+# datasheet:        ftp://ftp.seagate.com/sff/ for SFF specs and VENDOR datasheets, e.g. AVAGO Technologies
+#--------------------------------------------------------------------
+
+#--------------------------------------------------------------------
+# control
+#--------------------------------------------------------------------
+
+#RX Rate Select
+record(mbbo,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RXRATESELECT" )
+{
+    field(DESC, "RX rate sel: $(DESCR)" )
+    field(DTYP, "Raw Soft Channel" )
+    field(NOBT, "1" )
+    field(SHFT, "3" )
+    field(ZRVL, "0" )
+    field(ZRST, "<4.25GBd" )
+    field(ONVL, "1" )
+    field(ONST, ">4.25GBd" )   
+    field(VAL,  "0" )
+    field(PRIO, "LOW")
+}
+#TX Rate Select
+record(mbbo,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TXRATESELECT" )
+{
+    field(DESC, "TX rate sel: $(DESCR)" )
+    field(DTYP, "Raw Soft Channel" )
+    field(NOBT, "1" )
+    field(SHFT, "3" )
+    field(ZRVL, "0" )
+    field(ZRST, "<4.25GBd" )
+    field(ONVL, "1" )
+    field(ONST, ">4.25GBd" )   
+    field(VAL,  "0" )
+    field(PRIO, "LOW")
+}
+#TX disable
+record(mbbo,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-DISABLE" )
+{
+    field(DESC, "TX dis: $(DESCR)" )
+    field(DTYP, "Raw Soft Channel" )
+    field(NOBT, "1" )
+    field(SHFT, "6" )
+    field(ZRVL, "0" )
+    field(ZRST, "enabled" )
+    field(ONVL, "1" )
+    field(ONST, "disabled" )  
+    field(VAL,  "0" ) 
+    field(PRIO, "LOW")
+}
+record(calcout,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG-CALC" )
+{
+    field(DESC, "CTRL REG: $(DESCR)" )
+    field(INPA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-DISABLE.RVAL NPP")
+    field(INPB, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RXRATESELECT.RVAL NPP")
+    field(CALC, "A+B" )
+    field(OUT , "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG NPP" )
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG")
+}
+record(ao,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG")
+{
+    field(DESC, "CTRL-REG: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(OUT , "#C S @$(I2CBUSSFP)A2/110 T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-EXTENDCTRL-REG-CALC")
+}
+record(calcout,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-EXTENDCTRL-REG-CALC" )
+{
+    field(DESC, "EXTENDCTRL REG: $(DESCR)" )
+    field(INPB, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TXRATESELECT.RVAL NPP")
+    field(CALC, "A" )
+    field(OUT , "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-EXTENDCTRL-REG NPP" )
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-EXTENDCTRL-REG")
+}
+record(ao,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-EXTENDCTRL-REG")
+{
+    field(DESC, "EXTENDCTRL-REG: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(OUT , "#C S @$(I2CBUSSFP)A2/118 T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG")
+}
+
+
+
+
+
+#--------------------------------------------------------------------
+# status
+#--------------------------------------------------------------------
+
+# Status / Control
+record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG")
+{
+    field(DESC, "STAT-REG: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A2/110 T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-FAULT")
+}
+# TX_FAULT
+record ( mbbi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-FAULT")
+{
+    field(DESC, "TX_FAULT: $(DESCR)" )
+    field(DTYP, "Raw Soft Channel" )
+    field(INP, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG NPP" )
+    field(SHFT, "2" )
+    field(NOBT, "1" )
+    field(ZRVL, "0" )
+    field(ZRST, "no fault" )
+    field(ZRSV, "NO_ALARM")
+    field(ONVL, "1" )
+    field(ONST, "fault" )
+    field(ONSV, "MAJOR")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-MOD-ABS")
+}
+# Module absent / Data Ready (MOD_ABS)
+record ( mbbi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-MOD-ABS" )
+{
+    field(DESC, "MOD_ABS: $(DESCR)" )
+    field(DTYP, "Raw Soft Channel" )
+    field(INP, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG NPP" )
+    field(SHFT, "0" )
+    field(NOBT, "1" )
+    field(ZRVL, "0" )
+    field(ZRST, "module present" )
+    field(ZRSV, "NO_ALARM")
+    field(ONVL, "1" )
+    field(ONST, "module absent" )
+    field(ONSV, "MINOR")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-LOS")
+}
+# RX low signal (RX_LOS)
+record ( mbbi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-LOS" )
+{
+    field(DESC, "RX_LOS: $(DESCR)" )
+    field(DTYP, "Raw Soft Channel" )
+    field(INP, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG NPP" )
+    field(SHFT, "1" )
+    field(NOBT, "1" )
+    field(ZRVL, "0" )
+    field(ZRST, "signal level ok" )
+    field(ZRSV, "NO_ALARM")
+    field(ONVL, "1" )
+    field(ONST, "signal level lo" )
+    field(ONSV, "MAJOR")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VENDOR")
+}
+
+#Vendor Name
+record(stringin,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VENDOR")
+{
+    field(DESC, "vendor: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A0/20 T=STRING L=16")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
+}
+
+# Vendor Part Number
+record(stringin,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
+{
+    field(DESC, "type: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A0/40 T=STRING L=20")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-MSB")
+}
+
+# Temperature measurement
+record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-MSB")
+{
+    field(DESC, "TEMP-MSB: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A2/96 T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-LSB")
+}
+record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-LSB")
+{
+    field(DESC, "TEMP-LSB: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A2/97 T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP")
+}
+record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP")
+{ 
+    field(DESC, "TEMP: $(DESCR)")
+    field(INPA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-LSB NPP")
+    field(INPB, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-MSB NPP")
+    field(C   , "0.00390625") # LSB =1/256 degree celsius see datasheet
+    field(CALC, "(A|B-(B&128?256:0)<<8)*C")
+    field(PREC, "1") 
+    field(EGU , "deg C")
+    field(HIHI, "65")
+    field(HHSV, "MAJOR")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-MSB")
+}
+
+# VCC 
+record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-MSB")
+{
+    field(DESC, "TEMP-MSB: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A2/98 T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-LSB")
+}
+record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-LSB")
+{
+    field(DESC, "TEMP-LSB: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A2/99 T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC")
+}
+record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC")
+{ 
+    field(DESC, "Vcc: $(DESCR)")
+    field(INPA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-LSB NPP")
+    field(INPB, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-MSB NPP")
+    field(C   , "0.0001") # LSB =100uV see datasheet
+    field(CALC, "(A|(B<<8))*C")
+    field(PREC, "1") 
+    field(EGU , "V")
+    field(HIHI, "3.6")
+    field(HHSV, "MAJOR")
+    field(LOLO, "3")
+    field(LLSV, "MAJOR")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-MSB")
+}
+
+# TX power 
+record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-MSB")
+{
+    field(DESC, "TEMP-MSB: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A2/104 T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-LSB")
+}
+record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-LSB")
+{
+    field(DESC, "TEMP-LSB: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A2/105 T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR")
+}
+record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR")
+{ 
+    field(DESC, "RXpwr: $(DESCR)")
+    field(INPA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-LSB NPP")
+    field(INPB, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-MSB NPP")
+    field(C   , "0.0001") # LSB =0.1uW see datasheet
+    field(CALC, "(A|(B<<8))*C")
+    field(PREC, "1") 
+    field(EGU , "mW")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-MSB")
+}
+
+# RX power
+record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-MSB")
+{
+    field(DESC, "TEMP-MSB: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A2/103 T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-LSB")
+}
+record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-LSB")
+{
+    field(DESC, "TEMP-LSB: $(DESCR)")
+    field(DTYP, "regDevAsyn")
+    field(INP , "#C S @$(I2CBUSSFP)A2/104 T=UINT8")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR")
+}
+record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR")
+{ 
+    field(DESC, "TXpwr: $(DESCR)")
+    field(INPA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-LSB NPP")
+    field(INPB, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-MSB NPP")
+    field(C   , "0.0001") # LSB =0.1uW see datasheet
+    field(CALC, "(A|(B<<8))*C")
+    field(PREC, "1") 
+    field(EGU , "mW")
+    field(PRIO, "LOW")
+    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-FAN")
+}
+
+record(fanout,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-FAN")
+{
+    field(DISA, "$(DISABLE)")
+    field(DISV, "1")
+    field(PRIO, "LOW")
+    field(FLNK, "$(FLNK)")
+}
