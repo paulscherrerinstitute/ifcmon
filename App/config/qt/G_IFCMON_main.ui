@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>946</width>
+    <width>615</width>
     <height>862</height>
    </rect>
   </property>
@@ -336,7 +336,7 @@ border-radius: 2px;
      <rect>
       <x>7</x>
       <y>7</y>
-      <width>930</width>
+      <width>600</width>
       <height>42</height>
      </rect>
     </property>
@@ -369,7 +369,7 @@ border-radius: 2px;
      <rect>
       <x>13</x>
       <y>12</y>
-      <width>590</width>
+      <width>388</width>
       <height>30</height>
      </rect>
     </property>
@@ -690,7 +690,7 @@ border-radius: 2px;
     <property name="minValue">
      <double>0.000000000000000</double>
     </property>
-    <property name="fontScaleMode">
+    <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
     <property name="formatType">
@@ -741,7 +741,7 @@ border-radius: 2px;
     <property name="minValue">
      <double>0.000000000000000</double>
     </property>
-    <property name="fontScaleMode">
+    <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
     <property name="formatType">
@@ -864,7 +864,7 @@ border-radius: 2px;
     <property name="minValue">
      <double>0.000000000000000</double>
     </property>
-    <property name="fontScaleMode">
+    <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
     <property name="formatType">
@@ -915,7 +915,7 @@ border-radius: 2px;
     <property name="minValue">
      <double>0.000000000000000</double>
     </property>
-    <property name="fontScaleMode">
+    <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
     <property name="formatType">
@@ -966,7 +966,7 @@ border-radius: 2px;
     <property name="minValue">
      <double>0.000000000000000</double>
     </property>
-    <property name="fontScaleMode">
+    <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
     <property name="formatType">
@@ -1017,7 +1017,7 @@ border-radius: 2px;
     <property name="minValue">
      <double>0.000000000000000</double>
     </property>
-    <property name="fontScaleMode">
+    <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
     <property name="formatType">
@@ -1068,7 +1068,7 @@ border-radius: 2px;
     <property name="minValue">
      <double>0.000000000000000</double>
     </property>
-    <property name="fontScaleMode">
+    <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
     <property name="formatType">
@@ -1119,7 +1119,7 @@ border-radius: 2px;
     <property name="minValue">
      <double>0.000000000000000</double>
     </property>
-    <property name="fontScaleMode">
+    <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
     <property name="formatType">
@@ -1566,7 +1566,7 @@ border-radius: 2px;
     <property name="minValue">
      <double>0.000000000000000</double>
     </property>
-    <property name="fontScaleMode">
+    <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
     <property name="formatType">
@@ -1617,7 +1617,7 @@ border-radius: 2px;
     <property name="minValue">
      <double>0.000000000000000</double>
     </property>
-    <property name="fontScaleMode">
+    <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
     <property name="formatType">
@@ -1668,7 +1668,7 @@ border-radius: 2px;
     <property name="minValue">
      <double>0.000000000000000</double>
     </property>
-    <property name="fontScaleMode">
+    <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
     <property name="formatType">
@@ -1719,7 +1719,7 @@ border-radius: 2px;
     <property name="minValue">
      <double>0.000000000000000</double>
     </property>
-    <property name="fontScaleMode">
+    <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
     <property name="formatType">
@@ -1875,7 +1875,7 @@ border-radius: 2px;
     <property name="minValue">
      <double>0.000000000000000</double>
     </property>
-    <property name="fontScaleMode">
+    <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
     <property name="formatType">
@@ -1926,7 +1926,7 @@ border-radius: 2px;
     <property name="minValue">
      <double>0.000000000000000</double>
     </property>
-    <property name="fontScaleMode">
+    <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
     <property name="formatType">
@@ -2047,7 +2047,7 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_1">
     <property name="geometry">
      <rect>
-      <x>808</x>
+      <x>484</x>
       <y>17</y>
       <width>120</width>
       <height>24</height>
@@ -2086,7 +2086,7 @@ border-radius: 2px;
    <widget class="caShellCommand" name="caShellCommand_0">
     <property name="geometry">
      <rect>
-      <x>734</x>
+      <x>410</x>
       <y>17</y>
       <width>65</width>
       <height>24</height>
@@ -2301,7 +2301,7 @@ border-radius: 2px;
     <property name="minValue">
      <double>0.000000000000000</double>
     </property>
-    <property name="fontScaleMode">
+    <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
     <property name="formatType">
@@ -2352,7 +2352,7 @@ border-radius: 2px;
     <property name="minValue">
      <double>0.000000000000000</double>
     </property>
-    <property name="fontScaleMode">
+    <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
     <property name="formatType">
@@ -2544,7 +2544,7 @@ border-radius: 2px;
     <property name="minValue">
      <double>0.000000000000000</double>
     </property>
-    <property name="fontScaleMode">
+    <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
     <property name="formatType">
@@ -2631,7 +2631,7 @@ border-radius: 2px;
     <property name="minValue">
      <double>0.000000000000000</double>
     </property>
-    <property name="fontScaleMode">
+    <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
     <property name="formatType">
@@ -3397,28 +3397,6 @@ border-radius: 2px;
      <enum>caGraphics::Circle</enum>
     </property>
    </widget>
-   <widget class="caInclude" name="caInclude_0">
-    <property name="geometry">
-     <rect>
-      <x>640</x>
-      <y>58</y>
-      <width>359</width>
-      <height>794</height>
-     </rect>
-    </property>
-    <property name="macro">
-     <string>IOC=$(IOC)</string>
-    </property>
-    <property name="filename" stdset="0">
-     <string notr="true">G_IFCMON_include_ifctc1.ui</string>
-    </property>
-    <property name="visibility">
-     <enum>caInclude::IfNotZero</enum>
-    </property>
-    <property name="channel" stdset="0">
-     <string>$(IOC):IFCTC1-FW-DAY</string>
-    </property>
-   </widget>
    <widget class="caInclude" name="caInclude_1">
     <property name="geometry">
      <rect>
@@ -3461,94 +3439,6 @@ border-radius: 2px;
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):FMC1-PRESENT</string>
-    </property>
-   </widget>
-   <widget class="caGraphics" name="caRectangle_10">
-    <property name="geometry">
-     <rect>
-      <x>635</x>
-      <y>57</y>
-      <width>301</width>
-      <height>790</height>
-     </rect>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="linestyle" stdset="0">
-     <enum>caGraphics::Solid</enum>
-    </property>
-    <property name="lineSize">
-     <number>1</number>
-    </property>
-    <property name="lineColor">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="visibility">
-     <enum>caGraphics::IfZero</enum>
-    </property>
-    <property name="channel" stdset="0">
-     <string>$(IOC):IFCTC1-FW-DAY</string>
-    </property>
-    <property name="form">
-     <enum>caGraphics::Rectangle</enum>
-    </property>
-    <property name="background" stdset="0">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-   </widget>
-   <widget class="caLabel" name="caLabel_28">
-    <property name="geometry">
-     <rect>
-      <x>678</x>
-      <y>417</y>
-      <width>251</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-    <property name="text">
-     <string>IFC_TC1 not installed</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="fontScaleMode">
-     <enum>ESimpleLabel::Height</enum>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="visibility">
-     <enum>caLabel::IfZero</enum>
-    </property>
-    <property name="channel" stdset="0">
-     <string>$(IOC):IFCTC1-FW-DAY</string>
     </property>
    </widget>
    <widget class="caLabel" name="caLabel_29">
@@ -3631,7 +3521,7 @@ border-radius: 2px;
     <property name="minValue">
      <double>0.000000000000000</double>
     </property>
-    <property name="fontScaleMode">
+    <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
     <property name="formatType">
@@ -4271,7 +4161,6 @@ border-radius: 2px;
      <enum>caRowColMenu::Menu</enum>
     </property>
    </widget>
-   <zorder>caRectangle_10</zorder>
    <zorder>caRectangle_0</zorder>
    <zorder>caRectangle_1</zorder>
    <zorder>caRectangle_2</zorder>
@@ -4322,10 +4211,8 @@ border-radius: 2px;
    <zorder>caLabel_27</zorder>
    <zorder>caGraphics_20</zorder>
    <zorder>caGraphics_22</zorder>
-   <zorder>caInclude_0</zorder>
    <zorder>caInclude_1</zorder>
    <zorder>caInclude_2</zorder>
-   <zorder>caLabel_28</zorder>
    <zorder>caLabel_29</zorder>
    <zorder>caLabel_30</zorder>
    <zorder>caGraphics_24</zorder>

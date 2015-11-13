@@ -2,14 +2,24 @@
 #                     IFCMON                                    #
 #################################################################
 #
-# Macro IOC is mandatory
-# macros EVNT or SCAN are optional and mutual exclusive
-# if EVNT is set then SCAN becomes "Event" automatically
-# else SCAN defaults to "2 second"
+# -Macro IOC is mandatory
+# -macros EVNT or SCAN are optional and mutual exclusive
+#  if EVNT is set then SCAN becomes "Event" automatically
+#  else SCAN defaults to "2 second"
+# -macros TMEMINPUT and TMEMOFFS are optional. If TMEMINPUT is
+#  not defined, then pevConfigure command used to setup a own
+#  TMEM mapping window for the USR1 generic status registers.
+#  Since some real time critical applications want to avoid
+#  such asynchronous access to TMEM / PCIe bus, they can use
+#  another input ressource for the TMEM records, e.g. previously
+#  synchronous to trigger event transferred full data block.
+#  For when NO_TMEM=# then the pevConfigure command to map
+#  the generic USR1 are is not executed.
+
 
 # Access trough PCIe_AGSW to USR1 - for block transfer of status area 32-bit registers, therefore use DS / 32-bit swapping option
 # define access to TOSCA-II CENTRAL FPGA ressources
-pevConfigure(0,"Usr1StatusGeneric","USR1", 0, 0 , 0, 256, 1, "DS", 0)
+$(NO_TMEM=)pevConfigure(0,"IFCMONUsr1Generic","USR1", 0, 0 , 0, 256, 1, "DS", 0)
 
 ### I2C components
 # The following hex-value correpsonds to register ELB_I2C_CTL in PON-FPGA
@@ -30,35 +40,4 @@ pevAsynI2cConfigure(0, "lm95235_2",         0x00000098)
 pevAsynI2cConfigure(0, "max5970",           0x400000b0)
 pevAsynI2cConfigure(0, "pgm_clock",         0xe00000ee)
 
-## IFC_TC1 transition card
-## All these accesses go over PCIe_AGSW I2C master and NOT over ELB bus, therefore bit 7 is cleared.
-pevAsynI2cConfigure(0, "ifctc1_cpld",       0x60000012)
-pevAsynI2cConfigure(0, "ifctc1_max5970",    0x6000003A)
-
-#SFP+ GTX
-pevAsynI2cConfigure(0, "gtx1143_A0",        0x60000050)
-pevAsynI2cConfigure(0, "gtx1142_A0",        0x60000050)
-pevAsynI2cConfigure(0, "gtx1141_A0",        0x60000050)
-pevAsynI2cConfigure(0, "gtx1140_A0",        0x60000050)
-pevAsynI2cConfigure(0, "gtx1133_A0",        0x60000050)
-pevAsynI2cConfigure(0, "gtx1132_A0",        0x60000050)
-
-pevAsynI2cConfigure(0, "gtx1143_A2",        0x60000051)
-pevAsynI2cConfigure(0, "gtx1142_A2",        0x60000051)
-pevAsynI2cConfigure(0, "gtx1141_A2",        0x60000051)
-pevAsynI2cConfigure(0, "gtx1140_A2",        0x60000051)
-pevAsynI2cConfigure(0, "gtx1133_A2",        0x60000051)
-pevAsynI2cConfigure(0, "gtx1132_A2",        0x60000051)
-
-#SFP+ PCIe
-pevAsynI2cConfigure(0, "pci_p12_A0",        0x60000050)
-pevAsynI2cConfigure(0, "pci_p13_A0",        0x60000050)
-pevAsynI2cConfigure(0, "pci_p14_A0",        0x60000050)
-pevAsynI2cConfigure(0, "pci_p15_A0",        0x60000050)
-
-pevAsynI2cConfigure(0, "pci_p12_A2",        0x60000051)
-pevAsynI2cConfigure(0, "pci_p13_A2",        0x60000051)
-pevAsynI2cConfigure(0, "pci_p14_A2",        0x60000051)
-pevAsynI2cConfigure(0, "pci_p15_A2",        0x60000051)
-
-dbLoadTemplate("$(TEMPLATES)/IFCMON.subs","IOC=$(IOC),EVNT=$(EVNT=),SCAN_$(EVNT=)=Event,SCAN_=$(SCAN=2 second)")
+dbLoadTemplate("$(TEMPLATES)/IFCMON.subs","IOC=$(IOC),EVNT=$(EVNT=),SCAN_$(EVNT=)=Event,SCAN_=$(SCAN=2 second),TMEMINPUT_=$(TMEMINPUT=IFCMONUsr1Generic),TMEMOFFS=$(TMEMOFFS=0)")

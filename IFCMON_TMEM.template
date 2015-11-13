@@ -17,7 +17,7 @@
 #
 # This template requires following in a common part of the startup.script:
 #      # Access trough PCIe_AGSW to USR1 - for block transfer of status area
-#      pevConfigure(0,"Usr1StatusGeneric","USR1", 0, 0, 0, 255, 1)
+#      pevConfigure(0,"$(TMEMINPUT)","USR1", 0, 0, 0, 255, 1)
 #
 #
 # This template requires following substitution parameters:
@@ -29,7 +29,7 @@
 record(bi,"$(IOC):USR1-ReadInitiator")
 {
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0")
     field(PRIO, "HIGH")
     field(SCAN, "$(SCAN)")
     field(EVNT, "$(EVNT)")
@@ -43,7 +43,7 @@ record(ai,"$(IOC):CENTRAL-REVISION")
 {
     field(DESC, "CENTRAL USR1 rev.")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000000 T=UINT32")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x000000 T=UINT32")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):CENTRAL-SIGNATURE")
 }
@@ -52,7 +52,7 @@ record(ai,"$(IOC):CENTRAL-SIGNATURE")
 {
     field(DESC, "CENTRAL USR1 sign")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000004 T=UINT32")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x000004 T=UINT32")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):CENTRAL-NAME")
 }
@@ -61,7 +61,7 @@ record(stringin,"$(IOC):CENTRAL-NAME")
 {
     field(DESC, "CENTRAL Fw name")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000008 T=STRING L=32")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x000008 T=STRING L=32")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):FMC1-TYPE")
 }
@@ -70,7 +70,7 @@ record(stringin,"$(IOC):FMC1-TYPE")
 {
     field(DESC, "expected FMC1 type")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000028 T=STRING L=16")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x000028 T=STRING L=16")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):FMC2-TYPE")
 }
@@ -79,7 +79,7 @@ record(stringin,"$(IOC):FMC2-TYPE")
 {
     field(DESC, "expected FMC2 type")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000038 T=STRING L=16")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x000038 T=STRING L=16")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):FMC-STATUS")
 }
@@ -88,7 +88,7 @@ record(ai,"$(IOC):FMC-STATUS")
 {
     field(DESC, "CENTRAL FMC status")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000050 T=UINT32")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x000050 T=UINT32")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):FMC1-INIT")
 }
@@ -186,7 +186,7 @@ record(ai,"$(IOC):USR-STATUS")
 {
     field(DESC, "CENTRAL USR status")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000054 T=UINT32")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x000054 T=UINT32")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):USRCLK")
 }
@@ -213,7 +213,7 @@ record(ai,"$(IOC):GTX-IMPLEMENTED")
 {
     field(DESC, "CENTRAL GTX impl")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000058 T=UINT32")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x000058 T=UINT32")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):GTX1130-STATUS")
 }
@@ -225,7 +225,7 @@ record(ai,"$(IOC):GTX1130-STATUS")
 {
     field(DESC, "GTX1130 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000060 T=UINT16")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x000060 T=UINT16")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):GTX1130-TXPLLLKDET")
 }
@@ -401,7 +401,7 @@ record(ai,"$(IOC):GTX1131-STATUS")
 {
     field(DESC, "GTX1131 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000062 T=UINT16")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x000062 T=UINT16")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):GTX1131-TXPLLLKDET")
 }
@@ -577,7 +577,7 @@ record(ai,"$(IOC):GTX1132-STATUS")
 {
     field(DESC, "GTX1132 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000064 T=UINT16")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x000064 T=UINT16")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):GTX1132-TXPLLLKDET")
 }
@@ -753,7 +753,7 @@ record(ai,"$(IOC):GTX1133-STATUS")
 {
     field(DESC, "GTX1133 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000066 T=UINT16")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x000066 T=UINT16")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):GTX1133-TXPLLLKDET")
 }
@@ -930,7 +930,7 @@ record(ai,"$(IOC):GTX1140-STATUS")
 {
     field(DESC, "GTX1140 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000068 T=UINT16")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x000068 T=UINT16")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):GTX1140-TXPLLLKDET")
 }
@@ -1106,7 +1106,7 @@ record(ai,"$(IOC):GTX1141-STATUS")
 {
     field(DESC, "GTX1141 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x00006A T=UINT16")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x00006A T=UINT16")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):GTX1141-TXPLLLKDET")
 }
@@ -1282,7 +1282,7 @@ record(ai,"$(IOC):GTX1142-STATUS")
 {
     field(DESC, "GTX1142 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x00006C T=UINT16")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x00006C T=UINT16")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):GTX1142-TXPLLLKDET")
 }
@@ -1458,7 +1458,7 @@ record(ai,"$(IOC):GTX1143-STATUS")
 {
     field(DESC, "GTX1143 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x00006E T=UINT16")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x00006E T=UINT16")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):GTX1143-TXPLLLKDET")
 }
@@ -1635,7 +1635,7 @@ record(ai,"$(IOC):GTX1160-STATUS")
 {
     field(DESC, "GTX1160 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000070 T=UINT16")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x000070 T=UINT16")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):GTX1160-TXPLLLKDET")
 }
@@ -1811,7 +1811,7 @@ record(ai,"$(IOC):GTX1161-STATUS")
 {
     field(DESC, "GTX1161 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000072 T=UINT16")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x000072 T=UINT16")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):GTX1161-TXPLLLKDET")
 }
@@ -1987,7 +1987,7 @@ record(ai,"$(IOC):GTX1162-STATUS")
 {
     field(DESC, "GTX1162 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000074 T=UINT16")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x000074 T=UINT16")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):GTX1162-TXPLLLKDET")
 }
@@ -2163,7 +2163,7 @@ record(ai,"$(IOC):GTX1163-STATUS")
 {
     field(DESC, "GTX1163 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000076 T=UINT16")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x000076 T=UINT16")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):GTX1163-TXPLLLKDET")
 }
@@ -2340,7 +2340,7 @@ record(ai,"$(IOC):GTX1120-STATUS")
 {
     field(DESC, "GTX1120 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x000078 T=UINT16")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x000078 T=UINT16")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):GTX1120-TXPLLLKDET")
 }
@@ -2516,7 +2516,7 @@ record(ai,"$(IOC):GTX1121-STATUS")
 {
     field(DESC, "GTX1121 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x00007A T=UINT16")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x00007A T=UINT16")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):GTX1121-TXPLLLKDET")
 }
@@ -2692,7 +2692,7 @@ record(ai,"$(IOC):GTX1122-STATUS")
 {
     field(DESC, "GTX1122 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x00007C T=UINT16")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x00007C T=UINT16")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):GTX1122-TXPLLLKDET")
 }
@@ -2868,7 +2868,7 @@ record(ai,"$(IOC):GTX1123-STATUS")
 {
     field(DESC, "GTX1123 sta")
     field(DTYP, "regDev")
-    field(INP , "#C S @Usr1StatusGeneric/0x00007E T=UINT16")
+    field(INP , "#C S @$(TMEMINPUT)/$(TMEMOFFS)+0x00007E T=UINT16")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):GTX1123-TXPLLLKDET")
 }
