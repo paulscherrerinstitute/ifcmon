@@ -38,10 +38,10 @@
 #--------------------------------------------------------------------
 
 # configuration register 2
-record(ao,"$(IOC):TEMP1-CONF2")
+record(longout,"$(IOC):TEMP1-CONF2")
 {
     field(DESC, "LM95235 U700 conf 2")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(SCAN, "$(SCAN)")
     field(EVNT, "$(EVNT)")
     field(OUT , "#C S @lm95235_1/0xBF T=UINT8")
@@ -51,18 +51,18 @@ record(ao,"$(IOC):TEMP1-CONF2")
 }
 
 # local sensor
-record(ai,"$(IOC):TEMP1-MSB")
+record(longin,"$(IOC):TEMP1-MSB")
 {
     field(DESC, "LM95235 U700 Local, MSB")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @lm95235_1/0x00 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):TEMP1-LSB")
 }
-record(ai,"$(IOC):TEMP1-LSB")
+record(longin,"$(IOC):TEMP1-LSB")
 {
     field(DESC, "LM95235 U700 Local, LSB")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @lm95235_1/0x30 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):TEMP1")
@@ -92,10 +92,10 @@ record(calc,"$(IOC):TEMP1")
 #--------------------------------------------------------------------
 
 # configuration register 2
-record(ao,"$(IOC):TEMP2-CONF2")
+record(longout,"$(IOC):TEMP2-CONF2")
 {
     field(DESC, "LM95235 U701 conf 2")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(OUT , "#C S @lm95235_2/0xBF T=UINT8")
     field(VAL , "6") # see page 17 of datasheet: filter enabled
     field(PRIO, "LOW")
@@ -103,18 +103,18 @@ record(ao,"$(IOC):TEMP2-CONF2")
 }
 
 # local sensor
-record(ai,"$(IOC):TEMP2-MSB")
+record(longin,"$(IOC):TEMP2-MSB")
 {
     field(DESC, "LM95235 U701 Local, MSB")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @lm95235_2/0x00 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):TEMP2-LSB")
 }
-record(ai,"$(IOC):TEMP2-LSB")
+record(longin,"$(IOC):TEMP2-LSB")
 {
     field(DESC, "LM95235 U701 Local, LSB")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @lm95235_2/0x30 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):TEMP2")
@@ -137,17 +137,17 @@ record(calc,"$(IOC):TEMP2")
 # Remote sensor inside P2020 die
 # P2020 Datasheet:                      https://codebeamer.psi.ch/cb/displayDocument/P2020EC.pdf?doc_id=128840
 # P2020 Remote diode, compatible with:  http://www.onsemi.com/PowerSolutions/product.do?id=ADT7461A
-record(ai,"$(IOC):P2020-CORETEMP-MSB")
+record(longin,"$(IOC):P2020-CORETEMP-MSB")
 {
     field(DESC, "LM95235 U701 P2020 Core, MSB")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @lm95235_2/0x01 T=UINT8")
     field(PRIO, "LOW")
 }
-record(ai,"$(IOC):P2020-CORETEMP-LSB")
+record(longin,"$(IOC):P2020-CORETEMP-LSB")
 {
     field(DESC, "LM95235 U701 P2020 Core, LSB")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @lm95235_2/0x10 T=UINT8")
     field(PRIO, "LOW")
 }
@@ -179,18 +179,18 @@ record(calc,"$(IOC):P2020-CORETEMP")
 # status
 #--------------------------------------------------------------------
 # Channel 1, Voltage measurement (actual)
-record(ai,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V-MSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V-MSB")
 {
     field(DESC, "CH1_V_actual_higher8bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0x2 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V-LSB")
 }
-record(ai,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V-LSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V-LSB")
 {
     field(DESC, "CH1_V_actual_lowest2bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0x3 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V")
@@ -213,18 +213,18 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V")
 }
 
 # Channel 1, Voltage measurement (min)
-record(ai,"$(IOC):IFC1210-PWRMON-CH1-MIN-V-MSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH1-MIN-V-MSB")
 {
     field(DESC, "CH1_V_MIN_higher8bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0xC T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MIN-V-LSB")
 }
-record(ai,"$(IOC):IFC1210-PWRMON-CH1-MIN-V-LSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH1-MIN-V-LSB")
 {
     field(DESC, "CH1_V_MIN_lowest2bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0xD T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MIN-V")
@@ -247,18 +247,18 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH1-MIN-V")
 }
 
 # Channel 1, Voltage measurement (max)
-record(ai,"$(IOC):IFC1210-PWRMON-CH1-MAX-V-MSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH1-MAX-V-MSB")
 {
     field(DESC, "CH1_V_MAX_higher8bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0xE T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MAX-V-LSB")
 }
-record(ai,"$(IOC):IFC1210-PWRMON-CH1-MAX-V-LSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH1-MAX-V-LSB")
 {
     field(DESC, "CH1_V_MAX_lowest2bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0xF T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MAX-V")
@@ -281,18 +281,18 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH1-MAX-V")
 }
 
 # Channel 1, Current measurement
-record(ai,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I-MSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I-MSB")
 {
     field(DESC, "CH1_I_actual_higher8bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0x0 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I-LSB")
 }
-record(ai,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I-LSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I-LSB")
 {
     field(DESC, "CH1_I_actual_lowest2bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0x1 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I")
@@ -313,18 +313,18 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I")
 }
 
 # Channel 1, Current measurement (min)
-record(ai,"$(IOC):IFC1210-PWRMON-CH1-MIN-I-MSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH1-MIN-I-MSB")
 {
     field(DESC, "CH1_I_MIN_higher8bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0x8 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MIN-I-LSB")
 }
-record(ai,"$(IOC):IFC1210-PWRMON-CH1-MIN-I-LSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH1-MIN-I-LSB")
 {
     field(DESC, "CH1_I_MIN_lowest2bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0x9 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MIN-I")
@@ -343,18 +343,18 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH1-MIN-I")
 }
 
 # Channel 1, Current measurement (max)
-record(ai,"$(IOC):IFC1210-PWRMON-CH1-MAX-I-MSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH1-MAX-I-MSB")
 {
     field(DESC, "CH1_I_MAX_higher8bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0xA T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MAX-I-LSB")
 }
-record(ai,"$(IOC):IFC1210-PWRMON-CH1-MAX-I-LSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH1-MAX-I-LSB")
 {
     field(DESC, "CH1_I_MAX_lowest2bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0xB T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MAX-I")
@@ -388,18 +388,18 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-W")
 }
 
 # Channel 2, Voltage measurement
-record(ai,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V-MSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V-MSB")
 {
     field(DESC, "CH2_V_actual_higher8bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0x6 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V-LSB")
 }
-record(ai,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V-LSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V-LSB")
 {
     field(DESC, "CH2_V_actual_lowest2bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0x7 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V")
@@ -422,18 +422,18 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V")
 }
 
 # Channel 2, Voltage measurement (min)
-record(ai,"$(IOC):IFC1210-PWRMON-CH2-MIN-V-MSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH2-MIN-V-MSB")
 {
     field(DESC, "CH2_V_MIN_higher8bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0x14 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MIN-V-LSB")
 }
-record(ai,"$(IOC):IFC1210-PWRMON-CH2-MIN-V-LSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH2-MIN-V-LSB")
 {
     field(DESC, "CH2_V_MIN_lowest2bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0x15 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MIN-V")
@@ -456,18 +456,18 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH2-MIN-V")
 }
 
 # Channel 2, Voltage measurement (max)
-record(ai,"$(IOC):IFC1210-PWRMON-CH2-MAX-V-MSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH2-MAX-V-MSB")
 {
     field(DESC, "CH2_V_MAX_higher8bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0x16 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MAX-V-LSB")
 }
-record(ai,"$(IOC):IFC1210-PWRMON-CH2-MAX-V-LSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH2-MAX-V-LSB")
 {
     field(DESC, "CH2_V_MAX_lowest2bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0x17 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MAX-V")
@@ -490,18 +490,18 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH2-MAX-V")
 }
 
 # Channel 2, Current measurement
-record(ai,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I-MSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I-MSB")
 {
     field(DESC, "CH2_I_actual_higher8bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0x4 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I-LSB")
 }
-record(ai,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I-LSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I-LSB")
 {
     field(DESC, "CH2_I_actual_lowest2bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0x5 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I")
@@ -522,18 +522,18 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I")
 }
 
 # Channel 2, Current measurement (min)
-record(ai,"$(IOC):IFC1210-PWRMON-CH2-MIN-I-MSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH2-MIN-I-MSB")
 {
     field(DESC, "CH2_I_MIN_higher8bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0x10 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MIN-I-LSB")
 }
-record(ai,"$(IOC):IFC1210-PWRMON-CH2-MIN-I-LSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH2-MIN-I-LSB")
 {
     field(DESC, "CH2_I_MIN_lowest2bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0x11 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MIN-I")
@@ -552,18 +552,18 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH2-MIN-I")
 }
 
 # Channel 2, Current measurement (max)
-record(ai,"$(IOC):IFC1210-PWRMON-CH2-MAX-I-MSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH2-MAX-I-MSB")
 {
     field(DESC, "CH2_I_MAX_higher8bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0x12 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MAX-I-LSB")
 }
-record(ai,"$(IOC):IFC1210-PWRMON-CH2-MAX-I-LSB")
+record(longin,"$(IOC):IFC1210-PWRMON-CH2-MAX-I-LSB")
 {
     field(DESC, "CH2_I_MAX_lowest2bit")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP , "#C S @max5970/0x13 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MAX-I")
@@ -644,53 +644,60 @@ record(calc,"$(IOC):IFC1210-PWRMON-DISS")
 
 
 # the I2C registers of the device for frequency configuration 00, read all them once:
-record(ai,"$(IOC):PGMCLOCK-REG0")
+record(longin,"$(IOC):PGMCLOCK-REG0")
 {
     field(DESC, "IDT8N4Q001 ctrl reg 0")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP,  "#C S @pgm_clock/0 T=UINT8")
     field(PINI, "YES")
     field(FLNK, "$(IOC):PGMCLOCK-REG4")
 }
 
-record(ai,"$(IOC):PGMCLOCK-REG4")
+record(longin,"$(IOC):PGMCLOCK-REG4")
 {
     field(DESC, "IDT8N4Q001 ctrl reg 4")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP,  "#C S @pgm_clock/4 T=UINT8")
     field(FLNK, "$(IOC):PGMCLOCK-REG8")
 }
 
-record(ai,"$(IOC):PGMCLOCK-REG8")
+record(longin,"$(IOC):PGMCLOCK-REG8")
 {
     field(DESC, "IDT8N4Q001 ctrl reg 8")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP,  "#C S @pgm_clock/8 T=UINT8")
     field(FLNK, "$(IOC):PGMCLOCK-REG12")
 }
 
-record(ai,"$(IOC):PGMCLOCK-REG12")
+record(longin,"$(IOC):PGMCLOCK-REG12")
 {
     field(DESC, "IDT8N4Q001 ctrl reg 12")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP,  "#C S @pgm_clock/12 T=UINT8")
     field(FLNK, "$(IOC):PGMCLOCK-REG20")
 }
 
-record(ai,"$(IOC):PGMCLOCK-REG20")
+record(longin,"$(IOC):PGMCLOCK-REG20")
 {
     field(DESC, "IDT8N4Q001 ctrl reg 20")
-    field(DTYP, "regDevAsyn")
+    field(DTYP, "regDev")
     field(INP,  "#C S @pgm_clock/20 T=UINT8")
     field(FLNK, "$(IOC):PGMCLOCK-P")
 }
 
 #soft records for frequency calculation, internal FLNK's for update of freq. value for display
-record(calc,"$(IOC):PGMCLOCK-P")
+record(mbbi, "$(IOC):PGMCLOCK-P")
 {
     field(DESC, "IDT8N4Q001 f calc")
-    field(INPA, "$(IOC):PGMCLOCK-REG20 NPP")
-    field(CALC, "(A>>6)&0x3")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(IOC):PGMCLOCK-REG20")
+    field(SHFT, "6")
+    field(ZRVL, "-1")
+    field(ONVL, "0")
+    field(TWVL, "1")
+    field(THVL, "-1")
+    field(FRVL, "2")
+    field(FVVL, "3")
     field(FLNK, "$(IOC):PGMCLOCK-MINT")
 }
 
@@ -709,10 +716,9 @@ record(calc,"$(IOC):PGMCLOCK-MFRAC")
     field(INPB, "$(IOC):PGMCLOCK-REG4 NPP")
     field(INPC, "$(IOC):PGMCLOCK-REG8 NPP")
     field(INPD, "$(IOC):PGMCLOCK-REG12 NPP")
-    field(CALC, "((A<<17)&0x2ffff)+((B<<16)&0x1fe00)+((C<<8)&0x1fe)+((C>>7)&0x1)")
+    field(CALC, "((A<<18)&0x20000)+((B<<9)&0x3fe00)+((C<<1)&0x1fe)+((D>>7)&0x1)")
     field(FLNK, "$(IOC):PGMCLOCK-N")
 }
-
 record(calc,"$(IOC):PGMCLOCK-N")
 {
     field(DESC, "IDT8N4Q001 f calc")
