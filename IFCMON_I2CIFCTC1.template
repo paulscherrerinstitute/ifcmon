@@ -44,7 +44,7 @@
 #{
 #    field(DESC, "IFC_TC1 I2C mux")
 #    field(DTYP, "regDevAsyn")
-#    field(OUT , "#C S @ifctc1_cpld/0x6 T=UINT8")
+#    field(OUT , "@ifctc1_cpld/0x6 T=UINT8")
 #    field(PINI,"YES")
 #    field(VAL,"1")
 #}
@@ -61,7 +61,7 @@ record(ai,"$(IOC):IFCTC1-FW-MAJOR")
 {
     field(DESC, "IFC_TC1 Fw Id major")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_cpld/0x1 T=UINT8") 
+    field(INP , "@ifctc1_cpld/0x1 T=UINT8") 
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-FW-MINOR")
 }
@@ -70,7 +70,7 @@ record(ai,"$(IOC):IFCTC1-FW-MINOR")
 {
     field(DESC, "IFC_TC1 Fw Id minor")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_cpld/0x2 T=UINT8")
+    field(INP , "@ifctc1_cpld/0x2 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-FW-YEAR")
 }
@@ -79,7 +79,7 @@ record(ai,"$(IOC):IFCTC1-FW-YEAR")
 {
     field(DESC, "IFC_TC1 Fw year")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_cpld/0x3 T=UINT8")
+    field(INP , "@ifctc1_cpld/0x3 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-FW-MONTH")
 }
@@ -88,7 +88,7 @@ record(ai,"$(IOC):IFCTC1-FW-MONTH")
 {
     field(DESC, "IFC_TC1 Fw month")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_cpld/0x4 T=UINT8")
+    field(INP , "@ifctc1_cpld/0x4 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-FW-DAY")
 }
@@ -97,7 +97,7 @@ record(ai,"$(IOC):IFCTC1-FW-DAY")
 {
     field(DESC, "IFC_TC1 Fw day")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_cpld/0x5 T=UINT8")
+    field(INP , "@ifctc1_cpld/0x5 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-FW-SIGN")
 }
@@ -119,7 +119,7 @@ record(ai,"$(IOC):IFCTC1-HCI-STATUS")
 {
     field(DESC, "IFC_TC1 HCI status")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_cpld/0xC T=UINT8")
+    field(INP , "@ifctc1_cpld/0xC T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-HCI-TYPE")
 }
@@ -182,7 +182,7 @@ record(ai,"$(IOC):IFCTC1-PCIERD-SIG")
 {
     field(DESC, "IFC_TC1 SIG")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_cpld/0x2C T=UINT8")
+    field(INP , "@ifctc1_cpld/0x2C T=UINT8")
     field(LOLO, "254")
     field(LLSV, "MAJOR")
     field(HIHI, "255")
@@ -195,7 +195,7 @@ record(ai,"$(IOC):IFCTC1-PCIERD-RX50")
 {
     field(DESC, "IFC_TC1 PCIe RX50")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_cpld/0x2D T=UINT8")
+    field(INP , "@ifctc1_cpld/0x2D T=UINT8")
     field(LOLO, "254")
     field(LLSV, "MAJOR")
     field(HIHI, "255")
@@ -214,7 +214,7 @@ record(ai,"$(IOC):IFCTC1-PCIERD-AEOC")
 {
     field(DESC, "IFC_TC1 PCIe AEOC")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_cpld/0x2F T=UINT8")
+    field(INP , "@ifctc1_cpld/0x2F T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-EQSELA")
 }
@@ -293,7 +293,7 @@ record(ai,"$(IOC):IFCTC1-PCIERD-BEOC")
 {
     field(DESC, "IFC_TC1 PCIe BEOC")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_cpld/0x30 T=UINT8")
+    field(INP , "@ifctc1_cpld/0x30 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-EQSELB")
 }
@@ -372,7 +372,7 @@ record(ai,"$(IOC):IFCTC1-PCIERD-LBEC")
 {
     field(DESC, "IFC_TC1 PCIe LBEC")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_cpld/0x2E T=UINT8")
+    field(INP , "@ifctc1_cpld/0x2E T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-DEEMPHA-ENA")   
 }
@@ -434,7 +434,7 @@ record(ao,"$(IOC):IFCTC1-MUX-SEL-PWRMON")
 {
     field(DESC, "IFC_TC1 I2C mux")
     field(DTYP, "regDevAsyn")
-    field(OUT , "#C S @ifctc1_cpld/0x6 T=UINT8")
+    field(OUT , "@ifctc1_cpld/0x6 T=UINT8")
     field(VAL , "1")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V-MSB")
@@ -449,7 +449,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V-MSB")
 {
     field(DESC, "CH1_V_actual_higher8bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x2 T=UINT8")
+    field(INP , "@ifctc1_max5970/0x2 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V-LSB")
 }
@@ -457,7 +457,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V-LSB")
 {
     field(DESC, "CH1_V_actual_lowest2bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x3 T=UINT8")
+    field(INP , "@ifctc1_max5970/0x3 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V")
 }
@@ -483,7 +483,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MIN-V-MSB")
 {
     field(DESC, "CH1_V_MIN_higher8bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0xC T=UINT8")
+    field(INP , "@ifctc1_max5970/0xC T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-MIN-V-LSB")
 }
@@ -491,7 +491,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MIN-V-LSB")
 {
     field(DESC, "CH1_V_MIN_lowest2bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0xD T=UINT8")
+    field(INP , "@ifctc1_max5970/0xD T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-MIN-V")
 }
@@ -517,7 +517,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MAX-V-MSB")
 {
     field(DESC, "CH1_V_MAX_higher8bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0xE T=UINT8")
+    field(INP , "@ifctc1_max5970/0xE T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-MAX-V-LSB")
 }
@@ -525,7 +525,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MAX-V-LSB")
 {
     field(DESC, "CH1_V_MAX_lowest2bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0xF T=UINT8")
+    field(INP , "@ifctc1_max5970/0xF T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-MAX-V")
 }
@@ -551,7 +551,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I-MSB")
 {
     field(DESC, "CH1_I_actual_higher8bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x0 T=UINT8")
+    field(INP , "@ifctc1_max5970/0x0 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I-LSB")
 }
@@ -559,7 +559,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I-LSB")
 {
     field(DESC, "CH1_I_actual_lowest2bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x1 T=UINT8")
+    field(INP , "@ifctc1_max5970/0x1 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I")
 }
@@ -583,7 +583,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MIN-I-MSB")
 {
     field(DESC, "CH1_I_MIN_higher8bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x8 T=UINT8")
+    field(INP , "@ifctc1_max5970/0x8 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-MIN-I-LSB")
 }
@@ -591,7 +591,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MIN-I-LSB")
 {
     field(DESC, "CH1_I_MIN_lowest2bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x9 T=UINT8")
+    field(INP , "@ifctc1_max5970/0x9 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-MIN-I")
 }
@@ -613,7 +613,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MAX-I-MSB")
 {
     field(DESC, "CH1_I_MAX_higher8bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0xA T=UINT8")
+    field(INP , "@ifctc1_max5970/0xA T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-MAX-I-LSB")
 }
@@ -621,7 +621,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MAX-I-LSB")
 {
     field(DESC, "CH1_I_MAX_lowest2bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0xB T=UINT8")
+    field(INP , "@ifctc1_max5970/0xB T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-MAX-I")
 }
@@ -658,7 +658,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V-MSB")
 {
     field(DESC, "CH2_V_actual_higher8bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x6 T=UINT8")
+    field(INP , "@ifctc1_max5970/0x6 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V-LSB")
 }
@@ -666,7 +666,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V-LSB")
 {
     field(DESC, "CH2_V_actual_lowest2bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x7 T=UINT8")
+    field(INP , "@ifctc1_max5970/0x7 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V")
 }
@@ -692,7 +692,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MIN-V-MSB")
 {
     field(DESC, "CH2_V_MIN_higher8bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x14 T=UINT8")
+    field(INP , "@ifctc1_max5970/0x14 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-MIN-V-LSB")
 }
@@ -700,7 +700,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MIN-V-LSB")
 {
     field(DESC, "CH2_V_MIN_lowest2bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x15 T=UINT8")
+    field(INP , "@ifctc1_max5970/0x15 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-MIN-V")
 }
@@ -726,7 +726,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MAX-V-MSB")
 {
     field(DESC, "CH2_V_MAX_higher8bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x16 T=UINT8")
+    field(INP , "@ifctc1_max5970/0x16 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-MAX-V-LSB")
 }
@@ -734,7 +734,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MAX-V-LSB")
 {
     field(DESC, "CH2_V_MAX_lowest2bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x17 T=UINT8")
+    field(INP , "@ifctc1_max5970/0x17 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-MAX-V")
 }
@@ -760,7 +760,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I-MSB")
 {
     field(DESC, "CH2_I_actual_higher8bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x4 T=UINT8")
+    field(INP , "@ifctc1_max5970/0x4 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I-LSB")
 }
@@ -768,7 +768,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I-LSB")
 {
     field(DESC, "CH2_I_actual_lowest2bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x5 T=UINT8")
+    field(INP , "@ifctc1_max5970/0x5 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I")
 }
@@ -792,7 +792,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MIN-I-MSB")
 {
     field(DESC, "CH2_I_MIN_higher8bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x10 T=UINT8")
+    field(INP , "@ifctc1_max5970/0x10 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-MIN-I-LSB")
 }
@@ -800,7 +800,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MIN-I-LSB")
 {
     field(DESC, "CH2_I_MIN_lowest2bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x11 T=UINT8")
+    field(INP , "@ifctc1_max5970/0x11 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-MIN-I")
 }
@@ -822,7 +822,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MAX-I-MSB")
 {
     field(DESC, "CH2_I_MAX_higher8bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x12 T=UINT8")
+    field(INP , "@ifctc1_max5970/0x12 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-MAX-I-LSB")
 }
@@ -830,7 +830,7 @@ record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MAX-I-LSB")
 {
     field(DESC, "CH2_I_MAX_lowest2bit")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc1_max5970/0x13 T=UINT8")
+    field(INP , "@ifctc1_max5970/0x13 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-MAX-I")
 }

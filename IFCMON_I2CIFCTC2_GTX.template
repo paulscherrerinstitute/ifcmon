@@ -59,7 +59,7 @@ record(ai,"$(IOC):IFCTC2-GTXREP-CH$(CHNR)-EQ")
 {
     field(DESC, "IFC_TC2 GTX rep CH$(CHNR) EQ")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc2_gtxrep/$(CHREGOFFS)+0x0F T=UINT8")
+    field(INP , "@ifctc2_gtxrep/$(CHREGOFFS)+0x0F T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC2-GTXREP-CH$(CHNR)-VODREG")
 }
@@ -68,7 +68,7 @@ record(ai,"$(IOC):IFCTC2-GTXREP-CH$(CHNR)-VODREG")
 {
     field(DESC, "IFC_TC2 GTX rep CH$(CHNR) VOD register")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc2_gtxrep/$(CHREGOFFS)+0x10 T=UINT8")
+    field(INP , "@ifctc2_gtxrep/$(CHREGOFFS)+0x10 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC2-GTXREP-CH$(CHNR)-VOD")
 }
@@ -103,7 +103,7 @@ record(ai,"$(IOC):IFCTC2-GTXREP-CH$(CHNR)-DEMREG")
 {
     field(DESC, "IFC_TC2 GTX rep CH$(CHNR) DEM register")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc2_gtxrep/$(CHREGOFFS)+0x11 T=UINT8")
+    field(INP , "@ifctc2_gtxrep/$(CHREGOFFS)+0x11 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC2-GTXREP-CH$(CHNR)-DEM")
 }
@@ -169,7 +169,7 @@ record(ai,"$(IOC):IFCTC2-GTXREP-CH$(CHNR)-THRES")
 {
     field(DESC, "IFC_TC2 GTX rep CH$(CHNR) Idle Thresh. reg")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc2_gtxrep/$(CHREGOFFS)+0x12 T=UINT8")
+    field(INP , "@ifctc2_gtxrep/$(CHREGOFFS)+0x12 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC2-GTXREP-CH$(CHNR)-THRD")
 }

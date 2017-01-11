@@ -55,7 +55,7 @@ record(stringin,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VENDOR")
 {
     field(DESC, "vendor: $(DESCR)")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUSSFP)A0/20 T=STRING L=16")
+    field(INP , "@$(I2CBUSSFP)A0/20 T=STRING L=16")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
 }
@@ -65,7 +65,7 @@ record(stringin,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
 {
     field(DESC, "type: $(DESCR)")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUSSFP)A0/40 T=STRING L=20")
+    field(INP , "@$(I2CBUSSFP)A0/40 T=STRING L=20")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-MSB")
 }
@@ -75,7 +75,7 @@ record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-MSB")
 {
     field(DESC, "TEMP-MSB: $(DESCR)")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUSSFP)A2/96 T=UINT8")
+    field(INP , "@$(I2CBUSSFP)A2/96 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-LSB")
 }
@@ -83,7 +83,7 @@ record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-LSB")
 {
     field(DESC, "TEMP-LSB: $(DESCR)")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUSSFP)A2/97 T=UINT8")
+    field(INP , "@$(I2CBUSSFP)A2/97 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP")
 }
@@ -107,7 +107,7 @@ record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-MSB")
 {
     field(DESC, "TEMP-MSB: $(DESCR)")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUSSFP)A2/98 T=UINT8")
+    field(INP , "@$(I2CBUSSFP)A2/98 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-LSB")
 }
@@ -115,7 +115,7 @@ record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-LSB")
 {
     field(DESC, "TEMP-LSB: $(DESCR)")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUSSFP)A2/99 T=UINT8")
+    field(INP , "@$(I2CBUSSFP)A2/99 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC")
 }
@@ -141,7 +141,7 @@ record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-MSB")
 {
     field(DESC, "TEMP-MSB: $(DESCR)")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUSSFP)A2/104 T=UINT8")
+    field(INP , "@$(I2CBUSSFP)A2/104 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-LSB")
 }
@@ -149,7 +149,7 @@ record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-LSB")
 {
     field(DESC, "TEMP-LSB: $(DESCR)")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUSSFP)A2/105 T=UINT8")
+    field(INP , "@$(I2CBUSSFP)A2/105 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR")
 }
@@ -171,7 +171,7 @@ record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-MSB")
 {
     field(DESC, "TEMP-MSB: $(DESCR)")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUSSFP)A2/103 T=UINT8")
+    field(INP , "@$(I2CBUSSFP)A2/103 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-LSB")
 }
@@ -179,7 +179,7 @@ record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-LSB")
 {
     field(DESC, "TEMP-LSB: $(DESCR)")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @$(I2CBUSSFP)A2/104 T=UINT8")
+    field(INP , "@$(I2CBUSSFP)A2/104 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR")
 }

@@ -49,7 +49,7 @@ record(ai,"$(IOC):IFCTC2-GTXREP-PWDN")
 {
     field(DESC, "IFC_TC2 GTX rep CH0 VOD register")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc2_gtxrep/0x01 T=UINT8")
+    field(INP , "@ifctc2_gtxrep/0x01 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC2-PGMCLOCK-REG0")
 }
@@ -72,7 +72,7 @@ record(ai,"$(IOC):IFCTC2-PGMCLOCK-REG0")
 {
     field(DESC, "IDT8N4Q001 ctrl reg 0")
     field(DTYP, "regDevAsyn")
-    field(INP,  "#C S @ifctc2_pgm_clock/0 T=UINT8")
+    field(INP,  "@ifctc2_pgm_clock/0 T=UINT8")
     field(PINI, "YES")
     field(FLNK, "$(IOC):IFCTC2-PGMCLOCK-REG4")
 }
@@ -81,7 +81,7 @@ record(ai,"$(IOC):IFCTC2-PGMCLOCK-REG4")
 {
     field(DESC, "IDT8N4Q001 ctrl reg 4")
     field(DTYP, "regDevAsyn")
-    field(INP,  "#C S @ifctc2_pgm_clock/4 T=UINT8")
+    field(INP,  "@ifctc2_pgm_clock/4 T=UINT8")
     field(FLNK, "$(IOC):IFCTC2-PGMCLOCK-REG8")
 }
 
@@ -89,7 +89,7 @@ record(ai,"$(IOC):IFCTC2-PGMCLOCK-REG8")
 {
     field(DESC, "IDT8N4Q001 ctrl reg 8")
     field(DTYP, "regDevAsyn")
-    field(INP,  "#C S @ifctc2_pgm_clock/8 T=UINT8")
+    field(INP,  "@ifctc2_pgm_clock/8 T=UINT8")
     field(FLNK, "$(IOC):IFCTC2-PGMCLOCK-REG12")
 }
 
@@ -97,7 +97,7 @@ record(ai,"$(IOC):IFCTC2-PGMCLOCK-REG12")
 {
     field(DESC, "IDT8N4Q001 ctrl reg 12")
     field(DTYP, "regDevAsyn")
-    field(INP,  "#C S @ifctc2_pgm_clock/12 T=UINT8")
+    field(INP,  "@ifctc2_pgm_clock/12 T=UINT8")
     field(FLNK, "$(IOC):IFCTC2-PGMCLOCK-REG20")
 }
 
@@ -105,7 +105,7 @@ record(ai,"$(IOC):IFCTC2-PGMCLOCK-REG20")
 {
     field(DESC, "IDT8N4Q001 ctrl reg 20")
     field(DTYP, "regDevAsyn")
-    field(INP,  "#C S @ifctc2_pgm_clock/20 T=UINT8")
+    field(INP,  "@ifctc2_pgm_clock/20 T=UINT8")
     field(FLNK, "$(IOC):IFCTC2-PGMCLOCK-P")
 }
 

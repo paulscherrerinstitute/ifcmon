@@ -61,7 +61,7 @@ record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CTRL1")
 {
     field(DESC, "IFC_TC2 PCIe rep Control 1 register")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x01 T=UINT8")
+    field(INP , "@ifctc2_pcierep$(PCIENR)/0x01 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-PWDN-CHA")
 }
@@ -97,7 +97,7 @@ record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CTRL2")
 {
     field(DESC, "IFC_TC2 PCIe rep Control 2 register")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x02 T=UINT8")
+    field(INP , "@ifctc2_pcierep$(PCIENR)/0x02 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-PWDN-OSC")
 }
@@ -133,7 +133,7 @@ record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-OVRR")
 {
     field(DESC, "IFC_TC2 PCIe rep Pin override register")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x08 T=UINT8")
+    field(INP , "@ifctc2_pcierep$(PCIENR)/0x08 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-EQ")
 }
@@ -141,7 +141,7 @@ record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-EQ")
 {
     field(DESC, "IFC_TC2 PCIe rep CHA EQ register")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x0F T=UINT8")
+    field(INP , "@ifctc2_pcierep$(PCIENR)/0x0F T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-DEMREG")
 }
@@ -149,7 +149,7 @@ record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-DEMREG")
 {
     field(DESC, "IFC_TC2 PCIe rep CHA DEM Ctrl register")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x11 T=UINT8")
+    field(INP , "@ifctc2_pcierep$(PCIENR)/0x11 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-DEM")
 }
@@ -201,7 +201,7 @@ record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-THRES")
 {
     field(DESC, "IFC_TC2 PCIe rep CHA Idle Thresh. reg.")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x12 T=UINT8")
+    field(INP , "@ifctc2_pcierep$(PCIENR)/0x12 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-THRD")
 }
@@ -245,7 +245,7 @@ record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-VODREG")
 {
     field(DESC, "IFC_TC2 PCIe rep CHA VOD register")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x25 T=UINT8")
+    field(INP , "@ifctc2_pcierep$(PCIENR)/0x25 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-VOD")
 }
@@ -279,7 +279,7 @@ record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-EQ")
 {
     field(DESC, "IFC_TC2 PCIe rep CHB EQ register")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x16 T=UINT8")
+    field(INP , "@ifctc2_pcierep$(PCIENR)/0x16 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-DEMREG")
 }
@@ -288,7 +288,7 @@ record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-DEMREG")
 {
     field(DESC, "IFC_TC2 PCIe rep CHB DEM Ctrl register")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x18 T=UINT8")
+    field(INP , "@ifctc2_pcierep$(PCIENR)/0x18 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-DEM")
 }
@@ -340,7 +340,7 @@ record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-THRES")
 {
     field(DESC, "IFC_TC2 PCIe rep CHB Idle Thresh. reg")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x19 T=UINT8")
+    field(INP , "@ifctc2_pcierep$(PCIENR)/0x19 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-THRD")
 }
@@ -384,7 +384,7 @@ record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-VODREG")
 {
     field(DESC, "IFC_TC2 PCIe rep CHB VOD register")
     field(DTYP, "regDevAsyn")
-    field(INP , "#C S @ifctc2_pcierep$(PCIENR)/0x25 T=UINT8")
+    field(INP , "@ifctc2_pcierep$(PCIENR)/0x25 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-VOD")
 }
