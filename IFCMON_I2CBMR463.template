@@ -166,5 +166,5 @@ record(fanout,"$(IOC):IFC1210-$(SUBDEV)-FAN")
     field(DISA, "$(DISABLE)")
     field(DISV, "1")
     field(PRIO, "LOW")
-    field(FLNK, "$(FLNK)") # FLNK towards next BMR463
+    field(FLNK, "$(FLNK=)") # FLNK towards next BMR463
 }

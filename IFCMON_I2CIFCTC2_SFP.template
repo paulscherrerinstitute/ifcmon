@@ -392,5 +392,5 @@ record(fanout,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-FAN")
     field(DISA, "$(DISABLE)")
     field(DISV, "1")
     field(PRIO, "LOW")
-    field(FLNK, "$(FLNK)")
+    field(FLNK, "$(FLNK=)")
 }

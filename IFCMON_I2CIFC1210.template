@@ -42,8 +42,8 @@ record(longout,"$(IOC):TEMP1-CONF2")
 {
     field(DESC, "LM95235 U700 conf 2")
     field(DTYP, "regDev")
-    field(SCAN, "$(SCAN)")
-    field(EVNT, "$(EVNT)")
+    field(SCAN, "$(SCAN=2 second)")
+    field(EVNT, "$(EVNT=)")
     field(OUT , "@lm95235_1/0xBF T=UINT8")
     field(VAL , "6") # see page 17 of datasheet: filter enabled
     field(PRIO, "LOW")
