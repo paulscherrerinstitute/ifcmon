@@ -764,5 +764,9 @@ record(calc,"$(IOC):PGMCLOCK-FVCO")
 }
 
 
-
-
+record(stringin,"$(IOC):TC")
+{
+    field(DESC, "IFC Transition Card")
+    field(VAL,  "$(TC=)")
+    field(PINI, "YES")
+}
