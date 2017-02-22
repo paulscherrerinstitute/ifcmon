@@ -10,7 +10,7 @@
 
 
 # Module Description:
-# Contains the records for the LLRF highspeed transition card IFC_TC2.
+# Contlonginns the records for the LLRF highspeed transition card IFC_TC2.
 #
 # the SFP+ modules are not coverd in this template, find them in G_IFCMON_I2CIFCTC1_SFP:
 #    -SFP+ modules I2C + CPLD IO extender to SFP+ modules
@@ -45,17 +45,16 @@
 # general status
 #--------------------------------------------------------------------
 
-record(ai,"$(IOC):IFCTC2-GTXREP-PWDN")
+record(longin, "$(IOC):IFCTC2-GTXREP-PWDN")
 {
-    field(PINI, "YES")
-    field(SCAN, "$(SCAN=2 second)")
-    field(EVNT, "$(EVNT=)")
     field(DESC, "IFC_TC2 GTX rep CH0 VOD register")
-    field(DTYP, "regDev")
+    field(DTYP, "regDevAsyn")
     field(INP , "@ifctc2_gtxrep/0x01 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC2-PGMCLOCK-REG0")
 }
+
+
 
 #--------------------------------------------------------------------
 # I2C bus 0x3:      transition card over VME_P0 over PCI-express->CENTRAL
@@ -64,90 +63,95 @@ record(ai,"$(IOC):IFCTC2-GTXREP-PWDN")
 # startup.script:   ifctc2_pgm_clock
 #--------------------------------------------------------------------
 
+#--------------------------------------------------------------------
+# status scanned once with PINI YES
+#--------------------------------------------------------------------
+
 # the I2C registers of the device for frequency configuration 00, read all them once:
-record(ai,"$(IOC):IFCTC2-PGMCLOCK-REG0")
+record(longin, "$(IOC):IFCTC2-PGMCLOCK-REG0")
 {
     field(DESC, "IDT8N4Q001 ctrl reg 0")
-    field(DTYP, "regDev")
+    field(DTYP, "regDevAsyn")
     field(INP,  "@ifctc2_pgm_clock/0 T=UINT8")
+    field(PINI, "YES")
     field(FLNK, "$(IOC):IFCTC2-PGMCLOCK-REG4")
 }
 
-record(ai,"$(IOC):IFCTC2-PGMCLOCK-REG4")
+record(longin, "$(IOC):IFCTC2-PGMCLOCK-REG4")
 {
     field(DESC, "IDT8N4Q001 ctrl reg 4")
-    field(DTYP, "regDev")
+    field(DTYP, "regDevAsyn")
     field(INP,  "@ifctc2_pgm_clock/4 T=UINT8")
     field(FLNK, "$(IOC):IFCTC2-PGMCLOCK-REG8")
 }
 
-record(ai,"$(IOC):IFCTC2-PGMCLOCK-REG8")
+record(longin, "$(IOC):IFCTC2-PGMCLOCK-REG8")
 {
     field(DESC, "IDT8N4Q001 ctrl reg 8")
-    field(DTYP, "regDev")
+    field(DTYP, "regDevAsyn")
     field(INP,  "@ifctc2_pgm_clock/8 T=UINT8")
     field(FLNK, "$(IOC):IFCTC2-PGMCLOCK-REG12")
 }
 
-record(ai,"$(IOC):IFCTC2-PGMCLOCK-REG12")
+record(longin, "$(IOC):IFCTC2-PGMCLOCK-REG12")
 {
     field(DESC, "IDT8N4Q001 ctrl reg 12")
-    field(DTYP, "regDev")
+    field(DTYP, "regDevAsyn")
     field(INP,  "@ifctc2_pgm_clock/12 T=UINT8")
     field(FLNK, "$(IOC):IFCTC2-PGMCLOCK-REG20")
 }
 
-record(ai,"$(IOC):IFCTC2-PGMCLOCK-REG20")
+record(longin, "$(IOC):IFCTC2-PGMCLOCK-REG20")
 {
     field(DESC, "IDT8N4Q001 ctrl reg 20")
-    field(DTYP, "regDev")
+    field(DTYP, "regDevAsyn")
     field(INP,  "@ifctc2_pgm_clock/20 T=UINT8")
     field(FLNK, "$(IOC):IFCTC2-PGMCLOCK-P")
 }
 
 #soft records for frequency calculation, internal FLNK's for update of freq. value for display
-record(calc,"$(IOC):IFCTC2-PGMCLOCK-P")
+record(calc, "$(IOC):IFCTC2-PGMCLOCK-P")
 {
     field(DESC, "IDT8N4Q001 f calc")
-    field(INPA, "$(IOC):IFCTC2-PGMCLOCK-REG20 ")")
+    field(INPA, "$(IOC):IFCTC2-PGMCLOCK-REG20 MS")
     field(CALC, "(A>>6)&0x3")
     field(FLNK, "$(IOC):IFCTC2-PGMCLOCK-MINT")
 }
 
-record(calc,"$(IOC):IFCTC2-PGMCLOCK-MINT")
+record(calc, "$(IOC):IFCTC2-PGMCLOCK-MINT")
 {
     field(DESC, "IDT8N4Q001 f calc")
-    field(INPA, "$(IOC):IFCTC2-PGMCLOCK-REG0 NPP")
+    field(INPA, "$(IOC):IFCTC2-PGMCLOCK-REG0 MS")
     field(CALC, "(A>>1)&0x1f")
     field(FLNK, "$(IOC):IFCTC2-PGMCLOCK-MFRAC")
 }
 
-record(calc,"$(IOC):IFCTC2-PGMCLOCK-MFRAC")
+record(calc, "$(IOC):IFCTC2-PGMCLOCK-MFRAC")
 {
     field(DESC, "IDT8N4Q001 f calc")
-    field(INPA, "$(IOC):IFCTC2-PGMCLOCK-REG0 NPP")
-    field(INPB, "$(IOC):IFCTC2-PGMCLOCK-REG4 NPP")
-    field(INPC, "$(IOC):IFCTC2-PGMCLOCK-REG8 NPP")
-    field(INPD, "$(IOC):IFCTC2-PGMCLOCK-REG12 NPP")
+    field(INPA, "$(IOC):IFCTC2-PGMCLOCK-REG0 MS")
+    field(INPB, "$(IOC):IFCTC2-PGMCLOCK-REG4 MS")
+    field(INPC, "$(IOC):IFCTC2-PGMCLOCK-REG8 MS")
+    field(INPD, "$(IOC):IFCTC2-PGMCLOCK-REG12 MS")
     field(CALC, "((A<<17)&0x2ffff)+((B<<16)&0x1fe00)+((C<<8)&0x1fe)+((C>>7)&0x1)")
     field(FLNK, "$(IOC):IFCTC2-PGMCLOCK-N")
 }
 
-record(calc,"$(IOC):IFCTC2-PGMCLOCK-N")
+record(calc, "$(IOC):IFCTC2-PGMCLOCK-N")
 {
     field(DESC, "IDT8N4Q001 f calc")
-    field(INPA, "$(IOC):IFCTC2-PGMCLOCK-REG12 NPP")
+    field(INPA, "$(IOC):IFCTC2-PGMCLOCK-REG12 MS")
     field(CALC, "A&0x7f")
     field(FLNK, "$(IOC):IFCTC2-PGMCLOCK-FREQ")
 }
 
-record(calc,"$(IOC):IFCTC2-PGMCLOCK-FREQ")
+record(calc, "$(IOC):IFCTC2-PGMCLOCK-FREQ")
 {
     field(DESC, "IDT8N4Q001 f calc")
-    field(INPA, "$(IOC):IFCTC2-PGMCLOCK-P NPP")
-    field(INPB, "$(IOC):IFCTC2-PGMCLOCK-MINT NPP")
-    field(INPC, "$(IOC):IFCTC2-PGMCLOCK-MFRAC NPP")
-    field(INPD, "$(IOC):IFCTC2-PGMCLOCK-N NPP")
+    field(INPA, "$(IOC):IFCTC2-PGMCLOCK-P MS")
+    field(INPB, "$(IOC):IFCTC2-PGMCLOCK-MINT MS")
+    field(INPC, "$(IOC):IFCTC2-PGMCLOCK-MFRAC MS")
+    field(INPD, "$(IOC):IFCTC2-PGMCLOCK-N MS")
     field(E   , "114.285") # f_xtal in MHz / see datasheet for our chip IDT8N4QV01EG-0000
     field(G   , "3.814697265625e-06") # = 1/2^18
     field(CALC, "E*(B+(C*G))/(A*D)")
@@ -160,11 +164,11 @@ record(calc,"$(IOC):IFCTC2-PGMCLOCK-FREQ")
     field(FLNK, "$(IOC):IFCTC2-PGMCLOCK-FVCO")
 }
 
-record(calc,"$(IOC):IFCTC2-PGMCLOCK-FVCO")
+record(calc, "$(IOC):IFCTC2-PGMCLOCK-FVCO")
 {
     field(DESC, "IDT8N4Q001 f calc")
-    field(INPA, "$(IOC):IFCTC2-PGMCLOCK-FREQ NPP")
-    field(INPB, "$(IOC):IFCTC2-PGMCLOCK-N NPP")
+    field(INPA, "$(IOC):IFCTC2-PGMCLOCK-FREQ MS")
+    field(INPB, "$(IOC):IFCTC2-PGMCLOCK-N MS")
     field(CALC, "A*B")
     field(EGU , "MHz")
     field(PREC, "1")
