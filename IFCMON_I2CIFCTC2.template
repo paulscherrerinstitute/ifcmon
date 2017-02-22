@@ -47,14 +47,15 @@
 
 record(ai,"$(IOC):IFCTC2-GTXREP-PWDN")
 {
+    field(PINI, "YES")
+    field(SCAN, "$(SCAN=2 second)")
+    field(EVNT, "$(EVNT=)")
     field(DESC, "IFC_TC2 GTX rep CH0 VOD register")
     field(DTYP, "regDev")
     field(INP , "@ifctc2_gtxrep/0x01 T=UINT8")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFCTC2-PGMCLOCK-REG0")
 }
-
-
 
 #--------------------------------------------------------------------
 # I2C bus 0x3:      transition card over VME_P0 over PCI-express->CENTRAL
@@ -63,17 +64,12 @@ record(ai,"$(IOC):IFCTC2-GTXREP-PWDN")
 # startup.script:   ifctc2_pgm_clock
 #--------------------------------------------------------------------
 
-#--------------------------------------------------------------------
-# status scanned once with PINI YES
-#--------------------------------------------------------------------
-
 # the I2C registers of the device for frequency configuration 00, read all them once:
 record(ai,"$(IOC):IFCTC2-PGMCLOCK-REG0")
 {
     field(DESC, "IDT8N4Q001 ctrl reg 0")
     field(DTYP, "regDev")
     field(INP,  "@ifctc2_pgm_clock/0 T=UINT8")
-    field(PINI, "YES")
     field(FLNK, "$(IOC):IFCTC2-PGMCLOCK-REG4")
 }
 
@@ -113,7 +109,7 @@ record(ai,"$(IOC):IFCTC2-PGMCLOCK-REG20")
 record(calc,"$(IOC):IFCTC2-PGMCLOCK-P")
 {
     field(DESC, "IDT8N4Q001 f calc")
-    field(INPA, "$(IOC):IFCTC2-PGMCLOCK-REG20 NPP")
+    field(INPA, "$(IOC):IFCTC2-PGMCLOCK-REG20 ")")
     field(CALC, "(A>>6)&0x3")
     field(FLNK, "$(IOC):IFCTC2-PGMCLOCK-MINT")
 }

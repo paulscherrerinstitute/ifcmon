@@ -412,13 +412,5 @@ record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR")
     field(PREC, "1") 
     field(EGU , "mW")
     field(PRIO, "LOW")
-    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-FAN")
-}
-
-record(fanout,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-FAN")
-{
-    field(DISA, "$(DISABLE)")
-    field(DISV, "1")
-    field(PRIO, "LOW")
     field(FLNK, "$(FLNK=)")
 }
