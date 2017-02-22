@@ -49,13 +49,12 @@
 # datasheet:        http://www.nxp.com/documents/data_sheet/PCA9547.pdf
 # startup.script:   ifctc2_mux_gtx
 #--------------------------------------------------------------------
-record(ao,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-GTXSELECT")
+record(ao, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-GTXSELECT")
 {
     field(DESC, "IFC_TC2 GTX SFP I2C mux")
     field(DTYP, "regDev")
     field(OUT , "@ifctc2_mux_gtx/0x0 T=UINT8")
     field(VAL , "$(BUSMUXGTX)")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-PCIESELECT")
 }
 
@@ -65,13 +64,12 @@ record(ao,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-GTXSELECT")
 # datasheet:        http://www.nxp.com/documents/data_sheet/PCA9540B.pdf
 # startup.script:   ifctc2_mux_pcie
 #--------------------------------------------------------------------
-record(ao,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-PCIESELECT")
+record(ao, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-PCIESELECT")
 {
     field(DESC, "IFC_TC2 PCIe SFP I2C mux")
     field(DTYP, "regDev")
     field(OUT , "@ifctc2_mux_pcie/0x0 T=UINT8")
     field(VAL , "$(BUSMUXPCIE)")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG-CALC")
 }
 
@@ -95,7 +93,7 @@ record(ao,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-PCIESELECT")
 #--------------------------------------------------------------------
 
 #RX Rate Select
-record(mbbo,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RXRATESELECT" )
+record(mbbo, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RXRATESELECT" )
 {
     field(DESC, "RX rate sel: $(DESCR)" )
     field(DTYP, "Raw Soft Channel" )
@@ -106,10 +104,9 @@ record(mbbo,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RXRATESELECT" )
     field(ONVL, "1" )
     field(ONST, ">4.25GBd" )   
     field(VAL,  "0" )
-    field(PRIO, "LOW")
 }
 #TX Rate Select
-record(mbbo,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TXRATESELECT" )
+record(mbbo, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TXRATESELECT" )
 {
     field(DESC, "TX rate sel: $(DESCR)" )
     field(DTYP, "Raw Soft Channel" )
@@ -120,10 +117,9 @@ record(mbbo,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TXRATESELECT" )
     field(ONVL, "1" )
     field(ONST, ">4.25GBd" )   
     field(VAL,  "0" )
-    field(PRIO, "LOW")
 }
 #TX disable
-record(mbbo,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-DISABLE" )
+record(mbbo, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-DISABLE" )
 {
     field(DESC, "TX dis: $(DESCR)" )
     field(DTYP, "Raw Soft Channel" )
@@ -134,75 +130,67 @@ record(mbbo,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-DISABLE" )
     field(ONVL, "1" )
     field(ONST, "disabled" )  
     field(VAL,  "0" ) 
-    field(PRIO, "LOW")
 }
-record(calcout,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG-CALC" )
+record(calcout, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG-CALC" )
 {
     field(DESC, "CTRL REG: $(DESCR)" )
     field(INPA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-DISABLE.RVAL")
     field(INPB, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RXRATESELECT.RVAL")
     field(CALC, "A+B" )
     field(OUT , "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG")
 }
 
 #This record becomes INVALID when the SFP is not plugged in.
 #Use its SEVR to swich all other records to Simulation mode.
 #That avoids a lot of i/o errors.
-record(ao,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG")
+record(longout, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG")
 {
     field(DESC, "CTRL-REG: $(DESCR)")
     field(DTYP, "regDev")
     field(OUT , "@$(I2CBUSSFP)A2/110 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-EXTENDCTRL-REG-CALC")
 }
-record(calcout,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-EXTENDCTRL-REG-CALC" )
+record(calcout, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-EXTENDCTRL-REG-CALC" )
 {
     field(DESC, "EXTENDCTRL REG: $(DESCR)" )
     field(INPB, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TXRATESELECT.RVAL")
     field(CALC, "A" )
     field(OUT , "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-EXTENDCTRL-REG")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-EXTENDCTRL-REG")
 }
-record(ao,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-EXTENDCTRL-REG")
+
+#This record is INVALID for some SFPs.
+record(longout, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-EXTENDCTRL-REG")
 {
     field(DESC, "EXTENDCTRL-REG: $(DESCR)")
     field(DTYP, "regDev")
     field(OUT , "@$(I2CBUSSFP)A2/118 T=UINT8")
-    field(PRIO, "LOW")
     field(SIML, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG.SEVR")
     field(SIMS, "INVALID")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG")
 }
-
-
-
-
 
 #--------------------------------------------------------------------
 # status
 #--------------------------------------------------------------------
 
 # Status / Control
-record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG")
+record(longin, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG")
 {
     field(DESC, "STAT-REG: $(DESCR)")
     field(DTYP, "regDev")
     field(INP , "@$(I2CBUSSFP)A2/110 T=UINT8")
-    field(PRIO, "LOW")
     field(SIML, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG.SEVR")
     field(SIMS, "INVALID")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-FAULT")
 }
 # TX_FAULT
-record ( mbbi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-FAULT")
+record(mbbi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-FAULT")
 {
     field(DESC, "TX_FAULT: $(DESCR)" )
     field(DTYP, "Raw Soft Channel" )
-    field(INP, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG")
+    field(INP,  "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG MS")
     field(SHFT, "2" )
     field(NOBT, "1" )
     field(ZRVL, "0" )
@@ -211,15 +199,14 @@ record ( mbbi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-FAULT")
     field(ONVL, "1" )
     field(ONST, "fault" )
     field(ONSV, "MAJOR")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-MOD-ABS")
 }
 # Module absent / Data Ready (MOD_ABS)
-record ( mbbi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-MOD-ABS" )
+record(mbbi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-MOD-ABS" )
 {
     field(DESC, "MOD_ABS: $(DESCR)" )
     field(DTYP, "Raw Soft Channel" )
-    field(INP, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG")
+    field(INP,  "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG MS")
     field(SHFT, "0" )
     field(NOBT, "1" )
     field(ZRVL, "0" )
@@ -228,15 +215,17 @@ record ( mbbi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-MOD-ABS" )
     field(ONVL, "1" )
     field(ONST, "module absent" )
     field(ONSV, "MINOR")
-    field(PRIO, "LOW")
+    field(SIML, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG.SEVR")
+    field(SIMS, "INVALID")
+    field(SVAL, "1")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-LOS")
 }
 # RX low signal (RX_LOS)
-record ( mbbi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-LOS" )
+record(mbbi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-LOS" )
 {
     field(DESC, "RX_LOS: $(DESCR)" )
     field(DTYP, "Raw Soft Channel" )
-    field(INP, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG")
+    field(INP,  "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG MS")
     field(SHFT, "1" )
     field(NOBT, "1" )
     field(ZRVL, "0" )
@@ -245,56 +234,52 @@ record ( mbbi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-LOS" )
     field(ONVL, "1" )
     field(ONST, "signal level lo" )
     field(ONSV, "MAJOR")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VENDOR")
 }
 
 #Vendor Name
-record(stringin,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VENDOR")
+record(stringin, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VENDOR")
 {
     field(DESC, "vendor: $(DESCR)")
     field(DTYP, "regDev")
     field(INP , "@$(I2CBUSSFP)A0/20 T=STRING L=16")
-    field(PRIO, "LOW")
     field(SIML, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG.SEVR")
     field(SIMS, "INVALID")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
 }
 
 # Vendor Part Number
-record(stringin,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
+record(stringin, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TYPE")
 {
     field(DESC, "type: $(DESCR)")
     field(DTYP, "regDev")
     field(INP , "@$(I2CBUSSFP)A0/40 T=STRING L=20")
-    field(PRIO, "LOW")
     field(SIML, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG.SEVR")
     field(SIMS, "INVALID")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-MSB")
 }
 
 # Temperature measurement
-record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-MSB")
+
+record(longin, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-MSB")
 {
     field(DESC, "TEMP-MSB: $(DESCR)")
     field(DTYP, "regDev")
     field(INP , "@$(I2CBUSSFP)A2/96 T=UINT8")
-    field(PRIO, "LOW")
     field(SIML, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG.SEVR")
     field(SIMS, "INVALID")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-LSB")
 }
-record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-LSB")
+record(longin, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-LSB")
 {
     field(DESC, "TEMP-LSB: $(DESCR)")
     field(DTYP, "regDev")
     field(INP , "@$(I2CBUSSFP)A2/97 T=UINT8")
-    field(PRIO, "LOW")
     field(SIML, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG.SEVR")
     field(SIMS, "INVALID")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP")
 }
-record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP")
+record(calc, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP")
 { 
     field(DESC, "TEMP: $(DESCR)")
     field(INPA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-LSB MS")
@@ -305,32 +290,29 @@ record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP")
     field(EGU , "deg C")
     field(HIHI, "65")
     field(HHSV, "MAJOR")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-MSB")
 }
 
 # VCC 
-record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-MSB")
+record(longin, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-MSB")
 {
     field(DESC, "TEMP-MSB: $(DESCR)")
     field(DTYP, "regDev")
     field(INP , "@$(I2CBUSSFP)A2/98 T=UINT8")
-    field(PRIO, "LOW")
     field(SIML, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG.SEVR")
     field(SIMS, "INVALID")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-LSB")
 }
-record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-LSB")
+record(longin, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-LSB")
 {
     field(DESC, "TEMP-LSB: $(DESCR)")
     field(DTYP, "regDev")
     field(INP , "@$(I2CBUSSFP)A2/99 T=UINT8")
-    field(PRIO, "LOW")
     field(SIML, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG.SEVR")
     field(SIMS, "INVALID")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC")
 }
-record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC")
+record(calc, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC")
 { 
     field(DESC, "Vcc: $(DESCR)")
     field(INPA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC-LSB MS")
@@ -343,32 +325,29 @@ record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VCC")
     field(HHSV, "MAJOR")
     field(LOLO, "3")
     field(LLSV, "MAJOR")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-MSB")
 }
 
 # TX power 
-record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-MSB")
+record(longin, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-MSB")
 {
     field(DESC, "TEMP-MSB: $(DESCR)")
     field(DTYP, "regDev")
     field(INP , "@$(I2CBUSSFP)A2/104 T=UINT8")
-    field(PRIO, "LOW")
     field(SIML, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG.SEVR")
     field(SIMS, "INVALID")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-LSB")
 }
-record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-LSB")
+record(longin, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-LSB")
 {
     field(DESC, "TEMP-LSB: $(DESCR)")
     field(DTYP, "regDev")
     field(INP , "@$(I2CBUSSFP)A2/105 T=UINT8")
-    field(PRIO, "LOW")
     field(SIML, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG.SEVR")
     field(SIMS, "INVALID")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR")
 }
-record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR")
+record(calc, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR")
 { 
     field(DESC, "RXpwr: $(DESCR)")
     field(INPA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR-LSB MS")
@@ -377,32 +356,29 @@ record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-PWR")
     field(CALC, "(A|(B<<8))*C")
     field(PREC, "1") 
     field(EGU , "mW")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-MSB")
 }
 
 # RX power
-record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-MSB")
+record(longin, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-MSB")
 {
     field(DESC, "TEMP-MSB: $(DESCR)")
     field(DTYP, "regDev")
     field(INP , "@$(I2CBUSSFP)A2/103 T=UINT8")
-    field(PRIO, "LOW")
     field(SIML, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG.SEVR")
     field(SIMS, "INVALID")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-LSB")
 }
-record(ai,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-LSB")
+record(longin, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-LSB")
 {
     field(DESC, "TEMP-LSB: $(DESCR)")
     field(DTYP, "regDev")
     field(INP , "@$(I2CBUSSFP)A2/104 T=UINT8")
-    field(PRIO, "LOW")
     field(SIML, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG.SEVR")
     field(SIMS, "INVALID")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR")
 }
-record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR")
+record(calc, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR")
 { 
     field(DESC, "TXpwr: $(DESCR)")
     field(INPA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR-LSB MS")
@@ -411,6 +387,5 @@ record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR")
     field(CALC, "(A|(B<<8))*C")
     field(PREC, "1") 
     field(EGU , "mW")
-    field(PRIO, "LOW")
     field(FLNK, "$(FLNK=)")
 }
