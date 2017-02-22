@@ -290,7 +290,7 @@ record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-DEMREG")
     field(DTYP, "regDevAsyn")
     field(INP , "@ifctc2_pcierep$(PCIENR)/0x18 T=UINT8")
     field(PRIO, "LOW")
-    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHA-DEM")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-DEM")
 }
 record(mbbi,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-DEM")
 {
@@ -378,7 +378,7 @@ record(mbbi,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-THRA")
     field(THVL, "3")
     field(THST, "190 mV")
     field(PRIO, "LOW")
-    field(FLNK, "$(FLNK)")
+    field(FLNK, "$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-VODREG")
 }
 record(ai,"$(IOC):IFCTC2-PCIEREP$(PCIENR)-CHB-VODREG")
 {
