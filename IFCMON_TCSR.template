@@ -259,10 +259,10 @@ record(ao,"$(IOC):CENTRAL-SMONCONF2")
 
 record(seq,"$(IOC):CENTRAL-SMONCONF2-DLY")
 {
-        field(DESC,"100ms delay")   # as in line 508 of G/DRV/pev/src/XprsMon/conf.c    
-        field(DLY1,"0.1")
-        field(DO1,"1")
-        field(LNK1,"$(IOC):CENTRAL-FMCVADJ-RAW.PROC PP")
+    field(DESC,"100ms delay")   # as in line 508 of G/DRV/pev/src/XprsMon/conf.c
+    field(DLY1,"0.1")
+    field(DO1,"1")
+    field(LNK1,"$(IOC):CENTRAL-FMCVADJ-RAW.PROC PP")
 }
 
 record(ai,"$(IOC):CENTRAL-FMCVADJ-RAW")
