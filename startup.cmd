@@ -40,4 +40,9 @@ pevAsynI2cConfigure(0, "lm95235_2",         0x00000098)
 pevAsynI2cConfigure(0, "max5970",           0x400000b0)
 pevAsynI2cConfigure(0, "pgm_clock",         0xe00000ee)
 
-dbLoadTemplate("$(TEMPLATES)/IFCMON.subs","IOC=$(IOC),EVNT=$(EVNT=),SCAN_$(EVNT=)=Event,SCAN_=$(SCAN=2 second),TMEMINPUT_=$(TMEMINPUT=IFCMONUsr1Generic),TMEMOFFS=$(TMEMOFFS=0)")
+dbLoadTemplate $(TEMPLATES)/IFCMON.subs,"IOC=$(IOC),TC=$(TC=),EVNT=$(EVNT=),SCAN_$(EVNT=)=Event,SCAN_=$(SCAN=2 second),TMEMINPUT_=$(TMEMINPUT=IFCMONUsr1Generic),TMEMOFFS=$(TMEMOFFS=0)"
+
+TC1_TC1=""
+$(TC1_$(TC=)=#) runScript IFCMON_TC1.cmd
+TC2_TC2=""
+$(TC2_$(TC=)=#) runScript IFCMON_TC2.cmd
