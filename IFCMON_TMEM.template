@@ -31,8 +31,8 @@ record(bi,"$(IOC):USR1-ReadInitiator")
     field(DTYP, "regDev")
     field(INP , "@$(TMEMINPUT)/$(TMEMOFFS)+0")
     field(PRIO, "HIGH")
-    field(SCAN, "$(SCAN)")
-    field(EVNT, "$(EVNT)")
+    field(SCAN, "$(SCAN=)")
+    field(EVNT, "$(EVNT=)")
     field(FLNK, "$(IOC):CENTRAL-REVISION")
 }
 

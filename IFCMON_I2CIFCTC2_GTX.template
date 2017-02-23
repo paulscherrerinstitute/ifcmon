@@ -197,5 +197,5 @@ record(mbbi,"$(IOC):IFCTC2-GTXREP-CH$(CHNR)-THRA")
     field(TWST, "210 mV")
     field(THVL, "3")
     field(THST, "190 mV")
-    field(FLNK, "$(FLNK)")
+    field(FLNK, "$(FLNK=)")
 }

@@ -179,12 +179,5 @@ record(calc,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-PWR")
     field(CALC, "(A|(B<<8))*C")
     field(PREC, "1") 
     field(EGU , "mW")
-    field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-FAN")
-}
-
-record(fanout,"$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-FAN")
-{
-    field(DISA, "$(DISABLE)")
-    field(DISV, "1")
-    field(FLNK, "$(FLNK)")
+    field(FLNK, "$(FLNK=)")
 }
