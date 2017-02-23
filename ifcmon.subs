@@ -9,12 +9,12 @@ global {
     SCAN="$(SCAN_$(EVNT))"
 }
 
-file IFCMON_I2CIFC1210.template
+file ifcmon_ifc1210.template
 {
     {}
 }
 
-file IFCMON_PGMCLOCK.template
+file ifcmon_pgmclock.template
 {
     { PREFIX="$(IOC):PGMCLOCK-", I2CDEV="pgm_clock" }
 }
@@ -23,7 +23,7 @@ file IFCMON_PGMCLOCK.template
 # for interleave seetings see:
 #    https://codebeamer.psi.ch/cb/displayDocument/PMBus_Specification_Part_I_Rev_1-1_20070205.pdf?doc_id=128848    page 56
 #    https://codebeamer.psi.ch/cb/displayDocument/BMR463+AN302+PMBus+Command+Set.pdf?doc_id=142711                 page 32
-file IFCMON_I2CBMR463.template 
+file ifcmon_BMR.template 
 {
     pattern
     {SUBDEV     BMR  DESCR           DISABLE  FLNK                           }
@@ -35,19 +35,19 @@ file IFCMON_I2CBMR463.template
 # end of I2C processing chain, started above in IFCMON_I2CIFC1210.template
 
 # Scanning: 2 sec
-file IFCMON_TMEM.template
+file ifcmon_tmem.template
 {
     { TMEMINPUT="$(TMEMINPUT_)" }
 }
 
 # Scanning: 2 sec
-file IFCMON_TCSR.template
+file ifcmon_tcsr.template
 {
     {}
 }
 
 # Scanning: 2 sec
-file IFCMON_ELB.template
+file ifcmon_elb.template
 {
     {}
 }

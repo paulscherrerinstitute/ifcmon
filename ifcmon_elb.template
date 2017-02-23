@@ -1,14 +1,3 @@
-#--------------------------------------------------------------------
-# Original Author: KR84 / Paul Scherrer Institut
-# $Author: kalt_r $
-# $Date: 2014/07/03 10:46:49 $
-#
-# $Revision: 1.20 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_ELB.template,v 1.20 2014/07/03 10:46:49 kalt_r Exp $
-#
-#--------------------------------------------------------------------
-
-
 # Module Description:
 # Contains the records for P2020 ELB-bus towards PON FPGA on IFC1210 mainboard.
 # 

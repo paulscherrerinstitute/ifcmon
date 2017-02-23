@@ -1,14 +1,3 @@
-#--------------------------------------------------------------------
-# Original Author: KR84 / Paul Scherrer Institut
-# $Author: schebacher $
-# $Date: 2014/11/27 10:02:39 $
-#
-# $Revision: 1.13 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_TMEM.template,v 1.13 2014/11/27 10:02:39 schebacher Exp $
-#
-#--------------------------------------------------------------------
-
-
 # Module Description:
 # Contains the generic records for __one__ IFC1210 TOSCA-II SUSER block: USR1
 #   

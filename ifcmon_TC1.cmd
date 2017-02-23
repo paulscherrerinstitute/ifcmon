@@ -29,4 +29,4 @@ pevI2cConfigure(0, "pci_p13_A2",        0x60000051)
 pevI2cConfigure(0, "pci_p14_A2",        0x60000051)
 pevI2cConfigure(0, "pci_p15_A2",        0x60000051)
 
-dbLoadTemplate("$(TEMPLATES)/IFCMON_TC1.subs","IOC=$(IOC),EVNT=$(EVNT=),SCAN_$(EVNT=)=Event,SCAN_=$(SCAN=2 second)")
+dbLoadTemplate("$(TEMPLATES)/ifcmon_TC1.subs","IOC=$(IOC),EVNT=$(EVNT=),SCAN_$(EVNT=)=Event,SCAN_=$(SCAN=2 second)")

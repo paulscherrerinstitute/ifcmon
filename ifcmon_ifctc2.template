@@ -1,14 +1,3 @@
-#--------------------------------------------------------------------
-# Original Author: GF32 / Paul Scherrer Institut
-# $Author: gaertner $
-# $Date: 2014/11/25 09:50:20 $
-#
-# $Revision: 1.1 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC2.template,v 1.1 2014/11/25 09:50:20 gaertner Exp $
-#
-#--------------------------------------------------------------------
-
-
 # Module Description:
 # Contains the records for the LLRF highspeed transition card IFC_TC2.
 #

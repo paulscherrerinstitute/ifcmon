@@ -10,12 +10,12 @@ global {
 }
 
 # Scanning: 2 sec update rate FLNK'ed from FCMON_I2CBMR463.template
-file IFCMON_I2CIFCTC2.template
+file ifcmon_ifctc2.template
 {
     {}
 }
 
-file IFCMON_PGMCLOCK.template
+file ifcmon_pgmclock.template
 {
     { PREFIX="$(IOC):IFCTC2-PGMCLOCK-"
       I2CDEV="ifctc2_pgm_clock"
@@ -23,7 +23,7 @@ file IFCMON_PGMCLOCK.template
 }
 
 # Scanning: 2 sec update rate FLNK'ed from FCMON_I2CIFCTC2.template
-file IFCMON_I2CIFCTC2_GTX.template
+file ifcmon_ifctc2_gtx.template
 {
     pattern
     {CHNR CHREGOFFS FLNK                            }
@@ -37,7 +37,7 @@ file IFCMON_I2CIFCTC2_GTX.template
     {  7    0x32    "$(IOC):IFCTC2-PCIEREP08-CTRL1" }
 }
 # Scanning: 2 sec update rate FLNK'ed from FCMON_I2CIFCTC2_GTX.template
-file IFCMON_I2CIFCTC2_PCIE.template
+file ifcmon_ifctc2_pcie.template
 {
     pattern
     {PCIENR  FLNK                                 }
@@ -47,7 +47,7 @@ file IFCMON_I2CIFCTC2_PCIE.template
 
 
 # Scanning: 2 sec update rate FLNK'ed from FCMON_I2CIFCTC2_PCIE.template
-file IFCMON_I2CIFCTC2_SFP.template
+file ifcmon_ifctc2_sfp.template
 {    
     pattern
     {SUBDEV SFPFCT  I2CBUSSFP BUSMUXGTX BUSMUXPCIE  DESCR                FLNK                                 }

@@ -1,14 +1,3 @@
-#--------------------------------------------------------------------
-# Original Author: KR84 / Paul Scherrer Institut
-# $Author: kalt_r $
-# $Date: 2014/07/10 18:25:25 $
-#
-# $Revision: 1.19 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFC1210.template,v 1.19 2014/07/10 18:25:25 kalt_r Exp $
-#
-#--------------------------------------------------------------------
-
-
 # Module Description:
 # Contains the records for IFC1210 mainboard based I2C busses/chips
 # based on access over PON FPGA but not:

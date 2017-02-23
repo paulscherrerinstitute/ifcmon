@@ -1,6 +1,13 @@
+# Module Description:
+# Contains the records for the programmable clocks on IFC1210 and IFCTC2
+
+#--------------------------------------------------------------------
+# I2C bus 0x7:      clock
+# device:           IDT 8N4Q001 programmable clock generator
+# I2C bus 0x3:      transition card over VME_P0 over PCI-express->CENTRAL
 # device:           IDT 8N4Q001 programmable clock generator
 # datasheet:        https://codebeamer.psi.ch/cb/displayDocument/IDT8N4Q001+Rev+G+Advance+Data+Sheet.pdf?doc_id=128914
-# startup.script:   ifc1210_$(I2CDEV)
+# startup.script:   ifctc2_pgm_clock
 #--------------------------------------------------------------------
 
 #--------------------------------------------------------------------
