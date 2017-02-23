@@ -1,0 +1,131 @@
+# device:           IDT 8N4Q001 programmable clock generator
+# datasheet:        https://codebeamer.psi.ch/cb/displayDocument/IDT8N4Q001+Rev+G+Advance+Data+Sheet.pdf?doc_id=128914
+# startup.script:   ifc1210_$(I2CDEV)
+#--------------------------------------------------------------------
+
+#--------------------------------------------------------------------
+# status scanned once with PINI YES
+#--------------------------------------------------------------------
+
+# the I2C registers of the device for frequency configuration 00, read all them once:
+record(longin,"$(PREFIX)REG0")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 0")
+    field(DTYP, "regDev")
+    field(INP,  "@$(I2CDEV)/0 T=UINT8")
+    field(SCAN, "$(SCAN=)")
+    field(EVNT, "$(EVNT=)")
+    field(PINI, "YES")
+    field(FLNK, "$(PREFIX)REG4")
+}
+
+record(longin,"$(PREFIX)REG4")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 4")
+    field(DTYP, "regDev")
+    field(INP,  "@$(I2CDEV)/4 T=UINT8")
+    field(FLNK, "$(PREFIX)REG8")
+}
+
+record(longin,"$(PREFIX)REG8")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 8")
+    field(DTYP, "regDev")
+    field(INP,  "@$(I2CDEV)/8 T=UINT8")
+    field(FLNK, "$(PREFIX)REG12")
+}
+
+record(longin,"$(PREFIX)REG12")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 12")
+    field(DTYP, "regDev")
+    field(INP,  "@$(I2CDEV)/12 T=UINT8")
+    field(FLNK, "$(PREFIX)REG20")
+}
+
+record(longin,"$(PREFIX)REG20")
+{
+    field(DESC, "IDT8N4Q001 ctrl reg 20")
+    field(DTYP, "regDev")
+    field(INP,  "@$(I2CDEV)/20 T=UINT8")
+    field(FLNK, "$(PREFIX)P")
+}
+
+#soft records for frequency calculation, internal FLNK's for update of freq. value for display
+record(mbbi, "$(PREFIX)P")
+{
+    field(DESC, "IDT8N4Q001 f calc")
+    field(DTYP, "Raw Soft Channel")
+    field(INP,  "$(PREFIX)REG20")
+    field(SHFT, "6")
+    field(ZRVL, "-1")
+    field(ONVL, "0")
+    field(TWVL, "1")
+    field(THVL, "-1")
+    field(FRVL, "2")
+    field(FVVL, "3")
+    field(FLNK, "$(PREFIX)MINT")
+}
+
+record(calc,"$(PREFIX)MINT")
+{
+    field(DESC, "IDT8N4Q001 f calc")
+    field(INPA, "$(PREFIX)REG0 NPP")
+    field(CALC, "(A>>1)&0x1f")
+    field(FLNK, "$(PREFIX)MFRAC")
+}
+
+record(calc,"$(PREFIX)MFRAC")
+{
+    field(DESC, "IDT8N4Q001 f calc")
+    field(INPA, "$(PREFIX)REG0 NPP")
+    field(INPB, "$(PREFIX)REG4 NPP")
+    field(INPC, "$(PREFIX)REG8 NPP")
+    field(INPD, "$(PREFIX)REG12 NPP")
+    field(CALC, "((A<<18)&0x20000)+((B<<9)&0x3fe00)+((C<<1)&0x1fe)+((D>>7)&0x1)")
+    field(FLNK, "$(PREFIX)N")
+}
+record(calc,"$(PREFIX)N")
+{
+    field(DESC, "IDT8N4Q001 f calc")
+    field(INPA, "$(PREFIX)REG12 NPP")
+    field(CALC, "A&0x7f")
+    field(FLNK, "$(PREFIX)FREQ")
+}
+
+
+
+record(calc,"$(PREFIX)FREQ")
+{
+    field(DESC, "IDT8N4Q001 f calc")
+    field(INPA, "$(PREFIX)P NPP")
+    field(INPB, "$(PREFIX)MINT NPP")
+    field(INPC, "$(PREFIX)MFRAC NPP")
+    field(INPD, "$(PREFIX)N NPP")
+    field(E   , "114.285") # f_xtal in MHz / see datasheet for our chip IDT8N4QV01EG-0000
+    field(G   , "3.814697265625e-06") # = 1/2^18
+    field(CALC, "E*(B+(C*G))/(A*D)")
+    field(EGU , "MHz")
+    field(PREC, "6")
+    field(HIHI, "1300")
+    field(HHSV, "MAJOR")
+    field(LOLO, "15.476")
+    field(LLSV, "MAJOR")
+    field(FLNK, "$(PREFIX)FVCO")
+}
+
+record(calc,"$(PREFIX)FVCO")
+{
+    field(DESC, "IDT8N4Q001 f calc")
+    field(INPA, "$(PREFIX)FREQ NPP")
+    field(INPB, "$(PREFIX)N NPP")
+    field(CALC, "A*B")
+    field(EGU , "MHz")
+    field(PREC, "1")
+    field(HIHI, "2600")
+    field(HHSV, "MAJOR")
+    field(LOLO, "1950")
+    field(LLSV, "MAJOR")
+    field(FLNK, "$(FLNK=)") # end of local FLNK chain
+}
+

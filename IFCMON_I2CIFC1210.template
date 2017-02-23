@@ -42,7 +42,7 @@ record(longout,"$(IOC):TEMP1-CONF2")
 {
     field(DESC, "LM95235 U700 conf 2")
     field(DTYP, "regDev")
-    field(SCAN, "$(SCAN=2 second)")
+    field(SCAN, "$(SCAN=)")
     field(EVNT, "$(EVNT=)")
     field(OUT , "@lm95235_1/0xBF T=UINT8")
     field(VAL , "6") # see page 17 of datasheet: filter enabled
@@ -612,9 +612,6 @@ record(calc,"$(IOC):IFC1210-PWRMON-DISS")
 }
 
 
-
-
-
 # I2C bus 0x6:      PCI-express
 # device:           PES32NT24AG2 PCI-express switch
 # datasheet:        https://codebeamer.psi.ch/cb/displayDocument/PES32NT24xG2-Device-UserManual.pdf?doc_id=130003
@@ -634,134 +631,6 @@ record(calc,"$(IOC):IFC1210-PWRMON-DISS")
 #--------------------------------------------------------------------
 # status scanned once with PINI YES
 #--------------------------------------------------------------------
-
-
-# I2C bus 0x7:      clock
-# device:           IDT 8N4Q001 programmable clock generator
-# datasheet:        https://codebeamer.psi.ch/cb/displayDocument/IDT8N4Q001+Rev+G+Advance+Data+Sheet.pdf?doc_id=128914
-# startup.script:   ifc1210_pgm_clock
-#--------------------------------------------------------------------
-
-
-# the I2C registers of the device for frequency configuration 00, read all them once:
-record(longin,"$(IOC):PGMCLOCK-REG0")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 0")
-    field(DTYP, "regDev")
-    field(INP,  "@pgm_clock/0 T=UINT8")
-    field(PINI, "YES")
-    field(FLNK, "$(IOC):PGMCLOCK-REG4")
-}
-
-record(longin,"$(IOC):PGMCLOCK-REG4")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 4")
-    field(DTYP, "regDev")
-    field(INP,  "@pgm_clock/4 T=UINT8")
-    field(FLNK, "$(IOC):PGMCLOCK-REG8")
-}
-
-record(longin,"$(IOC):PGMCLOCK-REG8")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 8")
-    field(DTYP, "regDev")
-    field(INP,  "@pgm_clock/8 T=UINT8")
-    field(FLNK, "$(IOC):PGMCLOCK-REG12")
-}
-
-record(longin,"$(IOC):PGMCLOCK-REG12")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 12")
-    field(DTYP, "regDev")
-    field(INP,  "@pgm_clock/12 T=UINT8")
-    field(FLNK, "$(IOC):PGMCLOCK-REG20")
-}
-
-record(longin,"$(IOC):PGMCLOCK-REG20")
-{
-    field(DESC, "IDT8N4Q001 ctrl reg 20")
-    field(DTYP, "regDev")
-    field(INP,  "@pgm_clock/20 T=UINT8")
-    field(FLNK, "$(IOC):PGMCLOCK-P")
-}
-
-#soft records for frequency calculation, internal FLNK's for update of freq. value for display
-record(mbbi, "$(IOC):PGMCLOCK-P")
-{
-    field(DESC, "IDT8N4Q001 f calc")
-    field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):PGMCLOCK-REG20")
-    field(SHFT, "6")
-    field(ZRVL, "-1")
-    field(ONVL, "0")
-    field(TWVL, "1")
-    field(THVL, "-1")
-    field(FRVL, "2")
-    field(FVVL, "3")
-    field(FLNK, "$(IOC):PGMCLOCK-MINT")
-}
-
-record(calc,"$(IOC):PGMCLOCK-MINT")
-{
-    field(DESC, "IDT8N4Q001 f calc")
-    field(INPA, "$(IOC):PGMCLOCK-REG0 NPP")
-    field(CALC, "(A>>1)&0x1f")
-    field(FLNK, "$(IOC):PGMCLOCK-MFRAC")
-}
-
-record(calc,"$(IOC):PGMCLOCK-MFRAC")
-{
-    field(DESC, "IDT8N4Q001 f calc")
-    field(INPA, "$(IOC):PGMCLOCK-REG0 NPP")
-    field(INPB, "$(IOC):PGMCLOCK-REG4 NPP")
-    field(INPC, "$(IOC):PGMCLOCK-REG8 NPP")
-    field(INPD, "$(IOC):PGMCLOCK-REG12 NPP")
-    field(CALC, "((A<<18)&0x20000)+((B<<9)&0x3fe00)+((C<<1)&0x1fe)+((D>>7)&0x1)")
-    field(FLNK, "$(IOC):PGMCLOCK-N")
-}
-record(calc,"$(IOC):PGMCLOCK-N")
-{
-    field(DESC, "IDT8N4Q001 f calc")
-    field(INPA, "$(IOC):PGMCLOCK-REG12 NPP")
-    field(CALC, "A&0x7f")
-    field(FLNK, "$(IOC):PGMCLOCK-FREQ")
-}
-
-
-
-record(calc,"$(IOC):PGMCLOCK-FREQ")
-{
-    field(DESC, "IDT8N4Q001 f calc")
-    field(INPA, "$(IOC):PGMCLOCK-P NPP")
-    field(INPB, "$(IOC):PGMCLOCK-MINT NPP")
-    field(INPC, "$(IOC):PGMCLOCK-MFRAC NPP")
-    field(INPD, "$(IOC):PGMCLOCK-N NPP")
-    field(E   , "114.285") # f_xtal in MHz / see datasheet for our chip IDT8N4QV01EG-0000
-    field(G   , "3.814697265625e-06") # = 1/2^18
-    field(CALC, "E*(B+(C*G))/(A*D)")
-    field(EGU , "MHz")
-    field(PREC, "6")
-    field(HIHI, "1300")
-    field(HHSV, "MAJOR")
-    field(LOLO, "15.476")
-    field(LLSV, "MAJOR")
-    field(FLNK, "$(IOC):PGMCLOCK-FVCO")
-}
-
-record(calc,"$(IOC):PGMCLOCK-FVCO")
-{
-    field(DESC, "IDT8N4Q001 f calc")
-    field(INPA, "$(IOC):PGMCLOCK-FREQ NPP")
-    field(INPB, "$(IOC):PGMCLOCK-N NPP")
-    field(CALC, "A*B")
-    field(EGU , "MHz")
-    field(PREC, "1")
-    field(HIHI, "2600")
-    field(HHSV, "MAJOR")
-    field(LOLO, "1950")
-    field(LLSV, "MAJOR")
-#    field(FLNK, "") # end of local FLNK chain for readout programmable frequency once
-}
 
 
 record(stringin,"$(IOC):TC")

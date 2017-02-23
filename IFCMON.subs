@@ -13,6 +13,12 @@ file IFCMON_I2CIFC1210.template
 {
     {}
 }
+
+file IFCMON_PGMCLOCK.template
+{
+    { PREFIX="$(IOC):PGMCLOCK-", I2CDEV="pgm_clock" }
+}
+
 # FLNK'ed from IFCMON_I2CIFC1210.template
 # for interleave seetings see:
 #    https://codebeamer.psi.ch/cb/displayDocument/PMBus_Specification_Part_I_Rev_1-1_20070205.pdf?doc_id=128848    page 56
