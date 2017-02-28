@@ -597,9 +597,15 @@ record(calc,"$(IOC):IFC1210-PWRMON-DISS")
     field(HIHI, "70")
     field(HHSV, "MAJOR")
     field(PRIO, "LOW")
-    field(FLNK, "$(IOC):IFC1210-BMR1V0-VIN") # end of IFC1210/ELB main processing chain, forwoard to IFC1210/BMR_DC-DC
+    field(FLNK, "$(FLNK=)") # end of IFC1210/ELB main processing chain
 }
 
+record(stringin,"$(IOC):TC")
+{
+    field(DESC, "IFC Transition Card")
+    field(VAL,  "$(TC=)")
+    field(PINI, "YES")
+}
 
 # I2C bus 0x6:      PCI-express
 # device:           PES32NT24AG2 PCI-express switch
@@ -613,18 +619,3 @@ record(calc,"$(IOC):IFC1210-PWRMON-DISS")
 #            Other option would be use the global address space registers available also in PCI configuraiton space
 #            of the switch (GASAADDR and GASADATA) / XprsMon command "px".
 #
-
-
-
-
-#--------------------------------------------------------------------
-# status scanned once with PINI YES
-#--------------------------------------------------------------------
-
-
-record(stringin,"$(IOC):TC")
-{
-    field(DESC, "IFC Transition Card")
-    field(VAL,  "$(TC=)")
-    field(PINI, "YES")
-}
