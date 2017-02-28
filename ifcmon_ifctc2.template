@@ -37,13 +37,140 @@
 # general status
 #--------------------------------------------------------------------
 
-record(longin, "$(IOC):IFCTC2-GTXREP-PWDN")
+record(mbbiDirect, "$(IOC):IFCTC2-GTXREP-OBSREG")
 {
-    field(DESC, "IFC_TC2 GTX rep CH0 VOD register")
-    field(DTYP, "regDev")
-    field(INP , "@ifctc2_gtxrep/0x01 T=UINT8")
     field(SCAN, "$(SCAN=)")
     field(EVNT, "$(EVNT=)")
     field(PINI, "YES")
+    field(DESC, "IFC_TC2 GTX rep Observation register")
+    field(DTYP, "regDev")
+    field(INP , "@ifctc2_gtxrep/0x00 T=UINT8")
+    field(NOBT, "8")
+    field(FLNK, "$(IOC):IFCTC2-GTXREP-OBSAD")
+}
+
+record(mbbi, "$(IOC):IFCTC2-GTXREP-OBSAD")
+{
+    field(DESC, "IFC_TC2 GTX rep observation Address Bits")
+    field(INP,  "$(IOC):IFCTC2-GTXREP-OBSREG.RVAL MS")
+    field(NOBT, "4")
+    field(SHFT, "3")
+    field(FLNK, "$(IOC):IFCTC2-GTXREP-EEPROM")
+}
+
+record(bi, "$(IOC):IFCTC2-GTXREP-EEPROM")
+{
+    field(DESC, "IFC_TC2 GTX rep EEPROM read done")
+    field(INP,  "$(IOC):IFCTC2-GTXREP-OBSREG.B2 MS")
+    field(ZNAM, "not done")
+    field(ONAM, "completed read")
+    field(FLNK, "$(IOC):IFCTC2-GTXREP-PWDN")
+}
+
+record(mbbiDirect, "$(IOC):IFCTC2-GTXREP-PWDN")
+{
+    field(DESC, "IFC_TC2 GTX rep PWDN register")
+    field(DTYP, "regDev")
+    field(INP , "@ifctc2_gtxrep/0x01 T=UINT8")
+    field(NOBT, "8")
+    field(FLNK, "$(IOC):IFCTC2-GTXREP-OVRPWDNREG")
+}
+
+record(mbbiDirect, "$(IOC):IFCTC2-GTXREP-OVRPWDNREG")
+{
+    field(DESC, "IFC_TC2 GTX rep overr PWDN ctrl")
+    field(DTYP, "regDev")
+    field(INP , "@ifctc2_gtxrep/0x02 T=UINT8")
+    field(NOBT, "8")
+    field(FLNK, "$(IOC):IFCTC2-GTXREP-OVRPWDN")
+}
+
+record(bi, "$(IOC):IFCTC2-GTXREP-OVRPWDN")
+{
+    field(DESC, "IFC_TC2 GTX rep Override PWDN Control")
+    field(INP,  "$(IOC):IFCTC2-GTXREP-OVRPWDNREG.B0 MS")
+    field(ZNAM, "allow")
+    field(ONAM, "block")
+    field(FLNK, "$(IOC):IFCTC2-GTXREP-EQCTRL")
+}
+
+record(mbbiDirect, "$(IOC):IFCTC2-GTXREP-EQCTRL")
+{
+    field(DESC, "IFC_TC2 GTX rep EQ Control register")
+    field(DTYP, "regDev")
+    field(INP , "@ifctc2_gtxrep/0x04 T=UINT8")
+    field(NOBT, "8")
+    field(FLNK, "$(IOC):IFCTC2-GTXREP-CRC")
+}
+
+record(mbbiDirect, "$(IOC):IFCTC2-GTXREP-CRC")
+{
+    field(DESC, "IFC_TC2 GTX rep CRC bits register")
+    field(DTYP, "regDev")
+    field(INP , "@ifctc2_gtxrep/0x05 T=UINT8")
+    field(NOBT, "8")
+    field(FLNK, "$(IOC):IFCTC2-GTXREP-CTRLREG")
+}
+
+record(mbbiDirect, "$(IOC):IFCTC2-GTXREP-CTRLREG")
+{
+    field(DESC, "IFC_TC2 GTX rep slave control register")
+    field(DTYP, "regDev")
+    field(INP , "@ifctc2_gtxrep/0x06 T=UINT8")
+    field(NOBT, "8")
+    field(FLNK, "$(IOC):IFCTC2-GTXREP-REGEN")
+}
+
+record(bi, "$(IOC):IFCTC2-GTXREP-REGEN")
+{
+    field(DESC, "IFC_TC2 GTX rep Slave register enable")
+    field(INP,  "$(IOC):IFCTC2-GTXREP-CTRLREG.B3 MS")
+    field(ZNAM, "with CRC")
+    field(ONAM, "without CRC")
+    field(FLNK, "$(IOC):IFCTC2-GTXREP-OVRPINREG")
+}
+
+record(mbbiDirect, "$(IOC):IFCTC2-GTXREP-OVRPINREG")
+{
+    field(DESC, "IFC_TC2 GTX rep overr Pin ctrl")
+    field(DTYP, "regDev")
+    field(INP , "@ifctc2_gtxrep/0x08 T=UINT8")
+    field(NOBT, "8")
+    field(FLNK, "$(IOC):IFCTC2-GTXREP-OVRMODE")
+}
+
+record(bi, "$(IOC):IFCTC2-GTXREP-OVRMODE")
+{
+    field(DESC, "IFC_TC2 GTX rep Override MODE")
+    field(INP,  "$(IOC):IFCTC2-GTXREP-OVRPINREG.B2 MS")
+    field(ZNAM, "allow")
+    field(ONAM, "block")
+    field(FLNK, "$(IOC):IFCTC2-GTXREP-OVRRXDET")
+}
+
+record(bi, "$(IOC):IFCTC2-GTXREP-OVRRXDET")
+{
+    field(DESC, "IFC_TC2 GTX rep Override RXDET")
+    field(INP,  "$(IOC):IFCTC2-GTXREP-OVRPINREG.B3 MS")
+    field(ZNAM, "allow")
+    field(ONAM, "block")
+    field(FLNK, "$(IOC):IFCTC2-GTXREP-OVRIDLE")
+}
+
+record(bi, "$(IOC):IFCTC2-GTXREP-OVRIDLE")
+{
+    field(DESC, "IFC_TC2 GTX rep Override IDLE")
+    field(INP,  "$(IOC):IFCTC2-GTXREP-OVRPINREG.B4 MS")
+    field(ZNAM, "by signal detect")
+    field(ONAM, "by register")
+    field(FLNK, "$(IOC):IFCTC2-GTXREP-OVRSDTH")
+}
+
+record(bi, "$(IOC):IFCTC2-GTXREP-OVRSDTH")
+{
+    field(DESC, "IFC_TC2 GTX rep Override SD_TH")
+    field(INP,  "$(IOC):IFCTC2-GTXREP-OVRPINREG.B6 MS")
+    field(ZNAM, "allow")
+    field(ONAM, "block")
     field(FLNK, "$(FLNK=)")
 }
