@@ -16,14 +16,17 @@ file ifcmon_ifc1210.template
 
 file ifcmon_pgmclock.template
 {
-    { PREFIX="$(IOC):PGMCLOCK-", I2CDEV="pgm_clock" }
+    { PREFIX="$(IOC):PGMCLOCK-"
+      I2CDEV="pgm_clock" 
+      FLNK="$(IOC):IFC1210-BMR1V0-VIN"
+      }
 }
 
 # FLNK'ed from IFCMON_I2CIFC1210.template
 # for interleave seetings see:
 #    https://codebeamer.psi.ch/cb/displayDocument/PMBus_Specification_Part_I_Rev_1-1_20070205.pdf?doc_id=128848    page 56
 #    https://codebeamer.psi.ch/cb/displayDocument/BMR463+AN302+PMBus+Command+Set.pdf?doc_id=142711                 page 32
-file ifcmon_BMR.template 
+file ifcmon_bmr.template 
 {
     pattern
     {SUBDEV     BMR  DESCR           DISABLE  FLNK                           }
