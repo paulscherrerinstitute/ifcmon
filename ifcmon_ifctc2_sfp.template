@@ -20,9 +20,9 @@
 # $(SUBDEV)                 "IFCTC1" for SFP's on IFC_TC1      and      "IFC1210" for SFP's on IFC1210 mainboard
 # $(SFPFCT)                 The function over SFP, e.g. GTX1143, GTX1142, PCIEP12, PCIEP13, ..
 # $(I2CBUSSFP)              e.g. ifctc1_sfp1_gtx_114_3_xx .. ifctc1_sfp_pcie4_port15_xx where xx is inserted here as A0 and A2
-# $(BUSMUXGTX)				Nr. according https://codebeamer.psi.ch/cb/proj/sources/sccFileLog.do?proj_id=104&filename=IFC%2FIFC1210_generic%2FFirmware%2FPSI%2FIFC_TC1%2FDocumentation%2FIFC_TC1_firmware_specification.doc&isDir=false
+# $(BUSMUXGTX)              Nr. according https://codebeamer.psi.ch/cb/proj/sources/sccFileLog.do?proj_id=104&filename=IFC%2FIFC1210_generic%2FFirmware%2FPSI%2FIFC_TC1%2FDocumentation%2FIFC_TC1_firmware_specification.doc&isDir=false
 #                           to select the correct device, see section 2.3 table 8.
-# $(BUSMUXPCIE)				Nr. according https://codebeamer.psi.ch/cb/proj/sources/sccFileLog.do?proj_id=104&filename=IFC%2FIFC1210_generic%2FFirmware%2FPSI%2FIFC_TC1%2FDocumentation%2FIFC_TC1_firmware_specification.doc&isDir=false
+# $(BUSMUXPCIE)             Nr. according https://codebeamer.psi.ch/cb/proj/sources/sccFileLog.do?proj_id=104&filename=IFC%2FIFC1210_generic%2FFirmware%2FPSI%2FIFC_TC1%2FDocumentation%2FIFC_TC1_firmware_specification.doc&isDir=false
 #                           to select the correct device, see section 2.3 table 8.
 # $(DESCR)                  e.g. "SFP1 / GTX 114_3"
 #                           or   "SFP / PCIe port 12"
@@ -82,50 +82,50 @@ record(ao, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-PCIESELECT")
 #--------------------------------------------------------------------
 
 #RX Rate Select
-record(mbbo, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RXRATESELECT" )
+record(mbbo, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RXRATESELECT")
 {
-    field(DESC, "RX rate sel: $(DESCR)" )
-    field(DTYP, "Raw Soft Channel" )
-    field(NOBT, "1" )
-    field(SHFT, "3" )
-    field(ZRVL, "0" )
-    field(ZRST, "<4.25GBd" )
-    field(ONVL, "1" )
-    field(ONST, ">4.25GBd" )   
-    field(VAL,  "0" )
+    field(DESC, "RX rate sel: $(DESCR)")
+    field(DTYP, "Raw Soft Channel")
+    field(NOBT, "1")
+    field(SHFT, "3")
+    field(ZRVL, "0")
+    field(ZRST, "<4.25GBd")
+    field(ONVL, "1")
+    field(ONST, ">4.25GBd")   
+    field(VAL,  "0")
 }
 #TX Rate Select
-record(mbbo, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TXRATESELECT" )
+record(mbbo, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TXRATESELECT")
 {
-    field(DESC, "TX rate sel: $(DESCR)" )
-    field(DTYP, "Raw Soft Channel" )
-    field(NOBT, "1" )
-    field(SHFT, "3" )
-    field(ZRVL, "0" )
-    field(ZRST, "<4.25GBd" )
-    field(ONVL, "1" )
-    field(ONST, ">4.25GBd" )   
-    field(VAL,  "0" )
+    field(DESC, "TX rate sel: $(DESCR)")
+    field(DTYP, "Raw Soft Channel")
+    field(NOBT, "1")
+    field(SHFT, "3")
+    field(ZRVL, "0")
+    field(ZRST, "<4.25GBd")
+    field(ONVL, "1")
+    field(ONST, ">4.25GBd")   
+    field(VAL,  "0")
 }
 #TX disable
-record(mbbo, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-DISABLE" )
+record(mbbo, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-DISABLE")
 {
-    field(DESC, "TX dis: $(DESCR)" )
-    field(DTYP, "Raw Soft Channel" )
-    field(NOBT, "1" )
-    field(SHFT, "6" )
-    field(ZRVL, "0" )
-    field(ZRST, "enabled" )
-    field(ONVL, "1" )
-    field(ONST, "disabled" )  
-    field(VAL,  "0" ) 
+    field(DESC, "TX dis: $(DESCR)")
+    field(DTYP, "Raw Soft Channel")
+    field(NOBT, "1")
+    field(SHFT, "6")
+    field(ZRVL, "0")
+    field(ZRST, "enabled")
+    field(ONVL, "1")
+    field(ONST, "disabled")  
+    field(VAL,  "0") 
 }
-record(calcout, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG-CALC" )
+record(calcout, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG-CALC")
 {
-    field(DESC, "CTRL REG: $(DESCR)" )
+    field(DESC, "CTRL REG: $(DESCR)")
     field(INPA, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-DISABLE.RVAL")
     field(INPB, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RXRATESELECT.RVAL")
-    field(CALC, "A+B" )
+    field(CALC, "A+B")
     field(OUT , "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG")
 }
@@ -140,11 +140,11 @@ record(longout, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG")
     field(OUT , "@$(I2CBUSSFP)A2/110 T=UINT8")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-EXTENDCTRL-REG-CALC")
 }
-record(calcout, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-EXTENDCTRL-REG-CALC" )
+record(calcout, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-EXTENDCTRL-REG-CALC")
 {
-    field(DESC, "EXTENDCTRL REG: $(DESCR)" )
+    field(DESC, "EXTENDCTRL REG: $(DESCR)")
     field(INPB, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TXRATESELECT.RVAL")
-    field(CALC, "A" )
+    field(CALC, "A")
     field(OUT , "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-EXTENDCTRL-REG")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-EXTENDCTRL-REG")
 }
@@ -165,7 +165,7 @@ record(longout, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-EXTENDCTRL-REG")
 #--------------------------------------------------------------------
 
 # Status / Control
-record(longin, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG")
+record(mbbiDirect, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG")
 {
     field(DESC, "STAT-REG: $(DESCR)")
     field(DTYP, "regDev")
@@ -175,54 +175,37 @@ record(longin, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-FAULT")
 }
 # TX_FAULT
-record(mbbi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-FAULT")
+record(bi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TX-FAULT")
 {
-    field(DESC, "TX_FAULT: $(DESCR)" )
-    field(DTYP, "Raw Soft Channel" )
-    field(INP,  "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG MS")
-    field(SHFT, "2" )
-    field(NOBT, "1" )
-    field(ZRVL, "0" )
-    field(ZRST, "no fault" )
-    field(ZRSV, "NO_ALARM")
-    field(ONVL, "1" )
-    field(ONST, "fault" )
-    field(ONSV, "MAJOR")
+    field(DESC, "TX_FAULT: $(DESCR)")
+    field(INP , "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG.B2 MS")
+    field(ZNAM, "no fault")
+    field(ONAM, "fault")
+    field(OSV , "MAJOR")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-MOD-ABS")
 }
 # Module absent / Data Ready (MOD_ABS)
-record(mbbi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-MOD-ABS" )
+record(bi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-MOD-ABS")
 {
-    field(DESC, "MOD_ABS: $(DESCR)" )
-    field(DTYP, "Raw Soft Channel" )
-    field(INP,  "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG MS")
-    field(SHFT, "0" )
-    field(NOBT, "1" )
-    field(ZRVL, "0" )
-    field(ZRST, "module present" )
-    field(ZRSV, "NO_ALARM")
-    field(ONVL, "1" )
-    field(ONST, "module absent" )
-    field(ONSV, "MINOR")
+    field(DESC, "MOD_ABS: $(DESCR)")
+    field(INP , "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG.B0 MS")
+    field(ZNAM, "module present")
+    field(ONAM, "module absent")
+    field(OSV , "MINOR")
     field(SIML, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG.SEVR")
     field(SIMS, "INVALID")
     field(SVAL, "1")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-LOS")
 }
 # RX low signal (RX_LOS)
-record(mbbi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-LOS" )
+record(bi, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-RX-LOS")
 {
-    field(DESC, "RX_LOS: $(DESCR)" )
-    field(DTYP, "Raw Soft Channel" )
-    field(INP,  "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG MS")
-    field(SHFT, "1" )
-    field(NOBT, "1" )
-    field(ZRVL, "0" )
-    field(ZRST, "signal level ok" )
-    field(ZRSV, "NO_ALARM")
-    field(ONVL, "1" )
-    field(ONST, "signal level lo" )
-    field(ONSV, "MAJOR")
+    field(DESC, "RX_LOS: $(DESCR)")
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG.B1 MS")
+    field(ZNAM, "signal level ok")
+    field(ONAM, "signal level lo")
+    field(OSV , "MAJOR")
     field(FLNK, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-VENDOR")
 }
 
