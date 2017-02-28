@@ -6,10 +6,9 @@
 # externel globals: IOC EVNT SCAN_$(EVNT)
 
 global {
-    SCAN="$(SCAN_$(EVNT=)=2 second)"
+    SCAN="$(SCAN_$(EVNT=)=5 second)"
 }
 
-# Scanning: 2 sec update rate FLNK'ed from FCMON_I2CBMR463.template
 file ifcmon_ifctc2.template
 {
     {}
