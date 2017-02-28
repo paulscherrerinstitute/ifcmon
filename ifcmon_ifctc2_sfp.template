@@ -253,6 +253,9 @@ record(longin, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-LSB")
 }
 record(longin, "$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-TEMP-RAW")
 {
+    # does reading both bytes at once work?
+    # pev: we get only the high byte
+    # tosca: we get high and low swapped (i.e. little endian)
     field(DESC, "TEMP-MSB: $(DESCR)")
     field(DTYP, "regDev")
     field(INP , "@$(I2CBUSSFP)A2/96 T=UINT16")
