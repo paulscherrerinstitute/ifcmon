@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>540</width>
-    <height>494</height>
+    <width>587</width>
+    <height>515</height>
    </rect>
   </property>
   <property name="styleSheet">
@@ -120,7 +120,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>6</x>
-      <y>130</y>
+      <y>106</y>
       <width>282</width>
       <height>200</height>
      </rect>
@@ -135,8 +135,8 @@ border-radius: 2px;
    <widget class="caInclude" name="caInclude_1">
     <property name="geometry">
      <rect>
-      <x>273</x>
-      <y>130</y>
+      <x>295</x>
+      <y>106</y>
       <width>282</width>
       <height>200</height>
      </rect>
@@ -152,7 +152,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>6</x>
-      <y>313</y>
+      <y>310</y>
       <width>282</width>
       <height>200</height>
      </rect>
@@ -163,12 +163,21 @@ border-radius: 2px;
     <property name="filename" stdset="0">
      <string notr="true">G_IFCMON_include_pwrdcdc_bmr463.ui</string>
     </property>
+    <property name="visibility">
+     <enum>caInclude::IfNotZero</enum>
+    </property>
+    <property name="visibilityCalc">
+     <string notr="true">I</string>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):IFC1210-BMR1V0OPT-VIN</string>
+    </property>
    </widget>
    <widget class="caInclude" name="caInclude_3">
     <property name="geometry">
      <rect>
-      <x>273</x>
-      <y>313</y>
+      <x>295</x>
+      <y>310</y>
       <width>282</width>
       <height>200</height>
      </rect>
@@ -188,9 +197,6 @@ border-radius: 2px;
       <width>395</width>
       <height>20</height>
      </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="text">
      <string>IFC1210 onboard DC/DC converters:</string>
@@ -215,18 +221,18 @@ border-radius: 2px;
       <blue>0</blue>
      </color>
     </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
    </widget>
    <widget class="caLabel" name="caLabel_2">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>109</y>
+      <y>85</y>
       <width>242</width>
       <height>15</height>
      </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="text">
      <string>Driven switching frequency:</string>
@@ -251,12 +257,15 @@ border-radius: 2px;
       <blue>0</blue>
      </color>
     </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
    </widget>
    <widget class="caLineEdit" name="caLineEdit_0">
     <property name="geometry">
      <rect>
       <x>304</x>
-      <y>109</y>
+      <y>85</y>
       <width>50</width>
       <height>15</height>
      </rect>
@@ -296,7 +305,7 @@ border-radius: 2px;
     <property name="minValue">
      <double>0.000000000000000</double>
     </property>
-    <property name="fontScaleMode">
+    <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
     <property name="formatType">
@@ -307,7 +316,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>358</x>
-      <y>109</y>
+      <y>85</y>
       <width>30</width>
       <height>15</height>
      </rect>
@@ -347,7 +356,7 @@ border-radius: 2px;
     <property name="minValue">
      <double>0.000000000000000</double>
     </property>
-    <property name="fontScaleMode">
+    <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
     <property name="formatType">
@@ -362,9 +371,6 @@ border-radius: 2px;
       <width>233</width>
       <height>15</height>
      </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="text">
      <string>BMR synchronous operation:</string>
@@ -388,6 +394,9 @@ border-radius: 2px;
       <green>0</green>
       <blue>0</blue>
      </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
     </property>
    </widget>
    <widget class="caGraphics" name="caGraphics_0">
@@ -471,9 +480,6 @@ border-radius: 2px;
       <height>15</height>
      </rect>
     </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
     <property name="text">
      <string>Common power alert status:</string>
     </property>
@@ -496,6 +502,9 @@ border-radius: 2px;
       <green>0</green>
       <blue>0</blue>
      </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
     </property>
    </widget>
    <widget class="caGraphics" name="caGraphics_2">
@@ -570,6 +579,30 @@ border-radius: 2px;
      <enum>caGraphics::Circle</enum>
     </property>
    </widget>
+   <widget class="caLabel" name="calabel">
+    <property name="geometry">
+     <rect>
+      <x>79</x>
+      <y>377</y>
+      <width>131</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>No BMR1V0Opt</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>120</red>
+      <green>120</green>
+      <blue>120</blue>
+     </color>
+    </property>
+   </widget>
+   <zorder>calabel</zorder>
    <zorder>caInclude_0</zorder>
    <zorder>caInclude_1</zorder>
    <zorder>caInclude_2</zorder>

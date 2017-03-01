@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>668</width>
+    <width>946</width>
     <height>862</height>
    </rect>
   </property>
@@ -121,7 +121,7 @@ border-radius: 2px;
      <rect>
       <x>7</x>
       <y>7</y>
-      <width>656</width>
+      <width>930</width>
       <height>42</height>
      </rect>
     </property>
@@ -152,9 +152,9 @@ border-radius: 2px;
    <widget class="caLabel" name="caLabel_3">
     <property name="geometry">
      <rect>
-      <x>15</x>
-      <y>15</y>
-      <width>446</width>
+      <x>13</x>
+      <y>12</y>
+      <width>590</width>
       <height>30</height>
      </rect>
     </property>
@@ -188,7 +188,7 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_1">
     <property name="geometry">
      <rect>
-      <x>539</x>
+      <x>808</x>
       <y>17</y>
       <width>120</width>
       <height>24</height>
@@ -227,7 +227,7 @@ border-radius: 2px;
    <widget class="caShellCommand" name="caShellCommand_0">
     <property name="geometry">
      <rect>
-      <x>465</x>
+      <x>734</x>
       <y>17</y>
       <width>65</width>
       <height>24</height>
@@ -260,6 +260,22 @@ border-radius: 2px;
      <string/>
     </property>
    </widget>
+   <widget class="caInclude" name="caInclude_3">
+    <property name="geometry">
+     <rect>
+      <x>635</x>
+      <y>60</y>
+      <width>300</width>
+      <height>794</height>
+     </rect>
+    </property>
+    <property name="macro">
+     <string>IOC=$(IOC)</string>
+    </property>
+    <property name="filename" stdset="0">
+     <string notr="true">G_IFCMON_include_ifctc2.ui</string>
+    </property>
+   </widget>
    <widget class="caInclude" name="cainclude">
     <property name="geometry">
      <rect>
@@ -276,88 +292,6 @@ border-radius: 2px;
      <string notr="true">G_IFCMON_include_main.ui</string>
     </property>
    </widget>
-   <widget class="caFrame" name="caframe">
-    <property name="geometry">
-     <rect>
-      <x>610</x>
-      <y>10</y>
-      <width>61</width>
-      <height>856</height>
-     </rect>
-    </property>
-    <property name="visibility">
-     <enum>caFrame::Calc</enum>
-    </property>
-    <property name="visibilityCalc">
-     <string notr="true">A=1</string>
-    </property>
-    <property name="channel" stdset="0">
-     <string notr="true">$(IOC):IFC_TC</string>
-    </property>
-    <widget class="caRelatedDisplay" name="carelateddisplay">
-     <property name="geometry">
-      <rect>
-       <x>5</x>
-       <y>50</y>
-       <width>51</width>
-       <height>796</height>
-      </rect>
-     </property>
-     <property name="labels">
-      <string>TC1</string>
-     </property>
-     <property name="files">
-      <string>G_IFCMON_main_tc1.ui</string>
-     </property>
-     <property name="args">
-      <string>IOC=$(IOC)</string>
-     </property>
-     <property name="removeParent" stdset="0">
-      <string>true;false;false;false;false;false;false;false;false;false;false;false;false;false;false;false</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="caFrame" name="caframe_2">
-    <property name="geometry">
-     <rect>
-      <x>610</x>
-      <y>10</y>
-      <width>61</width>
-      <height>856</height>
-     </rect>
-    </property>
-    <property name="visibility">
-     <enum>caFrame::Calc</enum>
-    </property>
-    <property name="visibilityCalc">
-     <string notr="true">A=2</string>
-    </property>
-    <property name="channel" stdset="0">
-     <string notr="true">$(IOC):IFC_TC</string>
-    </property>
-    <widget class="caRelatedDisplay" name="carelateddisplay_2">
-     <property name="geometry">
-      <rect>
-       <x>5</x>
-       <y>50</y>
-       <width>51</width>
-       <height>796</height>
-      </rect>
-     </property>
-     <property name="labels">
-      <string>TC2</string>
-     </property>
-     <property name="files">
-      <string>G_IFCMON_main_tc2.ui</string>
-     </property>
-     <property name="args">
-      <string>IOC=$(IOC)</string>
-     </property>
-     <property name="removeParent" stdset="0">
-      <string>true;false;false;false;false;false;false;false;false;false;false;false;false;false;false;false</string>
-     </property>
-    </widget>
-   </widget>
   </widget>
  </widget>
  <customwidgets>
@@ -365,12 +299,6 @@ border-radius: 2px;
    <class>caRelatedDisplay</class>
    <extends>QWidget</extends>
    <header>caRelatedDisplay</header>
-  </customwidget>
-  <customwidget>
-   <class>caFrame</class>
-   <extends>QFrame</extends>
-   <header>caFrame</header>
-   <container>1</container>
   </customwidget>
   <customwidget>
    <class>caLabel</class>
