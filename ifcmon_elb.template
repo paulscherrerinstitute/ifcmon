@@ -20,7 +20,7 @@
 # bits 15:8     DIP SW100
 # bits 27:24    HexRot SW102
 # bits 31:28    HexRot SW103
-record(longin,"$(IOC):ELB-STATIC-SW")
+record(longin, "$(IOC):ELB-STATIC-SW")
 {
     field(DESC, "status of switches")
     field(PINI, "YES")
@@ -29,11 +29,11 @@ record(longin,"$(IOC):ELB-STATIC-SW")
     field(FLNK, "$(IOC):SW101-VMEMODE")
 }
 # SW101
-record ( mbbi, "$(IOC):SW101-VMEMODE")
+record(mbbi, "$(IOC):SW101-VMEMODE")
 {
     field(DESC, "SW101 VME mode")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(INP,  "$(IOC):ELB-STATIC-SW MS")
     field(SHFT, "0")
     field(NOBT, "2")
     field(ZRVL, "0")
@@ -46,11 +46,11 @@ record ( mbbi, "$(IOC):SW101-VMEMODE")
     field(THST, "VME64x Auto_ID")
     field(FLNK, "$(IOC):SW101-VMESLOT1")
 }
-record ( mbbi, "$(IOC):SW101-VMESLOT1")
+record(mbbi, "$(IOC):SW101-VMESLOT1")
 {
     field(DESC, "SW101 VME slot1")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(INP,  "$(IOC):ELB-STATIC-SW MS")
     field(SHFT, "2")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -59,11 +59,11 @@ record ( mbbi, "$(IOC):SW101-VMESLOT1")
     field(ONST, "auto-enable")
     field(FLNK, "$(IOC):SW101-VMERXSYSRST")
 }
-record ( mbbi, "$(IOC):SW101-VMERXSYSRST")
+record(mbbi, "$(IOC):SW101-VMERXSYSRST")
 {
     field(DESC, "SW101 VME RX sysrst")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(INP,  "$(IOC):ELB-STATIC-SW MS")
     field(SHFT, "3")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -72,11 +72,11 @@ record ( mbbi, "$(IOC):SW101-VMERXSYSRST")
     field(ONST, "force cold-rst")
     field(FLNK, "$(IOC):SW101-P2020BOOT")
 }
-record ( mbbi, "$(IOC):SW101-P2020BOOT")
+record(mbbi, "$(IOC):SW101-P2020BOOT")
 {
     field(DESC, "SW101 P2020 boot mode")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(INP,  "$(IOC):ELB-STATIC-SW MS")
     field(SHFT, "4")
     field(NOBT, "2")
     field(ZRVL, "0")
@@ -89,11 +89,11 @@ record ( mbbi, "$(IOC):SW101-P2020BOOT")
     field(THST, "no boot")
     field(FLNK, "$(IOC):SW101-VMETXSYSRST")
 }
-record ( mbbi, "$(IOC):SW101-VMETXSYSRST")
+record(mbbi, "$(IOC):SW101-VMETXSYSRST")
 {
     field(DESC, "SW101 VME TX sysrst")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(INP,  "$(IOC):ELB-STATIC-SW MS")
     field(SHFT, "6")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -103,11 +103,11 @@ record ( mbbi, "$(IOC):SW101-VMETXSYSRST")
     field(FLNK, "$(IOC):SW100-FPGACONFIG")
 }
 # SW100
-record ( mbbi, "$(IOC):SW100-FPGACONFIG")
+record(mbbi, "$(IOC):SW100-FPGACONFIG")
 {
     field(DESC, "SW100 FPGA config")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(INP,  "$(IOC):ELB-STATIC-SW MS")
     field(SHFT, "8")
     field(NOBT, "2")
     field(ZRVL, "0")
@@ -120,11 +120,11 @@ record ( mbbi, "$(IOC):SW100-FPGACONFIG")
     field(THST, "3rd bitstream")
     field(FLNK, "$(IOC):SW100-JTAGCONFIG")
 }
-record ( mbbi, "$(IOC):SW100-JTAGCONFIG")
+record(mbbi, "$(IOC):SW100-JTAGCONFIG")
 {
     field(DESC, "SW101 Xilinx JTAG")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(INP,  "$(IOC):ELB-STATIC-SW MS")
     field(SHFT, "10")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -133,11 +133,11 @@ record ( mbbi, "$(IOC):SW100-JTAGCONFIG")
     field(ONST, "JTAG enabled")
     field(FLNK, "$(IOC):SW100-COLDRESET")
 }
-record ( mbbi, "$(IOC):SW100-COLDRESET")
+record(mbbi, "$(IOC):SW100-COLDRESET")
 {
     field(DESC, "SW101 cold reset")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(INP,  "$(IOC):ELB-STATIC-SW MS")
     field(SHFT, "11")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -146,11 +146,11 @@ record ( mbbi, "$(IOC):SW100-COLDRESET")
     field(ONST, "P2020 (def)")
     field(FLNK, "$(IOC):SW100-PONFSM")
 }
-record ( mbbi, "$(IOC):SW100-PONFSM")
+record(mbbi, "$(IOC):SW100-PONFSM")
 {
     field(DESC, "SW101 PON FSM")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(INP,  "$(IOC):ELB-STATIC-SW MS")
     field(SHFT, "12")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -159,11 +159,11 @@ record ( mbbi, "$(IOC):SW100-PONFSM")
     field(ONST, "PONFSM enabled")
     field(FLNK, "$(IOC):SW100-PONFSMMODE")
 }
-record ( mbbi, "$(IOC):SW100-PONFSMMODE")
+record(mbbi, "$(IOC):SW100-PONFSMMODE")
 {
     field(DESC, "SW101 PONFSM mode")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(INP,  "$(IOC):ELB-STATIC-SW MS")
     field(SHFT, "13")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -172,11 +172,11 @@ record ( mbbi, "$(IOC):SW100-PONFSMMODE")
     field(ONST, "indep. PONFSM")
     field(FLNK, "$(IOC):SW100-SWITCHMODE")
 }
-record ( mbbi, "$(IOC):SW100-SWITCHMODE")
+record(mbbi, "$(IOC):SW100-SWITCHMODE")
 {
     field(DESC, "SW101 PCIe switch")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(INP,  "$(IOC):ELB-STATIC-SW MS")
     field(SHFT, "14")
     field(NOBT, "2")
     field(ZRVL, "0")
@@ -190,38 +190,38 @@ record ( mbbi, "$(IOC):SW100-SWITCHMODE")
     field(FLNK, "$(IOC):SW102-HEXROT")
 }
 # SW102: VME64x base A23:20
-record ( mbbi, "$(IOC):SW102-HEXROT")
+record(mbbi, "$(IOC):SW102-HEXROT")
 {
     field(DESC, "SW102 VME64x A23:20")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(INP,  "$(IOC):ELB-STATIC-SW MS")
     field(SHFT, "24")
     field(NOBT, "4")
     field(FLNK, "$(IOC):SW103-HEXROT")
 }
 # SW103: VME64x base A19:16
-record ( mbbi, "$(IOC):SW103-HEXROT")
+record(mbbi, "$(IOC):SW103-HEXROT")
 {
     field(DESC, "SW102 VME64x A19:16")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-STATIC-SW NPP")
+    field(INP,  "$(IOC):ELB-STATIC-SW MS")
     field(SHFT, "28")
     field(NOBT, "4")
     field(FLNK, "$(IOC):ELB-PCIESW-CTL")
 }
 
-record(longin,"$(IOC):ELB-PCIESW-CTL")
+record(longin, "$(IOC):ELB-PCIESW-CTL")
 {
     field(DESC, "PCIe switch ctrl")
     field(DTYP, "ifc1210")
     field(INP , "#C S0x14 @ELB")
     field(FLNK, "$(IOC):PCIESTACK-XMC1")
 }
-record ( mbbi, "$(IOC):PCIESTACK-XMC1")
+record(mbbi, "$(IOC):PCIESTACK-XMC1")
 {
     field(DESC, "XMC1 PCIe lane cfg")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-PCIESW-CTL NPP")
+    field(INP,  "$(IOC):ELB-PCIESW-CTL MS")
     field(SHFT, "0")
     field(NOBT, "2")
     field(ZRVL, "0")
@@ -234,11 +234,11 @@ record ( mbbi, "$(IOC):PCIESTACK-XMC1")
     field(THST, "x2 x2 x2 x2")
     field(FLNK, "$(IOC):PCIESTACK-XMC2")
 }
-record ( mbbi, "$(IOC):PCIESTACK-XMC2")
+record(mbbi, "$(IOC):PCIESTACK-XMC2")
 {
     field(DESC, "XMC2 PCIe lane cfg")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-PCIESW-CTL NPP")
+    field(INP,  "$(IOC):ELB-PCIESW-CTL MS")
     field(SHFT, "16")
     field(NOBT, "2")
     field(ZRVL, "0")
@@ -252,11 +252,11 @@ record ( mbbi, "$(IOC):PCIESTACK-XMC2")
     field(FLNK, "$(IOC):PCIESTACK-IFCTC1")
 }
 # warning, mbbi takes only 4 LSB's of total 5-bits in register!
-record ( mbbi, "$(IOC):PCIESTACK-IFCTC1")
+record(mbbi, "$(IOC):PCIESTACK-IFCTC1")
 {
     field(DESC, "IFCTC1 PCIe stk")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-PCIESW-CTL NPP")
+    field(INP,  "$(IOC):ELB-PCIESW-CTL MS")
     field(SHFT, "8")
     field(NOBT, "4")
     
@@ -271,11 +271,11 @@ record ( mbbi, "$(IOC):PCIESTACK-IFCTC1")
     
     field(FLNK, "$(IOC):PCIE-CONFMODE")
 }
-record ( mbbi, "$(IOC):PCIE-CONFMODE")
+record(mbbi, "$(IOC):PCIE-CONFMODE")
 {
     field(DESC, "PCIe switch conf mod.")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-PCIESW-CTL NPP")
+    field(INP,  "$(IOC):ELB-PCIESW-CTL MS")
     field(SHFT, "24")
     field(NOBT, "4")
     field(ZRVL, "0")
@@ -288,11 +288,11 @@ record ( mbbi, "$(IOC):PCIE-CONFMODE")
     field(THST, "S. part/lat/EE")
     field(FLNK, "$(IOC):PCIE-CLKMODE")
 }
-record ( mbbi, "$(IOC):PCIE-CLKMODE")
+record(mbbi, "$(IOC):PCIE-CLKMODE")
 {
     field(DESC, "PCIe switch CLK mod.")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-PCIESW-CTL NPP")
+    field(INP,  "$(IOC):ELB-PCIESW-CTL MS")
     field(SHFT, "28")
     field(NOBT, "2")
     field(ZRVL, "0")
@@ -302,7 +302,7 @@ record ( mbbi, "$(IOC):PCIE-CLKMODE")
     field(FLNK, "$(IOC):ELB-PON-SIGN")
 }
 
-record(longin,"$(IOC):ELB-PON-SIGN")
+record(longin, "$(IOC):ELB-PON-SIGN")
 {
     field(DESC, "PON FPGA signature")
     field(DTYP, "ifc1210")
@@ -311,19 +311,19 @@ record(longin,"$(IOC):ELB-PON-SIGN")
 }
 
 # Strings for UBOOT versions display
-record(stringin,"$(IOC):ELB-NOR"){
+record(stringin, "$(IOC):ELB-NOR"){
     field(DTYP, "ifc1210")
     field(INP, "#C S0x20 @ELB 32")
     field(FLNK, "$(IOC):ELB-SPI")
 }
 
-record(stringin,"$(IOC):ELB-SPI"){
+record(stringin, "$(IOC):ELB-SPI"){
     field(DTYP, "ifc1210")
     field(INP, "#C S0x40 @ELB 32")
     field(FLNK, "$(IOC):ELB-PON")
 }
 
-record(stringin,"$(IOC):ELB-PON"){
+record(stringin, "$(IOC):ELB-PON"){
     field(DTYP, "ifc1210")
     field(INP, "#C S0x60 @ELB 32")
 }
@@ -331,7 +331,7 @@ record(stringin,"$(IOC):ELB-PON"){
 #--------------------------------------------------------------------
 # status / cyclic processing
 #--------------------------------------------------------------------
-record(longin,"$(IOC):ELB-FMCXMC-CTL")
+record(longin, "$(IOC):ELB-FMCXMC-CTL")
 {
     field(DESC, "status XMC/FMC")
     field(DTYP, "ifc1210")
@@ -341,11 +341,11 @@ record(longin,"$(IOC):ELB-FMCXMC-CTL")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):XMC1-PRESENT")
 }
-record ( mbbi, "$(IOC):XMC1-PRESENT")
+record(mbbi, "$(IOC):XMC1-PRESENT")
 {
     field(DESC, "XMC1 present")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-FMCXMC-CTL NPP")
+    field(INP,  "$(IOC):ELB-FMCXMC-CTL MS")
     field(SHFT, "0")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -357,11 +357,11 @@ record ( mbbi, "$(IOC):XMC1-PRESENT")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):XMC2-PRESENT")
 }
-record ( mbbi, "$(IOC):XMC2-PRESENT")
+record(mbbi, "$(IOC):XMC2-PRESENT")
 {
     field(DESC, "XMC2 present")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-FMCXMC-CTL NPP")
+    field(INP,  "$(IOC):ELB-FMCXMC-CTL MS")
     field(SHFT, "1")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -373,11 +373,11 @@ record ( mbbi, "$(IOC):XMC2-PRESENT")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):FMC1-PGM2C")
 }
-record ( mbbi, "$(IOC):FMC1-PGM2C")
+record(mbbi, "$(IOC):FMC1-PGM2C")
 {
     field(DESC, "FMC1 M2C pwr st.")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-FMCXMC-CTL NPP")
+    field(INP,  "$(IOC):ELB-FMCXMC-CTL MS")
     field(SHFT, "17")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -389,11 +389,11 @@ record ( mbbi, "$(IOC):FMC1-PGM2C")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):FMC1-PRESENT")
 }
-record ( mbbi, "$(IOC):FMC1-PRESENT")
+record(mbbi, "$(IOC):FMC1-PRESENT")
 {
     field(DESC, "FMC1 present")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-FMCXMC-CTL NPP")
+    field(INP,  "$(IOC):ELB-FMCXMC-CTL MS")
     field(SHFT, "18")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -405,11 +405,11 @@ record ( mbbi, "$(IOC):FMC1-PRESENT")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):FMC2-PGM2C")
 }
-record ( mbbi, "$(IOC):FMC2-PGM2C")
+record(mbbi, "$(IOC):FMC2-PGM2C")
 {
     field(DESC, "FMC2 M2C pwr st.")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-FMCXMC-CTL NPP")
+    field(INP,  "$(IOC):ELB-FMCXMC-CTL MS")
     field(SHFT, "21")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -421,11 +421,11 @@ record ( mbbi, "$(IOC):FMC2-PGM2C")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):FMC2-PRESENT")
 }
-record ( mbbi, "$(IOC):FMC2-PRESENT")
+record(mbbi, "$(IOC):FMC2-PRESENT")
 {
     field(DESC, "FMC2 present")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):ELB-FMCXMC-CTL NPP")
+    field(INP,  "$(IOC):ELB-FMCXMC-CTL MS")
     field(SHFT, "22")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -437,11 +437,11 @@ record ( mbbi, "$(IOC):FMC2-PRESENT")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):FMC12-PG-C2M")
 }
-record ( mbbi, "$(IOC):FMC12-PG-C2M")
+record(mbbi, "$(IOC):FMC12-PG-C2M")
 {
     field(DESC, "FMC1/2 pwr good")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):ELB-FMCXMC-CTL NPP")
+    field(INP , "$(IOC):ELB-FMCXMC-CTL MS")
     field(SHFT, "30")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -453,11 +453,11 @@ record ( mbbi, "$(IOC):FMC12-PG-C2M")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):FMC12-VADJ-ENA")
 }
-record ( mbbi, "$(IOC):FMC12-VADJ-ENA")
+record(mbbi, "$(IOC):FMC12-VADJ-ENA")
 {
     field(DESC, "FMC1/2 Vadj ena")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):ELB-FMCXMC-CTL NPP")
+    field(INP , "$(IOC):ELB-FMCXMC-CTL MS")
     field(SHFT, "31")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -470,7 +470,7 @@ record ( mbbi, "$(IOC):FMC12-VADJ-ENA")
     field(FLNK, "$(IOC):ELB-BMRCTL")
 }
 
-record(longin,"$(IOC):ELB-BMRCTL")
+record(longin, "$(IOC):ELB-BMRCTL")
 {
     field(DESC, "BMR463 dc/dc st.")
     field(DTYP, "ifc1210")
@@ -478,11 +478,11 @@ record(longin,"$(IOC):ELB-BMRCTL")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):BMR-SYNC-RUN")
 }
-record ( mbbi, "$(IOC):BMR-SYNC-RUN")
+record(mbbi, "$(IOC):BMR-SYNC-RUN")
 {
     field(DESC, "BMR sync run status")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):ELB-BMRCTL NPP")
+    field(INP , "$(IOC):ELB-BMRCTL MS")
     field(SHFT, "8")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -494,11 +494,11 @@ record ( mbbi, "$(IOC):BMR-SYNC-RUN")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):BMR-POWER-ALERT")
 }
-record ( mbbi, "$(IOC):BMR-POWER-ALERT")
+record(mbbi, "$(IOC):BMR-POWER-ALERT")
 {
     field(DESC, "BMR pwr alert status")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):ELB-BMRCTL NPP")
+    field(INP , "$(IOC):ELB-BMRCTL MS")
     field(SHFT, "9")
     field(NOBT, "1")
     field(ZRVL, "0")
@@ -511,7 +511,7 @@ record ( mbbi, "$(IOC):BMR-POWER-ALERT")
     field(FLNK, "$(IOC):ELB-GENERAL-CTL")
 }
 
-record(ai,"$(IOC):ELB-GENERAL-CTL")
+record(longin, "$(IOC):ELB-GENERAL-CTL")
 {
     field(DESC, "IFC1210 gen. ctrl")
     field(DTYP, "ifc1210")
@@ -519,11 +519,11 @@ record(ai,"$(IOC):ELB-GENERAL-CTL")
     field(PRIO, "LOW")
     field(FLNK, "$(IOC):PGMCLOCK-ENA")
 }
-record ( mbbi, "$(IOC):PGMCLOCK-ENA")
+record(mbbi, "$(IOC):PGMCLOCK-ENA")
 {
     field(DESC, "IDT pgm clk ena")
     field(DTYP, "Raw Soft Channel")
-    field(INP , "$(IOC):ELB-GENERAL-CTL NPP")
+    field(INP , "$(IOC):ELB-GENERAL-CTL MS")
     field(SHFT, "2")
     field(NOBT, "1")
     field(ZRVL, "0")
