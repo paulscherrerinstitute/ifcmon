@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
-    <height>794</height>
+    <width>302</width>
+    <height>820</height>
    </rect>
   </property>
   <property name="styleSheet">
@@ -122,7 +122,7 @@ border-radius: 2px;
       <x>0</x>
       <y>0</y>
       <width>300</width>
-      <height>795</height>
+      <height>820</height>
      </rect>
     </property>
     <property name="foreground">
@@ -172,9 +172,9 @@ border-radius: 2px;
     </property>
     <property name="foreground">
      <color>
-      <red>255</red>
-      <green>255</green>
-      <blue>255</blue>
+      <red>226</red>
+      <green>233</green>
+      <blue>164</blue>
      </color>
     </property>
     <property name="background">
@@ -224,7 +224,7 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_0">
     <property name="geometry">
      <rect>
-      <x>253</x>
+      <x>255</x>
       <y>243</y>
       <width>40</width>
       <height>30</height>
@@ -264,10 +264,15 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>26</x>
-      <y>258</y>
+      <y>260</y>
       <width>150</width>
-      <height>15</height>
+      <height>18</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+     </font>
     </property>
     <property name="alignment">
      <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -315,9 +320,9 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>25</x>
-      <y>239</y>
-      <width>200</width>
-      <height>15</height>
+      <y>240</y>
+      <width>140</width>
+      <height>18</height>
      </rect>
     </property>
     <property name="text">
@@ -350,7 +355,7 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_1">
     <property name="geometry">
      <rect>
-      <x>204</x>
+      <x>205</x>
       <y>243</y>
       <width>40</width>
       <height>30</height>
@@ -390,7 +395,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>284</y>
+      <y>285</y>
       <width>280</width>
       <height>44</height>
      </rect>
@@ -422,8 +427,8 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_2">
     <property name="geometry">
      <rect>
-      <x>253</x>
-      <y>292</y>
+      <x>255</x>
+      <y>293</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -462,10 +467,15 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>26</x>
-      <y>307</y>
+      <y>310</y>
       <width>150</width>
-      <height>15</height>
+      <height>18</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+     </font>
     </property>
     <property name="alignment">
      <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -513,9 +523,9 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>25</x>
-      <y>288</y>
-      <width>200</width>
-      <height>15</height>
+      <y>290</y>
+      <width>140</width>
+      <height>18</height>
      </rect>
     </property>
     <property name="text">
@@ -548,8 +558,8 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_3">
     <property name="geometry">
      <rect>
-      <x>204</x>
-      <y>292</y>
+      <x>205</x>
+      <y>293</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -588,7 +598,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>333</y>
+      <y>335</y>
       <width>280</width>
       <height>44</height>
      </rect>
@@ -620,8 +630,8 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_4">
     <property name="geometry">
      <rect>
-      <x>253</x>
-      <y>341</y>
+      <x>255</x>
+      <y>343</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -660,10 +670,15 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>26</x>
-      <y>356</y>
+      <y>360</y>
       <width>150</width>
-      <height>15</height>
+      <height>18</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+     </font>
     </property>
     <property name="alignment">
      <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -711,9 +726,9 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>25</x>
-      <y>337</y>
-      <width>200</width>
-      <height>15</height>
+      <y>340</y>
+      <width>140</width>
+      <height>18</height>
      </rect>
     </property>
     <property name="text">
@@ -746,8 +761,8 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_5">
     <property name="geometry">
      <rect>
-      <x>204</x>
-      <y>341</y>
+      <x>205</x>
+      <y>343</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -786,7 +801,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>382</y>
+      <y>385</y>
       <width>280</width>
       <height>44</height>
      </rect>
@@ -818,8 +833,8 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_6">
     <property name="geometry">
      <rect>
-      <x>253</x>
-      <y>390</y>
+      <x>255</x>
+      <y>393</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -858,10 +873,15 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>26</x>
-      <y>405</y>
+      <y>410</y>
       <width>150</width>
-      <height>15</height>
+      <height>18</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+     </font>
     </property>
     <property name="alignment">
      <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -909,9 +929,9 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>25</x>
-      <y>386</y>
-      <width>200</width>
-      <height>15</height>
+      <y>390</y>
+      <width>140</width>
+      <height>18</height>
      </rect>
     </property>
     <property name="text">
@@ -944,8 +964,8 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_7">
     <property name="geometry">
      <rect>
-      <x>204</x>
-      <y>390</y>
+      <x>205</x>
+      <y>393</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -984,7 +1004,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>431</y>
+      <y>435</y>
       <width>280</width>
       <height>44</height>
      </rect>
@@ -1016,8 +1036,8 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_8">
     <property name="geometry">
      <rect>
-      <x>253</x>
-      <y>439</y>
+      <x>255</x>
+      <y>443</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -1056,10 +1076,15 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>26</x>
-      <y>454</y>
+      <y>460</y>
       <width>150</width>
-      <height>15</height>
+      <height>18</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+     </font>
     </property>
     <property name="alignment">
      <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1107,9 +1132,9 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>25</x>
-      <y>435</y>
-      <width>200</width>
-      <height>15</height>
+      <y>440</y>
+      <width>140</width>
+      <height>18</height>
      </rect>
     </property>
     <property name="text">
@@ -1142,8 +1167,8 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_9">
     <property name="geometry">
      <rect>
-      <x>204</x>
-      <y>439</y>
+      <x>205</x>
+      <y>443</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -1182,7 +1207,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>480</y>
+      <y>485</y>
       <width>280</width>
       <height>44</height>
      </rect>
@@ -1214,8 +1239,8 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_10">
     <property name="geometry">
      <rect>
-      <x>253</x>
-      <y>488</y>
+      <x>255</x>
+      <y>493</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -1254,10 +1279,15 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>26</x>
-      <y>503</y>
+      <y>510</y>
       <width>150</width>
-      <height>15</height>
+      <height>18</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+     </font>
     </property>
     <property name="alignment">
      <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1305,9 +1335,9 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>25</x>
-      <y>484</y>
-      <width>200</width>
-      <height>15</height>
+      <y>490</y>
+      <width>140</width>
+      <height>18</height>
      </rect>
     </property>
     <property name="text">
@@ -1340,8 +1370,8 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_11">
     <property name="geometry">
      <rect>
-      <x>204</x>
-      <y>488</y>
+      <x>205</x>
+      <y>493</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -1412,7 +1442,7 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_12">
     <property name="geometry">
      <rect>
-      <x>253</x>
+      <x>255</x>
       <y>68</y>
       <width>40</width>
       <height>30</height>
@@ -1456,6 +1486,11 @@ border-radius: 2px;
       <width>150</width>
       <height>15</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Lucida Sans Typewriter</family>
+     </font>
     </property>
     <property name="alignment">
      <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1504,8 +1539,8 @@ border-radius: 2px;
      <rect>
       <x>25</x>
       <y>64</y>
-      <width>200</width>
-      <height>15</height>
+      <width>140</width>
+      <height>18</height>
      </rect>
     </property>
     <property name="text">
@@ -1539,7 +1574,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>109</y>
+      <y>110</y>
       <width>280</width>
       <height>44</height>
      </rect>
@@ -1571,8 +1606,8 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_13">
     <property name="geometry">
      <rect>
-      <x>253</x>
-      <y>117</y>
+      <x>255</x>
+      <y>118</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -1615,6 +1650,11 @@ border-radius: 2px;
       <width>150</width>
       <height>15</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Lucida Sans Typewriter</family>
+     </font>
     </property>
     <property name="alignment">
      <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1663,8 +1703,8 @@ border-radius: 2px;
      <rect>
       <x>25</x>
       <y>113</y>
-      <width>200</width>
-      <height>15</height>
+      <width>140</width>
+      <height>18</height>
      </rect>
     </property>
     <property name="text">
@@ -1697,7 +1737,7 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_16">
     <property name="geometry">
      <rect>
-      <x>204</x>
+      <x>205</x>
       <y>68</y>
       <width>40</width>
       <height>30</height>
@@ -1738,7 +1778,7 @@ border-radius: 2px;
      <rect>
       <x>20</x>
       <y>632</y>
-      <width>250</width>
+      <width>266</width>
       <height>56</height>
      </rect>
     </property>
@@ -1769,14 +1809,14 @@ border-radius: 2px;
    <widget class="caLabel" name="caLabel_18">
     <property name="geometry">
      <rect>
-      <x>23</x>
+      <x>25</x>
       <y>640</y>
-      <width>200</width>
-      <height>16</height>
+      <width>166</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>Programmable Clock:</string>
+     <string>Programmable Clock</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -1805,24 +1845,22 @@ border-radius: 2px;
    <widget class="caLineEdit" name="caLineEdit_16">
     <property name="geometry">
      <rect>
-      <x>136</x>
+      <x>155</x>
       <y>666</y>
-      <width>86</width>
-      <height>16</height>
+      <width>121</width>
+      <height>18</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+     </font>
     </property>
     <property name="alignment">
      <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string notr="true">$(IOC):IFCTC2-PGMCLOCK-FREQ</string>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>39</red>
-      <green>84</green>
-      <blue>141</blue>
-     </color>
     </property>
     <property name="background">
      <color>
@@ -1831,9 +1869,6 @@ border-radius: 2px;
       <blue>236</blue>
      </color>
     </property>
-    <property name="colorMode">
-     <enum>caLineEdit::Static</enum>
-    </property>
     <property name="precisionMode">
      <enum>caLineEdit::Channel</enum>
     </property>
@@ -1849,56 +1884,8 @@ border-radius: 2px;
     <property name="fontScaleMode" stdset="0">
      <enum>caLineEdit::Height</enum>
     </property>
-    <property name="formatType">
-     <enum>caLineEdit::decimal</enum>
-    </property>
-   </widget>
-   <widget class="caLineEdit" name="caLineEdit_17">
-    <property name="geometry">
-     <rect>
-      <x>226</x>
-      <y>666</y>
-      <width>31</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="channel" stdset="0">
-     <string notr="true">$(IOC):IFCTC2-PGMCLOCK-FREQ.EGU</string>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color>
-      <red>218</red>
-      <green>218</green>
-      <blue>218</blue>
-     </color>
-    </property>
-    <property name="colorMode">
-     <enum>caLineEdit::Static</enum>
-    </property>
-    <property name="precisionMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="limitsMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="maxValue">
-     <double>1.000000000000000</double>
-    </property>
-    <property name="minValue">
-     <double>0.000000000000000</double>
-    </property>
-    <property name="fontScaleMode" stdset="0">
-     <enum>caLineEdit::Height</enum>
+    <property name="unitsEnabled">
+     <bool>true</bool>
     </property>
     <property name="formatType">
      <enum>caLineEdit::decimal</enum>
@@ -1907,7 +1894,7 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_17">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>190</x>
       <y>635</y>
       <width>90</width>
       <height>26</height>
@@ -1946,8 +1933,8 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_14">
     <property name="geometry">
      <rect>
-      <x>253</x>
-      <y>537</y>
+      <x>255</x>
+      <y>543</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -1985,8 +1972,8 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_15">
     <property name="geometry">
      <rect>
-      <x>204</x>
-      <y>537</y>
+      <x>205</x>
+      <y>543</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -2025,7 +2012,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>529</y>
+      <y>535</y>
       <width>280</width>
       <height>44</height>
      </rect>
@@ -2058,10 +2045,15 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>26</x>
-      <y>552</y>
+      <y>555</y>
       <width>150</width>
-      <height>15</height>
+      <height>18</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+     </font>
     </property>
     <property name="alignment">
      <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -2109,9 +2101,9 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>25</x>
-      <y>533</y>
-      <width>200</width>
-      <height>15</height>
+      <y>540</y>
+      <width>140</width>
+      <height>18</height>
      </rect>
     </property>
     <property name="text">
@@ -2144,8 +2136,8 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_18">
     <property name="geometry">
      <rect>
-      <x>204</x>
-      <y>586</y>
+      <x>205</x>
+      <y>593</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -2183,8 +2175,8 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_19">
     <property name="geometry">
      <rect>
-      <x>253</x>
-      <y>586</y>
+      <x>255</x>
+      <y>593</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -2223,10 +2215,15 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>26</x>
-      <y>601</y>
+      <y>610</y>
       <width>150</width>
-      <height>15</height>
+      <height>18</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+     </font>
     </property>
     <property name="alignment">
      <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -2274,7 +2271,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>578</y>
+      <y>585</y>
       <width>280</width>
       <height>44</height>
      </rect>
@@ -2307,9 +2304,9 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>25</x>
-      <y>582</y>
-      <width>200</width>
-      <height>15</height>
+      <y>590</y>
+      <width>140</width>
+      <height>18</height>
      </rect>
     </property>
     <property name="text">
@@ -2342,8 +2339,8 @@ border-radius: 2px;
    <widget class="caRelatedDisplay" name="caRelatedDisplay_20">
     <property name="geometry">
      <rect>
-      <x>204</x>
-      <y>117</y>
+      <x>205</x>
+      <y>118</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -2390,8 +2387,8 @@ border-radius: 2px;
      <rect>
       <x>24</x>
       <y>179</y>
-      <width>200</width>
-      <height>15</height>
+      <width>140</width>
+      <height>18</height>
      </rect>
     </property>
     <property name="text">
@@ -2517,22 +2514,16 @@ border-radius: 2px;
    <zorder>caRectangle_13</zorder>
    <zorder>caLabel_18</zorder>
    <zorder>caRelatedDisplay_0</zorder>
-   <zorder>caLineEdit_3</zorder>
    <zorder>caRelatedDisplay_1</zorder>
    <zorder>caRelatedDisplay_2</zorder>
-   <zorder>caLineEdit_4</zorder>
    <zorder>caRelatedDisplay_3</zorder>
    <zorder>caRelatedDisplay_4</zorder>
-   <zorder>caLineEdit_5</zorder>
    <zorder>caRelatedDisplay_5</zorder>
    <zorder>caRelatedDisplay_6</zorder>
-   <zorder>caLineEdit_6</zorder>
    <zorder>caRelatedDisplay_7</zorder>
    <zorder>caRelatedDisplay_8</zorder>
-   <zorder>caLineEdit_7</zorder>
    <zorder>caRelatedDisplay_9</zorder>
    <zorder>caRelatedDisplay_10</zorder>
-   <zorder>caLineEdit_8</zorder>
    <zorder>caRelatedDisplay_11</zorder>
    <zorder>caRelatedDisplay_12</zorder>
    <zorder>caLineEdit_9</zorder>
@@ -2540,19 +2531,24 @@ border-radius: 2px;
    <zorder>caLineEdit_10</zorder>
    <zorder>caRelatedDisplay_16</zorder>
    <zorder>caLineEdit_16</zorder>
-   <zorder>caLineEdit_17</zorder>
    <zorder>caRelatedDisplay_17</zorder>
    <zorder>caRelatedDisplay_14</zorder>
    <zorder>caRelatedDisplay_15</zorder>
-   <zorder>caLineEdit_11</zorder>
    <zorder>caLabel_12</zorder>
    <zorder>caRelatedDisplay_18</zorder>
    <zorder>caRelatedDisplay_19</zorder>
-   <zorder>caLineEdit_12</zorder>
    <zorder>caLabel_13</zorder>
    <zorder>caRelatedDisplay_20</zorder>
    <zorder>caLabel_19</zorder>
    <zorder>caRelatedDisplay_21</zorder>
+   <zorder>caLineEdit_8</zorder>
+   <zorder>caLineEdit_11</zorder>
+   <zorder>caLineEdit_7</zorder>
+   <zorder>caLineEdit_5</zorder>
+   <zorder>caLineEdit_6</zorder>
+   <zorder>caLineEdit_3</zorder>
+   <zorder>caLineEdit_12</zorder>
+   <zorder>caLineEdit_4</zorder>
   </widget>
  </widget>
  <customwidgets>

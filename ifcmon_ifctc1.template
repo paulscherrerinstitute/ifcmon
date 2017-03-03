@@ -40,13 +40,13 @@
 # startup.script:   ifctc1_cpld
 #--------------------------------------------------------------------
 # generic select record, normally never processed
-#record(ao,"$(IOC):IFCTC1-MUX-SEL")
+#record(ao, "$(IOC):IFCTC1-MUX-SEL")
 #{
 #    field(DESC, "IFC_TC1 I2C mux")
 #    field(DTYP, "regDev")
 #    field(OUT , "@ifctc1_cpld/0x6 T=UINT8")
-#    field(PINI,"YES")
-#    field(VAL,"1")
+#    field(PINI, "YES")
+#    field(VAL, "1")
 #}
 
 
@@ -57,15 +57,18 @@
 # datasheet:        https://codebeamer.psi.ch/cb/proj/sources/sccFileLog.do?proj_id=104&filename=IFC%2FIFC1210_generic%2FFirmware%2FPSI%2FIFC_TC1%2FDocumentation%2FIFC_TC1_firmware_specification.doc&isDir=false
 # startup.script:   ifctc1_cpld
 #--------------------------------------------------------------------
-record(ai,"$(IOC):IFCTC1-FW-MAJOR")
+record(ai, "$(IOC):IFCTC1-FW-MAJOR")
 {
+    field(SCAN, "$(SCAN=)")
+    field(EVNT, "$(EVNT=)")
+    field(PINI, "YES")
     field(DESC, "IFC_TC1 Fw Id major")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_cpld/0x1 T=UINT8") 
     field(FLNK, "$(IOC):IFCTC1-FW-MINOR")
 }
 
-record(ai,"$(IOC):IFCTC1-FW-MINOR")
+record(ai, "$(IOC):IFCTC1-FW-MINOR")
 {
     field(DESC, "IFC_TC1 Fw Id minor")
     field(DTYP, "regDev")
@@ -73,7 +76,7 @@ record(ai,"$(IOC):IFCTC1-FW-MINOR")
     field(FLNK, "$(IOC):IFCTC1-FW-YEAR")
 }
 
-record(ai,"$(IOC):IFCTC1-FW-YEAR")
+record(ai, "$(IOC):IFCTC1-FW-YEAR")
 {
     field(DESC, "IFC_TC1 Fw year")
     field(DTYP, "regDev")
@@ -81,7 +84,7 @@ record(ai,"$(IOC):IFCTC1-FW-YEAR")
     field(FLNK, "$(IOC):IFCTC1-FW-MONTH")
 }
 
-record(ai,"$(IOC):IFCTC1-FW-MONTH")
+record(ai, "$(IOC):IFCTC1-FW-MONTH")
 {
     field(DESC, "IFC_TC1 Fw month")
     field(DTYP, "regDev")
@@ -89,7 +92,7 @@ record(ai,"$(IOC):IFCTC1-FW-MONTH")
     field(FLNK, "$(IOC):IFCTC1-FW-DAY")
 }
 
-record(ai,"$(IOC):IFCTC1-FW-DAY")
+record(ai, "$(IOC):IFCTC1-FW-DAY")
 {
     field(DESC, "IFC_TC1 Fw day")
     field(DTYP, "regDev")
@@ -97,19 +100,19 @@ record(ai,"$(IOC):IFCTC1-FW-DAY")
     field(FLNK, "$(IOC):IFCTC1-FW-SIGN")
 }
 
-record(calc,"$(IOC):IFCTC1-FW-SIGN")
+record(calc, "$(IOC):IFCTC1-FW-SIGN")
 {
     field(DESC, "calc fw sign.")
-    field(INPA, "$(IOC):IFCTC1-FW-DAY NPP")
-    field(INPB, "$(IOC):IFCTC1-FW-MONTH NPP")
-    field(INPC, "$(IOC):IFCTC1-FW-YEAR NPP")
+    field(INPA, "$(IOC):IFCTC1-FW-DAY MS")
+    field(INPB, "$(IOC):IFCTC1-FW-MONTH MS")
+    field(INPC, "$(IOC):IFCTC1-FW-YEAR MS")
     field(D   , "32") # 0x20
     field(CALC, "(D<<24)|(C<<16)|(B<<8)|A")
     field(FLNK, "$(IOC):IFCTC1-HCI-STATUS")
 }
 
 # following record (HCI-STATUS) belong to IO-extender from/to HCI module for PCI-express ext. cabling x4 connector
-record(ai,"$(IOC):IFCTC1-HCI-STATUS")
+record(ai, "$(IOC):IFCTC1-HCI-STATUS")
 {
     field(DESC, "IFC_TC1 HCI status")
     field(DTYP, "regDev")
@@ -168,7 +171,7 @@ record ( mbbi, "$(IOC):IFCTC1-PCIE-UPDN" )
 #--------------------------------------------------------------------
 # status / cyclic processing
 #--------------------------------------------------------------------
-record(ai,"$(IOC):IFCTC1-PCIERD-SIG")
+record(ai, "$(IOC):IFCTC1-PCIERD-SIG")
 {
     field(DESC, "IFC_TC1 SIG")
     field(DTYP, "regDev")
@@ -180,7 +183,7 @@ record(ai,"$(IOC):IFCTC1-PCIERD-SIG")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-RX50")
 }
 
-record(ai,"$(IOC):IFCTC1-PCIERD-RX50")
+record(ai, "$(IOC):IFCTC1-PCIERD-RX50")
 {
     field(DESC, "IFC_TC1 PCIe RX50")
     field(DTYP, "regDev")
@@ -198,18 +201,18 @@ record(ai,"$(IOC):IFCTC1-PCIERD-RX50")
 # DIP switches. Therefore only read here
 #--------------------------------------------------------------------
 
-record(ai,"$(IOC):IFCTC1-PCIERD-AEOC")
+record(ai, "$(IOC):IFCTC1-PCIERD-AEOC")
 {
     field(DESC, "IFC_TC1 PCIe AEOC")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_cpld/0x2F T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-EQSELA")
 }
-record(mbbi,"$(IOC):IFCTC1-PCIERD-EQSELA")
+record(mbbi, "$(IOC):IFCTC1-PCIERD-EQSELA")
 {
     field(DESC, "A equalizer sel 2.5GHz")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):IFCTC1-PCIERD-AEOC NPP")
+    field(INP,  "$(IOC):IFCTC1-PCIERD-AEOC MS")
     field(NOBT, "3")
     field(SHFT, "5")
     field(ZRVL, "0")
@@ -230,11 +233,11 @@ record(mbbi,"$(IOC):IFCTC1-PCIERD-EQSELA")
     field(SVST, "12.3 dB")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-DEEMPHA")
 }
-record(mbbi,"$(IOC):IFCTC1-PCIERD-DEEMPHA")
+record(mbbi, "$(IOC):IFCTC1-PCIERD-DEEMPHA")
 {
     field(DESC, "A outp. deemphasis")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):IFCTC1-PCIERD-AEOC NPP")
+    field(INP,  "$(IOC):IFCTC1-PCIERD-AEOC MS")
     field(NOBT, "3")
     field(SHFT, "2")
     field(ZRVL, "0")
@@ -255,11 +258,11 @@ record(mbbi,"$(IOC):IFCTC1-PCIERD-DEEMPHA")
     field(SVST, "-8.5 dB")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-SWINGA")
 }
-record(mbbi,"$(IOC):IFCTC1-PCIERD-SWINGA")
+record(mbbi, "$(IOC):IFCTC1-PCIERD-SWINGA")
 {
     field(DESC, "A swing control")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):IFCTC1-PCIERD-AEOC NPP")
+    field(INP,  "$(IOC):IFCTC1-PCIERD-AEOC MS")
     field(NOBT, "2")
     field(SHFT, "0")
     field(ZRVL, "0")
@@ -273,18 +276,18 @@ record(mbbi,"$(IOC):IFCTC1-PCIERD-SWINGA")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-BEOC")
 }
 
-record(ai,"$(IOC):IFCTC1-PCIERD-BEOC")
+record(ai, "$(IOC):IFCTC1-PCIERD-BEOC")
 {
     field(DESC, "IFC_TC1 PCIe BEOC")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_cpld/0x30 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-EQSELB")
 }
-record(mbbi,"$(IOC):IFCTC1-PCIERD-EQSELB")
+record(mbbi, "$(IOC):IFCTC1-PCIERD-EQSELB")
 {
     field(DESC, "A equalizer sel 2.5GHz")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):IFCTC1-PCIERD-BEOC NPP")
+    field(INP,  "$(IOC):IFCTC1-PCIERD-BEOC MS")
     field(NOBT, "3")
     field(SHFT, "5")
     field(ZRVL, "0")
@@ -305,11 +308,11 @@ record(mbbi,"$(IOC):IFCTC1-PCIERD-EQSELB")
     field(SVST, "12.3 dB")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-DEEMPHB")
 }
-record(mbbi,"$(IOC):IFCTC1-PCIERD-DEEMPHB")
+record(mbbi, "$(IOC):IFCTC1-PCIERD-DEEMPHB")
 {
     field(DESC, "B outp. deemphasis")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):IFCTC1-PCIERD-BEOC NPP")
+    field(INP,  "$(IOC):IFCTC1-PCIERD-BEOC MS")
     field(NOBT, "3")
     field(SHFT, "2")
     field(ZRVL, "0")
@@ -330,11 +333,11 @@ record(mbbi,"$(IOC):IFCTC1-PCIERD-DEEMPHB")
     field(SVST, "-8.5 dB")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-SWINGB")
 }
-record(mbbi,"$(IOC):IFCTC1-PCIERD-SWINGB")
+record(mbbi, "$(IOC):IFCTC1-PCIERD-SWINGB")
 {
     field(DESC, "B swing control")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):IFCTC1-PCIERD-BEOC NPP")
+    field(INP,  "$(IOC):IFCTC1-PCIERD-BEOC MS")
     field(NOBT, "2")
     field(SHFT, "0")
     field(ZRVL, "0")
@@ -348,18 +351,18 @@ record(mbbi,"$(IOC):IFCTC1-PCIERD-SWINGB")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-LBEC")
 }
 
-record(ai,"$(IOC):IFCTC1-PCIERD-LBEC")
+record(ai, "$(IOC):IFCTC1-PCIERD-LBEC")
 {
     field(DESC, "IFC_TC1 PCIe LBEC")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_cpld/0x2E T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-DEEMPHA-ENA")   
 }
-record(mbbi,"$(IOC):IFCTC1-PCIERD-DEEMPHA-ENA")
+record(mbbi, "$(IOC):IFCTC1-PCIERD-DEEMPHA-ENA")
 {
     field(DESC, "deemph. A enable")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):IFCTC1-PCIERD-LBEC NPP")
+    field(INP,  "$(IOC):IFCTC1-PCIERD-LBEC MS")
     field(NOBT, "1")
     field(SHFT, "3")
     field(ZRVL, "0")
@@ -368,11 +371,11 @@ record(mbbi,"$(IOC):IFCTC1-PCIERD-DEEMPHA-ENA")
     field(ONST, "de-emphasis")
     field(FLNK, "$(IOC):IFCTC1-PCIERD-DEEMPHB-ENA") 
 }
-record(mbbi,"$(IOC):IFCTC1-PCIERD-DEEMPHB-ENA")
+record(mbbi, "$(IOC):IFCTC1-PCIERD-DEEMPHB-ENA")
 {
     field(DESC, "deemph. B enable")
     field(DTYP, "Raw Soft Channel")
-    field(INP,  "$(IOC):IFCTC1-PCIERD-LBEC NPP")
+    field(INP,  "$(IOC):IFCTC1-PCIERD-LBEC MS")
     field(NOBT, "1")
     field(SHFT, "2")
     field(ZRVL, "0")
@@ -407,7 +410,7 @@ record(mbbi,"$(IOC):IFCTC1-PCIERD-DEEMPHB-ENA")
 # datasheet:        https://codebeamer.psi.ch/cb/proj/sources/sccFileLog.do?proj_id=104&filename=IFC%2FIFC1210_generic%2FFirmware%2FPSI%2FIFC_TC1%2FDocumentation%2FIFC_TC1_firmware_specification.doc&isDir=false
 # startup.script:   ifctc1_cpld
 #--------------------------------------------------------------------
-record(ao,"$(IOC):IFCTC1-MUX-SEL-PWRMON")
+record(ao, "$(IOC):IFCTC1-MUX-SEL-PWRMON")
 {
     field(DESC, "IFC_TC1 I2C mux")
     field(DTYP, "regDev")
@@ -421,25 +424,25 @@ record(ao,"$(IOC):IFCTC1-MUX-SEL-PWRMON")
 # status
 #--------------------------------------------------------------------
 # Channel 1, Voltage measurement (actual)
-record(ai,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V-MSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V-MSB")
 {
     field(DESC, "CH1_V_actual_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0x2 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V-LSB")
 }
-record(ai,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V-LSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V-LSB")
 {
     field(DESC, "CH1_V_actual_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0x3 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V")
 }
-record(calc,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V")
+record(calc, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V")
 { 
     field(DESC, "CH1 actual Voltage")
-    field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V-LSB NPP")
-    field(INPB, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V-MSB NPP")
+    field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V-LSB MS")
+    field(INPB, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V-MSB MS")
     field(C   , "0.0157") 		# 4V/255 see datasheet
     field(CALC, "(A|(B<<2))*C") 
     field(PREC, "1") 
@@ -452,25 +455,25 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V")
 }
 
 # Channel 1, Voltage measurement (min)
-record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MIN-V-MSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH1-MIN-V-MSB")
 {
     field(DESC, "CH1_V_MIN_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0xC T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-MIN-V-LSB")
 }
-record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MIN-V-LSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH1-MIN-V-LSB")
 {
     field(DESC, "CH1_V_MIN_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0xD T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-MIN-V")
 }
-record(calc,"$(IOC):IFCTC1-PWRMON-CH1-MIN-V")
+record(calc, "$(IOC):IFCTC1-PWRMON-CH1-MIN-V")
 { 
     field(DESC, "CH1 minimal Voltage")
-    field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-MIN-V-LSB NPP")
-    field(INPB, "$(IOC):IFCTC1-PWRMON-CH1-MIN-V-MSB NPP")
+    field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-MIN-V-LSB MS")
+    field(INPB, "$(IOC):IFCTC1-PWRMON-CH1-MIN-V-MSB MS")
     field(C   , "0.0157") 		# 4V/255 see datasheet
     field(CALC, "(A|(B<<2))*C")
     field(PREC, "1") 
@@ -483,25 +486,25 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH1-MIN-V")
 }
 
 # Channel 1, Voltage measurement (max)
-record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MAX-V-MSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH1-MAX-V-MSB")
 {
     field(DESC, "CH1_V_MAX_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0xE T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-MAX-V-LSB")
 }
-record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MAX-V-LSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH1-MAX-V-LSB")
 {
     field(DESC, "CH1_V_MAX_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0xF T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-MAX-V")
 }
-record(calc,"$(IOC):IFCTC1-PWRMON-CH1-MAX-V")
+record(calc, "$(IOC):IFCTC1-PWRMON-CH1-MAX-V")
 { 
     field(DESC, "maximal Voltage")
-    field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-MAX-V-LSB NPP")
-    field(INPB, "$(IOC):IFCTC1-PWRMON-CH1-MAX-V-MSB NPP")
+    field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-MAX-V-LSB MS")
+    field(INPB, "$(IOC):IFCTC1-PWRMON-CH1-MAX-V-MSB MS")
     field(C   , "0.0157") 		# 4V/255 see datasheet
     field(CALC, "(A|(B<<2))*C")
     field(PREC, "1") 
@@ -514,25 +517,25 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH1-MAX-V")
 }
 
 # Channel 1, Current measurement
-record(ai,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I-MSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I-MSB")
 {
     field(DESC, "CH1_I_actual_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0x0 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I-LSB")
 }
-record(ai,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I-LSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I-LSB")
 {
     field(DESC, "CH1_I_actual_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0x1 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I")
 }
-record(calc,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I")
+record(calc, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I")
 { 
     field(DESC, "CH1 actual Current")
-    field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I-LSB NPP")
-    field(INPB, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I-MSB NPP")
+    field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I-LSB MS")
+    field(INPB, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I-MSB MS")
     field(C   , "9.7656") 		# 100mV ADC range/0.01R = 10A / 1024 = 9.7656mA per LSB
     field(CALC, "(A|(B<<2))*C") 
     field(PREC, "0") 
@@ -543,25 +546,25 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I")
 }
 
 # Channel 1, Current measurement (min)
-record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MIN-I-MSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH1-MIN-I-MSB")
 {
     field(DESC, "CH1_I_MIN_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0x8 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-MIN-I-LSB")
 }
-record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MIN-I-LSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH1-MIN-I-LSB")
 {
     field(DESC, "CH1_I_MIN_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0x9 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-MIN-I")
 }
-record(calc,"$(IOC):IFCTC1-PWRMON-CH1-MIN-I")
+record(calc, "$(IOC):IFCTC1-PWRMON-CH1-MIN-I")
 { 
     field(DESC, "CH1 minimal Current")
-    field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-MIN-I-LSB NPP")
-    field(INPB, "$(IOC):IFCTC1-PWRMON-CH1-MIN-I-MSB NPP")
+    field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-MIN-I-LSB MS")
+    field(INPB, "$(IOC):IFCTC1-PWRMON-CH1-MIN-I-MSB MS")
     field(C   , "9.7656") 		# 100mV ADC range/0.01R = 10A / 1024 = 9.7656mA per LSB
     field(CALC, "(A|(B<<2))*C") 
     field(PREC, "0") 
@@ -570,25 +573,25 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH1-MIN-I")
 }
 
 # Channel 1, Current measurement (max)
-record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MAX-I-MSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH1-MAX-I-MSB")
 {
     field(DESC, "CH1_I_MAX_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0xA T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-MAX-I-LSB")
 }
-record(ai,"$(IOC):IFCTC1-PWRMON-CH1-MAX-I-LSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH1-MAX-I-LSB")
 {
     field(DESC, "CH1_I_MAX_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0xB T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH1-MAX-I")
 }
-record(calc,"$(IOC):IFCTC1-PWRMON-CH1-MAX-I")
+record(calc, "$(IOC):IFCTC1-PWRMON-CH1-MAX-I")
 { 
     field(DESC, "CH1 maximal Current")
-    field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-MAX-I-LSB NPP")
-    field(INPB, "$(IOC):IFCTC1-PWRMON-CH1-MAX-I-MSB NPP")
+    field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-MAX-I-LSB MS")
+    field(INPB, "$(IOC):IFCTC1-PWRMON-CH1-MAX-I-MSB MS")
     field(C   , "9.7656") 		# 100mV ADC range/0.01R = 10A / 1024 = 9.7656mA per LSB
     field(CALC, "(A|(B<<2))*C") 
     field(PREC, "0") 
@@ -599,11 +602,11 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH1-MAX-I")
 }
 
 # Channel 1, Power calulation
-record(calc,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-W")
+record(calc, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-W")
 { 
     field(DESC, "CH1 actual W")
-    field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V NPP")
-    field(INPB, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I NPP") 		
+    field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-V MS")
+    field(INPB, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-I MS") 		
     field(CALC, "A*B") 
     field(PREC, "0") 
     field(EGU , "mW")
@@ -611,25 +614,25 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-W")
 }
 
 # Channel 2, Voltage measurement
-record(ai,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V-MSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V-MSB")
 {
     field(DESC, "CH2_V_actual_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0x6 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V-LSB")
 }
-record(ai,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V-LSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V-LSB")
 {
     field(DESC, "CH2_V_actual_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0x7 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V")
 }
-record(calc,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V")
+record(calc, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V")
 { 
     field(DESC, "CH2 actual Voltage")
-    field(INPA, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V-LSB NPP")
-    field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V-MSB NPP")
+    field(INPA, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V-LSB MS")
+    field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V-MSB MS")
     field(C   , "0.0157") 		# 4V/255 see datasheet
     field(CALC, "(A|(B<<2))*C") 
     field(PREC, "1") 
@@ -642,25 +645,25 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V")
 }
 
 # Channel 2, Voltage measurement (min)
-record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MIN-V-MSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH2-MIN-V-MSB")
 {
     field(DESC, "CH2_V_MIN_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0x14 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-MIN-V-LSB")
 }
-record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MIN-V-LSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH2-MIN-V-LSB")
 {
     field(DESC, "CH2_V_MIN_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0x15 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-MIN-V")
 }
-record(calc,"$(IOC):IFCTC1-PWRMON-CH2-MIN-V")
+record(calc, "$(IOC):IFCTC1-PWRMON-CH2-MIN-V")
 { 
     field(DESC, "CH2 minimal Voltage")
-    field(INPA, "$(IOC):IFCTC1-PWRMON-CH2-MIN-V-LSB NPP")
-    field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-MIN-V-MSB NPP")
+    field(INPA, "$(IOC):IFCTC1-PWRMON-CH2-MIN-V-LSB MS")
+    field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-MIN-V-MSB MS")
     field(C   , "0.0157") 		# 4V/255 see datasheet
     field(CALC, "(A|(B<<2))*C")
     field(PREC, "1") 
@@ -673,25 +676,25 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH2-MIN-V")
 }
 
 # Channel 2, Voltage measurement (max)
-record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MAX-V-MSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH2-MAX-V-MSB")
 {
     field(DESC, "CH2_V_MAX_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0x16 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-MAX-V-LSB")
 }
-record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MAX-V-LSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH2-MAX-V-LSB")
 {
     field(DESC, "CH2_V_MAX_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0x17 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-MAX-V")
 }
-record(calc,"$(IOC):IFCTC1-PWRMON-CH2-MAX-V")
+record(calc, "$(IOC):IFCTC1-PWRMON-CH2-MAX-V")
 { 
     field(DESC, "CH2 maximal Voltage")
-    field(INPA, "$(IOC):IFCTC1-PWRMON-CH2-MAX-V-LSB NPP")
-    field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-MAX-V-MSB NPP")
+    field(INPA, "$(IOC):IFCTC1-PWRMON-CH2-MAX-V-LSB MS")
+    field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-MAX-V-MSB MS")
     field(C   , "0.0157") 		# 4V/255 see datasheet
     field(CALC, "(A|(B<<2))*C")
     field(PREC, "1") 
@@ -704,25 +707,25 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH2-MAX-V")
 }
 
 # Channel 2, Current measurement
-record(ai,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I-MSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I-MSB")
 {
     field(DESC, "CH2_I_actual_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0x4 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I-LSB")
 }
-record(ai,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I-LSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I-LSB")
 {
     field(DESC, "CH2_I_actual_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0x5 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I")
 }
-record(calc,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I")
+record(calc, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I")
 { 
     field(DESC, "CH2 actual Current")
-    field(INPA, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I-LSB NPP")
-    field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I-MSB NPP")
+    field(INPA, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I-LSB MS")
+    field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I-MSB MS")
     field(C   , "9.7656") 		# 100mV ADC range/0.01R = 10A / 1024 = 9.7656mA per LSB
     field(CALC, "(A|(B<<2))*C")
     field(PREC, "0") 
@@ -733,25 +736,25 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I")
 }
 
 # Channel 2, Current measurement (min)
-record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MIN-I-MSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH2-MIN-I-MSB")
 {
     field(DESC, "CH2_I_MIN_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0x10 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-MIN-I-LSB")
 }
-record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MIN-I-LSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH2-MIN-I-LSB")
 {
     field(DESC, "CH2_I_MIN_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0x11 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-MIN-I")
 }
-record(calc,"$(IOC):IFCTC1-PWRMON-CH2-MIN-I")
+record(calc, "$(IOC):IFCTC1-PWRMON-CH2-MIN-I")
 { 
     field(DESC, "CH2 minimal Current")
-    field(INPA, "$(IOC):IFCTC1-PWRMON-CH2-MIN-I-LSB NPP")
-    field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-MIN-I-MSB NPP")
+    field(INPA, "$(IOC):IFCTC1-PWRMON-CH2-MIN-I-LSB MS")
+    field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-MIN-I-MSB MS")
     field(C   , "9.7656") 		# 100mV ADC range/0.01R = 10A / 1024 = 9.7656mA per LSB
     field(CALC, "(A|(B<<2))*C")
     field(PREC, "0") 
@@ -760,25 +763,25 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH2-MIN-I")
 }
 
 # Channel 2, Current measurement (max)
-record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MAX-I-MSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH2-MAX-I-MSB")
 {
     field(DESC, "CH2_I_MAX_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0x12 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-MAX-I-LSB")
 }
-record(ai,"$(IOC):IFCTC1-PWRMON-CH2-MAX-I-LSB")
+record(ai, "$(IOC):IFCTC1-PWRMON-CH2-MAX-I-LSB")
 {
     field(DESC, "CH2_I_MAX_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@ifctc1_max5970/0x13 T=UINT8")
     field(FLNK, "$(IOC):IFCTC1-PWRMON-CH2-MAX-I")
 }
-record(calc,"$(IOC):IFCTC1-PWRMON-CH2-MAX-I")
+record(calc, "$(IOC):IFCTC1-PWRMON-CH2-MAX-I")
 { 
     field(DESC, "CH2 maximal Current")
-    field(INPA, "$(IOC):IFCTC1-PWRMON-CH2-MAX-I-LSB NPP")
-    field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-MAX-I-MSB NPP")
+    field(INPA, "$(IOC):IFCTC1-PWRMON-CH2-MAX-I-LSB MS")
+    field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-MAX-I-MSB MS")
     field(C   , "9.7656") 		# 100mV ADC range/0.01R = 10A / 1024 = 9.7656mA per LSB
     field(CALC, "(A|(B<<2))*C") 
     field(PREC, "0") 
@@ -789,11 +792,11 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH2-MAX-I")
 }
 
 # Channel 2, Power calulation
-record(calc,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-W")
+record(calc, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-W")
 { 
     field(DESC, "CH2 actual W")
-    field(INPA, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V NPP")
-    field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I NPP") 		
+    field(INPA, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-V MS")
+    field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-I MS") 		
     field(CALC, "A*B") 
     field(PREC, "0") 
     field(EGU , "mW")
@@ -801,17 +804,17 @@ record(calc,"$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-W")
 }
 
 # Channel 1 and Channel 2 total Power calculation
-record(calc,"$(IOC):IFCTC1-PWRMON-DISS")
+record(calc, "$(IOC):IFCTC1-PWRMON-DISS")
 { 
     field(DESC, "actual total W")
-    field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-W NPP")
-    field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-W NPP") 		
+    field(INPA, "$(IOC):IFCTC1-PWRMON-CH1-ACTUAL-W MS")
+    field(INPB, "$(IOC):IFCTC1-PWRMON-CH2-ACTUAL-W MS") 		
     field(C   , "0.001")
     field(CALC, "(A+B)*C") 
     field(PREC, "0") 
     field(EGU , "W")
     field(HIHI, "10")
     field(HHSV, "MAJOR")
-    field(FLNK, "$(IOC):IFCTC1-SFP-PCIEP12-STAT-REG") # kick the SFP modules readout chain (in other template G_IFCMON_I2CIFCTC1_SFP.template)
+    field(FLNK, "$(FLNK=)")
 }
 

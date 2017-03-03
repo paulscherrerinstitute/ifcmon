@@ -1,0 +1,34 @@
+# Purpose: Hardware monitoring for IFC_TC2 Transition Card
+#
+# Current Author: Dirk Zimoch
+#
+
+# externel globals: IOC EVNT SCAN_$(EVNT)
+
+global {
+    SCAN="$(SCAN_$(EVNT=)=5 second)"
+}
+
+file ifcmon_ifctc1.template
+{
+    { 
+        FLNK="$(IOC):IFCTC1-SFP-PCIEP12-STAT-REG" # kick the SFP modules readout chain
+    }
+}
+
+global {SUBDEV = IFCTC1}
+file ifcmon_ifctc1_sfp.template
+{
+    pattern
+    {SFPFCT   I2CBUSSFP  SFP_IOEXT_STATUS_REG  SFP_IOEXT_CTRL_REG  BUSMUX  DESCR                 DISABLE  FLNK                                   }
+    {PCIEP12  pci_p12_   0x10                  0x11                3       "SFP - PCIe port 12"  0        "$(IOC):$(SUBDEV)-SFP-PCIEP13-STAT-REG"}
+    {PCIEP13  pci_p13_   0x12                  0x13                4       "SFP - PCIe port 13"  0        "$(IOC):$(SUBDEV)-SFP-PCIEP14-STAT-REG"}
+    {PCIEP14  pci_p14_   0x14                  0x15                5       "SFP - PCIe port 14"  0        "$(IOC):$(SUBDEV)-SFP-PCIEP15-STAT-REG"}
+    {PCIEP15  pci_p15_   0x16                  0x17                6       "SFP - PCIe port 15"  0        "$(IOC):$(SUBDEV)-SFP-GTX1143-STAT-REG"}
+    {GTX1143  gtx1143_   0x20                  0x21                7       "SFP1 - GTX 114_3"    0        "$(IOC):$(SUBDEV)-SFP-GTX1142-STAT-REG"}
+    {GTX1142  gtx1142_   0x22                  0x23                8       "SFP2 - GTX 114_2"    0        "$(IOC):$(SUBDEV)-SFP-GTX1141-STAT-REG"}
+    {GTX1141  gtx1141_   0x24                  0x25                9       "SFP3 - GTX 114_1"    0        "$(IOC):$(SUBDEV)-SFP-GTX1140-STAT-REG"}
+    {GTX1140  gtx1140_   0x26                  0x27                10      "SFP4 - GTX 114_0"    0        "$(IOC):$(SUBDEV)-SFP-GTX1133-STAT-REG"}
+    {GTX1133  gtx1133_   0x28                  0x29                11      "SFP5 - GTX 113_3"    0        "$(IOC):$(SUBDEV)-SFP-GTX1132-STAT-REG"}
+    {GTX1132  gtx1132_   0x2A                  0x2B                12      "SFP6 - GTX 113_2"    1        "$(IOC):$(SUBDEV)-SFP-GTX1132-STAT-REG"}
+}
