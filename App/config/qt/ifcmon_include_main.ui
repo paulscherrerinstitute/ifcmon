@@ -209,7 +209,7 @@ border-radius: 2px;
       <string notr="true">IOC=$(IOC),FMC=FMC2</string>
      </property>
      <property name="filename" stdset="0">
-      <string notr="true">G_IFCMON_include_fmc.ui</string>
+      <string notr="true">ifcmon_include_fmc.ui</string>
      </property>
      <property name="visibility">
       <enum>caInclude::IfZero</enum>
@@ -248,7 +248,7 @@ border-radius: 2px;
       <string/>
      </property>
      <property name="files">
-      <string notr="true">G_IFCMON_sub_ifc1210_general.ui</string>
+      <string notr="true">ifcmon_sub_ifc1210_general.ui</string>
      </property>
      <property name="args">
       <string>IOC=$(IOC)</string>
@@ -359,7 +359,7 @@ border-radius: 2px;
       <string/>
      </property>
      <property name="files">
-      <string notr="true">G_IFCMON_sub_ifc1210_swfw.ui</string>
+      <string notr="true">ifcmon_sub_ifc1210_swfw.ui</string>
      </property>
      <property name="args">
       <string>IOC=$(IOC),SUBDEV=IFC1210</string>
@@ -583,7 +583,7 @@ border-radius: 2px;
       <string/>
      </property>
      <property name="files">
-      <string notr="true">G_IFCMON_sub_pwr.ui</string>
+      <string notr="true">ifcmon_sub_pwr.ui</string>
      </property>
      <property name="args">
       <string>IOC=$(IOC),SUBDEV=IFC1210</string>
@@ -1508,7 +1508,7 @@ border-radius: 2px;
       <string notr="true">IOC=$(IOC),FMC=FMC1</string>
      </property>
      <property name="filename" stdset="0">
-      <string notr="true">G_IFCMON_include_fmc.ui</string>
+      <string notr="true">ifcmon_include_fmc.ui</string>
      </property>
      <property name="visibility">
       <enum>caInclude::IfZero</enum>

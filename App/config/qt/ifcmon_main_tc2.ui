@@ -121,7 +121,7 @@ border-radius: 2px;
      <rect>
       <x>565</x>
       <y>45</y>
-      <width>300</width>
+      <width>302</width>
       <height>820</height>
      </rect>
     </property>
@@ -129,7 +129,7 @@ border-radius: 2px;
      <string>IOC=$(IOC)</string>
     </property>
     <property name="filename" stdset="0">
-     <string notr="true">G_IFCMON_include_ifctc1.ui</string>
+     <string notr="true">ifcmon_include_ifctc2.ui</string>
     </property>
    </widget>
    <widget class="caInclude" name="cainclude">
@@ -145,7 +145,7 @@ border-radius: 2px;
      <string>IOC=$(IOC)</string>
     </property>
     <property name="filename" stdset="0">
-     <string notr="true">G_IFCMON_include_main.ui</string>
+     <string notr="true">ifcmon_include_main.ui</string>
     </property>
    </widget>
    <widget class="caFrame" name="caframe_3">
@@ -167,7 +167,7 @@ border-radius: 2px;
     <property name="backgroundMode">
      <enum>caFrame::Filled</enum>
     </property>
-    <widget class="caLabel" name="caLabel_3">
+    <widget class="caLabel" name="caLabel_4">
      <property name="geometry">
       <rect>
        <x>10</x>

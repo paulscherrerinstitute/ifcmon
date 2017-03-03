@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
+    <width>302</width>
     <height>820</height>
    </rect>
   </property>
@@ -158,8 +158,11 @@ border-radius: 2px;
       <height>40</height>
      </rect>
     </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
     <property name="text">
-     <string>IFC_TC1</string>
+     <string>IFC_TC2</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -185,230 +188,11 @@ border-radius: 2px;
      <enum>QFrame::NoFrame</enum>
     </property>
    </widget>
-   <widget class="caGraphics" name="caRectangle_1">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>690</y>
-      <width>271</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>187</red>
-      <green>187</green>
-      <blue>187</blue>
-     </color>
-    </property>
-    <property name="linestyle" stdset="0">
-     <enum>caGraphics::Solid</enum>
-    </property>
-    <property name="fillstyle" stdset="0">
-     <enum>caGraphics::Filled</enum>
-    </property>
-    <property name="lineColor">
-     <color>
-      <red>187</red>
-      <green>187</green>
-      <blue>187</blue>
-     </color>
-    </property>
-    <property name="form">
-     <enum>caGraphics::Rectangle</enum>
-    </property>
-   </widget>
-   <widget class="caLabel" name="caLabel_1">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>690</y>
-      <width>200</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Firmware</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="fontScaleMode">
-     <enum>ESimpleLabel::Height</enum>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-   </widget>
-   <widget class="caLabel" name="caLabel_2">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>710</y>
-      <width>120</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>CPLD Revision</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="fontScaleMode">
-     <enum>ESimpleLabel::Height</enum>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-   </widget>
-   <widget class="caLineEdit" name="caLineEdit_0">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>710</y>
-      <width>50</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-    <property name="channel" stdset="0">
-     <string>$(IOC):IFCTC1-FW-MAJOR</string>
-    </property>
-    <property name="background">
-     <color>
-      <red>236</red>
-      <green>236</green>
-      <blue>236</blue>
-     </color>
-    </property>
-    <property name="formatType">
-     <enum>caLineEdit::decimal</enum>
-    </property>
-   </widget>
-   <widget class="caLabel" name="caLabel_3">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>730</y>
-      <width>120</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>CPLD date YMD</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="fontScaleMode">
-     <enum>ESimpleLabel::Height</enum>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-   </widget>
-   <widget class="caLineEdit" name="caLineEdit_1">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>730</y>
-      <width>105</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignCenter|Qt::AlignHCenter|Qt::AlignVCenter</set>
-    </property>
-    <property name="channel" stdset="0">
-     <string>$(IOC):IFCTC1-FW-SIGN</string>
-    </property>
-    <property name="background">
-     <color>
-      <red>236</red>
-      <green>236</green>
-      <blue>236</blue>
-     </color>
-    </property>
-    <property name="formatType">
-     <enum>caLineEdit::hexadecimal</enum>
-    </property>
-   </widget>
-   <widget class="caLineEdit" name="caLineEdit_2">
-    <property name="geometry">
-     <rect>
-      <x>215</x>
-      <y>710</y>
-      <width>50</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="channel" stdset="0">
-     <string>$(IOC):IFCTC1-FW-MINOR</string>
-    </property>
-    <property name="background">
-     <color>
-      <red>236</red>
-      <green>236</green>
-      <blue>236</blue>
-     </color>
-    </property>
-    <property name="formatType">
-     <enum>caLineEdit::decimal</enum>
-    </property>
-   </widget>
    <widget class="caGraphics" name="caRectangle_2">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>375</y>
+      <y>235</y>
       <width>280</width>
       <height>44</height>
      </rect>
@@ -441,7 +225,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>255</x>
-      <y>380</y>
+      <y>243</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -467,10 +251,10 @@ border-radius: 2px;
      <string/>
     </property>
     <property name="files">
-     <string notr="true">G_IFCMON_sub_ifctc1_sfp.ui</string>
+     <string notr="true">ifcmon_sub_sfp.ui</string>
     </property>
     <property name="args">
-     <string>IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1143</string>
+     <string notr="true">IOC=$(IOC),SUBDEV=IFCTC2,SFPFCT=GTX1143</string>
     </property>
     <property name="stackingMode" stdset="0">
      <enum>caRowColMenu::Menu</enum>
@@ -480,16 +264,22 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>26</x>
-      <y>400</y>
-      <width>150</width>
-      <height>15</height>
+      <y>260</y>
+      <width>180</width>
+      <height>18</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
-     <string>$(IOC):IFCTC1-SFP-GTX1143-TYPE</string>
+     <string notr="true">$(IOC):IFCTC2-SFP-GTX1143-TYPE</string>
     </property>
     <property name="foreground">
      <color>
@@ -508,20 +298,8 @@ border-radius: 2px;
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
     </property>
-    <property name="precisionMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="limitsMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="maxValue">
-     <double>1.000000000000000</double>
-    </property>
-    <property name="minValue">
-     <double>0.000000000000000</double>
-    </property>
     <property name="fontScaleMode" stdset="0">
-     <enum>caLineEdit::Height</enum>
+     <enum>caLineEdit::WidthAndHeight</enum>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -531,8 +309,8 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>25</x>
-      <y>380</y>
-      <width>180</width>
+      <y>240</y>
+      <width>140</width>
       <height>18</height>
      </rect>
     </property>
@@ -567,7 +345,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>205</x>
-      <y>380</y>
+      <y>243</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -593,10 +371,10 @@ border-radius: 2px;
      <string/>
     </property>
     <property name="files">
-     <string notr="true">G_IFCMON_sub_gtx.ui</string>
+     <string notr="true">ifcmon_sub_gtx.ui</string>
     </property>
     <property name="args">
-     <string>IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1143</string>
+     <string notr="true">IOC=$(IOC),SUBDEV=IFCTC2,SFPFCT=GTX1143</string>
     </property>
     <property name="stackingMode" stdset="0">
      <enum>caRowColMenu::Menu</enum>
@@ -606,7 +384,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>425</y>
+      <y>285</y>
       <width>280</width>
       <height>44</height>
      </rect>
@@ -639,7 +417,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>255</x>
-      <y>430</y>
+      <y>293</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -665,10 +443,10 @@ border-radius: 2px;
      <string/>
     </property>
     <property name="files">
-     <string notr="true">G_IFCMON_sub_ifctc1_sfp.ui</string>
+     <string notr="true">ifcmon_sub_sfp.ui</string>
     </property>
     <property name="args">
-     <string>IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1142</string>
+     <string notr="true">IOC=$(IOC),SUBDEV=IFCTC2,SFPFCT=GTX1142</string>
     </property>
     <property name="stackingMode" stdset="0">
      <enum>caRowColMenu::Menu</enum>
@@ -678,16 +456,22 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>26</x>
-      <y>450</y>
-      <width>150</width>
-      <height>15</height>
+      <y>310</y>
+      <width>180</width>
+      <height>18</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
-     <string>$(IOC):IFCTC1-SFP-GTX1142-TYPE</string>
+     <string notr="true">$(IOC):IFCTC2-SFP-GTX1142-TYPE</string>
     </property>
     <property name="foreground">
      <color>
@@ -706,20 +490,8 @@ border-radius: 2px;
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
     </property>
-    <property name="precisionMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="limitsMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="maxValue">
-     <double>1.000000000000000</double>
-    </property>
-    <property name="minValue">
-     <double>0.000000000000000</double>
-    </property>
     <property name="fontScaleMode" stdset="0">
-     <enum>caLineEdit::Height</enum>
+     <enum>caLineEdit::WidthAndHeight</enum>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -729,8 +501,8 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>25</x>
-      <y>430</y>
-      <width>180</width>
+      <y>290</y>
+      <width>140</width>
       <height>18</height>
      </rect>
     </property>
@@ -765,7 +537,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>205</x>
-      <y>430</y>
+      <y>293</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -791,10 +563,10 @@ border-radius: 2px;
      <string/>
     </property>
     <property name="files">
-     <string notr="true">G_IFCMON_sub_gtx.ui</string>
+     <string notr="true">ifcmon_sub_gtx.ui</string>
     </property>
     <property name="args">
-     <string>IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1142</string>
+     <string notr="true">IOC=$(IOC),SUBDEV=IFCTC2,SFPFCT=GTX1142</string>
     </property>
     <property name="stackingMode" stdset="0">
      <enum>caRowColMenu::Menu</enum>
@@ -804,7 +576,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>475</y>
+      <y>335</y>
       <width>280</width>
       <height>44</height>
      </rect>
@@ -837,7 +609,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>255</x>
-      <y>480</y>
+      <y>343</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -863,10 +635,10 @@ border-radius: 2px;
      <string/>
     </property>
     <property name="files">
-     <string notr="true">G_IFCMON_sub_ifctc1_sfp.ui</string>
+     <string notr="true">ifcmon_sub_sfp.ui</string>
     </property>
     <property name="args">
-     <string>IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1141</string>
+     <string notr="true">IOC=$(IOC),SUBDEV=IFCTC2,SFPFCT=GTX1141</string>
     </property>
     <property name="stackingMode" stdset="0">
      <enum>caRowColMenu::Menu</enum>
@@ -876,16 +648,22 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>26</x>
-      <y>500</y>
-      <width>150</width>
-      <height>15</height>
+      <y>360</y>
+      <width>180</width>
+      <height>18</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
-     <string>$(IOC):IFCTC1-SFP-GTX1141-TYPE</string>
+     <string notr="true">$(IOC):IFCTC2-SFP-GTX1141-TYPE</string>
     </property>
     <property name="foreground">
      <color>
@@ -904,20 +682,8 @@ border-radius: 2px;
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
     </property>
-    <property name="precisionMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="limitsMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="maxValue">
-     <double>1.000000000000000</double>
-    </property>
-    <property name="minValue">
-     <double>0.000000000000000</double>
-    </property>
     <property name="fontScaleMode" stdset="0">
-     <enum>caLineEdit::Height</enum>
+     <enum>caLineEdit::WidthAndHeight</enum>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -927,8 +693,8 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>25</x>
-      <y>480</y>
-      <width>180</width>
+      <y>340</y>
+      <width>140</width>
       <height>18</height>
      </rect>
     </property>
@@ -963,7 +729,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>205</x>
-      <y>480</y>
+      <y>343</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -989,10 +755,10 @@ border-radius: 2px;
      <string/>
     </property>
     <property name="files">
-     <string notr="true">G_IFCMON_sub_gtx.ui</string>
+     <string notr="true">ifcmon_sub_gtx.ui</string>
     </property>
     <property name="args">
-     <string>IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1141</string>
+     <string notr="true">IOC=$(IOC),SUBDEV=IFCTC2,SFPFCT=GTX1141</string>
     </property>
     <property name="stackingMode" stdset="0">
      <enum>caRowColMenu::Menu</enum>
@@ -1002,7 +768,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>525</y>
+      <y>385</y>
       <width>280</width>
       <height>44</height>
      </rect>
@@ -1035,7 +801,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>255</x>
-      <y>530</y>
+      <y>393</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -1061,10 +827,10 @@ border-radius: 2px;
      <string/>
     </property>
     <property name="files">
-     <string notr="true">G_IFCMON_sub_ifctc1_sfp.ui</string>
+     <string notr="true">ifcmon_sub_sfp.ui</string>
     </property>
     <property name="args">
-     <string>IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1140</string>
+     <string notr="true">IOC=$(IOC),SUBDEV=IFCTC2,SFPFCT=GTX1140</string>
     </property>
     <property name="stackingMode" stdset="0">
      <enum>caRowColMenu::Menu</enum>
@@ -1074,16 +840,22 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>26</x>
-      <y>550</y>
-      <width>150</width>
-      <height>15</height>
+      <y>410</y>
+      <width>180</width>
+      <height>18</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
-     <string>$(IOC):IFCTC1-SFP-GTX1140-TYPE</string>
+     <string notr="true">$(IOC):IFCTC2-SFP-GTX1140-TYPE</string>
     </property>
     <property name="foreground">
      <color>
@@ -1102,20 +874,8 @@ border-radius: 2px;
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
     </property>
-    <property name="precisionMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="limitsMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="maxValue">
-     <double>1.000000000000000</double>
-    </property>
-    <property name="minValue">
-     <double>0.000000000000000</double>
-    </property>
     <property name="fontScaleMode" stdset="0">
-     <enum>caLineEdit::Height</enum>
+     <enum>caLineEdit::WidthAndHeight</enum>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -1125,8 +885,8 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>25</x>
-      <y>525</y>
-      <width>180</width>
+      <y>390</y>
+      <width>140</width>
       <height>18</height>
      </rect>
     </property>
@@ -1161,7 +921,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>205</x>
-      <y>530</y>
+      <y>393</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -1187,10 +947,10 @@ border-radius: 2px;
      <string/>
     </property>
     <property name="files">
-     <string notr="true">G_IFCMON_sub_gtx.ui</string>
+     <string notr="true">ifcmon_sub_gtx.ui</string>
     </property>
     <property name="args">
-     <string>IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1140</string>
+     <string notr="true">IOC=$(IOC),SUBDEV=IFCTC2,SFPFCT=GTX1140</string>
     </property>
     <property name="stackingMode" stdset="0">
      <enum>caRowColMenu::Menu</enum>
@@ -1200,7 +960,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>575</y>
+      <y>435</y>
       <width>280</width>
       <height>44</height>
      </rect>
@@ -1233,7 +993,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>255</x>
-      <y>580</y>
+      <y>443</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -1259,10 +1019,10 @@ border-radius: 2px;
      <string/>
     </property>
     <property name="files">
-     <string notr="true">G_IFCMON_sub_ifctc1_sfp.ui</string>
+     <string notr="true">ifcmon_sub_sfp.ui</string>
     </property>
     <property name="args">
-     <string>IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1133</string>
+     <string notr="true">IOC=$(IOC),SUBDEV=IFCTC2,SFPFCT=GTX1133</string>
     </property>
     <property name="stackingMode" stdset="0">
      <enum>caRowColMenu::Menu</enum>
@@ -1272,16 +1032,22 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>26</x>
-      <y>600</y>
-      <width>150</width>
-      <height>15</height>
+      <y>460</y>
+      <width>180</width>
+      <height>18</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
-     <string>$(IOC):IFCTC1-SFP-GTX1133-TYPE</string>
+     <string notr="true">$(IOC):IFCTC2-SFP-GTX1133-TYPE</string>
     </property>
     <property name="foreground">
      <color>
@@ -1300,20 +1066,8 @@ border-radius: 2px;
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
     </property>
-    <property name="precisionMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="limitsMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="maxValue">
-     <double>1.000000000000000</double>
-    </property>
-    <property name="minValue">
-     <double>0.000000000000000</double>
-    </property>
     <property name="fontScaleMode" stdset="0">
-     <enum>caLineEdit::Height</enum>
+     <enum>caLineEdit::WidthAndHeight</enum>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -1323,8 +1077,8 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>25</x>
-      <y>575</y>
-      <width>180</width>
+      <y>440</y>
+      <width>140</width>
       <height>18</height>
      </rect>
     </property>
@@ -1359,7 +1113,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>205</x>
-      <y>580</y>
+      <y>443</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -1385,10 +1139,10 @@ border-radius: 2px;
      <string/>
     </property>
     <property name="files">
-     <string notr="true">G_IFCMON_sub_gtx.ui</string>
+     <string notr="true">ifcmon_sub_gtx.ui</string>
     </property>
     <property name="args">
-     <string>IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1133</string>
+     <string notr="true">IOC=$(IOC),SUBDEV=IFCTC2,SFPFCT=GTX1133</string>
     </property>
     <property name="stackingMode" stdset="0">
      <enum>caRowColMenu::Menu</enum>
@@ -1398,7 +1152,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>625</y>
+      <y>485</y>
       <width>280</width>
       <height>44</height>
      </rect>
@@ -1431,7 +1185,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>255</x>
-      <y>630</y>
+      <y>493</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -1457,10 +1211,10 @@ border-radius: 2px;
      <string/>
     </property>
     <property name="files">
-     <string notr="true">G_IFCMON_sub_ifctc1_sfp.ui</string>
+     <string notr="true">ifcmon_sub_sfp.ui</string>
     </property>
     <property name="args">
-     <string>IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1132</string>
+     <string notr="true">IOC=$(IOC),SUBDEV=IFCTC2,SFPFCT=GTX1132</string>
     </property>
     <property name="stackingMode" stdset="0">
      <enum>caRowColMenu::Menu</enum>
@@ -1470,16 +1224,22 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>26</x>
-      <y>650</y>
-      <width>150</width>
-      <height>15</height>
+      <y>510</y>
+      <width>180</width>
+      <height>18</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
-     <string>$(IOC):IFCTC1-SFP-GTX1132-TYPE</string>
+     <string notr="true">$(IOC):IFCTC2-SFP-GTX1132-TYPE</string>
     </property>
     <property name="foreground">
      <color>
@@ -1498,20 +1258,8 @@ border-radius: 2px;
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
     </property>
-    <property name="precisionMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="limitsMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="maxValue">
-     <double>1.000000000000000</double>
-    </property>
-    <property name="minValue">
-     <double>0.000000000000000</double>
-    </property>
     <property name="fontScaleMode" stdset="0">
-     <enum>caLineEdit::Height</enum>
+     <enum>caLineEdit::WidthAndHeight</enum>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -1521,8 +1269,8 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>25</x>
-      <y>625</y>
-      <width>180</width>
+      <y>490</y>
+      <width>140</width>
       <height>18</height>
      </rect>
     </property>
@@ -1557,7 +1305,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>205</x>
-      <y>630</y>
+      <y>493</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -1583,10 +1331,10 @@ border-radius: 2px;
      <string/>
     </property>
     <property name="files">
-     <string notr="true">G_IFCMON_sub_gtx.ui</string>
+     <string notr="true">ifcmon_sub_gtx.ui</string>
     </property>
     <property name="args">
-     <string>IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=GTX1132</string>
+     <string notr="true">IOC=$(IOC),SUBDEV=IFCTC2,SFPFCT=GTX1132</string>
     </property>
     <property name="stackingMode" stdset="0">
      <enum>caRowColMenu::Menu</enum>
@@ -1596,7 +1344,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>170</y>
+      <y>60</y>
       <width>280</width>
       <height>44</height>
      </rect>
@@ -1629,7 +1377,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>255</x>
-      <y>175</y>
+      <y>68</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -1655,10 +1403,10 @@ border-radius: 2px;
      <string/>
     </property>
     <property name="files">
-     <string notr="true">G_IFCMON_sub_ifctc1_sfp.ui</string>
+     <string notr="true">ifcmon_sub_sfp.ui</string>
     </property>
     <property name="args">
-     <string>IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=PCIEP12</string>
+     <string notr="true">IOC=$(IOC),SUBDEV=IFCTC2,SFPFCT=PCIEP08</string>
     </property>
     <property name="stackingMode" stdset="0">
      <enum>caRowColMenu::Menu</enum>
@@ -1668,16 +1416,22 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>26</x>
-      <y>195</y>
-      <width>150</width>
-      <height>15</height>
+      <y>83</y>
+      <width>180</width>
+      <height>18</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Lucida Sans Typewriter</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
-     <string>$(IOC):IFCTC1-SFP-PCIEP12-TYPE</string>
+     <string notr="true">$(IOC):IFCTC2-SFP-PCIEP08-TYPE</string>
     </property>
     <property name="foreground">
      <color>
@@ -1696,20 +1450,8 @@ border-radius: 2px;
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
     </property>
-    <property name="precisionMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="limitsMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="maxValue">
-     <double>1.000000000000000</double>
-    </property>
-    <property name="minValue">
-     <double>0.000000000000000</double>
-    </property>
     <property name="fontScaleMode" stdset="0">
-     <enum>caLineEdit::Height</enum>
+     <enum>caLineEdit::WidthAndHeight</enum>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -1719,13 +1461,13 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>25</x>
-      <y>175</y>
-      <width>180</width>
+      <y>64</y>
+      <width>140</width>
       <height>18</height>
      </rect>
     </property>
     <property name="text">
-     <string>PCIe 1 / port 12</string>
+     <string>PCIe 1 / port 8</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -1755,7 +1497,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>220</y>
+      <y>110</y>
       <width>280</width>
       <height>44</height>
      </rect>
@@ -1788,7 +1530,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>255</x>
-      <y>225</y>
+      <y>118</y>
       <width>40</width>
       <height>30</height>
      </rect>
@@ -1814,10 +1556,10 @@ border-radius: 2px;
      <string/>
     </property>
     <property name="files">
-     <string notr="true">G_IFCMON_sub_ifctc1_sfp.ui</string>
+     <string notr="true">ifcmon_sub_sfp.ui</string>
     </property>
     <property name="args">
-     <string>IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=PCIEP13</string>
+     <string notr="true">IOC=$(IOC),SUBDEV=IFCTC2,SFPFCT=PCIEP12</string>
     </property>
     <property name="stackingMode" stdset="0">
      <enum>caRowColMenu::Menu</enum>
@@ -1827,16 +1569,22 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>26</x>
-      <y>245</y>
-      <width>150</width>
-      <height>15</height>
+      <y>132</y>
+      <width>180</width>
+      <height>18</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Lucida Sans Typewriter</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
-     <string>$(IOC):IFCTC1-SFP-PCIEP13-TYPE</string>
+     <string notr="true">$(IOC):IFCTC2-SFP-PCIEP12-TYPE</string>
     </property>
     <property name="foreground">
      <color>
@@ -1855,20 +1603,8 @@ border-radius: 2px;
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
     </property>
-    <property name="precisionMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="limitsMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="maxValue">
-     <double>1.000000000000000</double>
-    </property>
-    <property name="minValue">
-     <double>0.000000000000000</double>
-    </property>
     <property name="fontScaleMode" stdset="0">
-     <enum>caLineEdit::Height</enum>
+     <enum>caLineEdit::WidthAndHeight</enum>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -1878,462 +1614,13 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>25</x>
-      <y>220</y>
-      <width>180</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PCIe 2 / port 13</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="fontScaleMode">
-     <enum>ESimpleLabel::Height</enum>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-   </widget>
-   <widget class="caGraphics" name="caRectangle_10">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>270</y>
-      <width>280</width>
-      <height>44</height>
-     </rect>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>225</red>
-      <green>144</green>
-      <blue>21</blue>
-     </color>
-    </property>
-    <property name="linestyle" stdset="0">
-     <enum>caGraphics::Solid</enum>
-    </property>
-    <property name="fillstyle" stdset="0">
-     <enum>caGraphics::Filled</enum>
-    </property>
-    <property name="lineColor">
-     <color>
-      <red>225</red>
-      <green>144</green>
-      <blue>21</blue>
-     </color>
-    </property>
-    <property name="form">
-     <enum>caGraphics::Rectangle</enum>
-    </property>
-   </widget>
-   <widget class="caRelatedDisplay" name="caRelatedDisplay_14">
-    <property name="geometry">
-     <rect>
-      <x>255</x>
-      <y>275</y>
-      <width>40</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="label">
-     <string>-SFP</string>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color>
-      <red>174</red>
-      <green>174</green>
-      <blue>174</blue>
-     </color>
-    </property>
-    <property name="labels">
-     <string/>
-    </property>
-    <property name="files">
-     <string notr="true">G_IFCMON_sub_ifctc1_sfp.ui</string>
-    </property>
-    <property name="args">
-     <string>IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=PCIEP14</string>
-    </property>
-    <property name="stackingMode" stdset="0">
-     <enum>caRowColMenu::Menu</enum>
-    </property>
-   </widget>
-   <widget class="caLineEdit" name="caLineEdit_11">
-    <property name="geometry">
-     <rect>
-      <x>26</x>
-      <y>295</y>
-      <width>150</width>
-      <height>15</height>
-     </rect>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-    <property name="channel" stdset="0">
-     <string>$(IOC):IFCTC1-SFP-PCIEP14-TYPE</string>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>255</red>
-      <green>255</green>
-      <blue>255</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color>
-      <red>225</red>
-      <green>144</green>
-      <blue>21</blue>
-     </color>
-    </property>
-    <property name="colorMode">
-     <enum>caLineEdit::Static</enum>
-    </property>
-    <property name="precisionMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="limitsMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="maxValue">
-     <double>1.000000000000000</double>
-    </property>
-    <property name="minValue">
-     <double>0.000000000000000</double>
-    </property>
-    <property name="fontScaleMode" stdset="0">
-     <enum>caLineEdit::Height</enum>
-    </property>
-    <property name="formatType">
-     <enum>caLineEdit::string</enum>
-    </property>
-   </widget>
-   <widget class="caLabel" name="caLabel_12">
-    <property name="geometry">
-     <rect>
-      <x>25</x>
-      <y>270</y>
-      <width>180</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PCIe 3 / port 14</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="fontScaleMode">
-     <enum>ESimpleLabel::Height</enum>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-   </widget>
-   <widget class="caGraphics" name="caRectangle_11">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>320</y>
-      <width>280</width>
-      <height>44</height>
-     </rect>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>225</red>
-      <green>144</green>
-      <blue>21</blue>
-     </color>
-    </property>
-    <property name="linestyle" stdset="0">
-     <enum>caGraphics::Solid</enum>
-    </property>
-    <property name="fillstyle" stdset="0">
-     <enum>caGraphics::Filled</enum>
-    </property>
-    <property name="lineColor">
-     <color>
-      <red>225</red>
-      <green>144</green>
-      <blue>21</blue>
-     </color>
-    </property>
-    <property name="form">
-     <enum>caGraphics::Rectangle</enum>
-    </property>
-   </widget>
-   <widget class="caRelatedDisplay" name="caRelatedDisplay_15">
-    <property name="geometry">
-     <rect>
-      <x>255</x>
-      <y>325</y>
-      <width>40</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="label">
-     <string>-SFP</string>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color>
-      <red>174</red>
-      <green>174</green>
-      <blue>174</blue>
-     </color>
-    </property>
-    <property name="labels">
-     <string/>
-    </property>
-    <property name="files">
-     <string notr="true">G_IFCMON_sub_ifctc1_sfp.ui</string>
-    </property>
-    <property name="args">
-     <string>IOC=$(IOC),SUBDEV=IFCTC1,SFPFCT=PCIEP15</string>
-    </property>
-    <property name="stackingMode" stdset="0">
-     <enum>caRowColMenu::Menu</enum>
-    </property>
-   </widget>
-   <widget class="caLineEdit" name="caLineEdit_12">
-    <property name="geometry">
-     <rect>
-      <x>26</x>
-      <y>345</y>
-      <width>150</width>
-      <height>15</height>
-     </rect>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-    <property name="channel" stdset="0">
-     <string>$(IOC):IFCTC1-SFP-PCIEP15-TYPE</string>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>255</red>
-      <green>255</green>
-      <blue>255</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color>
-      <red>225</red>
-      <green>144</green>
-      <blue>21</blue>
-     </color>
-    </property>
-    <property name="colorMode">
-     <enum>caLineEdit::Static</enum>
-    </property>
-    <property name="precisionMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="limitsMode">
-     <enum>caLineEdit::Channel</enum>
-    </property>
-    <property name="maxValue">
-     <double>1.000000000000000</double>
-    </property>
-    <property name="minValue">
-     <double>0.000000000000000</double>
-    </property>
-    <property name="fontScaleMode" stdset="0">
-     <enum>caLineEdit::Height</enum>
-    </property>
-    <property name="formatType">
-     <enum>caLineEdit::string</enum>
-    </property>
-   </widget>
-   <widget class="caLabel" name="caLabel_13">
-    <property name="geometry">
-     <rect>
-      <x>25</x>
-      <y>320</y>
-      <width>180</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PCIe 4 / port 15</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="fontScaleMode">
-     <enum>ESimpleLabel::Height</enum>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-   </widget>
-   <widget class="caGraphics" name="caRectangle_12">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>40</y>
-      <width>280</width>
-      <height>122</height>
-     </rect>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>225</red>
-      <green>144</green>
-      <blue>21</blue>
-     </color>
-    </property>
-    <property name="linestyle" stdset="0">
-     <enum>caGraphics::Solid</enum>
-    </property>
-    <property name="fillstyle" stdset="0">
-     <enum>caGraphics::Filled</enum>
-    </property>
-    <property name="lineColor">
-     <color>
-      <red>225</red>
-      <green>144</green>
-      <blue>21</blue>
-     </color>
-    </property>
-    <property name="form">
-     <enum>caGraphics::Rectangle</enum>
-    </property>
-   </widget>
-   <widget class="caLabel" name="caLabel_14">
-    <property name="geometry">
-     <rect>
-      <x>25</x>
-      <y>40</y>
-      <width>266</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PCIe ext. cabling (HCI)</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="fontScaleMode">
-     <enum>ESimpleLabel::Height</enum>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-   </widget>
-   <widget class="caLineEdit" name="caLineEdit_13">
-    <property name="geometry">
-     <rect>
-      <x>165</x>
-      <y>70</y>
-      <width>130</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-    <property name="channel" stdset="0">
-     <string>$(IOC):IFCTC1-HCI-TYPE</string>
-    </property>
-    <property name="background">
-     <color>
-      <red>236</red>
-      <green>236</green>
-      <blue>236</blue>
-     </color>
-    </property>
-    <property name="formatType">
-     <enum>caLineEdit::string</enum>
-    </property>
-   </widget>
-   <widget class="caLabel" name="caLabel_15">
-    <property name="geometry">
-     <rect>
-      <x>25</x>
-      <y>70</y>
+      <y>113</y>
       <width>140</width>
       <height>18</height>
      </rect>
     </property>
     <property name="text">
-     <string>connector type</string>
+     <string>PCIe 2 / port 12</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -2357,143 +1644,19 @@ border-radius: 2px;
     </property>
     <property name="frameShape">
      <enum>QFrame::NoFrame</enum>
-    </property>
-   </widget>
-   <widget class="caLabel" name="caLabel_16">
-    <property name="geometry">
-     <rect>
-      <x>25</x>
-      <y>90</y>
-      <width>140</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PCIe EP type</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="fontScaleMode">
-     <enum>ESimpleLabel::Height</enum>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-   </widget>
-   <widget class="caLineEdit" name="caLineEdit_14">
-    <property name="geometry">
-     <rect>
-      <x>165</x>
-      <y>90</y>
-      <width>130</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-    <property name="channel" stdset="0">
-     <string>$(IOC):IFCTC1-PCIE-UPDN</string>
-    </property>
-    <property name="background">
-     <color>
-      <red>236</red>
-      <green>236</green>
-      <blue>236</blue>
-     </color>
-    </property>
-    <property name="formatType">
-     <enum>caLineEdit::string</enum>
-    </property>
-   </widget>
-   <widget class="caLabel" name="caLabel_17">
-    <property name="geometry">
-     <rect>
-      <x>25</x>
-      <y>110</y>
-      <width>140</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PCIe DN prsnt</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="fontScaleMode">
-     <enum>ESimpleLabel::Height</enum>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-   </widget>
-   <widget class="caLineEdit" name="caLineEdit_15">
-    <property name="geometry">
-     <rect>
-      <x>165</x>
-      <y>110</y>
-      <width>130</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-    <property name="channel" stdset="0">
-     <string>$(IOC):IFCTC1-PCIE-PRESENT</string>
-    </property>
-    <property name="background">
-     <color>
-      <red>236</red>
-      <green>236</green>
-      <blue>236</blue>
-     </color>
-    </property>
-    <property name="formatType">
-     <enum>caLineEdit::string</enum>
     </property>
    </widget>
    <widget class="caRelatedDisplay" name="caRelatedDisplay_16">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>135</y>
-      <width>250</width>
-      <height>26</height>
+      <x>205</x>
+      <y>68</y>
+      <width>40</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="label">
-     <string>-PCIe ext cabling redriver setup/details</string>
+     <string notr="true">-REP</string>
     </property>
     <property name="foreground">
      <color>
@@ -2513,10 +1676,10 @@ border-radius: 2px;
      <string/>
     </property>
     <property name="files">
-     <string notr="true">G_IFCMON_sub_ifctc1_pcie.ui</string>
+     <string notr="true">ifcmon_sub_ifctc2_pcie.ui</string>
     </property>
     <property name="args">
-     <string>IOC=$(IOC)</string>
+     <string notr="true">IOC=$(IOC),PCIENR=08</string>
     </property>
     <property name="stackingMode" stdset="0">
      <enum>caRowColMenu::Menu</enum>
@@ -2526,9 +1689,9 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>755</y>
-      <width>271</width>
-      <height>51</height>
+      <y>632</y>
+      <width>266</width>
+      <height>56</height>
      </rect>
     </property>
     <property name="foreground">
@@ -2559,49 +1722,13 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>25</x>
-      <y>755</y>
-      <width>200</width>
-      <height>26</height>
+      <y>640</y>
+      <width>166</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>Power</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="fontScaleMode">
-     <enum>ESimpleLabel::Height</enum>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-   </widget>
-   <widget class="caLabel" name="caLabel_19">
-    <property name="geometry">
-     <rect>
-      <x>35</x>
-      <y>785</y>
-      <width>120</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Dissipation</string>
+     <string>Programmable Clock</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -2630,17 +1757,23 @@ border-radius: 2px;
    <widget class="caLineEdit" name="caLineEdit_16">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>785</y>
-      <width>100</width>
+      <x>155</x>
+      <y>666</y>
+      <width>121</width>
       <height>18</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="alignment">
      <set>Qt::AlignAbsolute|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
-     <string>$(IOC):IFCTC1-PWRMON-DISS</string>
+     <string notr="true">$(IOC):IFCTC2-PGMCLOCK-FREQ</string>
     </property>
     <property name="background">
      <color>
@@ -2649,16 +1782,34 @@ border-radius: 2px;
       <blue>236</blue>
      </color>
     </property>
+    <property name="precisionMode">
+     <enum>caLineEdit::Channel</enum>
+    </property>
+    <property name="limitsMode">
+     <enum>caLineEdit::Channel</enum>
+    </property>
+    <property name="maxValue">
+     <double>1.000000000000000</double>
+    </property>
+    <property name="minValue">
+     <double>0.000000000000000</double>
+    </property>
+    <property name="fontScaleMode" stdset="0">
+     <enum>caLineEdit::Height</enum>
+    </property>
     <property name="unitsEnabled">
      <bool>true</bool>
+    </property>
+    <property name="formatType">
+     <enum>caLineEdit::decimal</enum>
     </property>
    </widget>
    <widget class="caRelatedDisplay" name="caRelatedDisplay_17">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>755</y>
-      <width>105</width>
+      <x>190</x>
+      <y>635</y>
+      <width>90</width>
       <height>26</height>
      </rect>
     </property>
@@ -2683,37 +1834,558 @@ border-radius: 2px;
      <string/>
     </property>
     <property name="files">
-     <string notr="true">G_IFCMON_include_pwrmon.ui</string>
+     <string notr="true">ifcmon_sub_ifctc2_pgmclk.ui</string>
     </property>
     <property name="args">
-     <string>IOC=$(IOC),SUBDEV=IFCTC1</string>
+     <string notr="true">IOC=$(IOC),SUBDEV=IFCTC2</string>
     </property>
     <property name="stackingMode" stdset="0">
      <enum>caRowColMenu::Menu</enum>
     </property>
    </widget>
-   <widget class="caLed" name="caled_17">
+   <widget class="caRelatedDisplay" name="caRelatedDisplay_14">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>780</y>
-      <width>30</width>
+      <x>255</x>
+      <y>543</y>
+      <width>40</width>
       <height>30</height>
      </rect>
     </property>
+    <property name="label">
+     <string>-SFP</string>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color>
+      <red>174</red>
+      <green>174</green>
+      <blue>174</blue>
+     </color>
+    </property>
+    <property name="labels">
+     <string/>
+    </property>
+    <property name="files">
+     <string notr="true">ifcmon_sub_sfp.ui</string>
+    </property>
+    <property name="args">
+     <string notr="true">IOC=$(IOC),SUBDEV=IFCTC2,SFPFCT=GTX1131</string>
+    </property>
+    <property name="stackingMode" stdset="0">
+     <enum>caRowColMenu::Menu</enum>
+    </property>
+   </widget>
+   <widget class="caRelatedDisplay" name="caRelatedDisplay_15">
+    <property name="geometry">
+     <rect>
+      <x>205</x>
+      <y>543</y>
+      <width>40</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="label">
+     <string>-GTX</string>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color>
+      <red>174</red>
+      <green>174</green>
+      <blue>174</blue>
+     </color>
+    </property>
+    <property name="labels">
+     <string/>
+    </property>
+    <property name="files">
+     <string notr="true">ifcmon_sub_gtx.ui</string>
+    </property>
+    <property name="args">
+     <string notr="true">IOC=$(IOC),SUBDEV=IFCTC2,SFPFCT=GTX1131</string>
+    </property>
+    <property name="stackingMode" stdset="0">
+     <enum>caRowColMenu::Menu</enum>
+    </property>
+   </widget>
+   <widget class="caGraphics" name="caRectangle_10">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>535</y>
+      <width>280</width>
+      <height>44</height>
+     </rect>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>214</red>
+      <green>127</green>
+      <blue>226</blue>
+     </color>
+    </property>
+    <property name="linestyle" stdset="0">
+     <enum>caGraphics::Solid</enum>
+    </property>
+    <property name="fillstyle" stdset="0">
+     <enum>caGraphics::Filled</enum>
+    </property>
+    <property name="lineColor">
+     <color>
+      <red>214</red>
+      <green>127</green>
+      <blue>226</blue>
+     </color>
+    </property>
+    <property name="form">
+     <enum>caGraphics::Rectangle</enum>
+    </property>
+   </widget>
+   <widget class="caLineEdit" name="caLineEdit_11">
+    <property name="geometry">
+     <rect>
+      <x>26</x>
+      <y>555</y>
+      <width>180</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
     <property name="channel" stdset="0">
-     <string notr="true">$(IOC):IFCTC1-PWRMON-DISS</string>
+     <string notr="true">$(IOC):IFCTC2-SFP-GTX1131-TYPE</string>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>255</red>
+      <green>255</green>
+      <blue>255</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color>
+      <red>214</red>
+      <green>127</green>
+      <blue>226</blue>
+     </color>
     </property>
     <property name="colorMode">
-     <enum>caLed::Alarm</enum>
+     <enum>caLineEdit::Static</enum>
+    </property>
+    <property name="fontScaleMode" stdset="0">
+     <enum>caLineEdit::WidthAndHeight</enum>
+    </property>
+    <property name="formatType">
+     <enum>caLineEdit::string</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_12">
+    <property name="geometry">
+     <rect>
+      <x>25</x>
+      <y>540</y>
+      <width>140</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>SFP7 / GTX 113_1</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::Height</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caRelatedDisplay" name="caRelatedDisplay_18">
+    <property name="geometry">
+     <rect>
+      <x>205</x>
+      <y>593</y>
+      <width>40</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="label">
+     <string>-GTX</string>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color>
+      <red>174</red>
+      <green>174</green>
+      <blue>174</blue>
+     </color>
+    </property>
+    <property name="labels">
+     <string/>
+    </property>
+    <property name="files">
+     <string notr="true">ifcmon_sub_gtx.ui</string>
+    </property>
+    <property name="args">
+     <string notr="true">IOC=$(IOC),SUBDEV=IFCTC2,SFPFCT=GTX1130</string>
+    </property>
+    <property name="stackingMode" stdset="0">
+     <enum>caRowColMenu::Menu</enum>
+    </property>
+   </widget>
+   <widget class="caRelatedDisplay" name="caRelatedDisplay_19">
+    <property name="geometry">
+     <rect>
+      <x>255</x>
+      <y>593</y>
+      <width>40</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="label">
+     <string>-SFP</string>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color>
+      <red>174</red>
+      <green>174</green>
+      <blue>174</blue>
+     </color>
+    </property>
+    <property name="labels">
+     <string/>
+    </property>
+    <property name="files">
+     <string notr="true">ifcmon_sub_sfp.ui</string>
+    </property>
+    <property name="args">
+     <string notr="true">IOC=$(IOC),SUBDEV=IFCTC2,SFPFCT=GTX1130</string>
+    </property>
+    <property name="stackingMode" stdset="0">
+     <enum>caRowColMenu::Menu</enum>
+    </property>
+   </widget>
+   <widget class="caLineEdit" name="caLineEdit_12">
+    <property name="geometry">
+     <rect>
+      <x>26</x>
+      <y>610</y>
+      <width>180</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):IFCTC2-SFP-GTX1130-TYPE</string>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>255</red>
+      <green>255</green>
+      <blue>255</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color>
+      <red>214</red>
+      <green>127</green>
+      <blue>226</blue>
+     </color>
+    </property>
+    <property name="colorMode">
+     <enum>caLineEdit::Static</enum>
+    </property>
+    <property name="fontScaleMode" stdset="0">
+     <enum>caLineEdit::WidthAndHeight</enum>
+    </property>
+    <property name="formatType">
+     <enum>caLineEdit::string</enum>
+    </property>
+   </widget>
+   <widget class="caGraphics" name="caRectangle_11">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>585</y>
+      <width>280</width>
+      <height>44</height>
+     </rect>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>214</red>
+      <green>127</green>
+      <blue>226</blue>
+     </color>
+    </property>
+    <property name="linestyle" stdset="0">
+     <enum>caGraphics::Solid</enum>
+    </property>
+    <property name="fillstyle" stdset="0">
+     <enum>caGraphics::Filled</enum>
+    </property>
+    <property name="lineColor">
+     <color>
+      <red>214</red>
+      <green>127</green>
+      <blue>226</blue>
+     </color>
+    </property>
+    <property name="form">
+     <enum>caGraphics::Rectangle</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_13">
+    <property name="geometry">
+     <rect>
+      <x>25</x>
+      <y>590</y>
+      <width>140</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>SFP8 / GTX 113_0</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::Height</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caRelatedDisplay" name="caRelatedDisplay_20">
+    <property name="geometry">
+     <rect>
+      <x>205</x>
+      <y>118</y>
+      <width>40</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>17</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="label">
+     <string notr="true">-REP</string>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color>
+      <red>174</red>
+      <green>174</green>
+      <blue>174</blue>
+     </color>
+    </property>
+    <property name="labels">
+     <string/>
+    </property>
+    <property name="files">
+     <string notr="true">ifcmon_sub_ifctc2_pcie.ui</string>
+    </property>
+    <property name="args">
+     <string notr="true">IOC=$(IOC),PCIENR=12</string>
+    </property>
+    <property name="stackingMode" stdset="0">
+     <enum>caRowColMenu::Menu</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_19">
+    <property name="geometry">
+     <rect>
+      <x>24</x>
+      <y>179</y>
+      <width>140</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>GTX Repeater:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::Height</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caRelatedDisplay" name="caRelatedDisplay_21">
+    <property name="geometry">
+     <rect>
+      <x>95</x>
+      <y>193</y>
+      <width>200</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="label">
+     <string notr="true">-8 lane repeater setup/details</string>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color>
+      <red>174</red>
+      <green>174</green>
+      <blue>174</blue>
+     </color>
+    </property>
+    <property name="labels">
+     <string/>
+    </property>
+    <property name="files">
+     <string notr="true">ifcmon_sub_ifctc2_gtx.ui</string>
+    </property>
+    <property name="args">
+     <string notr="true">IOC=$(IOC),SUBDEV=IFCTC2</string>
+    </property>
+    <property name="stackingMode" stdset="0">
+     <enum>caRowColMenu::Menu</enum>
+    </property>
+   </widget>
+   <widget class="caGraphics" name="caRectangle_14">
+    <property name="geometry">
+     <rect>
+      <x>21</x>
+      <y>176</y>
+      <width>280</width>
+      <height>45</height>
+     </rect>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>170</green>
+      <blue>255</blue>
+     </color>
+    </property>
+    <property name="linestyle" stdset="0">
+     <enum>caGraphics::Solid</enum>
+    </property>
+    <property name="fillstyle" stdset="0">
+     <enum>caGraphics::Filled</enum>
+    </property>
+    <property name="lineColor">
+     <color>
+      <red>187</red>
+      <green>187</green>
+      <blue>187</blue>
+     </color>
+    </property>
+    <property name="form">
+     <enum>caGraphics::Rectangle</enum>
     </property>
    </widget>
    <zorder>caRectangle_0</zorder>
+   <zorder>caRectangle_14</zorder>
+   <zorder>caRectangle_11</zorder>
+   <zorder>caRectangle_10</zorder>
    <zorder>caLabel_0</zorder>
-   <zorder>caRectangle_1</zorder>
-   <zorder>caLabel_1</zorder>
-   <zorder>caLabel_2</zorder>
-   <zorder>caLabel_3</zorder>
    <zorder>caRectangle_2</zorder>
    <zorder>caLabel_4</zorder>
    <zorder>caRectangle_3</zorder>
@@ -2730,54 +2402,44 @@ border-radius: 2px;
    <zorder>caLabel_10</zorder>
    <zorder>caRectangle_9</zorder>
    <zorder>caLabel_11</zorder>
-   <zorder>caRectangle_10</zorder>
-   <zorder>caLabel_12</zorder>
-   <zorder>caRectangle_11</zorder>
-   <zorder>caLabel_13</zorder>
-   <zorder>caRectangle_12</zorder>
-   <zorder>caLabel_14</zorder>
-   <zorder>caLabel_15</zorder>
-   <zorder>caLabel_16</zorder>
-   <zorder>caLabel_17</zorder>
    <zorder>caRectangle_13</zorder>
    <zorder>caLabel_18</zorder>
-   <zorder>caLabel_19</zorder>
-   <zorder>caLineEdit_0</zorder>
-   <zorder>caLineEdit_1</zorder>
-   <zorder>caLineEdit_2</zorder>
    <zorder>caRelatedDisplay_0</zorder>
-   <zorder>caLineEdit_3</zorder>
    <zorder>caRelatedDisplay_1</zorder>
    <zorder>caRelatedDisplay_2</zorder>
-   <zorder>caLineEdit_4</zorder>
    <zorder>caRelatedDisplay_3</zorder>
    <zorder>caRelatedDisplay_4</zorder>
-   <zorder>caLineEdit_5</zorder>
    <zorder>caRelatedDisplay_5</zorder>
    <zorder>caRelatedDisplay_6</zorder>
-   <zorder>caLineEdit_6</zorder>
    <zorder>caRelatedDisplay_7</zorder>
    <zorder>caRelatedDisplay_8</zorder>
-   <zorder>caLineEdit_7</zorder>
    <zorder>caRelatedDisplay_9</zorder>
    <zorder>caRelatedDisplay_10</zorder>
-   <zorder>caLineEdit_8</zorder>
    <zorder>caRelatedDisplay_11</zorder>
    <zorder>caRelatedDisplay_12</zorder>
    <zorder>caLineEdit_9</zorder>
    <zorder>caRelatedDisplay_13</zorder>
    <zorder>caLineEdit_10</zorder>
-   <zorder>caRelatedDisplay_14</zorder>
-   <zorder>caLineEdit_11</zorder>
-   <zorder>caRelatedDisplay_15</zorder>
-   <zorder>caLineEdit_12</zorder>
-   <zorder>caLineEdit_13</zorder>
-   <zorder>caLineEdit_14</zorder>
-   <zorder>caLineEdit_15</zorder>
    <zorder>caRelatedDisplay_16</zorder>
    <zorder>caLineEdit_16</zorder>
    <zorder>caRelatedDisplay_17</zorder>
-   <zorder>caled_17</zorder>
+   <zorder>caRelatedDisplay_14</zorder>
+   <zorder>caRelatedDisplay_15</zorder>
+   <zorder>caLabel_12</zorder>
+   <zorder>caRelatedDisplay_18</zorder>
+   <zorder>caRelatedDisplay_19</zorder>
+   <zorder>caLabel_13</zorder>
+   <zorder>caRelatedDisplay_20</zorder>
+   <zorder>caLabel_19</zorder>
+   <zorder>caRelatedDisplay_21</zorder>
+   <zorder>caLineEdit_8</zorder>
+   <zorder>caLineEdit_11</zorder>
+   <zorder>caLineEdit_7</zorder>
+   <zorder>caLineEdit_5</zorder>
+   <zorder>caLineEdit_6</zorder>
+   <zorder>caLineEdit_3</zorder>
+   <zorder>caLineEdit_12</zorder>
+   <zorder>caLineEdit_4</zorder>
   </widget>
  </widget>
  <customwidgets>
@@ -2795,11 +2457,6 @@ border-radius: 2px;
    <class>caGraphics</class>
    <extends>QWidget</extends>
    <header>caGraphics</header>
-  </customwidget>
-  <customwidget>
-   <class>caLed</class>
-   <extends>QWidget</extends>
-   <header>caLed</header>
   </customwidget>
   <customwidget>
    <class>caLineEdit</class>
