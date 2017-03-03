@@ -600,16 +600,6 @@ record(calc,"$(IOC):IFC1210-PWRMON-DISS")
     field(FLNK, "$(FLNK=)") # end of IFC1210/ELB main processing chain
 }
 
-record(mbbi,"$(IOC):IFC_TC")
-{
-    field(DESC, "IFC Transition Card")
-    field(VAL,  "$(TC=)")
-    field(ZRST, "None")
-    field(ONST, "IFC_TC1")
-    field(TWST, "IFC_TC2")
-    field(PINI, "YES")
-}
-
 # I2C bus 0x6:      PCI-express
 # device:           PES32NT24AG2 PCI-express switch
 # datasheet:        https://codebeamer.psi.ch/cb/displayDocument/PES32NT24xG2-Device-UserManual.pdf?doc_id=130003

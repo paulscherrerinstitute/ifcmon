@@ -1,20 +1,9 @@
-#--------------------------------------------------------------------
-# Original Author: KR84 / Paul Scherrer Institut
-# $Author: kalt_r $
-# $Date: 2014/07/10 18:25:25 $
-#
-# $Revision: 1.17 $
-# $Header: /cvs/G/IFCMON/G_IFCMON_I2CIFCTC1.template,v 1.17 2014/07/10 18:25:25 kalt_r Exp $
-#
-#--------------------------------------------------------------------
-
-
 # Module Description:
 # Contains the records for universal highspeed transition card IFC_TC1.
 # Possible extenstions over J17 towards mezzanine I2C components are not
 # covered in this template.
 #
-# the SFP+ modules are not coverd in this template, find them in G_IFCMON_I2CIFCTC1_SFP:
+# The SFP+ modules are not coverd in this template, find them in ifcmon_ifctc1_sfp.template:
 #    -SFP+ modules I2C + CPLD IO extender to SFP+ modules
 #
 #
@@ -30,6 +19,10 @@
 #
 # This template requires following substitution parameters:
 # $(IOC)                                        The system name
+# Optional:
+# $(SCAN=)
+# $(EVNT=)
+# $(FLNK=)      forward link of last element in this template
 #
 #--------------------------------------------------------------------
 

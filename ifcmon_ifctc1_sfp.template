@@ -1,5 +1,5 @@
 # Module Description:
-# the SFP+ modules of IFC_TC1 are coverd in this template:
+# The SFP+ modules of IFC_TC1 are coverd in this template:
 #    -SFP+ modules I2C
 #    -CPLD IO extender to SFP+ modules
 #

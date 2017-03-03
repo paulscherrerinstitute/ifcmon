@@ -40,9 +40,7 @@ pevI2cConfigure(0, "lm95235_2",         0x00000098)
 pevI2cConfigure(0, "max5970",           0x400000b0)
 pevI2cConfigure(0, "pgm_clock",         0xe00000ee)
 
-TCNR_TC1="1"
-TCNR_TC2="2"
-dbLoadTemplate $(TEMPLATES)/ifcmon.subs,"IOC=$(IOC),TC=$(TCNR_$(TC=)=0),EVNT=$(EVNT=),SCAN_$(EVNT=)=Event,SCAN_=$(SCAN=2 second),TMEMINPUT_=$(TMEMINPUT=IFCMONUsr1Generic),TMEMOFFS=$(TMEMOFFS=0)"
+dbLoadTemplate $(TEMPLATES)/ifcmon.subs,"IOC=$(IOC),EVNT=$(EVNT=),SCAN_$(EVNT=)=Event,SCAN_=$(SCAN=2 second),TMEMINPUT_=$(TMEMINPUT=IFCMONUsr1Generic),TMEMOFFS=$(TMEMOFFS=0)"
 
 TC1_TC1=""
 $(TC1_$(TC=)=#) runScript ifcmon_TC1.cmd

@@ -1,7 +1,7 @@
 # Module Description:
 # Contains the records for the LLRF highspeed transition card IFC_TC2.
 #
-# the SFP+ modules are not coverd in this template, find them in G_IFCMON_I2CIFCTC1_SFP:
+# The SFP+ modules are not coverd in this template, find them in ifcmon_ifctc2_sfp.template:
 #    -SFP+ modules I2C + CPLD IO extender to SFP+ modules
 #
 #
@@ -23,7 +23,6 @@
 # $(FLNK=)      forward link of last element in this template
 #
 #--------------------------------------------------------------------
-
 
 
 #--------------------------------------------------------------------

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>620</width>
+    <width>865</width>
     <height>865</height>
    </rect>
   </property>
@@ -116,6 +116,31 @@ border-radius: 2px;
 </string>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <widget class="caInclude" name="caInclude_3">
+    <property name="geometry">
+     <rect>
+      <x>565</x>
+      <y>45</y>
+      <width>300</width>
+      <height>820</height>
+     </rect>
+    </property>
+    <property name="macro">
+     <string>IOC=$(IOC)</string>
+    </property>
+    <property name="filename" stdset="0">
+     <string notr="true">ifcmon_include_ifctc1.ui</string>
+    </property>
+    <property name="visibility">
+     <enum>caInclude::Calc</enum>
+    </property>
+    <property name="visibilityCalc">
+     <string notr="true">G</string>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):IFCTC1-FW-MAJOR</string>
+    </property>
+   </widget>
    <widget class="caInclude" name="cainclude">
     <property name="geometry">
      <rect>
@@ -132,94 +157,12 @@ border-radius: 2px;
      <string notr="true">ifcmon_include_main.ui</string>
     </property>
    </widget>
-   <widget class="caFrame" name="caframe">
-    <property name="geometry">
-     <rect>
-      <x>565</x>
-      <y>10</y>
-      <width>50</width>
-      <height>856</height>
-     </rect>
-    </property>
-    <property name="visibility">
-     <enum>caFrame::Calc</enum>
-    </property>
-    <property name="visibilityCalc">
-     <string notr="true">A=1</string>
-    </property>
-    <property name="channel" stdset="0">
-     <string notr="true">$(IOC):IFC_TC</string>
-    </property>
-    <widget class="caRelatedDisplay" name="carelateddisplay">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>35</y>
-       <width>50</width>
-       <height>820</height>
-      </rect>
-     </property>
-     <property name="labels">
-      <string>TC1</string>
-     </property>
-     <property name="files">
-      <string>ifcmon_main_tc1.ui</string>
-     </property>
-     <property name="args">
-      <string>IOC=$(IOC)</string>
-     </property>
-     <property name="removeParent" stdset="0">
-      <string>true;false;false;false;false;false;false;false;false;false;false;false;false;false;false;false</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="caFrame" name="caframe_2">
-    <property name="geometry">
-     <rect>
-      <x>565</x>
-      <y>20</y>
-      <width>50</width>
-      <height>846</height>
-     </rect>
-    </property>
-    <property name="visibility">
-     <enum>caFrame::Calc</enum>
-    </property>
-    <property name="visibilityCalc">
-     <string notr="true">A=2</string>
-    </property>
-    <property name="channel" stdset="0">
-     <string notr="true">$(IOC):IFC_TC</string>
-    </property>
-    <widget class="caRelatedDisplay" name="carelateddisplay_2">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>25</y>
-       <width>50</width>
-       <height>820</height>
-      </rect>
-     </property>
-     <property name="labels">
-      <string>TC2</string>
-     </property>
-     <property name="files">
-      <string>ifcmon_main_tc2.ui</string>
-     </property>
-     <property name="args">
-      <string>IOC=$(IOC)</string>
-     </property>
-     <property name="removeParent" stdset="0">
-      <string>true;false;false;false;false;false;false;false;false;false;false;false;false;false;false;false</string>
-     </property>
-    </widget>
-   </widget>
    <widget class="caFrame" name="caframe_3">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>621</width>
+      <width>865</width>
       <height>40</height>
      </rect>
     </property>
@@ -238,7 +181,7 @@ border-radius: 2px;
       <rect>
        <x>10</x>
        <y>5</y>
-       <width>471</width>
+       <width>490</width>
        <height>30</height>
       </rect>
      </property>
@@ -272,7 +215,7 @@ border-radius: 2px;
     <widget class="caShellCommand" name="caShellCommand_0">
      <property name="geometry">
       <rect>
-       <x>480</x>
+       <x>725</x>
        <y>5</y>
        <width>65</width>
        <height>30</height>
@@ -308,7 +251,7 @@ border-radius: 2px;
     <widget class="caRelatedDisplay" name="caRelatedDisplay_1">
      <property name="geometry">
       <rect>
-       <x>545</x>
+       <x>790</x>
        <y>5</y>
        <width>75</width>
        <height>30</height>
@@ -345,6 +288,110 @@ border-radius: 2px;
      </property>
     </widget>
    </widget>
+   <widget class="caInclude" name="caInclude_4">
+    <property name="geometry">
+     <rect>
+      <x>565</x>
+      <y>45</y>
+      <width>300</width>
+      <height>820</height>
+     </rect>
+    </property>
+    <property name="macro">
+     <string>IOC=$(IOC)</string>
+    </property>
+    <property name="filename" stdset="0">
+     <string notr="true">ifcmon_include_gpio.ui</string>
+    </property>
+    <property name="visibility">
+     <enum>caInclude::Calc</enum>
+    </property>
+    <property name="visibilityCalc">
+     <string notr="true">G</string>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-A-IN</string>
+    </property>
+    <property name="channelB">
+     <string notr="true"/>
+    </property>
+    <property name="channelC">
+     <string notr="true"/>
+    </property>
+    <property name="channelD">
+     <string notr="true"/>
+    </property>
+   </widget>
+   <widget class="caInclude" name="caInclude_5">
+    <property name="geometry">
+     <rect>
+      <x>565</x>
+      <y>45</y>
+      <width>302</width>
+      <height>820</height>
+     </rect>
+    </property>
+    <property name="macro">
+     <string>IOC=$(IOC)</string>
+    </property>
+    <property name="filename" stdset="0">
+     <string notr="true">ifcmon_include_ifctc2.ui</string>
+    </property>
+    <property name="visibility">
+     <enum>caInclude::Calc</enum>
+    </property>
+    <property name="visibilityCalc">
+     <string notr="true">G</string>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):IFCTC2-GTXREP-OBSREG</string>
+    </property>
+   </widget>
+   <widget class="caFrame" name="caframe">
+    <property name="geometry">
+     <rect>
+      <x>565</x>
+      <y>45</y>
+      <width>300</width>
+      <height>820</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="caLabel" name="calabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>340</y>
+       <width>246</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>No Transition Card</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="foreground">
+      <color>
+       <red>120</red>
+       <green>120</green>
+       <blue>120</blue>
+      </color>
+     </property>
+    </widget>
+   </widget>
+   <zorder>caframe</zorder>
+   <zorder>cainclude</zorder>
+   <zorder>caframe_3</zorder>
+   <zorder>caInclude_4</zorder>
+   <zorder>caInclude_3</zorder>
+   <zorder>caInclude_5</zorder>
   </widget>
  </widget>
  <customwidgets>

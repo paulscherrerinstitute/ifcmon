@@ -1,0 +1,3481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>300</width>
+    <height>820</height>
+   </rect>
+  </property>
+  <property name="styleSheet">
+   <string>
+
+QWidget#centralWidget {background: rgba(218, 218, 218, 255);}
+
+caTable {
+       font: 10pt;
+       background: cornsilk;
+       alternate-background-color: wheat;
+}
+
+caLineEdit {
+     border-radius: 1px;
+     background: lightyellow;
+     color: black;
+ }
+
+caTextEntry {
+    color: rgb(127, 0, 63);
+    background-color: cornsilk;
+    selection-color: #0a214c;
+    selection-background-color: wheat;
+    border: 1px groove black;
+    border-radius: 1px;
+    padding: 1px;
+}
+
+caTextEntry:focus {
+    padding: 0px;
+    border: 2px groove darkred;
+    border-radius: 1px;
+}
+
+QPushButton {
+      border-color: #00b;
+      border-radius: 2px;
+      padding: 3px;
+      border-width: 1px;
+
+	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1,
+						   stop:0   rgba(224, 239, 255, 255),
+						   stop:0.5 rgba(199, 215, 230, 255),
+						   stop:1   rgba(184, 214, 236, 255));
+}
+QPushButton:hover {
+	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1,
+						stop:0   rgba(201, 226, 255, 255),
+						stop:0.5 rgba(177, 204, 230, 255),
+						stop:1   rgba(163, 205, 236, 255));
+}
+QPushButton:pressed {
+	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1,
+						stop:0   rgba(174, 219, 255, 255),
+						stop:0.5 rgba(165, 199, 230, 255),
+						stop:1   rgba(134, 188, 236, 255));
+}
+
+QPushButton:disabled {
+	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1,
+						stop:0   rgba(174, 219, 255, 255),
+						stop:0.5 rgba(165, 199, 230, 255),
+						stop:1   rgba(134, 188, 236, 255));
+}
+
+caChoice {
+      background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                  stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,
+                                  stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);
+}
+
+caChoice &gt; QPushButton {
+      text-align: left;
+      padding: 1px;
+}
+
+/* when font specified, no font sizing is done any more,  font: 10pt; is not bad. You could Enable this when you converted from .adl files
+caRelatedDisplay  &gt; QPushButton {
+font: 10pt;
+}
+
+caShellCommand  &gt; QPushButton {
+font: 10pt;
+}
+*/
+
+caSlider::groove:horizontal {
+border: 1px solid #bbb;
+background: lightgrey;
+height: 20px;
+border-radius: 4px;
+}
+
+caSlider::handle:horizontal {
+background: red;
+border: 1px solid #777;
+width: 13px;
+margin-top: -2px;
+margin-bottom: -2px;
+border-radius: 2px;
+}
+
+
+
+</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="caGraphics" name="caRectangle_0">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>300</width>
+      <height>830</height>
+     </rect>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>120</red>
+      <green>120</green>
+      <blue>120</blue>
+     </color>
+    </property>
+    <property name="linestyle" stdset="0">
+     <enum>caGraphics::Solid</enum>
+    </property>
+    <property name="fillstyle" stdset="0">
+     <enum>caGraphics::Filled</enum>
+    </property>
+    <property name="lineColor">
+     <color>
+      <red>120</red>
+      <green>120</green>
+      <blue>120</blue>
+     </color>
+    </property>
+    <property name="form">
+     <enum>caGraphics::Rectangle</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_0">
+    <property name="geometry">
+     <rect>
+      <x>28</x>
+      <y>14</y>
+      <width>231</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>25</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>IFC_GPIO</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>226</red>
+      <green>233</green>
+      <blue>164</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>255</red>
+      <green>255</green>
+      <blue>255</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caGraphics" name="caRectangle_1">
+    <property name="geometry">
+     <rect>
+      <x>19</x>
+      <y>62</y>
+      <width>239</width>
+      <height>331</height>
+     </rect>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>187</red>
+      <green>187</green>
+      <blue>187</blue>
+     </color>
+    </property>
+    <property name="linestyle" stdset="0">
+     <enum>caGraphics::Solid</enum>
+    </property>
+    <property name="fillstyle" stdset="0">
+     <enum>caGraphics::Filled</enum>
+    </property>
+    <property name="lineColor">
+     <color>
+      <red>187</red>
+      <green>187</green>
+      <blue>187</blue>
+     </color>
+    </property>
+    <property name="form">
+     <enum>caGraphics::Rectangle</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_Outputs">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>71</y>
+      <width>109</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>VME P2 C:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::WidthAndHeight</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_10">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>140</y>
+      <width>79</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>VMEP2-C-DIR:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::WidthAndHeight</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_11">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>121</y>
+      <width>77</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>VMEP2-C-IN:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::WidthAndHeight</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caLineEdit" name="caLineEdit_10">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>120</y>
+      <width>112</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-IN</string>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>39</red>
+      <green>84</green>
+      <blue>141</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color>
+      <red>236</red>
+      <green>236</green>
+      <blue>236</blue>
+     </color>
+    </property>
+    <property name="colorMode">
+     <enum>caLineEdit::Static</enum>
+    </property>
+    <property name="precisionMode">
+     <enum>caLineEdit::Channel</enum>
+    </property>
+    <property name="limitsMode">
+     <enum>caLineEdit::Channel</enum>
+    </property>
+    <property name="maxValue">
+     <double>1.000000000000000</double>
+    </property>
+    <property name="minValue">
+     <double>0.000000000000000</double>
+    </property>
+    <property name="fontScaleMode" stdset="0">
+     <enum>caLineEdit::Height</enum>
+    </property>
+    <property name="formatType">
+     <enum>caLineEdit::hexadecimal</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_13">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>100</y>
+      <width>173</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Status / Control Registers:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::WidthAndHeight</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_12">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>160</y>
+      <width>79</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>VMEP2-C-OUT:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::WidthAndHeight</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caTextEntry" name="catextentry">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>160</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-OUT</string>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>39</red>
+      <green>84</green>
+      <blue>141</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color>
+      <red>236</red>
+      <green>236</green>
+      <blue>236</blue>
+     </color>
+    </property>
+    <property name="fontScaleMode" stdset="0">
+     <enum>caLineEdit::Height</enum>
+    </property>
+    <property name="formatType">
+     <enum>caLineEdit::hexadecimal</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_15">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>469</y>
+      <width>77</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>VMEP2-A-IN:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::WidthAndHeight</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_16">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>488</y>
+      <width>77</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>VMEP2-A-DIR:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::WidthAndHeight</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caLineEdit" name="caLineEdit_11">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>468</y>
+      <width>112</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-A-IN</string>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>39</red>
+      <green>84</green>
+      <blue>141</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color>
+      <red>236</red>
+      <green>236</green>
+      <blue>236</blue>
+     </color>
+    </property>
+    <property name="colorMode">
+     <enum>caLineEdit::Static</enum>
+    </property>
+    <property name="precisionMode">
+     <enum>caLineEdit::Channel</enum>
+    </property>
+    <property name="limitsMode">
+     <enum>caLineEdit::Channel</enum>
+    </property>
+    <property name="maxValue">
+     <double>1.000000000000000</double>
+    </property>
+    <property name="minValue">
+     <double>0.000000000000000</double>
+    </property>
+    <property name="fontScaleMode" stdset="0">
+     <enum>caLineEdit::Height</enum>
+    </property>
+    <property name="formatType">
+     <enum>caLineEdit::hexadecimal</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_Outputs_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>419</y>
+      <width>71</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>VME P2 A:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::Height</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_18">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>448</y>
+      <width>117</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Status Registers:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::Height</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caGraphics" name="caRectangle_2">
+    <property name="geometry">
+     <rect>
+      <x>19</x>
+      <y>406</y>
+      <width>239</width>
+      <height>386</height>
+     </rect>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>187</red>
+      <green>187</green>
+      <blue>187</blue>
+     </color>
+    </property>
+    <property name="linestyle" stdset="0">
+     <enum>caGraphics::Solid</enum>
+    </property>
+    <property name="fillstyle" stdset="0">
+     <enum>caGraphics::Filled</enum>
+    </property>
+    <property name="lineSize">
+     <number>1</number>
+    </property>
+    <property name="lineColor">
+     <color>
+      <red>187</red>
+      <green>187</green>
+      <blue>187</blue>
+     </color>
+    </property>
+    <property name="form">
+     <enum>caGraphics::Rectangle</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_17">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>575</y>
+      <width>151</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>VMEP2-A-HIGHBITS:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::WidthAndHeight</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_26">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>643</y>
+      <width>143</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>VMEP2-A-LOWBITS:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::WidthAndHeight</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caByte" name="cabyte_3">
+    <property name="geometry">
+     <rect>
+      <x>31</x>
+      <y>672</y>
+      <width>51</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-A-LOWBITS</string>
+    </property>
+    <property name="direction">
+     <enum>caByte::Left</enum>
+    </property>
+    <property name="startBit">
+     <number>12</number>
+    </property>
+    <property name="endBit">
+     <number>15</number>
+    </property>
+    <property name="foreground" stdset="0">
+     <color>
+      <red>0</red>
+      <green>170</green>
+      <blue>0</blue>
+     </color>
+    </property>
+   </widget>
+   <widget class="caByte" name="cabyte_4">
+    <property name="geometry">
+     <rect>
+      <x>82</x>
+      <y>672</y>
+      <width>51</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-A-LOWBITS</string>
+    </property>
+    <property name="direction">
+     <enum>caByte::Left</enum>
+    </property>
+    <property name="startBit">
+     <number>8</number>
+    </property>
+    <property name="endBit">
+     <number>11</number>
+    </property>
+    <property name="foreground" stdset="0">
+     <color>
+      <red>0</red>
+      <green>125</green>
+      <blue>0</blue>
+     </color>
+    </property>
+   </widget>
+   <widget class="caByte" name="cabyte_5">
+    <property name="geometry">
+     <rect>
+      <x>184</x>
+      <y>672</y>
+      <width>51</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-A-LOWBITS</string>
+    </property>
+    <property name="direction">
+     <enum>caByte::Left</enum>
+    </property>
+    <property name="startBit">
+     <number>0</number>
+    </property>
+    <property name="endBit">
+     <number>3</number>
+    </property>
+    <property name="foreground" stdset="0">
+     <color>
+      <red>0</red>
+      <green>125</green>
+      <blue>0</blue>
+     </color>
+    </property>
+   </widget>
+   <widget class="caByte" name="cabyte_6">
+    <property name="geometry">
+     <rect>
+      <x>133</x>
+      <y>672</y>
+      <width>51</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-A-LOWBITS</string>
+    </property>
+    <property name="direction">
+     <enum>caByte::Left</enum>
+    </property>
+    <property name="startBit">
+     <number>4</number>
+    </property>
+    <property name="endBit">
+     <number>7</number>
+    </property>
+    <property name="foreground" stdset="0">
+     <color>
+      <red>0</red>
+      <green>170</green>
+      <blue>0</blue>
+     </color>
+    </property>
+   </widget>
+   <widget class="caByte" name="cabyte_7">
+    <property name="geometry">
+     <rect>
+      <x>134</x>
+      <y>606</y>
+      <width>51</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-A-HIGHBITS</string>
+    </property>
+    <property name="direction">
+     <enum>caByte::Left</enum>
+    </property>
+    <property name="startBit">
+     <number>4</number>
+    </property>
+    <property name="endBit">
+     <number>7</number>
+    </property>
+    <property name="foreground" stdset="0">
+     <color>
+      <red>0</red>
+      <green>170</green>
+      <blue>0</blue>
+     </color>
+    </property>
+   </widget>
+   <widget class="caByte" name="cabyte_8">
+    <property name="geometry">
+     <rect>
+      <x>32</x>
+      <y>606</y>
+      <width>51</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-A-HIGHBITS</string>
+    </property>
+    <property name="direction">
+     <enum>caByte::Left</enum>
+    </property>
+    <property name="startBit">
+     <number>12</number>
+    </property>
+    <property name="endBit">
+     <number>15</number>
+    </property>
+    <property name="foreground" stdset="0">
+     <color>
+      <red>0</red>
+      <green>170</green>
+      <blue>0</blue>
+     </color>
+    </property>
+   </widget>
+   <widget class="caByte" name="cabyte_9">
+    <property name="geometry">
+     <rect>
+      <x>83</x>
+      <y>606</y>
+      <width>51</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-A-HIGHBITS</string>
+    </property>
+    <property name="direction">
+     <enum>caByte::Left</enum>
+    </property>
+    <property name="startBit">
+     <number>8</number>
+    </property>
+    <property name="endBit">
+     <number>11</number>
+    </property>
+    <property name="foreground" stdset="0">
+     <color>
+      <red>0</red>
+      <green>125</green>
+      <blue>0</blue>
+     </color>
+    </property>
+   </widget>
+   <widget class="caByte" name="cabyte_10">
+    <property name="geometry">
+     <rect>
+      <x>185</x>
+      <y>606</y>
+      <width>51</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-A-HIGHBITS</string>
+    </property>
+    <property name="direction">
+     <enum>caByte::Left</enum>
+    </property>
+    <property name="startBit">
+     <number>0</number>
+    </property>
+    <property name="endBit">
+     <number>3</number>
+    </property>
+    <property name="foreground" stdset="0">
+     <color>
+      <red>0</red>
+      <green>125</green>
+      <blue>0</blue>
+     </color>
+    </property>
+   </widget>
+   <widget class="caByte" name="cabyte_11">
+    <property name="geometry">
+     <rect>
+      <x>83</x>
+      <y>228</y>
+      <width>51</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-INHIGH</string>
+    </property>
+    <property name="direction">
+     <enum>caByte::Left</enum>
+    </property>
+    <property name="startBit">
+     <number>8</number>
+    </property>
+    <property name="endBit">
+     <number>11</number>
+    </property>
+    <property name="foreground" stdset="0">
+     <color>
+      <red>0</red>
+      <green>125</green>
+      <blue>0</blue>
+     </color>
+    </property>
+   </widget>
+   <widget class="caByte" name="cabyte_12">
+    <property name="geometry">
+     <rect>
+      <x>133</x>
+      <y>326</y>
+      <width>51</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-INLOW</string>
+    </property>
+    <property name="direction">
+     <enum>caByte::Left</enum>
+    </property>
+    <property name="startBit">
+     <number>4</number>
+    </property>
+    <property name="endBit">
+     <number>7</number>
+    </property>
+    <property name="foreground" stdset="0">
+     <color>
+      <red>0</red>
+      <green>170</green>
+      <blue>0</blue>
+     </color>
+    </property>
+   </widget>
+   <widget class="caByte" name="cabyte_13">
+    <property name="geometry">
+     <rect>
+      <x>31</x>
+      <y>326</y>
+      <width>51</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-INLOW</string>
+    </property>
+    <property name="direction">
+     <enum>caByte::Left</enum>
+    </property>
+    <property name="startBit">
+     <number>12</number>
+    </property>
+    <property name="endBit">
+     <number>15</number>
+    </property>
+    <property name="foreground" stdset="0">
+     <color>
+      <red>0</red>
+      <green>170</green>
+      <blue>0</blue>
+     </color>
+    </property>
+   </widget>
+   <widget class="caByte" name="cabyte_14">
+    <property name="geometry">
+     <rect>
+      <x>32</x>
+      <y>228</y>
+      <width>51</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-INHIGH</string>
+    </property>
+    <property name="direction">
+     <enum>caByte::Left</enum>
+    </property>
+    <property name="startBit">
+     <number>12</number>
+    </property>
+    <property name="endBit">
+     <number>15</number>
+    </property>
+    <property name="foreground" stdset="0">
+     <color>
+      <red>0</red>
+      <green>170</green>
+      <blue>0</blue>
+     </color>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_20">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>198</y>
+      <width>151</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>VMEP2-C-HIGHBITS:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::WidthAndHeight</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caByte" name="cabyte_15">
+    <property name="geometry">
+     <rect>
+      <x>134</x>
+      <y>228</y>
+      <width>51</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-INHIGH</string>
+    </property>
+    <property name="direction">
+     <enum>caByte::Left</enum>
+    </property>
+    <property name="startBit">
+     <number>4</number>
+    </property>
+    <property name="endBit">
+     <number>7</number>
+    </property>
+    <property name="foreground" stdset="0">
+     <color>
+      <red>0</red>
+      <green>170</green>
+      <blue>0</blue>
+     </color>
+    </property>
+   </widget>
+   <widget class="caByte" name="cabyte_16">
+    <property name="geometry">
+     <rect>
+      <x>185</x>
+      <y>228</y>
+      <width>51</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-INHIGH</string>
+    </property>
+    <property name="direction">
+     <enum>caByte::Left</enum>
+    </property>
+    <property name="startBit">
+     <number>0</number>
+    </property>
+    <property name="endBit">
+     <number>3</number>
+    </property>
+    <property name="foreground" stdset="0">
+     <color>
+      <red>0</red>
+      <green>125</green>
+      <blue>0</blue>
+     </color>
+    </property>
+   </widget>
+   <widget class="caByte" name="cabyte_17">
+    <property name="geometry">
+     <rect>
+      <x>82</x>
+      <y>326</y>
+      <width>51</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-INLOW</string>
+    </property>
+    <property name="direction">
+     <enum>caByte::Left</enum>
+    </property>
+    <property name="startBit">
+     <number>8</number>
+    </property>
+    <property name="endBit">
+     <number>11</number>
+    </property>
+    <property name="foreground" stdset="0">
+     <color>
+      <red>0</red>
+      <green>125</green>
+      <blue>0</blue>
+     </color>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_25">
+    <property name="geometry">
+     <rect>
+      <x>34</x>
+      <y>216</y>
+      <width>19</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>7</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>31</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::WidthAndHeight</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_29">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>297</y>
+      <width>143</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>VMEP2-C-LOWBITS:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::WidthAndHeight</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caByte" name="cabyte_18">
+    <property name="geometry">
+     <rect>
+      <x>184</x>
+      <y>326</y>
+      <width>51</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-INLOW</string>
+    </property>
+    <property name="direction">
+     <enum>caByte::Left</enum>
+    </property>
+    <property name="startBit">
+     <number>0</number>
+    </property>
+    <property name="endBit">
+     <number>3</number>
+    </property>
+    <property name="foreground" stdset="0">
+     <color>
+      <red>0</red>
+      <green>125</green>
+      <blue>0</blue>
+     </color>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton">
+    <property name="geometry">
+     <rect>
+      <x>221</x>
+      <y>346</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.B0</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_2">
+    <property name="geometry">
+     <rect>
+      <x>221</x>
+      <y>360</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.B0</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_3">
+    <property name="geometry">
+     <rect>
+      <x>209</x>
+      <y>346</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.B1</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_4">
+    <property name="geometry">
+     <rect>
+      <x>209</x>
+      <y>360</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.B1</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_5">
+    <property name="geometry">
+     <rect>
+      <x>196</x>
+      <y>346</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.B2</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_6">
+    <property name="geometry">
+     <rect>
+      <x>196</x>
+      <y>360</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.B2</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_7">
+    <property name="geometry">
+     <rect>
+      <x>158</x>
+      <y>346</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.B5</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_8">
+    <property name="geometry">
+     <rect>
+      <x>171</x>
+      <y>360</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.B4</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_9">
+    <property name="geometry">
+     <rect>
+      <x>171</x>
+      <y>346</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.B4</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_10">
+    <property name="geometry">
+     <rect>
+      <x>158</x>
+      <y>360</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.B5</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_11">
+    <property name="geometry">
+     <rect>
+      <x>183</x>
+      <y>346</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.B3</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_12">
+    <property name="geometry">
+     <rect>
+      <x>183</x>
+      <y>360</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.B3</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_13">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>346</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.B8</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_14">
+    <property name="geometry">
+     <rect>
+      <x>133</x>
+      <y>360</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.B7</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_15">
+    <property name="geometry">
+     <rect>
+      <x>133</x>
+      <y>346</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.B7</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_16">
+    <property name="geometry">
+     <rect>
+      <x>82</x>
+      <y>346</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.BB</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_17">
+    <property name="geometry">
+     <rect>
+      <x>82</x>
+      <y>360</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.BB</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_18">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>360</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.B8</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_19">
+    <property name="geometry">
+     <rect>
+      <x>95</x>
+      <y>360</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.BA</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_20">
+    <property name="geometry">
+     <rect>
+      <x>107</x>
+      <y>346</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.B9</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_21">
+    <property name="geometry">
+     <rect>
+      <x>107</x>
+      <y>360</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.B9</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_22">
+    <property name="geometry">
+     <rect>
+      <x>95</x>
+      <y>346</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.BA</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_23">
+    <property name="geometry">
+     <rect>
+      <x>145</x>
+      <y>346</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.B6</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_24">
+    <property name="geometry">
+     <rect>
+      <x>145</x>
+      <y>360</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.B6</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_25">
+    <property name="geometry">
+     <rect>
+      <x>44</x>
+      <y>360</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.BE</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_26">
+    <property name="geometry">
+     <rect>
+      <x>31</x>
+      <y>360</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.BF</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_27">
+    <property name="geometry">
+     <rect>
+      <x>56</x>
+      <y>360</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.BD</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_28">
+    <property name="geometry">
+     <rect>
+      <x>56</x>
+      <y>346</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.BD</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_29">
+    <property name="geometry">
+     <rect>
+      <x>31</x>
+      <y>346</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.BF</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_30">
+    <property name="geometry">
+     <rect>
+      <x>44</x>
+      <y>346</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.BE</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_31">
+    <property name="geometry">
+     <rect>
+      <x>69</x>
+      <y>346</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.BC</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_32">
+    <property name="geometry">
+     <rect>
+      <x>69</x>
+      <y>360</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-LOWBITS.BC</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_33">
+    <property name="geometry">
+     <rect>
+      <x>172</x>
+      <y>248</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.B4</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_34">
+    <property name="geometry">
+     <rect>
+      <x>45</x>
+      <y>248</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.BE</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_35">
+    <property name="geometry">
+     <rect>
+      <x>159</x>
+      <y>262</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.B5</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_36">
+    <property name="geometry">
+     <rect>
+      <x>108</x>
+      <y>262</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.B9</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_37">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>248</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.BC</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_38">
+    <property name="geometry">
+     <rect>
+      <x>134</x>
+      <y>248</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.B7</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_39">
+    <property name="geometry">
+     <rect>
+      <x>83</x>
+      <y>262</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.BB</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_40">
+    <property name="geometry">
+     <rect>
+      <x>159</x>
+      <y>248</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.B5</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_41">
+    <property name="geometry">
+     <rect>
+      <x>96</x>
+      <y>262</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.BA</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_42">
+    <property name="geometry">
+     <rect>
+      <x>121</x>
+      <y>262</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.B8</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_43">
+    <property name="geometry">
+     <rect>
+      <x>146</x>
+      <y>262</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.B6</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_44">
+    <property name="geometry">
+     <rect>
+      <x>45</x>
+      <y>262</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.BE</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_45">
+    <property name="geometry">
+     <rect>
+      <x>121</x>
+      <y>248</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.B8</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_46">
+    <property name="geometry">
+     <rect>
+      <x>32</x>
+      <y>262</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.BF</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_47">
+    <property name="geometry">
+     <rect>
+      <x>96</x>
+      <y>248</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.BA</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_48">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>262</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.B1</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_49">
+    <property name="geometry">
+     <rect>
+      <x>57</x>
+      <y>262</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.BD</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_50">
+    <property name="geometry">
+     <rect>
+      <x>146</x>
+      <y>248</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.B6</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_51">
+    <property name="geometry">
+     <rect>
+      <x>197</x>
+      <y>248</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.B2</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_52">
+    <property name="geometry">
+     <rect>
+      <x>83</x>
+      <y>248</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.BB</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_53">
+    <property name="geometry">
+     <rect>
+      <x>134</x>
+      <y>262</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.B7</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_54">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>248</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.B1</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_55">
+    <property name="geometry">
+     <rect>
+      <x>222</x>
+      <y>262</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.B0</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_56">
+    <property name="geometry">
+     <rect>
+      <x>184</x>
+      <y>262</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.B3</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_57">
+    <property name="geometry">
+     <rect>
+      <x>57</x>
+      <y>248</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.BD</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_58">
+    <property name="geometry">
+     <rect>
+      <x>184</x>
+      <y>248</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.B3</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_59">
+    <property name="geometry">
+     <rect>
+      <x>222</x>
+      <y>248</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.B0</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_60">
+    <property name="geometry">
+     <rect>
+      <x>32</x>
+      <y>248</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.BF</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_61">
+    <property name="geometry">
+     <rect>
+      <x>172</x>
+      <y>262</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.B4</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_62">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>262</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.BC</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_63">
+    <property name="geometry">
+     <rect>
+      <x>197</x>
+      <y>262</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.B2</string>
+    </property>
+    <property name="label">
+     <string notr="true">0</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">0</string>
+    </property>
+   </widget>
+   <widget class="caMessageButton" name="camessagebutton_64">
+    <property name="geometry">
+     <rect>
+      <x>108</x>
+      <y>248</y>
+      <width>13</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>4</pointsize>
+     </font>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-HIGHBITS.B9</string>
+    </property>
+    <property name="label">
+     <string notr="true">1</string>
+    </property>
+    <property name="pressMessage">
+     <string notr="true">1</string>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_30">
+    <property name="geometry">
+     <rect>
+      <x>224</x>
+      <y>216</y>
+      <width>19</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>7</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>16</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::WidthAndHeight</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_31">
+    <property name="geometry">
+     <rect>
+      <x>32</x>
+      <y>314</y>
+      <width>19</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>7</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>15</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::WidthAndHeight</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_32">
+    <property name="geometry">
+     <rect>
+      <x>226</x>
+      <y>314</y>
+      <width>19</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>7</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::WidthAndHeight</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_33">
+    <property name="geometry">
+     <rect>
+      <x>226</x>
+      <y>660</y>
+      <width>19</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>7</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::WidthAndHeight</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_34">
+    <property name="geometry">
+     <rect>
+      <x>32</x>
+      <y>660</y>
+      <width>19</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>7</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>15</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::WidthAndHeight</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_27">
+    <property name="geometry">
+     <rect>
+      <x>34</x>
+      <y>594</y>
+      <width>19</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>7</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>31</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::WidthAndHeight</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_35">
+    <property name="geometry">
+     <rect>
+      <x>224</x>
+      <y>594</y>
+      <width>19</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>7</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>16</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::WidthAndHeight</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caTextEntry" name="catextentry_2">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>490</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-A-DIR</string>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>39</red>
+      <green>84</green>
+      <blue>141</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color>
+      <red>236</red>
+      <green>236</green>
+      <blue>236</blue>
+     </color>
+    </property>
+    <property name="fontScaleMode" stdset="0">
+     <enum>caLineEdit::Height</enum>
+    </property>
+    <property name="formatType">
+     <enum>caLineEdit::hexadecimal</enum>
+    </property>
+   </widget>
+   <widget class="caTextEntry" name="catextentry_3">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>140</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-C-DIR</string>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>39</red>
+      <green>84</green>
+      <blue>141</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color>
+      <red>236</red>
+      <green>236</green>
+      <blue>236</blue>
+     </color>
+    </property>
+    <property name="fontScaleMode" stdset="0">
+     <enum>caLineEdit::Height</enum>
+    </property>
+    <property name="formatType">
+     <enum>caLineEdit::hexadecimal</enum>
+    </property>
+   </widget>
+   <widget class="caLabel" name="caLabel_14">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>510</y>
+      <width>79</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>VMEP2-A-OUT:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="fontScaleMode">
+     <enum>ESimpleLabel::WidthAndHeight</enum>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color alpha="0">
+      <red>0</red>
+      <green>0</green>
+      <blue>0</blue>
+     </color>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+   </widget>
+   <widget class="caTextEntry" name="catextentry_4">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>510</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="channel" stdset="0">
+     <string notr="true">$(IOC):VMEP2-A-OUT</string>
+    </property>
+    <property name="foreground">
+     <color>
+      <red>39</red>
+      <green>84</green>
+      <blue>141</blue>
+     </color>
+    </property>
+    <property name="background">
+     <color>
+      <red>236</red>
+      <green>236</green>
+      <blue>236</blue>
+     </color>
+    </property>
+    <property name="fontScaleMode" stdset="0">
+     <enum>caLineEdit::Height</enum>
+    </property>
+    <property name="formatType">
+     <enum>caLineEdit::hexadecimal</enum>
+    </property>
+   </widget>
+   <zorder>caRectangle_0</zorder>
+   <zorder>caRectangle_2</zorder>
+   <zorder>caLabel_0</zorder>
+   <zorder>caRectangle_1</zorder>
+   <zorder>caLabel_Outputs</zorder>
+   <zorder>caLabel_10</zorder>
+   <zorder>caLabel_11</zorder>
+   <zorder>caLineEdit_10</zorder>
+   <zorder>caLabel_13</zorder>
+   <zorder>caLabel_12</zorder>
+   <zorder>catextentry</zorder>
+   <zorder>caLabel_15</zorder>
+   <zorder>caLabel_16</zorder>
+   <zorder>caLineEdit_11</zorder>
+   <zorder>caLabel_Outputs_2</zorder>
+   <zorder>caLabel_18</zorder>
+   <zorder>caLabel_17</zorder>
+   <zorder>caLabel_26</zorder>
+   <zorder>cabyte_3</zorder>
+   <zorder>cabyte_4</zorder>
+   <zorder>cabyte_5</zorder>
+   <zorder>cabyte_6</zorder>
+   <zorder>cabyte_7</zorder>
+   <zorder>cabyte_8</zorder>
+   <zorder>cabyte_9</zorder>
+   <zorder>cabyte_10</zorder>
+   <zorder>cabyte_11</zorder>
+   <zorder>cabyte_12</zorder>
+   <zorder>cabyte_13</zorder>
+   <zorder>cabyte_14</zorder>
+   <zorder>caLabel_20</zorder>
+   <zorder>cabyte_15</zorder>
+   <zorder>cabyte_16</zorder>
+   <zorder>cabyte_17</zorder>
+   <zorder>caLabel_25</zorder>
+   <zorder>caLabel_29</zorder>
+   <zorder>cabyte_18</zorder>
+   <zorder>camessagebutton</zorder>
+   <zorder>camessagebutton_2</zorder>
+   <zorder>camessagebutton_3</zorder>
+   <zorder>camessagebutton_4</zorder>
+   <zorder>camessagebutton_5</zorder>
+   <zorder>camessagebutton_6</zorder>
+   <zorder>camessagebutton_7</zorder>
+   <zorder>camessagebutton_8</zorder>
+   <zorder>camessagebutton_9</zorder>
+   <zorder>camessagebutton_10</zorder>
+   <zorder>camessagebutton_11</zorder>
+   <zorder>camessagebutton_12</zorder>
+   <zorder>camessagebutton_13</zorder>
+   <zorder>camessagebutton_14</zorder>
+   <zorder>camessagebutton_15</zorder>
+   <zorder>camessagebutton_16</zorder>
+   <zorder>camessagebutton_17</zorder>
+   <zorder>camessagebutton_18</zorder>
+   <zorder>camessagebutton_19</zorder>
+   <zorder>camessagebutton_20</zorder>
+   <zorder>camessagebutton_21</zorder>
+   <zorder>camessagebutton_22</zorder>
+   <zorder>camessagebutton_23</zorder>
+   <zorder>camessagebutton_24</zorder>
+   <zorder>camessagebutton_25</zorder>
+   <zorder>camessagebutton_26</zorder>
+   <zorder>camessagebutton_27</zorder>
+   <zorder>camessagebutton_28</zorder>
+   <zorder>camessagebutton_29</zorder>
+   <zorder>camessagebutton_30</zorder>
+   <zorder>camessagebutton_31</zorder>
+   <zorder>camessagebutton_32</zorder>
+   <zorder>camessagebutton_33</zorder>
+   <zorder>camessagebutton_34</zorder>
+   <zorder>camessagebutton_35</zorder>
+   <zorder>camessagebutton_36</zorder>
+   <zorder>camessagebutton_37</zorder>
+   <zorder>camessagebutton_38</zorder>
+   <zorder>camessagebutton_39</zorder>
+   <zorder>camessagebutton_40</zorder>
+   <zorder>camessagebutton_41</zorder>
+   <zorder>camessagebutton_42</zorder>
+   <zorder>camessagebutton_43</zorder>
+   <zorder>camessagebutton_44</zorder>
+   <zorder>camessagebutton_45</zorder>
+   <zorder>camessagebutton_46</zorder>
+   <zorder>camessagebutton_47</zorder>
+   <zorder>camessagebutton_48</zorder>
+   <zorder>camessagebutton_49</zorder>
+   <zorder>camessagebutton_50</zorder>
+   <zorder>camessagebutton_51</zorder>
+   <zorder>camessagebutton_52</zorder>
+   <zorder>camessagebutton_53</zorder>
+   <zorder>camessagebutton_54</zorder>
+   <zorder>camessagebutton_55</zorder>
+   <zorder>camessagebutton_56</zorder>
+   <zorder>camessagebutton_57</zorder>
+   <zorder>camessagebutton_58</zorder>
+   <zorder>camessagebutton_59</zorder>
+   <zorder>camessagebutton_60</zorder>
+   <zorder>camessagebutton_61</zorder>
+   <zorder>camessagebutton_62</zorder>
+   <zorder>camessagebutton_63</zorder>
+   <zorder>camessagebutton_64</zorder>
+   <zorder>caLabel_30</zorder>
+   <zorder>caLabel_31</zorder>
+   <zorder>caLabel_32</zorder>
+   <zorder>caLabel_33</zorder>
+   <zorder>caLabel_34</zorder>
+   <zorder>caLabel_27</zorder>
+   <zorder>caLabel_35</zorder>
+   <zorder>catextentry_2</zorder>
+   <zorder>catextentry_3</zorder>
+   <zorder>caLabel_14</zorder>
+   <zorder>catextentry_4</zorder>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>caTextEntry</class>
+   <extends>caLineEdit</extends>
+   <header>caTextEntry</header>
+  </customwidget>
+  <customwidget>
+   <class>caMessageButton</class>
+   <extends>QPushButton</extends>
+   <header>caMessageButton</header>
+  </customwidget>
+  <customwidget>
+   <class>caLabel</class>
+   <extends>QLabel</extends>
+   <header>caLabel</header>
+  </customwidget>
+  <customwidget>
+   <class>caGraphics</class>
+   <extends>QWidget</extends>
+   <header>caGraphics</header>
+  </customwidget>
+  <customwidget>
+   <class>caLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>caLineEdit</header>
+  </customwidget>
+  <customwidget>
+   <class>caByte</class>
+   <extends>QWidget</extends>
+   <header>caByte</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
