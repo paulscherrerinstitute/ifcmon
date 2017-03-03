@@ -365,14 +365,14 @@ border-radius: 2px;
     <widget class="caLabel" name="calabel">
      <property name="geometry">
       <rect>
-       <x>30</x>
+       <x>5</x>
        <y>340</y>
-       <width>246</width>
+       <width>290</width>
        <height>91</height>
       </rect>
      </property>
      <property name="text">
-      <string>No Transition Card</string>
+      <string>No (supported) Transition Card</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
