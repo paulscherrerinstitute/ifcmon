@@ -11,9 +11,9 @@
    </rect>
   </property>
   <property name="styleSheet">
-   <string>
+   <string notr="true">
 
-QWidget#centralWidget {background: rgba(225, 144, 21, 255);}
+QWidget#centralWidget {background: rgba(0, 170, 255, 255);}
 
 caTable {
        font: 10pt;

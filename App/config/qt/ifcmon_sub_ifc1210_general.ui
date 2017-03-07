@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>623</width>
-    <height>731</height>
+    <height>701</height>
    </rect>
   </property>
   <property name="styleSheet">
@@ -399,7 +399,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):SW101-P2020BOOT</string>
@@ -421,6 +421,9 @@ border-radius: 2px;
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
     </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
+    </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
     </property>
@@ -441,7 +444,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):SW100-FPGACONFIG</string>
@@ -463,6 +466,9 @@ border-radius: 2px;
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
     </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
+    </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
     </property>
@@ -483,7 +489,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):SW100-JTAGCONFIG</string>
@@ -504,6 +510,9 @@ border-radius: 2px;
     </property>
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
+    </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -558,7 +567,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):SW100-COLDRESET</string>
@@ -579,6 +588,9 @@ border-radius: 2px;
     </property>
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
+    </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -666,7 +678,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):SW100-PONFSM</string>
@@ -687,6 +699,9 @@ border-radius: 2px;
     </property>
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
+    </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -741,7 +756,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):SW100-PONFSMMODE</string>
@@ -762,6 +777,9 @@ border-radius: 2px;
     </property>
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
+    </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -882,7 +900,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):SW100-SWITCHMODE</string>
@@ -904,6 +922,9 @@ border-radius: 2px;
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
     </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
+    </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
     </property>
@@ -924,7 +945,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):PCIESTACK-XMC1</string>
@@ -946,6 +967,9 @@ border-radius: 2px;
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
     </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
+    </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
     </property>
@@ -966,7 +990,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):PCIESTACK-XMC2</string>
@@ -987,6 +1011,9 @@ border-radius: 2px;
     </property>
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
+    </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -1041,7 +1068,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):PCIESTACK-IFCTC1</string>
@@ -1062,6 +1089,9 @@ border-radius: 2px;
     </property>
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
+    </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -1116,7 +1146,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):PCIE-CLKMODE</string>
@@ -1137,6 +1167,9 @@ border-radius: 2px;
     </property>
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
+    </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -1191,7 +1224,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):PCIE-CONFMODE</string>
@@ -1212,6 +1245,9 @@ border-radius: 2px;
     </property>
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
+    </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -1431,7 +1467,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):SW101-VMEMODE</string>
@@ -1453,6 +1489,9 @@ border-radius: 2px;
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
     </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
+    </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
     </property>
@@ -1473,7 +1512,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):SW101-VMESLOT1</string>
@@ -1495,6 +1534,9 @@ border-radius: 2px;
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
     </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
+    </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
     </property>
@@ -1515,7 +1557,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):SW101-VMERXSYSRST</string>
@@ -1536,6 +1578,9 @@ border-radius: 2px;
     </property>
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
+    </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -1590,7 +1635,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):SW101-VMETXSYSRST</string>
@@ -1611,6 +1656,9 @@ border-radius: 2px;
     </property>
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
+    </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -1665,7 +1713,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):SW102-HEXROT</string>
@@ -1686,6 +1734,9 @@ border-radius: 2px;
     </property>
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
+    </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
     </property>
     <property name="formatType">
      <enum>caLineEdit::hexadecimal</enum>
@@ -1740,7 +1791,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):SW103-HEXROT</string>
@@ -1761,6 +1812,9 @@ border-radius: 2px;
     </property>
     <property name="colorMode">
      <enum>caLineEdit::Static</enum>
+    </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
     </property>
     <property name="formatType">
      <enum>caLineEdit::hexadecimal</enum>
@@ -1914,7 +1968,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):XMC1-PRESENT</string>
@@ -1935,6 +1989,9 @@ border-radius: 2px;
     </property>
     <property name="colorMode">
      <enum>caLineEdit::Alarm_Static</enum>
+    </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -1989,7 +2046,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):XMC2-PRESENT</string>
@@ -2010,6 +2067,9 @@ border-radius: 2px;
     </property>
     <property name="colorMode">
      <enum>caLineEdit::Alarm_Static</enum>
+    </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -2229,7 +2289,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):FMC1-PRESENT</string>
@@ -2251,6 +2311,9 @@ border-radius: 2px;
     <property name="colorMode">
      <enum>caLineEdit::Alarm_Static</enum>
     </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
+    </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
     </property>
@@ -2271,7 +2334,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):FMC1-PGM2C</string>
@@ -2293,6 +2356,9 @@ border-radius: 2px;
     <property name="colorMode">
      <enum>caLineEdit::Alarm_Static</enum>
     </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
+    </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
     </property>
@@ -2313,7 +2379,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):FMC12-PG-C2M</string>
@@ -2334,6 +2400,9 @@ border-radius: 2px;
     </property>
     <property name="colorMode">
      <enum>caLineEdit::Alarm_Static</enum>
+    </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -2388,7 +2457,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):FMC12-VADJ-ENA</string>
@@ -2409,6 +2478,9 @@ border-radius: 2px;
     </property>
     <property name="colorMode">
      <enum>caLineEdit::Alarm_Static</enum>
+    </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -2463,7 +2535,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):FMC2-PRESENT</string>
@@ -2484,6 +2556,9 @@ border-radius: 2px;
     </property>
     <property name="colorMode">
      <enum>caLineEdit::Alarm_Static</enum>
+    </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
@@ -2538,7 +2613,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string>$(IOC):FMC2-PGM2C</string>
@@ -2560,468 +2635,18 @@ border-radius: 2px;
     <property name="colorMode">
      <enum>caLineEdit::Alarm_Static</enum>
     </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
+    </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
-    </property>
-   </widget>
-   <widget class="caGraphics" name="caRectangle_9">
-    <property name="geometry">
-     <rect>
-      <x>4</x>
-      <y>510</y>
-      <width>615</width>
-      <height>216</height>
-     </rect>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>145</red>
-      <green>145</green>
-      <blue>145</blue>
-     </color>
-    </property>
-    <property name="linestyle" stdset="0">
-     <enum>caGraphics::Solid</enum>
-    </property>
-    <property name="fillstyle" stdset="0">
-     <enum>caGraphics::Filled</enum>
-    </property>
-    <property name="lineColor">
-     <color>
-      <red>145</red>
-      <green>145</green>
-      <blue>145</blue>
-     </color>
-    </property>
-    <property name="form">
-     <enum>caGraphics::Rectangle</enum>
-    </property>
-   </widget>
-   <widget class="caGraphics" name="caRectangle_10">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>535</y>
-      <width>601</width>
-      <height>186</height>
-     </rect>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>187</red>
-      <green>187</green>
-      <blue>187</blue>
-     </color>
-    </property>
-    <property name="linestyle" stdset="0">
-     <enum>caGraphics::Solid</enum>
-    </property>
-    <property name="fillstyle" stdset="0">
-     <enum>caGraphics::Filled</enum>
-    </property>
-    <property name="lineColor">
-     <color>
-      <red>187</red>
-      <green>187</green>
-      <blue>187</blue>
-     </color>
-    </property>
-    <property name="form">
-     <enum>caGraphics::Rectangle</enum>
-    </property>
-   </widget>
-   <widget class="caLabel" name="caLabel_35">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>510</y>
-      <width>601</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Programmable clock status</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-   </widget>
-   <widget class="caLabel" name="caLabel_36">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>535</y>
-      <width>286</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Pgm clock IDT8N4QV01EG-0000</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-   </widget>
-   <widget class="caLabel" name="caLabel_37">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>560</y>
-      <width>140</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Pgm Clock</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-   </widget>
-   <widget class="caLabel" name="caLabel_38">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>590</y>
-      <width>140</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>P[1:0]</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-   </widget>
-   <widget class="caLabel" name="caLabel_39">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>610</y>
-      <width>140</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>MINT[6:0]</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-   </widget>
-   <widget class="caLabel" name="caLabel_40">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>630</y>
-      <width>140</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>MFRAC[17:0]</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-   </widget>
-   <widget class="caLabel" name="caLabel_41">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>650</y>
-      <width>140</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>N[6:0]</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-   </widget>
-   <widget class="caLabel" name="caLabel_42">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>680</y>
-      <width>140</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Output freq</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-   </widget>
-   <widget class="caLineEdit" name="caLineEdit_26">
-    <property name="geometry">
-     <rect>
-      <x>460</x>
-      <y>680</y>
-      <width>140</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Monospace</family>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-    <property name="channel" stdset="0">
-     <string>$(IOC):PGMCLOCK-FREQ</string>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color>
-      <red>218</red>
-      <green>218</green>
-      <blue>218</blue>
-     </color>
-    </property>
-    <property name="colorMode">
-     <enum>caLineEdit::Alarm_Static</enum>
-    </property>
-    <property name="unitsEnabled">
-     <bool>true</bool>
-    </property>
-    <property name="formatType">
-     <enum>caLineEdit::decimal</enum>
-    </property>
-   </widget>
-   <widget class="caLabel" name="caLabel_43">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>700</y>
-      <width>140</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>VCO lock freq ok</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignAbsolute|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color alpha="0">
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-   </widget>
-   <widget class="caLineEdit" name="caLineEdit_27">
-    <property name="geometry">
-     <rect>
-      <x>460</x>
-      <y>700</y>
-      <width>140</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Monospace</family>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-    <property name="channel" stdset="0">
-     <string>$(IOC):PGMCLOCK-FVCO</string>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color>
-      <red>218</red>
-      <green>218</green>
-      <blue>218</blue>
-     </color>
-    </property>
-    <property name="colorMode">
-     <enum>caLineEdit::Alarm_Static</enum>
-    </property>
-    <property name="unitsEnabled">
-     <bool>true</bool>
-    </property>
-    <property name="formatType">
-     <enum>caLineEdit::decimal</enum>
     </property>
    </widget>
    <widget class="caLineEdit" name="caLineEdit_30">
     <property name="geometry">
      <rect>
       <x>460</x>
-      <y>560</y>
+      <y>513</y>
       <width>140</width>
       <height>18</height>
      </rect>
@@ -3033,7 +2658,7 @@ border-radius: 2px;
      </font>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="channel" stdset="0">
      <string notr="true">$(IOC):PGMCLOCK-ENA</string>
@@ -3053,180 +2678,38 @@ border-radius: 2px;
      </color>
     </property>
     <property name="colorMode">
-     <enum>caLineEdit::Alarm_Static</enum>
+     <enum>caLineEdit::Static</enum>
+    </property>
+    <property name="frameLineWidth" stdset="0">
+     <number>0</number>
+    </property>
+    <property name="alarmHandling">
+     <enum>caLineEdit::onBackground</enum>
     </property>
     <property name="formatType">
      <enum>caLineEdit::string</enum>
     </property>
    </widget>
-   <widget class="caLineEdit" name="caLineEdit_31">
+   <widget class="caInclude" name="cainclude">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>590</y>
-      <width>140</width>
-      <height>18</height>
+      <x>5</x>
+      <y>510</y>
+      <width>615</width>
+      <height>187</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <family>Monospace</family>
-      <pointsize>11</pointsize>
-     </font>
+    <property name="macro">
+     <string>P=$(IOC):</string>
     </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    <property name="filename" stdset="0">
+     <string notr="true">ifcmon_include_pgmclk.ui</string>
     </property>
-    <property name="channel" stdset="0">
-     <string notr="true">$(IOC):PGMCLOCK-P</string>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color>
-      <red>218</red>
-      <green>218</green>
-      <blue>218</blue>
-     </color>
-    </property>
-    <property name="colorMode">
-     <enum>caLineEdit::Alarm_Static</enum>
-    </property>
-    <property name="formatType">
-     <enum>caLineEdit::string</enum>
+    <property name="stacking">
+     <enum>caInclude::RowColumn</enum>
     </property>
    </widget>
-   <widget class="caLineEdit" name="caLineEdit_32">
-    <property name="geometry">
-     <rect>
-      <x>460</x>
-      <y>610</y>
-      <width>140</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Monospace</family>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-    <property name="channel" stdset="0">
-     <string notr="true">$(IOC):PGMCLOCK-MINT</string>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color>
-      <red>218</red>
-      <green>218</green>
-      <blue>218</blue>
-     </color>
-    </property>
-    <property name="colorMode">
-     <enum>caLineEdit::Alarm_Static</enum>
-    </property>
-    <property name="formatType">
-     <enum>caLineEdit::string</enum>
-    </property>
-   </widget>
-   <widget class="caLineEdit" name="caLineEdit_33">
-    <property name="geometry">
-     <rect>
-      <x>460</x>
-      <y>630</y>
-      <width>140</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Monospace</family>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-    <property name="channel" stdset="0">
-     <string notr="true">$(IOC):PGMCLOCK-MFRAC</string>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color>
-      <red>218</red>
-      <green>218</green>
-      <blue>218</blue>
-     </color>
-    </property>
-    <property name="colorMode">
-     <enum>caLineEdit::Alarm_Static</enum>
-    </property>
-    <property name="formatType">
-     <enum>caLineEdit::string</enum>
-    </property>
-   </widget>
-   <widget class="caLineEdit" name="caLineEdit_34">
-    <property name="geometry">
-     <rect>
-      <x>460</x>
-      <y>650</y>
-      <width>140</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Monospace</family>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-    <property name="channel" stdset="0">
-     <string notr="true">$(IOC):PGMCLOCK-N</string>
-    </property>
-    <property name="foreground">
-     <color>
-      <red>0</red>
-      <green>0</green>
-      <blue>0</blue>
-     </color>
-    </property>
-    <property name="background">
-     <color>
-      <red>218</red>
-      <green>218</green>
-      <blue>218</blue>
-     </color>
-    </property>
-    <property name="colorMode">
-     <enum>caLineEdit::Alarm_Static</enum>
-    </property>
-    <property name="formatType">
-     <enum>caLineEdit::string</enum>
-    </property>
-   </widget>
+   <zorder>cainclude</zorder>
    <zorder>caRectangle_0</zorder>
    <zorder>caLabel_0</zorder>
    <zorder>caRectangle_1</zorder>
@@ -3268,17 +2751,6 @@ border-radius: 2px;
    <zorder>caLabel_30</zorder>
    <zorder>caLabel_31</zorder>
    <zorder>caLabel_32</zorder>
-   <zorder>caRectangle_9</zorder>
-   <zorder>caRectangle_10</zorder>
-   <zorder>caLabel_35</zorder>
-   <zorder>caLabel_36</zorder>
-   <zorder>caLabel_37</zorder>
-   <zorder>caLabel_38</zorder>
-   <zorder>caLabel_39</zorder>
-   <zorder>caLabel_40</zorder>
-   <zorder>caLabel_41</zorder>
-   <zorder>caLabel_42</zorder>
-   <zorder>caLabel_43</zorder>
    <zorder>caLineEdit_0</zorder>
    <zorder>caLineEdit_1</zorder>
    <zorder>caLineEdit_2</zorder>
@@ -3305,13 +2777,7 @@ border-radius: 2px;
    <zorder>caLineEdit_23</zorder>
    <zorder>caLineEdit_24</zorder>
    <zorder>caLineEdit_25</zorder>
-   <zorder>caLineEdit_26</zorder>
-   <zorder>caLineEdit_27</zorder>
    <zorder>caLineEdit_30</zorder>
-   <zorder>caLineEdit_31</zorder>
-   <zorder>caLineEdit_32</zorder>
-   <zorder>caLineEdit_33</zorder>
-   <zorder>caLineEdit_34</zorder>
   </widget>
  </widget>
  <customwidgets>
@@ -3324,6 +2790,11 @@ border-radius: 2px;
    <class>caGraphics</class>
    <extends>QWidget</extends>
    <header>caGraphics</header>
+  </customwidget>
+  <customwidget>
+   <class>caInclude</class>
+   <extends>QWidget</extends>
+   <header>caInclude</header>
   </customwidget>
   <customwidget>
    <class>caLineEdit</class>
