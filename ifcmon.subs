@@ -29,11 +29,11 @@ file ifcmon_pgmclock.template
 file ifcmon_bmr.template 
 {
     pattern
-    {SUBDEV     BMR  DESCR           DISABLE  FLNK                           }
-    {BMR1V0     0    "U704: 1V0"     0        "$(IOC):IFC1210-BMR1V5-VIN"    }
-    {BMR1V5     1    "U706: 1V5"     0        "$(IOC):IFC1210-BMRVADJ-VIN"   }
-    {BMRVADJ    2    "U707: Vadj"    1        "" }
-#    {BMR1V0OPT  3    "U705: 1V0opt"  1        ""   }
+    {SUBDEV     BMR  DESCR           FLNK                           }
+    {BMR1V0     0    "U704: 1V0"     "$(IOC):IFC1210-BMR1V5-VIN"    }
+    {BMR1V5     1    "U706: 1V5"     "$(IOC):IFC1210-BMRVADJ-VIN"   }
+    {BMRVADJ    2    "U707: Vadj"    "" }
+#    {BMR1V0OPT  3    "U705: 1V0opt"  ""   }
 }
 # end of I2C processing chain, started above in IFCMON_I2CIFC1210.template
 

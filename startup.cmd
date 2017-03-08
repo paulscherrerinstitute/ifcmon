@@ -41,6 +41,10 @@ pevI2cConfigure(0, "max5970",           0x400000b0)
 pevI2cConfigure(0, "pgm_clock",         0xe00000ee)
 
 dbLoadTemplate $(TEMPLATES)/ifcmon.subs,"IOC=$(IOC),EVNT=$(EVNT=),SCAN_$(EVNT=)=Event,SCAN_=$(SCAN=2 second),TMEMINPUT_=$(TMEMINPUT=IFCMONUsr1Generic),TMEMOFFS=$(TMEMOFFS=0)"
+ 
+BMR3_1=""
+$(BMR3_$(WITH_BMR3=)=#) dbLoadRecords,ifcmon_bmr.template,"IOC=$(IOC),SUBDEV=BMR1V0OPT,BMR=3,DESCR=U705: 1V0opt"
+$(BMR3_$(WITH_BMR3=)=#) afterInit dbpf $(IOC):IFC1210-BMRVADJ-INTERLEAVE.FLNK $(IOC):IFC1210-BMR1V0OPT-VIN
 
 TC1_TC1=""
 $(TC1_$(TC=)=#) runScript ifcmon_TC1.cmd
