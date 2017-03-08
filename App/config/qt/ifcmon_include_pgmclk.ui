@@ -299,7 +299,7 @@ border-radius: 2px;
      <enum>caLineEdit::Static</enum>
     </property>
     <property name="formatType">
-     <enum>caLineEdit::string</enum>
+     <enum>caLineEdit::hexadecimal</enum>
     </property>
    </widget>
    <widget class="caLabel" name="caLabel_35">
@@ -440,7 +440,7 @@ border-radius: 2px;
      <enum>caLineEdit::Static</enum>
     </property>
     <property name="formatType">
-     <enum>caLineEdit::string</enum>
+     <enum>caLineEdit::hexadecimal</enum>
     </property>
    </widget>
    <widget class="caLineEdit" name="caLineEdit_34">
@@ -482,7 +482,7 @@ border-radius: 2px;
      <enum>caLineEdit::Static</enum>
     </property>
     <property name="formatType">
-     <enum>caLineEdit::string</enum>
+     <enum>caLineEdit::hexadecimal</enum>
     </property>
    </widget>
    <widget class="caGraphics" name="caRectangle_10">
@@ -668,7 +668,7 @@ border-radius: 2px;
      <enum>caLineEdit::Static</enum>
     </property>
     <property name="formatType">
-     <enum>caLineEdit::string</enum>
+     <enum>caLineEdit::hexadecimal</enum>
     </property>
    </widget>
    <widget class="caLabel" name="caLabel_38">
