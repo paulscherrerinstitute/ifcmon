@@ -18,7 +18,7 @@ file ifcmon_pgmclock.template
 {
     { PREFIX="$(IOC):IFCTC2-PGMCLOCK-"
       I2CDEV="ifctc2_pgm_clock"
-      FLNK="$(IOC):IFCTC2-GTXREP-CH0-EQ" }
+      FLNK="$(IOC):IFCTC2-GTXREP-CH0-IDLEREG" }
 }
 
 # Scanning: 2 sec update rate FLNK'ed from FCMON_I2CIFCTC2.template
@@ -26,13 +26,13 @@ file ifcmon_ifctc2_gtx.template
 {
     pattern
     {CHNR CHREGOFFS FLNK                            }
-    {  0    0x00    "$(IOC):IFCTC2-GTXREP-CH1-EQ"   }
-    {  1    0x07    "$(IOC):IFCTC2-GTXREP-CH2-EQ"   }
-    {  2    0x0E    "$(IOC):IFCTC2-GTXREP-CH3-EQ"   }
-    {  3    0x15    "$(IOC):IFCTC2-GTXREP-CH4-EQ"   }
-    {  4    0x1D    "$(IOC):IFCTC2-GTXREP-CH5-EQ"   }
-    {  5    0x24    "$(IOC):IFCTC2-GTXREP-CH6-EQ"   }
-    {  6    0x2B    "$(IOC):IFCTC2-GTXREP-CH7-EQ"   }
+    {  0    0x00    "$(IOC):IFCTC2-GTXREP-CH1-IDLEREG"   }
+    {  1    0x07    "$(IOC):IFCTC2-GTXREP-CH2-IDLEREG"   }
+    {  2    0x0E    "$(IOC):IFCTC2-GTXREP-CH3-IDLEREG"   }
+    {  3    0x15    "$(IOC):IFCTC2-GTXREP-CH4-IDLEREG"   }
+    {  4    0x1D    "$(IOC):IFCTC2-GTXREP-CH5-IDLEREG"   }
+    {  5    0x24    "$(IOC):IFCTC2-GTXREP-CH6-IDLEREG"   }
+    {  6    0x2B    "$(IOC):IFCTC2-GTXREP-CH7-IDLEREG"   }
     {  7    0x32    "$(IOC):IFCTC2-PCIEREP08-CTRL1" }
 }
 # Scanning: 2 sec update rate FLNK'ed from FCMON_I2CIFCTC2_GTX.template
