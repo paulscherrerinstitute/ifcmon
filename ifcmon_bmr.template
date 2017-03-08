@@ -37,7 +37,6 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-VIN")
     field(INP , "#C$(BMR) S0x88 @BMR_11U 2")
     field(EGU , "V")
     field(PREC, "2")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-VOUT")
 }
 
@@ -48,7 +47,6 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-VOUT")
     field(INP , "#C$(BMR) S0x8B @BMR_16U 2")
     field(EGU , "V")
     field(PREC, "2")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-IOUT")
 }
 
@@ -59,7 +57,6 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-IOUT")
     field(INP , "#C$(BMR) S0x8C @BMR_11U 2")
     field(EGU , "A")
     field(PREC, "1")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-POUT")
 }
 
@@ -67,12 +64,11 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-IOUT")
 record(calc,"$(IOC):IFC1210-$(SUBDEV)-POUT")
 { 
     field(DESC, "$(DESCR): Pout")
-    field(INPA, "$(IOC):IFC1210-$(SUBDEV)-VOUT NPP")
-    field(INPB, "$(IOC):IFC1210-$(SUBDEV)-IOUT NPP") 		
+    field(INPA, "$(IOC):IFC1210-$(SUBDEV)-VOUT MS")
+    field(INPB, "$(IOC):IFC1210-$(SUBDEV)-IOUT MS") 		
     field(CALC, "A*B") 
     field(PREC, "2") 
     field(EGU , "W")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-TEMP1")
 }
 
@@ -83,7 +79,6 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-TEMP1")
     field(INP , "#C$(BMR) S0x8D @BMR_11S 2")
     field(EGU , "deg C")
     field(PREC, "1")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-FREQ")
 }
 
@@ -94,66 +89,38 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-FREQ")
     field(INP , "#C$(BMR) S0x95 @BMR_11U 2")
     field(EGU , "kHz")
     field(PREC, "1")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-USERCONFIG")
 }
-
-# debug
-record(ai,"$(IOC):IFC1210-$(SUBDEV)-USERCONFIG")
-{
-    field(DESC, "$(DESCR): USRCFG")
-    field(DTYP, "ifc1210")
-    field(INP , "#C$(BMR) S0xD1 @BMR 2")
-    field(PRIO, "LOW")
-    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-USERCONFIG")
-}
-
-
 
 #--------------------------------------------------------------------
 # Control records (PP)
 #--------------------------------------------------------------------
 
-record(ai,"$(IOC):IFC1210-$(SUBDEV)-USERCONFIG")
+record(longin,"$(IOC):IFC1210-$(SUBDEV)-USERCONFIG")
 {
     field(DESC, "$(DESCR): USRCFG")
     field(DTYP, "ifc1210")
     field(INP , "#C$(BMR) S0xD1 @BMR 2")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-SYNCPIN")
 }
-record ( mbbi, "$(IOC):IFC1210-$(SUBDEV)-SYNCPIN")
+record(mbbi, "$(IOC):IFC1210-$(SUBDEV)-SYNCPIN")
 {
     field(DESC, "$(DESCR): SYNC")
-    field(DTYP, "Soft Channel")
-    field(INP , "$(IOC):IFC1210-$(SUBDEV)-USERCONFIG NPP")
+    field(DTYP, "Raw Soft Channel")
+    field(INP , "$(IOC):IFC1210-$(SUBDEV)-USERCONFIG MS")
     field(SHFT, "6")
     field(NOBT, "1")
-    field(VAL , "1")
-    field(PINI, "NO")
     field(ZRVL, "0")
     field(ZRST, "SYNC internal")
-    field(ZRSV, "NO_ALARM")
     field(ONVL, "1")
     field(ONST, "SYNC input")
-    field(ONSV, "NO_ALARM")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-INTERLEAVE")
 }
 
-record(ai,"$(IOC):IFC1210-$(SUBDEV)-INTERLEAVE")
+record(longin,"$(IOC):IFC1210-$(SUBDEV)-INTERLEAVE")
 {
     field(DESC, "$(DESCR): INTERLEAVE")
     field(DTYP, "ifc1210")
     field(INP , "#C$(BMR) S0x37 @BMR 2")
-    field(PRIO, "LOW")
-    field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-FAN")
-}
-
-record(fanout,"$(IOC):IFC1210-$(SUBDEV)-FAN")
-{
-    field(DISA, "$(DISABLE)")
-    field(DISV, "1")
-    field(PRIO, "LOW")
     field(FLNK, "$(FLNK=)") # FLNK towards next BMR463
 }
