@@ -11,7 +11,7 @@
    </rect>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="caInclude" name="caInclude_3">
+   <widget class="caInclude" name="caInclude_TC1">
     <property name="geometry">
      <rect>
       <x>565</x>
@@ -190,7 +190,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="caInclude" name="caInclude_4">
+   <widget class="caInclude" name="caInclude_GPIO">
     <property name="geometry">
      <rect>
       <x>565</x>
@@ -224,7 +224,7 @@
      <string notr="true"/>
     </property>
    </widget>
-   <widget class="caInclude" name="caInclude_5">
+   <widget class="caInclude" name="caInclude_TC2">
     <property name="geometry">
      <rect>
       <x>565</x>
@@ -243,7 +243,7 @@
      <enum>caInclude::Calc</enum>
     </property>
     <property name="visibilityCalc">
-     <string notr="true">G</string>
+     <string notr="true">G=1 &amp;&amp; J=0</string>
     </property>
     <property name="channel" stdset="0">
      <string notr="true">$(IOC):IFCTC2-GTXREP-OBSREG</string>
@@ -291,9 +291,9 @@
    <zorder>caframe</zorder>
    <zorder>cainclude</zorder>
    <zorder>caframe_3</zorder>
-   <zorder>caInclude_4</zorder>
-   <zorder>caInclude_3</zorder>
-   <zorder>caInclude_5</zorder>
+   <zorder>caInclude_GPIO</zorder>
+   <zorder>caInclude_TC1</zorder>
+   <zorder>caInclude_TC2</zorder>
   </widget>
  </widget>
  <customwidgets>

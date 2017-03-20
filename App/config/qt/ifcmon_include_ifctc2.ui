@@ -648,7 +648,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>632</y>
+      <y>677</y>
       <width>266</width>
       <height>56</height>
      </rect>
@@ -681,7 +681,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>25</x>
-      <y>640</y>
+      <y>685</y>
       <width>166</width>
       <height>21</height>
      </rect>
@@ -717,7 +717,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>155</x>
-      <y>666</y>
+      <y>711</y>
       <width>121</width>
       <height>18</height>
      </rect>
@@ -767,7 +767,7 @@ border-radius: 2px;
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>635</y>
+      <y>680</y>
       <width>90</width>
       <height>26</height>
      </rect>

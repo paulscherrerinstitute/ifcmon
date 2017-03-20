@@ -19,7 +19,8 @@ file ifcmon_pgmclock.template
     { PREFIX="$(IOC):PGMCLOCK-"
       I2CDEV="pgm_clock" 
       FLNK="$(IOC):IFC1210-BMR1V0-VIN"
-      }
+      F_XTAL=114.285
+    }
 }
 
 # FLNK'ed from IFCMON_I2CIFC1210.template

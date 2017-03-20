@@ -60,10 +60,10 @@ record(longin,"$(PREFIX)REG20")
 
 #soft records for frequency calculation, internal FLNK's for update of freq. value for display
 record(calc,"$(PREFIX)P") {
-     field(DESC, "IDT8N4Q001 f calc")
-     field(INPA, "$(PREFIX)REG20 NPP")
-     field(CALC, "(A>>6)&0x3")
-     field(FLNK, "$(PREFIX)MINT")
+    field(DESC, "IDT8N4Q001 f calc")
+    field(INPA, "$(PREFIX)REG20 MS")
+    field(CALC, "1+((A>>6)&1)+((A>>7)&1)*3")
+    field(FLNK, "$(PREFIX)MINT")
 } 
 
 record(calc,"$(PREFIX)MINT")
@@ -89,16 +89,9 @@ record(calc,"$(PREFIX)N")
     field(DESC, "IDT8N4Q001 f calc")
     field(INPA, "$(PREFIX)REG12 MS")
     field(CALC, "A&0x7f")
-    field(FLNK, "$(PREFIX)PREAL")
-}
-
-record(calc,"$(PREFIX)PREAL") {     
-    field(DESC, "IDT8N4Q001 f calc")
-    field(INPA, "$(PREFIX)P MS")
-    field(CALC, "(A&0x1)+1+((A&0x2)*3)")
     field(FLNK, "$(PREFIX)FREQ")
 }
- 
+
 record(calc,"$(PREFIX)FREQ")
 {
     field(DESC, "IDT8N4Q001 f calc")
@@ -106,9 +99,9 @@ record(calc,"$(PREFIX)FREQ")
     field(INPB, "$(PREFIX)MINT MS")
     field(INPC, "$(PREFIX)MFRAC MS")
     field(INPD, "$(PREFIX)N MS")
-    field(E   , "100.000") # f_xtal in MHz / see datasheet for our chip IDT8N4QV01EG-0000
-    field(G   , "3.814697265625e-06") # = 1/2^18
-    field(CALC, "E*(B+(C*G))/(A*D)")
+    field(E   , "$(F_XTAL=114.285)") # f_xtal in MHz / see datasheet for our chip IDT8N4QV01EG-0000
+    field(G   , "262144") # = 2^18
+    field(CALC, "E*(B+(C/G))/(A*D)")
     field(EGU , "MHz")
     field(PREC, "6")
     field(HIHI, "1300")
@@ -132,4 +125,3 @@ record(calc,"$(PREFIX)FVCO")
     field(LLSV, "MAJOR")
     field(FLNK, "$(FLNK=)") # end of local FLNK chain
 }
-
