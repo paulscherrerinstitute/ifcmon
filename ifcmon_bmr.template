@@ -37,6 +37,8 @@ record(ai,"$(IOC):IFC1210-$(SUBDEV)-VIN")
     field(INP , "#C$(BMR) S0x88 @BMR_11U 2")
     field(EGU , "V")
     field(PREC, "2")
+    field(SCAN, "$(SCAN)")
+    field(EVNT, "$(EVNT)")
     field(FLNK, "$(IOC):IFC1210-$(SUBDEV)-VOUT")
 }
 
@@ -122,5 +124,5 @@ record(longin,"$(IOC):IFC1210-$(SUBDEV)-INTERLEAVE")
     field(DESC, "$(DESCR): INTERLEAVE")
     field(DTYP, "ifc1210")
     field(INP , "#C$(BMR) S0x37 @BMR 2")
-    field(FLNK, "$(FLNK=)") # FLNK towards next BMR463
+    field(FLNK, "$(FLNK=)")
 }

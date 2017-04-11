@@ -3,11 +3,7 @@
 # Current Author: Dirk Zimoch
 #
 
-# externel globals: IOC, EVNT, SCAN_$(EVNT)
-
-global {
-    SCAN="$(SCAN_$(EVNT))"
-}
+# externel globals: IOC, EVNT, SCAN
 
 file ifcmon_ifc1210.template
 {
@@ -18,25 +14,22 @@ file ifcmon_pgmclock.template
 {
     { PREFIX="$(IOC):PGMCLOCK-"
       I2CDEV="pgm_clock" 
-      FLNK="$(IOC):IFC1210-BMR1V0-VIN"
       F_XTAL=114.285
     }
 }
 
-# FLNK'ed from IFCMON_I2CIFC1210.template
 # for interleave seetings see:
 #    https://codebeamer.psi.ch/cb/displayDocument/PMBus_Specification_Part_I_Rev_1-1_20070205.pdf?doc_id=128848    page 56
 #    https://codebeamer.psi.ch/cb/displayDocument/BMR463+AN302+PMBus+Command+Set.pdf?doc_id=142711                 page 32
 file ifcmon_bmr.template 
 {
     pattern
-    {SUBDEV     BMR  DESCR           FLNK                           }
-    {BMR1V0     0    "U704: 1V0"     "$(IOC):IFC1210-BMR1V5-VIN"    }
-    {BMR1V5     1    "U706: 1V5"     "$(IOC):IFC1210-BMRVADJ-VIN"   }
-    {BMRVADJ    2    "U707: Vadj"    "" }
-#    {BMR1V0OPT  3    "U705: 1V0opt"  ""   }
+    {SUBDEV     BMR  DESCR          }
+    {BMR1V0     0    "U704: 1V0"    }
+    {BMR1V5     1    "U706: 1V5"    }
+    {BMRVADJ    2    "U707: Vadj"   }
+#    {BMR1V0OPT  3    "U705: 1V0opt" }
 }
-# end of I2C processing chain, started above in IFCMON_I2CIFC1210.template
 
 # Scanning: 2 sec
 file ifcmon_tmem.template
