@@ -5,7 +5,7 @@
 
 # externel globals: IOC, EVNT, SCAN
 
-file ifcmon_ifc1210.template
+file ifcmon_lm95235_and_max5970.template
 {
     {}
 }
@@ -31,19 +31,16 @@ file ifcmon_bmr.template
 #    {BMR1V0OPT  3    "U705: 1V0opt" }
 }
 
-# Scanning: 2 sec
 file ifcmon_tmem.template
 {
     { TMEMINPUT="$(TMEMINPUT_)" }
 }
 
-# Scanning: 2 sec
 file ifcmon_tcsr.template
 {
     {}
 }
 
-# Scanning: 2 sec
 file ifcmon_elb.template
 {
     {}

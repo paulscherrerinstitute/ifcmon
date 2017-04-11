@@ -1,18 +1,7 @@
-# Module Description:
-# Contains the records for IFC1210 mainboard based I2C busses/chips
-# based on access over PON FPGA but not:
-# -the components which are on XMC/FMC 1/2 cards. 
-# -the BMR463 DC/DC (own template)
-#
-# You may find more infos on I2C bus structure here:
-# https://codebeamer.psi.ch/cb/wiki/140335
-#
-#
-# This template requires following in a common part of the startup.script:
-#     e.g.  pevAsynI2cConfigure(0, "lm95235_1",  0x0400004c)
-# for each device
-#
-#
+# This template requires following in the startup.script:
+#     pevI2cConfigure(0, "lm95235_1", 0x000000cc)
+#     pevI2cConfigure(0, "lm95235_2", 0x00000098)
+#     pevI2cConfigure(0, "max5970",   0x400000b0)
 #
 # This template requires following substitution parameters:
 # $(IOC)                                        The system name
@@ -23,7 +12,6 @@
 # I2C bus 0x0:      temperature
 # device:           LM95235 temperature sensor U700 with local sensor only
 # datasheet:        https://codebeamer.psi.ch/cb/displayDocument/lm95235.pdf?doc_id=128846
-# startup.script:   ifc1210_lm95235_1
 #--------------------------------------------------------------------
 
 # configuration register 2
@@ -35,7 +23,6 @@ record(longout,"$(IOC):TEMP1-CONF2")
     field(EVNT, "$(EVNT=)")
     field(OUT , "@lm95235_1/0xBF T=UINT8")
     field(VAL , "6") # see page 17 of datasheet: filter enabled
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):TEMP1-MSB")
 }
 
@@ -45,7 +32,6 @@ record(longin,"$(IOC):TEMP1-MSB")
     field(DESC, "LM95235 U700 Local, MSB")
     field(DTYP, "regDev")
     field(INP , "@lm95235_1/0x00 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):TEMP1-LSB")
 }
 record(longin,"$(IOC):TEMP1-LSB")
@@ -53,7 +39,6 @@ record(longin,"$(IOC):TEMP1-LSB")
     field(DESC, "LM95235 U700 Local, LSB")
     field(DTYP, "regDev")
     field(INP , "@lm95235_1/0x30 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):TEMP1")
 }
 record(calc,"$(IOC):TEMP1")
@@ -67,17 +52,12 @@ record(calc,"$(IOC):TEMP1")
     field(EGU , "deg C")
     field(HIHI, "65")
     field(HHSV, "MAJOR")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):TEMP2-CONF2")
 }
-
-
-
 
 # I2C bus 0x0:      temperature
 # device:           LM95235 temperature sensor U701 with local + P2020 remote sensor
 # datasheet:        https://codebeamer.psi.ch/cb/displayDocument/lm95235.pdf?doc_id=128846
-# startup.script:   ifc1210_lm95235_2
 #--------------------------------------------------------------------
 
 # configuration register 2
@@ -87,7 +67,6 @@ record(longout,"$(IOC):TEMP2-CONF2")
     field(DTYP, "regDev")
     field(OUT , "@lm95235_2/0xBF T=UINT8")
     field(VAL , "6") # see page 17 of datasheet: filter enabled
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):TEMP2-MSB")
 }
 
@@ -97,7 +76,6 @@ record(longin,"$(IOC):TEMP2-MSB")
     field(DESC, "LM95235 U701 Local, MSB")
     field(DTYP, "regDev")
     field(INP , "@lm95235_2/0x00 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):TEMP2-LSB")
 }
 record(longin,"$(IOC):TEMP2-LSB")
@@ -105,7 +83,6 @@ record(longin,"$(IOC):TEMP2-LSB")
     field(DESC, "LM95235 U701 Local, LSB")
     field(DTYP, "regDev")
     field(INP , "@lm95235_2/0x30 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):TEMP2")
 }
 record(calc,"$(IOC):TEMP2")
@@ -119,7 +96,6 @@ record(calc,"$(IOC):TEMP2")
     field(EGU , "deg C")
     field(HIHI, "65")
     field(HHSV, "MAJOR")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):P2020-CORETEMP")
 }
 
@@ -131,14 +107,12 @@ record(longin,"$(IOC):P2020-CORETEMP-MSB")
     field(DESC, "LM95235 U701 P2020 Core, MSB")
     field(DTYP, "regDev")
     field(INP , "@lm95235_2/0x01 T=UINT8")
-    field(PRIO, "LOW")
 }
 record(longin,"$(IOC):P2020-CORETEMP-LSB")
 {
     field(DESC, "LM95235 U701 P2020 Core, LSB")
     field(DTYP, "regDev")
     field(INP , "@lm95235_2/0x10 T=UINT8")
-    field(PRIO, "LOW")
 }
 record(calc,"$(IOC):P2020-CORETEMP")
 { 
@@ -151,7 +125,6 @@ record(calc,"$(IOC):P2020-CORETEMP")
     field(EGU , "deg C")
     field(HIHI, "90")
     field(HHSV, "MAJOR")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V-MSB")
 }
 
@@ -173,7 +146,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V-MSB")
     field(DESC, "CH1_V_actual_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0x2 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V-LSB")
 }
 record(longin,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V-LSB")
@@ -181,7 +153,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V-LSB")
     field(DESC, "CH1_V_actual_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0x3 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V")
 }
 record(calc,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V")
@@ -197,7 +168,6 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-V")
     field(HHSV, "MAJOR")
     field(LOLO, "4.5")
     field(LLSV, "MAJOR")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MIN-V-MSB")
 }
 
@@ -207,7 +177,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH1-MIN-V-MSB")
     field(DESC, "CH1_V_MIN_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0xC T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MIN-V-LSB")
 }
 record(longin,"$(IOC):IFC1210-PWRMON-CH1-MIN-V-LSB")
@@ -215,7 +184,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH1-MIN-V-LSB")
     field(DESC, "CH1_V_MIN_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0xD T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MIN-V")
 }
 record(calc,"$(IOC):IFC1210-PWRMON-CH1-MIN-V")
@@ -231,7 +199,6 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH1-MIN-V")
     field(HHSV, "MAJOR")
     field(LOLO, "4.5")
     field(LLSV, "MAJOR")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MAX-V-MSB")
 }
 
@@ -241,7 +208,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH1-MAX-V-MSB")
     field(DESC, "CH1_V_MAX_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0xE T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MAX-V-LSB")
 }
 record(longin,"$(IOC):IFC1210-PWRMON-CH1-MAX-V-LSB")
@@ -249,7 +215,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH1-MAX-V-LSB")
     field(DESC, "CH1_V_MAX_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0xF T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MAX-V")
 }
 record(calc,"$(IOC):IFC1210-PWRMON-CH1-MAX-V")
@@ -265,7 +230,6 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH1-MAX-V")
     field(HHSV, "MAJOR")
     field(LOLO, "4.5")
     field(LLSV, "MAJOR")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I-MSB")
 }
 
@@ -275,7 +239,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I-MSB")
     field(DESC, "CH1_I_actual_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0x0 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I-LSB")
 }
 record(longin,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I-LSB")
@@ -283,7 +246,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I-LSB")
     field(DESC, "CH1_I_actual_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0x1 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I")
 }
 record(calc,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I")
@@ -297,7 +259,6 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-I")
     field(EGU , "A")
     field(HIHI, "11.000") # according IFC1210 UG section 2.6 Imax = 11.2A
     field(HHSV, "MAJOR")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MIN-I-MSB")
 }
 
@@ -307,7 +268,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH1-MIN-I-MSB")
     field(DESC, "CH1_I_MIN_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0x8 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MIN-I-LSB")
 }
 record(longin,"$(IOC):IFC1210-PWRMON-CH1-MIN-I-LSB")
@@ -315,7 +275,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH1-MIN-I-LSB")
     field(DESC, "CH1_I_MIN_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0x9 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MIN-I")
 }
 record(calc,"$(IOC):IFC1210-PWRMON-CH1-MIN-I")
@@ -327,7 +286,6 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH1-MIN-I")
     field(CALC, "(A|(B<<2))*C") 
     field(PREC, "1") 
     field(EGU , "A")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MAX-I-MSB")
 }
 
@@ -337,7 +295,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH1-MAX-I-MSB")
     field(DESC, "CH1_I_MAX_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0xA T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MAX-I-LSB")
 }
 record(longin,"$(IOC):IFC1210-PWRMON-CH1-MAX-I-LSB")
@@ -345,7 +302,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH1-MAX-I-LSB")
     field(DESC, "CH1_I_MAX_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0xB T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-MAX-I")
 }
 record(calc,"$(IOC):IFC1210-PWRMON-CH1-MAX-I")
@@ -359,7 +315,6 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH1-MAX-I")
     field(EGU , "A")
     field(HIHI, "11.200") # according IFC1210 UG section 2.6 Imax = 11.2A
     field(HHSV, "MAJOR")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH1-ACTUAL-W")
 }
 
@@ -372,7 +327,6 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH1-ACTUAL-W")
     field(CALC, "A*B") 
     field(PREC, "1") 
     field(EGU , "W")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V-MSB")
 }
 
@@ -382,7 +336,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V-MSB")
     field(DESC, "CH2_V_actual_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0x6 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V-LSB")
 }
 record(longin,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V-LSB")
@@ -390,7 +343,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V-LSB")
     field(DESC, "CH2_V_actual_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0x7 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V")
 }
 record(calc,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V")
@@ -406,7 +358,6 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-V")
     field(HHSV, "MAJOR")
     field(LOLO, "2.9")
     field(LLSV, "MAJOR")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MIN-V-MSB")
 }
 
@@ -416,7 +367,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH2-MIN-V-MSB")
     field(DESC, "CH2_V_MIN_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0x14 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MIN-V-LSB")
 }
 record(longin,"$(IOC):IFC1210-PWRMON-CH2-MIN-V-LSB")
@@ -424,7 +374,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH2-MIN-V-LSB")
     field(DESC, "CH2_V_MIN_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0x15 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MIN-V")
 }
 record(calc,"$(IOC):IFC1210-PWRMON-CH2-MIN-V")
@@ -440,7 +389,6 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH2-MIN-V")
     field(HHSV, "MAJOR")
     field(LOLO, "2.9")
     field(LLSV, "MAJOR")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MAX-V-MSB")
 }
 
@@ -450,7 +398,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH2-MAX-V-MSB")
     field(DESC, "CH2_V_MAX_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0x16 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MAX-V-LSB")
 }
 record(longin,"$(IOC):IFC1210-PWRMON-CH2-MAX-V-LSB")
@@ -458,7 +405,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH2-MAX-V-LSB")
     field(DESC, "CH2_V_MAX_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0x17 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MAX-V")
 }
 record(calc,"$(IOC):IFC1210-PWRMON-CH2-MAX-V")
@@ -474,7 +420,6 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH2-MAX-V")
     field(HHSV, "MAJOR")
     field(LOLO, "3")
     field(LLSV, "MAJOR")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I-MSB")
 }
 
@@ -484,7 +429,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I-MSB")
     field(DESC, "CH2_I_actual_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0x4 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I-LSB")
 }
 record(longin,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I-LSB")
@@ -492,7 +436,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I-LSB")
     field(DESC, "CH2_I_actual_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0x5 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I")
 }
 record(calc,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I")
@@ -506,7 +449,6 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-I")
     field(EGU , "A")
     field(HIHI, "17.5") # according IFC1210 UG section 2.6 Imax = 11.2A
     field(HHSV, "MAJOR")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MIN-I-MSB")
 }
 
@@ -516,7 +458,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH2-MIN-I-MSB")
     field(DESC, "CH2_I_MIN_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0x10 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MIN-I-LSB")
 }
 record(longin,"$(IOC):IFC1210-PWRMON-CH2-MIN-I-LSB")
@@ -524,7 +465,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH2-MIN-I-LSB")
     field(DESC, "CH2_I_MIN_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0x11 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MIN-I")
 }
 record(calc,"$(IOC):IFC1210-PWRMON-CH2-MIN-I")
@@ -536,7 +476,6 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH2-MIN-I")
     field(CALC, "(A|(B<<2))*C")
     field(PREC, "1") 
     field(EGU , "A")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MAX-I-MSB")
 }
 
@@ -546,7 +485,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH2-MAX-I-MSB")
     field(DESC, "CH2_I_MAX_higher8bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0x12 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MAX-I-LSB")
 }
 record(longin,"$(IOC):IFC1210-PWRMON-CH2-MAX-I-LSB")
@@ -554,7 +492,6 @@ record(longin,"$(IOC):IFC1210-PWRMON-CH2-MAX-I-LSB")
     field(DESC, "CH2_I_MAX_lowest2bit")
     field(DTYP, "regDev")
     field(INP , "@max5970/0x13 T=UINT8")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-MAX-I")
 }
 record(calc,"$(IOC):IFC1210-PWRMON-CH2-MAX-I")
@@ -568,7 +505,6 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH2-MAX-I")
     field(EGU , "A")
     field(HIHI, "19") # according IFC1210 UG section 2.6 Imax = 11.2A
     field(HHSV, "MAJOR")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-CH2-ACTUAL-W")
 }
 
@@ -581,7 +517,6 @@ record(calc,"$(IOC):IFC1210-PWRMON-CH2-ACTUAL-W")
     field(CALC, "A*B") 
     field(PREC, "1") 
     field(EGU , "W")
-    field(PRIO, "LOW")
     field(FLNK, "$(IOC):IFC1210-PWRMON-DISS")
 }
 
@@ -596,19 +531,5 @@ record(calc,"$(IOC):IFC1210-PWRMON-DISS")
     field(EGU , "W")
     field(HIHI, "80")
     field(HHSV, "MAJOR")
-    field(PRIO, "LOW")
-    field(FLNK, "$(FLNK=)") # end of IFC1210/ELB main processing chain
+    field(FLNK, "$(FLNK=)")
 }
-
-# I2C bus 0x6:      PCI-express
-# device:           PES32NT24AG2 PCI-express switch
-# datasheet:        https://codebeamer.psi.ch/cb/displayDocument/PES32NT24xG2-Device-UserManual.pdf?doc_id=130003
-# startup.script:   ifc1210_pci_express_switch
-#--------------------------------------------------------------------
-#
-# ===> KR84: Not sure if we go this direction using Slave-SMBus interface of IDT PES32NT24AG2 PCIe switch.
-#            The issue here is, that an additional layer to cover the SSMBUS requirement of each cycle is
-#            A 8-bytes transfer.
-#            Other option would be use the global address space registers available also in PCI configuraiton space
-#            of the switch (GASAADDR and GASADATA) / XprsMon command "px".
-#

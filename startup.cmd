@@ -35,11 +35,10 @@ $(NO_TMEM=)pevConfigure(0,"IFCMONUsr1Generic","USR1", 0, 0 , 0, 256, 1, "DS", 0)
 
 # on IFC1210 mainboard
 # All these accesses go over ELB-bus directly to PON FPGA, therefore bit 7 of following code is set.
-pevI2cConfigure(0, "lm95235_1",         0x000000cc)
-pevI2cConfigure(0, "lm95235_2",         0x00000098)
-pevI2cConfigure(0, "max5970",           0x400000b0)
-pevI2cConfigure(0, "pgm_clock",         0xe00000ee)
-
+pevI2cConfigure(0, "lm95235_1", 0x000000cc)
+pevI2cConfigure(0, "lm95235_2", 0x00000098)
+pevI2cConfigure(0, "max5970",   0x400000b0)
+pevI2cConfigure(0, "pgm_clock", 0xe00000ee)
 
 # Automativally select SCAN=Event if EVNT is given
 # else default to SCAN="2 second"
