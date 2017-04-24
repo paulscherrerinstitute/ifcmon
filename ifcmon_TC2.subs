@@ -20,6 +20,7 @@ file ifcmon_pgmclock.template
       I2CDEV="ifctc2_pgm_clock"
       FLNK="$(IOC):IFCTC2-GTXREP-CH0-IDLEREG"
       F_XTAL=100.0
+      SCAN=Passive
     }
 }
 

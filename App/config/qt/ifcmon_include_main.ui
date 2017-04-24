@@ -36,7 +36,7 @@
     <widget class="caLineEdit" name="caLineEdit_3">
      <property name="geometry">
       <rect>
-       <x>358</x>
+       <x>360</x>
        <y>710</y>
        <width>150</width>
        <height>18</height>
@@ -331,7 +331,7 @@
     <widget class="caLineEdit" name="caLineEdit_4">
      <property name="geometry">
       <rect>
-       <x>358</x>
+       <x>360</x>
        <y>730</y>
        <width>150</width>
        <height>18</height>
@@ -929,7 +929,7 @@
     <widget class="caLineEdit" name="caLineEdit_9">
      <property name="geometry">
       <rect>
-       <x>358</x>
+       <x>360</x>
        <y>580</y>
        <width>150</width>
        <height>18</height>
@@ -1015,9 +1015,9 @@
     <widget class="caLineEdit" name="caLineEdit_10">
      <property name="geometry">
       <rect>
-       <x>314</x>
+       <x>285</x>
        <y>620</y>
-       <width>226</width>
+       <width>225</width>
        <height>18</height>
       </rect>
      </property>
@@ -1072,7 +1072,7 @@
     <widget class="caLineEdit" name="caLineEdit_0">
      <property name="geometry">
       <rect>
-       <x>358</x>
+       <x>360</x>
        <y>670</y>
        <width>150</width>
        <height>18</height>
@@ -1218,7 +1218,7 @@
     <widget class="caLineEdit" name="caLineEdit_2">
      <property name="geometry">
       <rect>
-       <x>358</x>
+       <x>360</x>
        <y>690</y>
        <width>150</width>
        <height>18</height>
@@ -1256,7 +1256,7 @@
     <widget class="caLineEdit" name="caLineEdit_12">
      <property name="geometry">
       <rect>
-       <x>359</x>
+       <x>360</x>
        <y>785</y>
        <width>150</width>
        <height>18</height>
@@ -1341,13 +1341,11 @@
        <enum>QFrame::NoFrame</enum>
       </property>
      </widget>
-     <zorder>caLabel_34</zorder>
-     <zorder>caInclude_1</zorder>
     </widget>
     <widget class="caLineEdit" name="caLineEdit_8">
      <property name="geometry">
       <rect>
-       <x>358</x>
+       <x>360</x>
        <y>560</y>
        <width>150</width>
        <height>18</height>
@@ -1667,29 +1665,6 @@
       </property>
      </widget>
     </widget>
-    <widget class="caLed" name="caled_12">
-     <property name="geometry">
-      <rect>
-       <x>325</x>
-       <y>500</y>
-       <width>30</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="channel" stdset="0">
-      <string notr="true">$(IOC):PGMCLOCK-ENA</string>
-     </property>
-     <property name="colorMode">
-      <enum>caLed::Static</enum>
-     </property>
-     <property name="trueColor">
-      <color>
-       <red>0</red>
-       <green>255</green>
-       <blue>0</blue>
-      </color>
-     </property>
-    </widget>
     <widget class="caLabel" name="caLabel_15">
      <property name="geometry">
       <rect>
@@ -1762,7 +1737,7 @@
     <widget class="caLineEdit" name="caLineEdit_14">
      <property name="geometry">
       <rect>
-       <x>358</x>
+       <x>360</x>
        <y>505</y>
        <width>150</width>
        <height>18</height>
@@ -1797,7 +1772,7 @@
     <widget class="caLineEdit" name="caLineEdit_11">
      <property name="geometry">
       <rect>
-       <x>358</x>
+       <x>360</x>
        <y>600</y>
        <width>150</width>
        <height>18</height>
@@ -1834,7 +1809,7 @@
       <rect>
        <x>35</x>
        <y>505</y>
-       <width>251</width>
+       <width>201</width>
        <height>18</height>
       </rect>
      </property>
@@ -1986,6 +1961,80 @@
       </property>
      </widget>
     </widget>
+    <widget class="caMessageButton" name="camessagebutton">
+     <property name="geometry">
+      <rect>
+       <x>295</x>
+       <y>505</y>
+       <width>61</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Update</string>
+     </property>
+     <property name="channel" stdset="0">
+      <string notr="true">$(IOC):PGMCLOCK-REG0.PROC</string>
+     </property>
+     <property name="background">
+      <color>
+       <red>183</red>
+       <green>157</green>
+       <blue>92</blue>
+      </color>
+     </property>
+     <property name="pressMessage">
+      <string notr="true">1</string>
+     </property>
+    </widget>
+    <widget class="caLineEdit" name="caLineEdit_30">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>485</y>
+       <width>150</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Monospace</family>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="channel" stdset="0">
+      <string notr="true">$(IOC):PGMCLOCK-ENA</string>
+     </property>
+     <property name="foreground">
+      <color>
+       <red>0</red>
+       <green>0</green>
+       <blue>0</blue>
+      </color>
+     </property>
+     <property name="background">
+      <color>
+       <red>218</red>
+       <green>218</green>
+       <blue>218</blue>
+      </color>
+     </property>
+     <property name="colorMode">
+      <enum>caLineEdit::Static</enum>
+     </property>
+     <property name="frameLineWidth" stdset="0">
+      <number>0</number>
+     </property>
+     <property name="alarmHandling">
+      <enum>caLineEdit::onBackground</enum>
+     </property>
+     <property name="formatType">
+      <enum>caLineEdit::string</enum>
+     </property>
+    </widget>
     <zorder>caframe_8</zorder>
     <zorder>caframe_4</zorder>
     <zorder>caRectangle_6</zorder>
@@ -2021,7 +2070,6 @@
     <zorder>caLabel_12</zorder>
     <zorder>caLabel_8</zorder>
     <zorder>caled_17</zorder>
-    <zorder>caled_12</zorder>
     <zorder>caLabel_15</zorder>
     <zorder>caLineEdit_14</zorder>
     <zorder>caLineEdit_11</zorder>
@@ -2033,6 +2081,8 @@
     <zorder>caInclude_2</zorder>
     <zorder>caLineEdit_10</zorder>
     <zorder>caLabel_19</zorder>
+    <zorder>camessagebutton</zorder>
+    <zorder>caLineEdit_30</zorder>
    </widget>
   </widget>
  </widget>
@@ -2041,6 +2091,11 @@
    <class>caRelatedDisplay</class>
    <extends>QWidget</extends>
    <header>caRelatedDisplay</header>
+  </customwidget>
+  <customwidget>
+   <class>caMessageButton</class>
+   <extends>QPushButton</extends>
+   <header>caMessageButton</header>
   </customwidget>
   <customwidget>
    <class>caFrame</class>

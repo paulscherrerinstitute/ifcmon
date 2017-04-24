@@ -15,6 +15,7 @@ file ifcmon_pgmclock.template
     { PREFIX="$(IOC):PGMCLOCK-"
       I2CDEV="pgm_clock" 
       F_XTAL=114.285
+      SCAN=Passive
     }
 }
 
