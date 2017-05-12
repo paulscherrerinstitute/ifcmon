@@ -34,7 +34,7 @@
      <enum>caFrame::IfZero</enum>
     </property>
     <property name="channel" stdset="0">
-     <string notr="true">$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-CTRL-REG.SEVR</string>
+     <string notr="true">$(IOC):$(SUBDEV)-SFP-$(SFPFCT)-STAT-REG.SEVR</string>
     </property>
     <widget class="caLineEdit" name="caLineEdit_3">
      <property name="geometry">

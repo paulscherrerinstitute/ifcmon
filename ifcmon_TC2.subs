@@ -9,18 +9,19 @@ global {
     SCAN="$(SCAN_$(EVNT=)=5 second)"
 }
 
-file ifcmon_ifctc2.template
-{
-    {}
-}
-
 file ifcmon_pgmclock.template
 {
     { PREFIX="$(IOC):IFCTC2-PGMCLOCK-"
       I2CDEV="ifctc2_pgm_clock"
-      FLNK="$(IOC):IFCTC2-GTXREP-CH0-IDLEREG"
       F_XTAL=100.0
       SCAN=Passive
+    }
+}
+
+file ifcmon_ifctc2.template
+{
+    {
+      FLNK="$(IOC):IFCTC2-GTXREP-CH0-IDLEREG"
     }
 }
 
